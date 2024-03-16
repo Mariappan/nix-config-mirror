@@ -21,6 +21,9 @@
   services.xrdp.defaultWindowManager = "xfce4-session";
   services.xrdp.openFirewall = true;
 
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+
   users.users.nixuser = {
     name = "nixuser";
     home = "/home/nixuser";
@@ -44,24 +47,25 @@
     }
   ];
 
-  home-manager.users = let 
+  home-manager.users = let
     homeModule = {
       imports = [
         ../../homeModules/shared/core.nix
+        {
+          programs.git = {
+            userName = "Mariappan Ramasamy";
+            userEmail = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
+            signing = {
+              key = "09260E7E819CB52451171823FF801DC77426D7C1";
+              signByDefault = true;
+            };
+          };
+        }
       ];
     };
   in {
     root  = homeModule;
     nixuser = homeModule;
   };
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-
-  # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-    curl
-    git
-  ];
 }
 

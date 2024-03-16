@@ -12,6 +12,13 @@
 
   home-manager.users.maari = { imports = [
     ../homeModules/shared/core.nix
+    {
+      programs.git = {
+        enable = true;
+        userName = "Mariappan Ramasamy";
+        userEmail = "maari@qq.com";
+      };
+    }
   ];};
 
   # The platform the configuration will be used on.

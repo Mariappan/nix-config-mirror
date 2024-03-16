@@ -2,6 +2,11 @@
 
   imports = [
     home-manager.darwinModules.home-manager
+    {
+      home-manager.useGlobalPkgs = true;
+      home-manager.useUserPackages = true;
+      home-manager.extraSpecialArgs = config._module.specialArgs;
+    }
     ./fishpathfix.nix
   ];
 
@@ -29,9 +34,6 @@
     pkgs.vim
   ];
 
-  # programs.git.enable = true;
-  # services.openssh.enable = true;
-
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;  # default shell on catalina
   programs.fish.enable = true;
@@ -40,9 +42,6 @@
   programs.direnv.loadInNixShell = true;
   programs.direnv.nix-direnv.enable = true;
   programs.direnv.silent = false;
-
-  programs.tmux.enable = true;
-  # programs.tmux.terminal = "screen-256color";
 
   environment.shells = [ pkgs.bashInteractive pkgs.zsh pkgs.fish ];
 
@@ -64,23 +63,11 @@
     ];
   };
 
-  # Set Git commit hash for darwin-version.
-  # MAARI: Enable this later
-  # system.configurationRevision = self.rev or self.dirtyRev or null;
+  # Enable TouchId for sudo
+  security.pam.enableSudoTouchIdAuth = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
-
-  # Enable TouchId for sudo
-  security.pam.enableSudoTouchIdAuth = true;
-
-  nixpkgs.overlays = [
-    inputs.neovim-nightly-overlay.overlay
-  ];
-
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = config._module.specialArgs;
 }
 
