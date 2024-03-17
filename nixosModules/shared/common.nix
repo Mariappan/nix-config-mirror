@@ -29,12 +29,6 @@
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
-  programs.fish.enable = true;
-
-  programs.direnv.enable = true;
-  programs.direnv.loadInNixShell = true;
-  programs.direnv.nix-direnv.enable = true;
-  programs.direnv.silent = false;
 
   environment.shells = [ pkgs.bashInteractive pkgs.zsh pkgs.fish ];
 

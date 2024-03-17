@@ -52,6 +52,7 @@
     homeModule = {
       imports = [
         ../../homeModules/shared/core.nix
+        ../../homeModules/shared/nixos.nix
         ../../homeModules/shared/git
         {
           programs.git = {
