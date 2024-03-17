@@ -25,6 +25,7 @@
   };
   programs.git.extraConfig = {
     core = {
+      editor = "${pkgs.vim}/bin/vim";
       whitespace = "trailing-space,space-before-tab";
     };
     color = {
