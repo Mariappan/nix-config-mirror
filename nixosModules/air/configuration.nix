@@ -51,6 +51,7 @@
     homeModule = {
       imports = [
         ../../homeModules/shared/core.nix
+        ../../homeModules/shared/git
         {
           programs.git = {
             userName = "Mariappan Ramasamy";

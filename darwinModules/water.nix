@@ -12,6 +12,7 @@
 
   home-manager.users.maari = { imports = [
     ../homeModules/shared/core.nix
+    ../homeModules/shared/git
     {
       programs.git = {
         enable = true;

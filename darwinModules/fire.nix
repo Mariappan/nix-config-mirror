@@ -12,6 +12,7 @@
 
   home-manager.users."mariappan.ramasamy" = { imports = [
     ../homeModules/shared/core.nix
+    ../homeModules/shared/git
     {
       programs.git = {
         userName = "Mariappan Ramasamy";

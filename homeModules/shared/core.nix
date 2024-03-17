@@ -11,7 +11,6 @@
     pkgs.expect
     pkgs.fd
     pkgs.fzf
-    pkgs.git-absorb
     pkgs.gnupg
     pkgs.helix
     pkgs.htop
@@ -71,52 +70,6 @@
   programs.htop.settings = {
     hide_kernel_threads = true;
     hide_userland_threads = true;
-  };
-
-  programs.git.enable = true;
-  programs.git.aliases = {
-    graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f";
-    root = "rev-parse --show-toplevel";
-  };
-  programs.gitui.enable = true;
-  programs.git.delta.enable = true;
-  programs.git.delta.options = {
-    decorations = {
-      commit-decoration-style = "bold yellow box ul";
-      file-decoration-style = "none";
-      file-style = "bold yellow ul";
-    };
-    features = "line-numbers decorations";
-    whitespace-error-style = "22 reverse";
-  };
-  programs.git.extraConfig = {
-    core = {
-      whitespace = "trailing-space,space-before-tab";
-    };
-    color = {
-      ui = true;
-      diff = {
-        meta = 227;
-        frag = "magenta bold";
-        commit = "227 bold";
-        old = "red bold";
-        new = "green bold";
-        whitespace = "red reverse";
-     };
-    };
-    rerere = {
-      enabled = true;
-      autoupdate = true;
-    };
-    tag = {
-      forceSignAnnotated = true;
-    };
-    push = {
-      default = "simple";
-    };
-    init = {
-      defaultBranch = "main";
-    };
   };
 
   home.stateVersion = "23.11";
