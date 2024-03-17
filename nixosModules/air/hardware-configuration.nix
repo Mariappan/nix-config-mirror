@@ -11,17 +11,16 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  # boot.blacklistedKernelModules = [
-  #   "snd_soc_avs"
-  # ];
-
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/38c05b32-15cd-494f-b20f-e1a2edefb6c5";
+    { device = "/dev/mapper/cryptroot";
       fsType = "ext4";
-      options = [
-        "noatime"
-        "nodiratime"
-      ];
+    };
+
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/4efc42e2-8ef9-403f-8a3e-632107aed939";
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/7960-97FA";
+      fsType = "vfat";
     };
 
   swapDevices = [ ];

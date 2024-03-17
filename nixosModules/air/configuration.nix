@@ -2,15 +2,13 @@
 
   imports = [
     ./hardware-configuration.nix
+    ./boot.nix
     ../shared/common.nix
   ];
 
-  # GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-
   # System configs
   networking.hostName = "nixos"; # Define your hostname.
+  networking.networkmanager.enable = true;
   time.timeZone = "Asia/Singapore";
   i18n.defaultLocale = "en_US.UTF-8";
 
@@ -23,15 +21,18 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P"
+  ];
 
   users.users.nixuser = {
     name = "nixuser";
     home = "/home/nixuser";
     shell = "${pkgs.fish}/bin/fish";
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" ];
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P 1password"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P"
     ];
   };
   nix.settings.trusted-users = [ "nixuser" ];
