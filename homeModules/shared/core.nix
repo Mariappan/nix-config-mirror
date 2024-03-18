@@ -1,6 +1,10 @@
 { config, pkgs, inputs, ... }:
 
 {
+  imports = [
+    ./fish.nix
+  ];
+
   home.packages = [
     pkgs.atuin
     pkgs.bat
