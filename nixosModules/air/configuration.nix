@@ -25,11 +25,23 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P"
   ];
 
+  virtualisation.docker.enable = true;
+  virtualisation.docker.autoPrune.enable = true;
+  virtualisation.docker.daemon.settings = {
+    bip = "10.254.1.1/24";
+    default-address-pools = [
+      {
+        base = "10.254.2.0/18";
+        size = 24;
+      }
+    ];
+  };
+
   users.users.nixuser = {
     name = "nixuser";
     home = "/home/nixuser";
     shell = "${pkgs.fish}/bin/fish";
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "docker" ];
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P"
