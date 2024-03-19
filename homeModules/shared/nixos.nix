@@ -6,4 +6,8 @@
     enable = true;
     nix-direnv.enable = true;
   };
+
+  home.packages = [
+    pkgs.wezterm
+  ];
 }
