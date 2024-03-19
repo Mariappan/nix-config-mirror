@@ -1,6 +1,7 @@
 { config, pkgs, inputs, ... }:
 
 {
+  xdg.enable = true;
   xdg.userDirs.enable = true;
   xdg.userDirs.createDirectories = true;
 
@@ -12,4 +13,7 @@
   xdg.userDirs.videos = "${config.home.homeDirectory}/videos";
   xdg.userDirs.templates = "${config.home.homeDirectory}/templates";
   xdg.userDirs.publicShare = "${config.home.homeDirectory}/shared";
+
+  xdg.cacheHome = "${config.home.homeDirectory}/.cache";
+  xdg.configHome = "${config.home.homeDirectory}/.config";
 }
