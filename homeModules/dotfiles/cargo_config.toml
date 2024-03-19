@@ -1,0 +1,37 @@
+[alias]
+b = "build"
+c = "check"
+t = "test"
+r = "run"
+space_example = ["run", "--release", "--", "\"command list\""]
+
+[env]
+# SOME_ENV_VAR_NAME = "value"
+
+[future-incompat-report]
+frequency = 'always' # when to display a notification about a future incompat report
+
+[cargo-new]
+vcs = "git"              # VCS to use ('git', 'hg', 'pijul', 'fossil', 'none')
+
+[net]
+retry = 3                   # network retries
+git-fetch-with-cli = true   # use the `git` executable for git operations
+
+[term]
+quiet = false          # whether cargo output is quiet
+verbose = false        # whether cargo provides verbose output
+color = 'auto'         # whether cargo colorizes output
+hyperlinks = true      # whether cargo inserts links into output
+progress.when = 'auto' # whether cargo shows progress bar
+progress.width = 80    # width of progress bar
+
+# The development profile, used for `cargo build`
+[profile.dev]
+opt-level = 0  # Controls the --opt-level the compiler builds with
+debug = true   # Controls whether the compiler passes `-g`
+
+# The release profile, used for `cargo build --release`
+[profile.release]
+# opt-level = 3
+# debug = true
