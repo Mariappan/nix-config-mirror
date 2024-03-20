@@ -1,0 +1,28 @@
+local module = {}
+
+function module.apply(config)
+  config.window_frame = {
+    inactive_titlebar_bg = "#353535",
+    active_titlebar_bg = "#2b2042",
+    inactive_titlebar_fg = "#cccccc",
+    active_titlebar_fg = "#ffffff",
+    inactive_titlebar_border_bottom = "#2b2042",
+    active_titlebar_border_bottom = "#2b2042",
+    button_fg = "#cccccc",
+    button_bg = "#2b2042",
+    button_hover_fg = "#ffffff",
+    button_hover_bg = "#3b3052",
+
+    border_left_width = "0.5cell",
+    border_right_width = "0.5cell",
+    border_bottom_height = "0.0cell",
+    border_top_height = "0.0cell",
+  }
+
+  config.enable_tab_bar = true
+  config.use_fancy_tab_bar = false
+  -- config.window_decorations = "RESIZE"
+  -- config.window_background_opacity = 0.97
+end
+
+return module

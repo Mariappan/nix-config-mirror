@@ -1,13 +1,10 @@
 { config, pkgs, inputs, ... }:
-
 {
+  imports = [ ./wezterm.lua ];
+
   programs.fish.enable = true;
   programs.direnv = {
     enable = true;
     nix-direnv.enable = true;
   };
-
-  home.packages = [
-    pkgs.wezterm
-  ];
 }
