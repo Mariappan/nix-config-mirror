@@ -1,7 +1,21 @@
 args @ {pkgs, lib, ...}: {
 
+  xdg.configFile = {
+    "gitalias" = {
+      enable = true;
+      source = ./git.fish;
+      target = "fish/conf.d/git.fish";
+    };
+    "lwfish" = {
+      enable = true;
+      source = ./lw.fish;
+      target = "fish/functions/lw.fish";
+    };
+  };
+
   programs.fish = {
     enable = true;
+
     functions = {
       cdg = { # Cd to git root
         body = ''
@@ -11,20 +25,50 @@ args @ {pkgs, lib, ...}: {
         end
         '';
       };
-      _tide_item_nix_shell = { # displays nix shell env on the right of the prompt
+      git-current-branch = {
         body = ''
+        set -f ref "$(command git symbolic-ref HEAD 2> /dev/null)"
+        if test -z $ref
+            return 1
+        else
+            echo (string replace refs/heads/ "" $ref)
+            return 0
+        end
         '';
       };
     };
+
     shellInit = ''
       ${lib.optionalString (!args ? osConfig) "source ${pkgs.nix}/etc/profile.d/nix-daemon.fish"}
     '';
+
     interactiveShellInit = ''
       set -g fish_greeting
       ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source # use fish in nix run and nix-shell
-      #tide configure --auto --style=Classic --prompt_colors='True color' --classic_prompt_color=Darkest --show_time='24-hour format' --classic_prompt_separators=Angled --powerline_prompt_heads=Sharp --powerline_prompt_tails=Flat --powerline_prompt_style='One line' --prompt_spacing=Compact --icons='Many icons' --transient=No
-      set -U tide_vi_mode_icon_visual V
+
+      # Ctrl L - Clear the screen, but dont clear the scrollback
+      bind \cl 'for i in (seq 1 $LINES); echo; end; clear; commandline -f repaint'
+      bind \cw backward-kill-word
+      if command -q direnv
+        direnv hook fish | source
+      end
+
+      if command -q atuin
+        atuin init fish | source
+      end
+
+      # Modern tools
+      if command -q bat
+        alias cat "bat -p"
+      end
+
+      if command -q lsd
+        alias ls="lsd"
+      end
+
+      abbr 4DIRS --set-cursor=! "$(string join \n -- 'for dir in */' 'cd $dir' '!' 'cd ..' 'end')"
     '';
+
     loginShellInit = ''
     ''
     + lib.optionalString (args ? darwinConfig) (let
@@ -37,17 +81,27 @@ args @ {pkgs, lib, ...}: {
     in ''
       fish_add_path --move --prepend --path ${lib.concatMapStringsSep " " dquote (makeBinPathList args.darwinConfig.environment.profiles)}
       set fish_user_paths $fish_user_paths
+
+      # Add user local paths
+      fish_add_path ~/.local/bin
+      fish_add_path ~/.krew/bin
+      fish_add_path ~/.cargo/bin
+      fish_add_path /opt/homebrew/bin
+      fish_add_path ~/Applications/Bin
     '');
+
     shellAliases = {
       icat = "kitty +kitten icat";
     };
+
     shellAbbrs = {
       ssh-keygen-ed25519 = "ssh-keygen -t ed25519";
       update-hardware-conf = "nixos-generate-config --show-hardware-config --no-filesystems > /etc/nixos/nixosModules/$(hostname)/hardware-configuration.nix && git -C /etc/nixos/ commit /etc/nixos/nixosModules/$(hostname)/hardware-configuration.nix -m \"$(hostname): update hardware-configuration.nix\"";
       nixos-update-flake = "pushd /etc/nixos && nix flake update && git commit -m \"nix flake update\" flake.lock && git push && popd";
+      lwc = "cargo fmt && cargo clippy --fix --allow-dirty --allow-staged --all-features --all-targets -- -D warnings && cargo nextest run";
     };
-    plugins = with pkgs.fishPlugins; [
 
+    plugins = with pkgs.fishPlugins; [
       {
         name = "tide"; # natively async
         #src = tide.src; # 5.6 on 23.11
@@ -63,7 +117,7 @@ args @ {pkgs, lib, ...}: {
         src = puffer.src;
       }
       {
-        name = "pisces"; # pisces # auto pairing of ([{"'
+        name = "pisces"; # pisces # auto pairing of bracket"'
         src = pisces.src;
       }
       {
@@ -80,10 +134,6 @@ args @ {pkgs, lib, ...}: {
         name = "done"; # doesn't work on wayland
         src = done.src;
       }
-      # {
-      #   name = "async-prompt"; # pisces # auto pairing of ([{"'
-      #   src = async-prompt.src;
-      # }
     ];
   };
 }

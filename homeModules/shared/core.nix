@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./fish.nix
+    ./fish
     ./tmux.nix
     ./helix.nix
     ./vim.nix
