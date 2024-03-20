@@ -3,6 +3,14 @@ args @ {pkgs, lib, ...}: {
   programs.fish = {
     enable = true;
     functions = {
+      cdg = { # Cd to git root
+        body = ''
+        set -lx TOPLEVEL (git rev-parse --show-toplevel 2> /dev/null)
+        if test $status -eq 0
+          cd $TOPLEVEL
+        end
+        '';
+      };
       _tide_item_nix_shell = { # displays nix shell env on the right of the prompt
         body = ''
         '';
