@@ -4,6 +4,7 @@
   imports = [
     ./fish.nix
     ./tmux.nix
+    ./vim.nix
   ];
 
   home.packages = [
