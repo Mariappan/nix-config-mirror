@@ -4,6 +4,7 @@
   imports = [
     ./fish.nix
     ./tmux.nix
+    ./helix.nix
     ./vim.nix
   ];
 
