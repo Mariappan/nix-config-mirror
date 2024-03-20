@@ -5,6 +5,7 @@
     ./fish
     ./tmux.nix
     ./helix.nix
+    ./nvim.nix
     ./vim.nix
   ];
 
