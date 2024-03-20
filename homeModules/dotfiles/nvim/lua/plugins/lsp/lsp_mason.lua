@@ -16,8 +16,8 @@ local mason_lsp = {
     local lsp = require("mason-lspconfig")
     lsp.setup({
       ensure_installed = {
-        "lua_ls",
-        "rust_analyzer",
+        -- "lua_ls",
+        -- "rust_analyzer",
         -- "yamlls",
       },
     })
