@@ -24,6 +24,7 @@
   "*.AppImage"
   "*.venv"
   ".envrc"
+  ".direnv"
   ".idea"
   ".vim"
   "venv"
@@ -31,9 +32,9 @@
   "pyrightconfig.json"
   ".python-version"
   "__pycache__"
+  "perf.data"
 
   # Custom
   "ignore_custom_*.yaml"
   "ignore_custom_*.conf"
-  "perf.data"
 ]
