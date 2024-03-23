@@ -10,7 +10,7 @@
   # System configs
   networking.hostName = "air";
   networking.networkmanager.enable = true;
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   time.timeZone = "Asia/Singapore";
   i18n.defaultLocale = "en_US.UTF-8";
