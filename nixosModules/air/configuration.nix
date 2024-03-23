@@ -4,6 +4,7 @@
     ./hardware-configuration.nix
     ./boot.nix
     ../shared/common.nix
+    ../shared/lanzaboote.nix
   ];
 
   # System configs
