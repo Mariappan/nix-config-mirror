@@ -22,7 +22,7 @@
         enable = true;
         port = 22;
         authorizedKeys = config.users.users.root.openssh.authorizedKeys.keys;
-        hostKeys = [ "/etc/secrets/initrd/ssh_host_rsa_key" ];
+        hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
         shell = lib.mkIf (!config.boot.initrd.systemd.enable) "/bin/cryptsetup-askpass";
       };
     };
