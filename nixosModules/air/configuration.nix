@@ -60,8 +60,15 @@
     }
   ];
 
-  home-manager.users = let
-    homeModule = {
+  home-manager.users = {
+    root = {
+      imports = [
+        ../../homeModules/shared/core.nix
+        ../../homeModules/shared/nixos.nix
+        ../../homeModules/shared/git
+      ];
+    };
+    nixuser = {
       imports = [
         ../../homeModules/shared/core.nix
         ../../homeModules/shared/nixos.nix
@@ -80,9 +87,6 @@
         }
       ];
     };
-  in {
-    root  = homeModule;
-    nixuser = homeModule;
   };
 }
 
