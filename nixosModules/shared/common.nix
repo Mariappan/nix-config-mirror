@@ -24,6 +24,7 @@
     pkgs.opensc
     pkgs.openssh
     pkgs.git
+    pkgs.sbctl
     pkgs.vim
   ];
 

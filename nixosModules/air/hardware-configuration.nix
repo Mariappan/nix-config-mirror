@@ -4,22 +4,17 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports = [ ];
-
-  boot.initrd.availableKernelModules = [ "ata_piix" "uhci_hcd" "ehci_pci" "vmw_pvscsi" "sd_mod" "sr_mod" ];
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
-  boot.extraModulePackages = [ ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   fileSystems."/" =
     { device = "/dev/mapper/cryptroot";
       fsType = "ext4";
     };
 
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/4efc42e2-8ef9-403f-8a3e-632107aed939";
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/9a9102b3-c420-4555-811e-1e93f8f06737";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/7960-97FA";
+    { device = "/dev/disk/by-uuid/5A3E-4EEB";
       fsType = "vfat";
     };
 
@@ -30,7 +25,9 @@
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.ens192.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp0s13f0u3.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
+  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
