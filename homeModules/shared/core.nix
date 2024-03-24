@@ -35,7 +35,6 @@
     pkgs.rsync
     pkgs.rustup
     pkgs.ripgrep
-    pkgs.socat
     pkgs.sshuttle
     pkgs.tldr
     pkgs.tor
@@ -47,9 +46,6 @@
     pkgs.zip
     pkgs.unzip
     pkgs.wget
-    pkgs.whois
-    pkgs.sshpass
-    pkgs.termshark
     pkgs.neovim
     #pkgs.zellij
     #pkgs.jetbrains.rust-rover

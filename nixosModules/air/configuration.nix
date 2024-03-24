@@ -124,6 +124,7 @@
         ../../homeModules/shared/xdg.nix
         ../../homeModules/shared/rust.nix
         ../../homeModules/shared/git
+        ../../homeModules/shared/debug.nix
         {
           programs.git = {
             userName = "Mariappan Ramasamy";
