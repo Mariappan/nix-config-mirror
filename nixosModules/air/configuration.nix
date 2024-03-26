@@ -6,6 +6,8 @@
     ../shared/common.nix
     ../shared/headless.nix
     ../shared/lanzaboote.nix
+    ../shared/docker.nix
+    ../shared/virtualbox.nix
   ];
 
   # System configs
@@ -74,24 +76,12 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  virtualisation.docker.enable = true;
-  virtualisation.docker.autoPrune.enable = true;
-  virtualisation.docker.daemon.settings = {
-    bip = "10.254.1.1/24";
-    default-address-pools = [
-      {
-        base = "10.254.2.0/18";
-        size = 24;
-      }
-    ];
-  };
-
   users.users.maari = {
     name = "maari";
     description = "Mariappan Ramasamy";
     home = "/home/maari";
     shell = "${pkgs.fish}/bin/fish";
-    extraGroups = [ "wheel" "docker" "networkmanager" ];
+    extraGroups = [ "wheel" "docker" "networkmanager" "vboxusers" ];
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P"
