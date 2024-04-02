@@ -46,7 +46,7 @@
     pkgs.zip
     pkgs.unzip
     pkgs.wget
-    pkgs.neovim
+    pkgs.neovim-nightly
     #pkgs.jetbrains.rust-rover
     #pkgs.jetbrains.jdk
     #pkgs.yubikey-manager
