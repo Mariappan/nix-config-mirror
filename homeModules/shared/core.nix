@@ -46,17 +46,13 @@
     pkgs.zip
     pkgs.unzip
     pkgs.wget
-    pkgs.neovim
+    #pkgs.neovim
     #pkgs.zellij
     #pkgs.jetbrains.rust-rover
     #pkgs.jetbrains.jdk
     #pkgs.yubikey-manager
-    #pkgs.neovim-nightly
+    pkgs.neovim-nightly
     # pkgs.ookla-speedtest # Need export NIXPKGS_ALLOW_UNFREE=1
-  ];
-
-  nixpkgs.overlays = [
-    inputs.neovim-nightly-overlay.overlay
   ];
 
   programs.atuin.enable = true;

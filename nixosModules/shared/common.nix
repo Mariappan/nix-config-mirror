@@ -10,9 +10,18 @@
     ./fishpathfix.nix
   ];
 
+  # Nixpkgs config
+  nixpkgs = {
+    overlays = [
+      (import ../../overlays inputs).default
+    ];
+    config = {
+        allowUnfree = true;
+    };
+  };
+
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
-  nixpkgs.config.allowUnfree = true;
 
   nix.optimise.automatic = true;
   nix.optimise.dates = [ "03:45" ];
