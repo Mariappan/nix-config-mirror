@@ -25,6 +25,8 @@
     }
   ];};
 
+  nix.settings.trusted-users = [ "mariappan.ramasamy" ];
+
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
 

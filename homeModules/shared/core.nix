@@ -46,12 +46,10 @@
     pkgs.zip
     pkgs.unzip
     pkgs.wget
-    #pkgs.neovim
-    #pkgs.zellij
+    pkgs.neovim
     #pkgs.jetbrains.rust-rover
     #pkgs.jetbrains.jdk
     #pkgs.yubikey-manager
-    pkgs.neovim-nightly
     # pkgs.ookla-speedtest # Need export NIXPKGS_ALLOW_UNFREE=1
   ];
 
