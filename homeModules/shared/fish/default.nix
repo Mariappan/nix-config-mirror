@@ -66,6 +66,10 @@ args @ {pkgs, lib, ...}: {
         alias ls="lsd"
       end
 
+      if command -q nvim
+        alias vim="nvim"
+      end
+
       abbr 4DIRS --set-cursor=! "$(string join \n -- 'for dir in */' 'cd $dir' '!' 'cd ..' 'end')"
     '';
 
@@ -97,7 +101,6 @@ args @ {pkgs, lib, ...}: {
     shellAbbrs = {
       ssh-keygen-ed25519 = "ssh-keygen -t ed25519";
       update-hardware-conf = "nixos-generate-config --show-hardware-config --no-filesystems > /etc/nixos/nixosModules/$(hostname)/hardware-configuration.nix && git -C /etc/nixos/ commit /etc/nixos/nixosModules/$(hostname)/hardware-configuration.nix -m \"$(hostname): update hardware-configuration.nix\"";
-      nixos-update-flake = "pushd /etc/nixos && nix flake update && git commit -m \"nix flake update\" flake.lock && git push && popd";
       lwc = "cargo fmt && cargo clippy --fix --allow-dirty --allow-staged --all-features --all-targets -- -D warnings && cargo nextest run";
     };
 
