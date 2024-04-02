@@ -49,13 +49,6 @@ args @ {pkgs, lib, ...}: {
       # Ctrl L - Clear the screen, but dont clear the scrollback
       bind \cl 'for i in (seq 1 $LINES); echo; end; clear; commandline -f repaint'
       bind \cw backward-kill-word
-      if command -q direnv
-        direnv hook fish | source
-      end
-
-      if command -q atuin
-        atuin init fish | source
-      end
 
       # Modern tools
       if command -q bat
