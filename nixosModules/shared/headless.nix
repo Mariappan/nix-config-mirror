@@ -8,6 +8,10 @@
 
   powerManagement.enable = false;
 
+  # Without this, systemd-logind will eat 1 full CPU
+  # https://discussion.fedoraproject.org/t/systemd-logind-eats-cpu-when-closing-laptop-lid/67805/3
+  services.logind.lidSwitch = "ignore";
+
   services.xserver.displayManager.gdm.autoSuspend = false;
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
