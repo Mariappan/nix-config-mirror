@@ -7,10 +7,10 @@ function _lw_server
     switch "$command"
         case t
             _lw_build &&
-            sudo -E ip netns exec lightway-server target/debug/lightway-server --config-file=tests/ignore_custom_server_conf.yaml --mode tcp
+            sudo -E ip netns exec lightway-server target/debug/lightway-server --config-file=ignore_server_conf.yaml --mode tcp
         case u
             _lw_build &&
-            sudo -E ip netns exec lightway-server target/debug/lightway-server --config-file=tests/ignore_custom_server_conf.yaml --mode udp
+            sudo -E ip netns exec lightway-server target/debug/lightway-server --config-file=ignore_server_conf.yaml --mode udp
         case b
             sudo -E ip netns exec lightway-server bash
         case \*
@@ -23,10 +23,10 @@ function _lw_client
     switch "$command"
         case t
             _lw_build &&
-            sudo -E ip netns exec lightway-client target/debug/lightway-client --config-file=tests/ignore_custom_client_conf.yaml --mode tcp
+            sudo -E ip netns exec lightway-client target/debug/lightway-client --config-file=ignore_client_conf.yaml --mode tcp
         case u
             _lw_build &&
-            sudo -E ip netns exec lightway-client target/debug/lightway-client --config-file=tests/ignore_custom_client_conf.yaml --mode udp
+            sudo -E ip netns exec lightway-client target/debug/lightway-client --config-file=ignore_client_conf.yaml --mode udp
         case it
             sudo -E ip netns exec lightway-client iperf3 -c 8.8.8.8 -V -b 2G -l 1200
         case iu

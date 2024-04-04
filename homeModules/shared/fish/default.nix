@@ -94,7 +94,6 @@ args @ {pkgs, lib, ...}: {
     shellAbbrs = {
       ssh-keygen-ed25519 = "ssh-keygen -t ed25519";
       update-hardware-conf = "nixos-generate-config --show-hardware-config --no-filesystems > /etc/nixos/nixosModules/$(hostname)/hardware-configuration.nix && git -C /etc/nixos/ commit /etc/nixos/nixosModules/$(hostname)/hardware-configuration.nix -m \"$(hostname): update hardware-configuration.nix\"";
-      lwc = "cargo fmt && cargo clippy --fix --allow-dirty --allow-staged --all-features --all-targets -- -D warnings && cargo nextest run";
     };
 
     plugins = with pkgs.fishPlugins; [
