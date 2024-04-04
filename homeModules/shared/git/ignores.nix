@@ -33,6 +33,7 @@
   ".python-version"
   "__pycache__"
   "perf.data"
+  ".devenv"
 
   # Custom
   "ignore_*.yaml"
