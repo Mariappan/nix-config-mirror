@@ -125,6 +125,9 @@
               signByDefault = true;
             };
           };
+          home.sessionVariables = {
+            EARTHLY_SSH_AUTH_SOCK = "/home/maari/.ssh/agent/1password.sock";
+          };
         }
       ];
     };
