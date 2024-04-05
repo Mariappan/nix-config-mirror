@@ -40,6 +40,8 @@
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
 
+  programs.bcc.enable = true;
+
   environment.shells = [ pkgs.bashInteractive pkgs.zsh pkgs.fish ];
 
   system.stateVersion = "23.11";
