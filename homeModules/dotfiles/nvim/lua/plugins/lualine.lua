@@ -5,17 +5,17 @@
 -- Color table for highlights
 -- stylua: ignore
 local colors = {
-  bg       = "#222222",
-  fg       = "#6D7678",
-  yellow   = "#6D7678",
-  cyan     = "#6D7678",
-  darkblue = "#6D7678",
-  green    = "#6D7678",
-  orange   = "#6D7678",
-  violet   = "#6D7678",
-  magenta  = "#6D7678",
-  blue     = "#6D7678",
-  red      = "#6D7678",
+  bg       = "#404040",
+  fg       = "#C5C5C5",
+  yellow   = "#C5C5C5",
+  cyan     = "#C5C5C5",
+  darkblue = "#C5C5C5",
+  green    = "#C5C5C5",
+  orange   = "#C5C5C5",
+  violet   = "#C5C5C5",
+  magenta  = "#C5C5C5",
+  blue     = "#C5C5C5",
+  red      = "#C5C5C5",
 }
 
 local vim = vim
