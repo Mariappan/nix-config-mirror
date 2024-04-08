@@ -19,6 +19,8 @@ vim.g.maplocalleader = " "
 
 require("lazy").setup({
   spec = {
+    -- Colorscheme creator
+    { "rktjmp/lush.nvim", lazy = false, priority = 1000 },
     { import = "plugins" },
     { import = "plugins.lsp" },
     { import = "plugins.editing" },
