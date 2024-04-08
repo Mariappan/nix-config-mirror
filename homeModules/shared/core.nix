@@ -24,7 +24,6 @@
     pkgs.htop
     pkgs.hurl
     pkgs.hyperfine
-    pkgs.inetutils
     pkgs.iperf
     pkgs.jq
     pkgs.lsd
