@@ -27,16 +27,27 @@
       url = "github:nix-community/lanzaboote/v0.3.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = inputs@{ self, nixos, nix-darwin, nixpkgs, home-manager, lanzaboote, neovim-nightly-overlay }:
-  {
-    inherit inputs; # useful to debug and inspect
+  outputs = inputs @ {
+    self,
+    flake-parts,
+    ...
+  }:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      flake = {
+        # darwin-rebuild build --flake .#water
+        darwinConfigurations = import ./darwinConfigurations.nix inputs;
 
-    # darwin-rebuild build --flake .#water
-    darwinConfigurations = import ./darwinConfigurations.nix inputs;
+        # sudo nixos-rebuild switch --flake .#water
+        nixosConfigurations = import ./nixosConfigurations.nix inputs;
+      };
 
-    # sudo nixos-rebuild switch --flake .#water
-    nixosConfigurations = import ./nixosConfigurations.nix inputs;
-  };
+      systems = ["x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
+
+      perSystem = {pkgs, ...}: {
+        formatter = pkgs.alejandra;
+      };
+    };
 }
