@@ -3,6 +3,7 @@
   imports = [
     ./hardware-configuration.nix
     ./boot.nix
+    ./users.nix
     ../shared/common.nix
     ../shared/headless.nix
     ../shared/lanzaboote.nix
@@ -75,62 +76,5 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
-
-  users.users.maari = {
-    name = "maari";
-    description = "Mariappan Ramasamy";
-    home = "/home/maari";
-    shell = "${pkgs.fish}/bin/fish";
-    extraGroups = [ "wheel" "docker" "networkmanager" "vboxusers" ];
-    isNormalUser = true;
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P"
-    ];
-  };
-  nix.settings.trusted-users = [ "maari" ];
-  security.sudo.extraRules = [
-    {
-      users = [ "maari" ];
-      commands = [
-        {
-          command = "ALL" ;
-          options= [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
-
-  home-manager.users = {
-    root = {
-      imports = [
-        ../../homeModules/shared/core.nix
-        ../../homeModules/shared/nixos.nix
-        ../../homeModules/shared/git
-      ];
-    };
-    maari = {
-      imports = [
-        ../../homeModules/shared/core.nix
-        ../../homeModules/shared/nixos.nix
-        ../../homeModules/shared/xdg.nix
-        ../../homeModules/shared/rust.nix
-        ../../homeModules/shared/git
-        ../../homeModules/shared/debug.nix
-        {
-          programs.git = {
-            userName = "Mariappan Ramasamy";
-            userEmail = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
-            signing = {
-              key = "09260E7E819CB52451171823FF801DC77426D7C1";
-              signByDefault = true;
-            };
-          };
-          home.sessionVariables = {
-            EARTHLY_SSH_AUTH_SOCK = "/home/maari/.ssh/agent/1password.sock";
-          };
-        }
-      ];
-    };
-  };
 }
 
