@@ -1,6 +1,10 @@
-{ config, pkgs, inputs, ... }:
 {
-  imports = [ ./wezterm.lua ];
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [./wezterm.lua];
 
   programs.fish.enable = true;
   programs.direnv = {

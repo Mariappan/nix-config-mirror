@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ...}: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   xdg.configFile = {
     "nvim" = {
       enable = true;

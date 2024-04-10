@@ -1,5 +1,9 @@
-{lib, pkgs, home-manager, ...}: {
-
+{
+  lib,
+  pkgs,
+  home-manager,
+  ...
+}: {
   imports = [
     ./hardware-configuration.nix
     ./boot.nix
@@ -77,4 +81,3 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 }
-

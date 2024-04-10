@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ...}: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home.file = {
     "vim" = {
       enable = true;
@@ -7,5 +11,4 @@
       target = ".vimrc";
     };
   };
-
 }

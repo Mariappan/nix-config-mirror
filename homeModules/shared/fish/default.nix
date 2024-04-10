@@ -1,5 +1,8 @@
-args @ {pkgs, lib, ...}: {
-
+args @ {
+  pkgs,
+  lib,
+  ...
+}: {
   xdg.configFile = {
     "gitalias" = {
       enable = true;
@@ -17,23 +20,24 @@ args @ {pkgs, lib, ...}: {
     enable = true;
 
     functions = {
-      cdg = { # Cd to git root
+      cdg = {
+        # Cd to git root
         body = ''
-        set -lx TOPLEVEL (git rev-parse --show-toplevel 2> /dev/null)
-        if test $status -eq 0
-          cd $TOPLEVEL
-        end
+          set -lx TOPLEVEL (git rev-parse --show-toplevel 2> /dev/null)
+          if test $status -eq 0
+            cd $TOPLEVEL
+          end
         '';
       };
       git-current-branch = {
         body = ''
-        set -f ref "$(command git symbolic-ref HEAD 2> /dev/null)"
-        if test -z $ref
-            return 1
-        else
-            echo (string replace refs/heads/ "" $ref)
-            return 0
-        end
+          set -f ref "$(command git symbolic-ref HEAD 2> /dev/null)"
+          if test -z $ref
+              return 1
+          else
+              echo (string replace refs/heads/ "" $ref)
+              return 0
+          end
         '';
       };
     };
@@ -66,26 +70,26 @@ args @ {pkgs, lib, ...}: {
       abbr 4DIRS --set-cursor=! "$(string join \n -- 'for dir in */' 'cd $dir' '!' 'cd ..' 'end')"
     '';
 
-    loginShellInit = ''
-    ''
-    + lib.optionalString (args ? darwinConfig) (let
-      # fish path: https://github.com/LnL7/nix-darwin/issues/122#issuecomment-1659465635
+    loginShellInit =
+      ''
+      ''
+      + lib.optionalString (args ? darwinConfig) (let
+        # fish path: https://github.com/LnL7/nix-darwin/issues/122#issuecomment-1659465635
+        # add quotes and remove brackets '${XDG}/foo' => '"$XDG/foo"'
+        dquote = str: "\"" + (builtins.replaceStrings ["{" "}"] ["" ""] str) + "\"";
 
-      # add quotes and remove brackets '${XDG}/foo' => '"$XDG/foo"'
-      dquote = str: "\"" + (builtins.replaceStrings ["{" "}"] ["" ""] str) + "\"";
+        makeBinPathList = map (path: path + "/bin");
+      in ''
+        fish_add_path --move --prepend --path ${lib.concatMapStringsSep " " dquote (makeBinPathList args.darwinConfig.environment.profiles)}
+        set fish_user_paths $fish_user_paths
 
-      makeBinPathList = map (path: path + "/bin");
-    in ''
-      fish_add_path --move --prepend --path ${lib.concatMapStringsSep " " dquote (makeBinPathList args.darwinConfig.environment.profiles)}
-      set fish_user_paths $fish_user_paths
-
-      # Add user local paths
-      fish_add_path ~/.local/bin
-      fish_add_path ~/.krew/bin
-      fish_add_path ~/.cargo/bin
-      fish_add_path /opt/homebrew/bin
-      fish_add_path ~/Applications/Bin
-    '');
+        # Add user local paths
+        fish_add_path ~/.local/bin
+        fish_add_path ~/.krew/bin
+        fish_add_path ~/.cargo/bin
+        fish_add_path /opt/homebrew/bin
+        fish_add_path ~/Applications/Bin
+      '');
 
     shellAliases = {
       icat = "kitty +kitten icat";

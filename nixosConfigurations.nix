@@ -5,9 +5,9 @@ inputs: let
     home-manager = inputs.home-manager;
   in
     nixos.lib.nixosSystem {
-      specialArgs = { inherit inputs nixos home-manager lanzaboote;};
+      specialArgs = {inherit inputs nixos home-manager lanzaboote;};
       inherit modules;
     };
 in {
-  "air" = mkNixosConf [ ./nixosModules/air/configuration.nix ];
+  "air" = mkNixosConf [./nixosModules/air/configuration.nix];
 }

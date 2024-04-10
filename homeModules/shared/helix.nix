@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ...}: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   programs.helix = {
     enable = true;
     settings = {
@@ -17,7 +21,7 @@
         cursorcolumn = false;
         cursorline = true;
         cursor-shape = {
-         insert = "bar";
+          insert = "bar";
           normal = "block";
           select = "underline";
         };
@@ -38,17 +42,22 @@
           mode.normal = "NORMAL";
           mode.insert = "INSERT";
           mode.select = "SELECT";
-          };
+        };
       };
       keys.normal = {
         space.space = "file_picker";
         space.w = ":w";
         space.q = ":q";
-        esc = [ "collapse_selection" "keep_primary_selection" ];
+        esc = ["collapse_selection" "keep_primary_selection"];
       };
     };
     languages = {
-      language = [{    name = "rust";    auto-format = true;  }];
+      language = [
+        {
+          name = "rust";
+          auto-format = true;
+        }
+      ];
     };
   };
 }

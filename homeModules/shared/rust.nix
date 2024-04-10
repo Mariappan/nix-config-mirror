@@ -1,5 +1,9 @@
-{ config, pkgs, lib, ...}: {
-
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   home.file = {
     "cargo" = {
       enable = true;
@@ -12,5 +16,4 @@
       target = ".earthly/config.yml";
     };
   };
-
 }

@@ -1,6 +1,10 @@
-
-{pkgs, config, lib, inputs, ...}: {
-
+{
+  pkgs,
+  config,
+  lib,
+  inputs,
+  ...
+}: {
   imports = [
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
@@ -16,4 +20,3 @@
     pkiBundle = "/etc/secureboot";
   };
 }
-

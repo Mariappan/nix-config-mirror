@@ -1,5 +1,11 @@
-{pkgs, config, lib, inputs, home-manager, ...}: {
-
+{
+  pkgs,
+  config,
+  lib,
+  inputs,
+  home-manager,
+  ...
+}: {
   imports = [
     home-manager.nixosModules.home-manager
     {
@@ -16,15 +22,15 @@
       (import ../../overlays inputs).default
     ];
     config = {
-        allowUnfree = true;
+      allowUnfree = true;
     };
   };
 
   # Necessary for using flakes on this system.
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   nix.optimise.automatic = true;
-  nix.optimise.dates = [ "03:45" ];
+  nix.optimise.dates = ["03:45"];
   # Following optimize on every build but may result in slow build time
   # nix.settings.auto-optimise-store = true;
 
@@ -42,8 +48,7 @@
 
   programs.bcc.enable = true;
 
-  environment.shells = [ pkgs.bashInteractive pkgs.zsh pkgs.fish ];
+  environment.shells = [pkgs.bashInteractive pkgs.zsh pkgs.fish];
 
   system.stateVersion = "23.11";
 }
-

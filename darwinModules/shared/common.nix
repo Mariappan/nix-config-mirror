@@ -1,5 +1,11 @@
-{pkgs, config, lib, inputs, home-manager, ...}: {
-
+{
+  pkgs,
+  config,
+  lib,
+  inputs,
+  home-manager,
+  ...
+}: {
   imports = [
     home-manager.darwinModules.home-manager
     {
@@ -16,7 +22,7 @@
       (import ../../overlays inputs).default
     ];
     config = {
-        allowUnfree = true;
+      allowUnfree = true;
     };
   };
 
@@ -26,7 +32,11 @@
   nix.gc = {
     user = "root";
     automatic = true;
-    interval = { Weekday = 0; Hour = 2; Minute = 0; };
+    interval = {
+      Weekday = 0;
+      Hour = 2;
+      Minute = 0;
+    };
     options = "--delete-older-than 7d";
   };
 
@@ -45,7 +55,7 @@
   ];
 
   # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true;  # default shell on catalina
+  programs.zsh.enable = true; # default shell on catalina
   programs.fish.enable = true;
 
   programs.direnv.enable = true;
@@ -53,7 +63,7 @@
   programs.direnv.nix-direnv.enable = true;
   programs.direnv.silent = false;
 
-  environment.shells = [ pkgs.bashInteractive pkgs.zsh pkgs.fish ];
+  environment.shells = [pkgs.bashInteractive pkgs.zsh pkgs.fish];
 
   homebrew = {
     enable = true;
@@ -62,8 +72,8 @@
       upgrade = true;
       cleanup = "zap";
     };
-    taps = [ "homebrew/cask-versions" ];
-    brews = [ ];
+    taps = ["homebrew/cask-versions"];
+    brews = [];
     # updates homebrew packages on activation,
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
     casks = [
@@ -80,4 +90,3 @@
   # $ darwin-rebuild changelog
   system.stateVersion = 4;
 }
-

@@ -1,6 +1,9 @@
-{ config, pkgs, inputs, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  ...
+}: {
   home.packages = [
     pkgs.git-absorb
     pkgs.gnupg
@@ -37,7 +40,7 @@
         old = "red bold";
         new = "green bold";
         whitespace = "red reverse";
-     };
+      };
     };
     rerere = {
       enabled = true;
