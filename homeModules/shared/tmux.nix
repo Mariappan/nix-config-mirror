@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  inputs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.tmux.enable = true;
   programs.tmux.terminal = "tmux-256color";
   programs.tmux.historyLimit = 20000;

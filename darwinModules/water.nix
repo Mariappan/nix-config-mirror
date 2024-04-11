@@ -17,6 +17,7 @@
   home-manager.users.maari = {
     imports = [
       ../homeModules/shared/core.nix
+      ../homeModules/shared/dev.nix
       ../homeModules/shared/git
       {
         programs.git = {

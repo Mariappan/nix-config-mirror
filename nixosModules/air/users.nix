@@ -47,6 +47,7 @@ in {
         ../../homeModules/shared/git
         ../../homeModules/shared/xdg.nix
         ../../homeModules/shared/rust.nix
+        ../../homeModules/shared/dev.nix
         ../../homeModules/shared/debug.nix
         {
           programs.git = {
