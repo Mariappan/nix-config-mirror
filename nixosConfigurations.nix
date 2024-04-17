@@ -10,4 +10,5 @@ inputs: let
     };
 in {
   "air" = mkNixosConf [./nixosModules/air/configuration.nix];
+  "earth" = mkNixosConf [./nixosModules/earth/configuration.nix];
 }

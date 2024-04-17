@@ -15,7 +15,7 @@
   boot.kernelParams = ["ip=dhcp"];
 
   boot.initrd = {
-    availableKernelModules = ["xhci_pci" "r8152" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
+    availableKernelModules = [ "virtio_pci" "xhci_pci" "usbhid" "usb_storage" ];
     kernelModules = [];
     systemd = {
       enable = true;

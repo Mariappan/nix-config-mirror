@@ -10,13 +10,11 @@
     ./users.nix
     ../shared/common.nix
     ../shared/headless.nix
-    ../shared/lanzaboote.nix
     ../shared/docker.nix
-    ../shared/virtualbox.nix
   ];
 
   # System configs
-  networking.hostName = "air";
+  networking.hostName = "earth";
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
 
