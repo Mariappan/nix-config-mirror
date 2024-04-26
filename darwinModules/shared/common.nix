@@ -80,6 +80,7 @@
       "iterm2"
       "wezterm-nightly"
       "wireshark"
+      "visual-studio-code"
     ];
   };
 
