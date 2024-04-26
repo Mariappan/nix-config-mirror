@@ -14,7 +14,7 @@ local rust_tools = {
       vim.g.rustaceanvim = {
         server = {
           on_attach = function(client, bufnr)
-            vim.lsp.inlay_hint.enable(bufnr, true)
+            vim.lsp.inlay_hint.enable(true)
           end,
         },
       }
