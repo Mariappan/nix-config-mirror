@@ -77,10 +77,13 @@
     # updates homebrew packages on activation,
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
     casks = [
+      "arc"
+      "boop"
       "iterm2"
+      "obsidian"
+      "visual-studio-code"
       "wezterm-nightly"
       "wireshark"
-      "visual-studio-code"
     ];
   };
 
