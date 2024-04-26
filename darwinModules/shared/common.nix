@@ -81,6 +81,7 @@
       "boop"
       "iterm2"
       "obsidian"
+      "vlc"
       "visual-studio-code"
       "wezterm-nightly"
       "wireshark"
