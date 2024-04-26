@@ -34,6 +34,8 @@
     LC_TIME = "en_US.UTF-8";
   };
 
+  programs.nix-ld.enable = true;
+
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
