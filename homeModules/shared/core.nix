@@ -16,6 +16,7 @@
     pkgs.earthly
     pkgs.expect
     pkgs.fd
+    pkgs.file
     pkgs.fzf
     pkgs.gnupg
     pkgs.helix
