@@ -82,8 +82,6 @@ M.map("v", "<Leader>d", '"_d')
 
 -- terminal M.mappings
 M.map("t", "<Esc>", "<c-\\><c-n><esc><cr>")
-M.map("t", "<Leader>,", "<c-\\><c-n>:bnext<cr>")
-M.map("t", "<Leader>.", "<c-\\><c-n>:bprevious<cr>")
 
 M.map("v", "<expr>y", 'my"' .. vim.v.register .. "y`y")
 
