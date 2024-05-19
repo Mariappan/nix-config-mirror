@@ -1,0 +1,86 @@
+{
+  lib,
+  pkgs,
+  home-manager,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ./boot.nix
+    ./users.nix
+    ../shared/common.nix
+    ../shared/headless.nix
+    ../shared/docker.nix
+    ../shared/virtualbox.nix
+  ];
+
+  # System configs
+  networking.hostName = "blackmamba";
+  networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
+
+  time.timeZone = "Asia/Singapore";
+  i18n.defaultLocale = "en_US.UTF-8";
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
+  };
+
+  programs.nix-ld.enable = true;
+  programs.nh = {
+    enable = true;
+    # clean.enable = true;
+    # clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/maari/nix-config";
+  };
+
+  services.fstrim.enable = true;
+
+  # Enable the X11 windowing system.
+  services.xserver.enable = true;
+
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm.autoSuspend = false;
+  services.xserver.desktopManager.gnome.enable = true;
+
+  # Enable XFCE4 Desktop Environment for RDP
+  # services.xserver.desktopManager.xfce.enable = true;
+  # services.xrdp.enable = true;
+  # services.xrdp.defaultWindowManager = "xfce4-session";
+  # services.xrdp.openFirewall = true;
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHmCMRUlvFEr8DTgChajPHJA069XKU+RECk/hurkIo2h"
+  ];
+
+  # Configure keymap in X11
+  services.xserver = {
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
+  };
+
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+    #jack.enable = true;
+    #media-session.enable = true;
+  };
+}
