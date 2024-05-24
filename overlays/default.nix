@@ -21,7 +21,6 @@ inputs: rec {
     # devenv
     # hostapd
     wezterm
-
-    inputs.neovim-nightly-overlay.overlay
+    inputs.neovim-nightly-overlay.outputs.overlays.default
   ];
 }

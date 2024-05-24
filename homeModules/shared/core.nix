@@ -44,7 +44,7 @@
     pkgs.zip
     pkgs.unzip
     pkgs.wget
-    pkgs.neovim-nightly
+    pkgs.neovim
     pkgs.devenv
     #pkgs.jetbrains.rust-rover
     #pkgs.jetbrains.jdk
