@@ -12,6 +12,7 @@
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.extraSpecialArgs = config._module.specialArgs;
+      home-manager.backupFileExtension = "backup";
     }
     ./fishpathfix.nix
   ];
