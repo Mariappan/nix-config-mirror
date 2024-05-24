@@ -25,7 +25,7 @@ Option.g({
   compatible = false,
   encoding = "utf-8",
   termguicolors = true,
-  mouse = "n",
+  mouse = "nv",
   shiftwidth = 4,
   tabstop = 4,
   softtabstop = 4, -- Backspace deletes 4 spaces
