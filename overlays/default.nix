@@ -2,6 +2,9 @@ inputs: rec {
   devenv = final: prev: {
     devenv = inputs.devenv.packages.${prev.stdenv.hostPlatform.system}.devenv;
   };
+  wezterm = final: prev: {
+    wezterm = inputs.wezterm.packages.${prev.stdenv.hostPlatform.system}.default;
+  };
   hostapd = final: prev: {
     hostapd = prev.hostapd.overrideAttrs (oldAttrs: {
       #patches = oldAttrs.patches ++ [
@@ -17,6 +20,7 @@ inputs: rec {
   default = inputs.nixos.lib.composeManyExtensions [
     # devenv
     # hostapd
+    wezterm
 
     inputs.neovim-nightly-overlay.overlay
   ];
