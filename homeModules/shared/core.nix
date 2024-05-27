@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{pkgs, inputs,  ...}: {
   imports = [
     ./fish
     ./tmux.nix
@@ -44,13 +44,18 @@
     pkgs.zip
     pkgs.unzip
     pkgs.wget
-    pkgs.neovim
     pkgs.devenv
     #pkgs.jetbrains.rust-rover
     #pkgs.jetbrains.jdk
     #pkgs.yubikey-manager
     # pkgs.ookla-speedtest # Need export NIXPKGS_ALLOW_UNFREE=1
   ];
+
+  programs.neovim = {
+    enable = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    withPython3 = true;
+  };
 
   programs.atuin.enable = true;
   programs.atuin.enableFishIntegration = true;
