@@ -11,7 +11,7 @@ local plugin = {
       "asm", "bash", "c", "c_sharp", "cpp", "cmake", "comment", "csv", "css", "devicetree", "diff",
       "disassembly", "dockerfile", "doxygen", "fish", "git_rebase", "gitattributes", "git_config",
       "gitignore", "go", "gomod", "gosum", "gotmpl", "gowork", "gpg", "hcl", "helm", "html",
-      "http", "hurl", "java", "javascript", "jq", "json", "latex", "llvm", "lua", "luau",
+      "http", "hurl", "java", "javascript", "jq", "json", "llvm", "lua", "luau",
       "markdown", "meson", "nasm", "ninja", "nix", "objdump", "passwd", "pem", "perl", "printf",
       "python", "readline", "regex", "rust", "sql", "ssh_config", "strace", "terraform", "tmux",
       "toml", "tsv", "typescript", "udev", "vim", "vimdoc", "query", "xml", "yaml", "yang", "zig",
