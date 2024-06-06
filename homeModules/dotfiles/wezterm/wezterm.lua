@@ -25,6 +25,7 @@ config.dpi_by_screen = {
   ["Built-in Retina Display"] = 144,
   ["X340 PRO 165"] = 100,
   ["DELL U2719DC"] = 100,
+  ["DELL U2724DE"] = 100,
 }
 
 -- and finally, return the configuration
