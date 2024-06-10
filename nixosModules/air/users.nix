@@ -32,6 +32,12 @@ in {
     }
   ];
 
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    polkitPolicyOwners = [ "${userId}" ];
+  };
+
   home-manager.users = {
     root = {
       imports = [
@@ -61,6 +67,9 @@ in {
           home.sessionVariables = {
             EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
           };
+        }
+        {
+          home.packages = [ pkgs.google-chrome ];
         }
       ];
     };
