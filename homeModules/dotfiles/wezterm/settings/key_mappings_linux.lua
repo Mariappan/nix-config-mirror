@@ -12,7 +12,7 @@ function module.apply(config)
       key = "y",
       mods = "CMD",
       action = wezterm.action.SpawnCommandInNewWindow({
-        args = { "yay", "-Syyu" },
+        args = { "htop" },
       }),
       domain = "local",
     },
@@ -99,7 +99,7 @@ function module.apply(config)
       mods = "LEADER",
       action = act.ActivateKeyTable({
         name = "activate_pane",
-        timeout_milliseconds = 1000,
+        one_shot = false,
       }),
     },
   }
@@ -143,6 +143,9 @@ function module.apply(config)
 
       { key = "DownArrow", action = act.ActivatePaneDirection("Down") },
       { key = "j", action = act.ActivatePaneDirection("Down") },
+
+      -- Cancel the mode by pressing escape
+      { key = "Enter", action = "PopKeyTable" },
     },
 
     search_mode = {
