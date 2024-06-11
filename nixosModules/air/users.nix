@@ -55,6 +55,7 @@ in {
         ../../homeModules/shared/rust.nix
         ../../homeModules/shared/dev.nix
         ../../homeModules/shared/debug.nix
+        ../../homeModules/shared/air.nix
         {
           programs.git = {
             userName = "${userName}";
