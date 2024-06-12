@@ -13,6 +13,7 @@
     ../shared/lanzaboote.nix
     ../shared/docker.nix
     ../shared/virtualbox.nix
+    ../shared/fprint.nix
   ];
 
   # System configs
