@@ -53,6 +53,8 @@
   services.xserver.displayManager.gdm.autoSuspend = false;
   services.xserver.desktopManager.gnome.enable = true;
 
+  environment.systemPackages = [ pkgs.wl-clipboard ];
+
   # Enable XFCE4 Desktop Environment for RDP
   # services.xserver.desktopManager.xfce.enable = true;
   # services.xrdp.enable = true;
