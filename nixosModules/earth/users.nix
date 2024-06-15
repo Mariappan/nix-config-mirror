@@ -49,21 +49,21 @@ in {
         ../../homeModules/shared/rust.nix
         ../../homeModules/shared/dev.nix
         ../../homeModules/shared/debug.nix
-        {
-          programs.git = {
-            userName = "${userName}";
-            userEmail = "${userEmail}";
-            signing = {
-              key = "09260E7E819CB52451171823FF801DC77426D7C1";
-              signByDefault = true;
-            };
-          };
-          home.sessionVariables = {
-            NIXOS_OZONE_WL = "1";
-            EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
-          };
-        }
       ];
+
+      programs.git = {
+        userName = "${userName}";
+        userEmail = "${userEmail}";
+        signing = {
+          key = "09260E7E819CB52451171823FF801DC77426D7C1";
+          signByDefault = true;
+        };
+      };
+
+      home.sessionVariables = {
+        NIXOS_OZONE_WL = "1";
+        EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
+      };
     };
   };
 }

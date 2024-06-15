@@ -35,7 +35,7 @@ in {
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
-    polkitPolicyOwners = [ "${userId}" ];
+    polkitPolicyOwners = ["${userId}"];
   };
 
   home-manager.users = {
@@ -52,35 +52,21 @@ in {
         ../../homeModules/shared/nixos.nix
         ../../homeModules/shared/git
         ../../homeModules/shared/xdg.nix
-        ../../homeModules/shared/rust.nix
-        ../../homeModules/shared/dev.nix
-        ../../homeModules/shared/debug.nix
         ../../homeModules/shared/air.nix
-        {
-          programs.git = {
-            userName = "${userName}";
-            userEmail = "${userEmail}";
-            signing = {
-              key = "09260E7E819CB52451171823FF801DC77426D7C1";
-              signByDefault = true;
-            };
-          };
-          home.sessionVariables = {
-            EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
-          };
-        }
-        {
-          home.packages = [ pkgs.google-chrome ];
-        }
-        {
-          services.gpg-agent = {
-            enable = true;
-            enableScDaemon = true;
-            enableSshSupport = true;
-            pinentryPackage = pkgs.pinentry-gnome3;
-          };
-        }
       ];
+
+      programs.git = {
+        userName = "${userName}";
+        userEmail = "${userEmail}";
+        signing = {
+          key = "09260E7E819CB52451171823FF801DC77426D7C1";
+          signByDefault = true;
+        };
+      };
+
+      home.sessionVariables = {
+        EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
+      };
     };
   };
 }

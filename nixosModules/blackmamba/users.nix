@@ -49,16 +49,14 @@ in {
         ../../homeModules/shared/rust.nix
         ../../homeModules/shared/dev.nix
         ../../homeModules/shared/debug.nix
-        {
-          programs.git = {
-            userName = "${userName}";
-            userEmail = "${userEmail}";
-          };
-          home.sessionVariables = {
-            EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
-          };
-        }
       ];
+      programs.git = {
+        userName = "${userName}";
+        userEmail = "${userEmail}";
+      };
+      home.sessionVariables = {
+        EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
+      };
     };
   };
 }
