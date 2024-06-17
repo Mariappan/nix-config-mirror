@@ -15,14 +15,16 @@ function module.apply(config)
 
     border_left_width = "0.5cell",
     border_right_width = "0.5cell",
-    border_bottom_height = "0.0cell",
+    border_bottom_height = "1cell",
     border_top_height = "0.0cell",
   }
 
   config.enable_tab_bar = true
   config.use_fancy_tab_bar = false
-  -- config.window_decorations = "RESIZE"
+  config.window_decorations = "RESIZE"
   -- config.window_background_opacity = 0.97
+
+  config.enable_wayland = true
 end
 
 return module

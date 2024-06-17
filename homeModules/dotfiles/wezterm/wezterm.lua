@@ -8,7 +8,6 @@ end
 config.automatically_reload_config = true
 config.term = "wezterm"
 
-config.enable_wayland = false
 -- Fix this and enable it
 config.warn_about_missing_glyphs = false
 
