@@ -77,5 +77,5 @@
     LC_TIME = "en_US.UTF-8";
   };
 
-  system.stateVersion = "23.11";
+  system.stateVersion = "24.11";
 }
