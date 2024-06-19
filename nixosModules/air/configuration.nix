@@ -13,7 +13,6 @@
     ../shared/gnome.nix
     ../shared/sound.nix
     ../shared/fprint.nix
-    ../shared/headless.nix
     ../shared/docker.nix
     ../shared/virtualbox.nix
   ];

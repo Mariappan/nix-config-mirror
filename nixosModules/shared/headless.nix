@@ -1,4 +1,4 @@
-{
+{lib, ...}: {
   boot.kernelParams = [
     # when there's an issue, we want the server to reboot, not hang
     "panic=10"
@@ -6,7 +6,7 @@
     "oops=panic"
   ];
 
-  powerManagement.enable = true;
+  powerManagement.enable = lib.mkDefault false;
 
   # Without this, systemd-logind will eat 1 full CPU
   # https://discussion.fedoraproject.org/t/systemd-logind-eats-cpu-when-closing-laptop-lid/67805/3

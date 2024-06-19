@@ -10,8 +10,8 @@
 }: {
   imports = [(modulesPath + "/installer/scan/not-detected.nix")];
 
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/9a9102b3-c420-4555-811e-1e93f8f06737";
-  boot.initrd.luks.devices."cryptwork".device = "/dev/disk/by-uuid/d6730d72-a145-4e52-82ee-f8e34238bc56";
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-partlabel/NIXROOT";
+  boot.initrd.luks.devices."cryptwork".device = "/dev/disk/by-partlabel/WORK";
   boot.initrd.luks.devices."cryptwork".bypassWorkqueues = true;
   boot.initrd.luks.devices."cryptroot".bypassWorkqueues = true;
 
@@ -26,8 +26,9 @@
   };
 
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/5A3E-4EEB";
+    device = "/dev/disk/by-partlabel/NIXBOOT";
     fsType = "vfat";
+    options = [ "fmask=0022" "dmask=0022" ];
   };
 
   swapDevices = [];
