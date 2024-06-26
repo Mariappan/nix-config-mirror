@@ -24,7 +24,7 @@ function module.apply(config)
   config.window_decorations = "RESIZE"
   -- config.window_background_opacity = 0.97
 
-  config.enable_wayland = true
+  config.enable_wayland = false
 end
 
 return module
