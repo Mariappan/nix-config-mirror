@@ -448,6 +448,26 @@
         "type": "github"
       }
     },
+    "nix-index-database": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1719111455,
+        "narHash": "sha256-rnIxHx+fLpydjMQsbpZ21kblUr/lMqSaAtMA4+qMMEE=",
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "rev": "4293f532d0107dfb7e6f8b34a0421dc8111320e6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-index-database",
+        "type": "github"
+      }
+    },
     "nixos": {
       "locked": {
         "lastModified": 1718318537,
@@ -578,6 +598,7 @@
         "lanzaboote": "lanzaboote",
         "neovim-nightly-overlay": "neovim-nightly-overlay",
         "nix-darwin": "nix-darwin",
+        "nix-index-database": "nix-index-database",
         "nixos": "nixos",
         "nixpkgs": "nixpkgs_2",
         "wezterm": "wezterm"

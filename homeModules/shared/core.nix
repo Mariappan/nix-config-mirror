@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    inputs.nix-index-database.hmModules.nix-index
     ./fish
     ./tmux.nix
     ./helix.nix
@@ -83,6 +84,8 @@
     cpu_count_from_one = 1;
     tree_view = true;
   };
+
+  programs.nix-index.enable = true;
 
   home.stateVersion = "24.11";
   # Let Home Manager install and manage itself.

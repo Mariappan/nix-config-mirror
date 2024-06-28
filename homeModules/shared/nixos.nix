@@ -12,4 +12,6 @@
     pkgs.victor-mono
     pkgs.firefox
   ];
+
+  programs.command-not-found.enable = false;
 }
