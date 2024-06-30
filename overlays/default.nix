@@ -21,5 +21,6 @@ inputs: rec {
     # devenv
     # hostapd
     wezterm
+    inputs.nix-alien.overlays.default
   ];
 }

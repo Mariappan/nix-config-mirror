@@ -31,6 +31,7 @@
     wezterm.url = "github:wez/wezterm/b8f94c474ce48ac195b51c1aeacf41ae049b774e?dir=nix";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+    nix-alien.url = "github:thiagokokada/nix-alien";
   };
 
   outputs = inputs @ {

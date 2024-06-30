@@ -36,9 +36,10 @@
 
   environment.systemPackages = [
     pkgs.curl
+    pkgs.git
+    pkgs.nix-alien
     pkgs.opensc
     pkgs.openssh
-    pkgs.git
     pkgs.sbctl
     pkgs.vim
   ];
