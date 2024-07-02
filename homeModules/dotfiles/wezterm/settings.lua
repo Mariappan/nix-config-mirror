@@ -9,6 +9,7 @@ function module.apply(config)
   local fonts = require("settings.fonts")
   local keys = require("settings.key_mappings")
   local mouse = require("settings.mouse_mappings")
+  local ssh_agent = require("settings.ssh_agent")
 
   ui.apply(config)
   windecor.apply(config)
@@ -16,6 +17,7 @@ function module.apply(config)
   fonts.apply(config)
   keys.apply(config)
   mouse.apply(config)
+  ssh_agent.apply(config)
 end
 
 return module

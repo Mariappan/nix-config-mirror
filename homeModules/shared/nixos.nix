@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  imports = [./wezterm.lua];
+  imports = [./wezterm.nix];
 
   programs.fish.enable = true;
   programs.direnv = {
