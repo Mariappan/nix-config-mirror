@@ -4,6 +4,7 @@
     ./dev.nix
     ./debug.nix
     ./gpgagent.nix
+    ./air_dconf.nix
   ];
 
   home.packages = [
