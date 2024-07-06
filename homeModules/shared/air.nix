@@ -5,6 +5,7 @@
     ./debug.nix
     ./gpgagent.nix
     ./air_dconf.nix
+    ./hyprland_anyrun.nix
   ];
 
   home.packages = [
