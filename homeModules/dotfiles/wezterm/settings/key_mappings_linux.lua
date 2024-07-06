@@ -58,7 +58,7 @@ function module.apply(config)
     { key = "F", mods = "SHIFT|CTRL", action = act.Search("CurrentSelectionOrEmptyString") },
 
     -- Debug overlay
-    -- { key = 'L', mods = 'SHIFT|CTRL', action = act.ShowDebugOverlay },
+    { key = 'l', mods = 'CMD|SHIFT', action = act.ShowDebugOverlay },
 
     { key = "M", mods = "SHIFT|CTRL", action = act.Hide },
 

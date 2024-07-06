@@ -21,10 +21,10 @@ function module.apply(config)
 
   config.enable_tab_bar = true
   config.use_fancy_tab_bar = false
-  config.window_decorations = "RESIZE"
+  config.window_decorations = "NONE"
   -- config.window_background_opacity = 0.97
 
-  config.enable_wayland = false
+  config.enable_wayland = true
 end
 
 return module
