@@ -5,6 +5,7 @@
 }: {
   imports = [
     inputs.nix-index-database.hmModules.nix-index
+    inputs.anyrun.homeManagerModules.default
     ./fish
     ./tmux.nix
     ./helix.nix
