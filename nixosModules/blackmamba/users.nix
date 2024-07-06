@@ -13,7 +13,7 @@ in {
     description = "${userName}";
     home = "/home/${userId}";
     shell = "${pkgs.fish}/bin/fish";
-    extraGroups = ["wheel" "docker" "networkmanager" "vboxusers"];
+    extraGroups = ["wheel" "docker" "networkmanager" "vboxusers" "input"];
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHmCMRUlvFEr8DTgChajPHJA069XKU+RECk/hurkIo2h"
