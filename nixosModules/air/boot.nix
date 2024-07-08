@@ -12,7 +12,7 @@
   boot.kernelModules = ["kvm-intel"];
   boot.extraModulePackages = [];
 
-  boot.kernelParams = ["ip=dhcp"];
+  boot.kernelParams = ["ip=dhcp" "noresume"];
 
   boot.initrd = {
     availableKernelModules = ["xhci_pci" "r8152" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
