@@ -9,6 +9,7 @@
 
   environment.systemPackages = [
     pkgs.wl-clipboard
+    pkgs.swaynotificationcenter
     pkgs.kitty
   ];
 }
