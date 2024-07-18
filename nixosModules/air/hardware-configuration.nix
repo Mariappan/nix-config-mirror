@@ -31,10 +31,12 @@
     options = ["fmask=0022" "dmask=0022"];
   };
 
-  swapDevices = [ {
-    device = "/dev/disk/by-partlabel/NIXSWAP";
-    randomEncryption.enable = true;
-  } ];
+  swapDevices = [
+    {
+      device = "/dev/disk/by-partlabel/NIXSWAP";
+      randomEncryption.enable = true;
+    }
+  ];
 
   hardware.ipu6 = {
     enable = true;

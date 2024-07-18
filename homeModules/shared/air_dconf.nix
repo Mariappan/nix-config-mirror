@@ -1,14 +1,11 @@
 # Generated via dconf2nix: https://github.com/gvolpe/dconf2nix
-{ home-manager, ... }:
-
-with home-manager.lib.hm.gvariant;
-
-{
+{home-manager, ...}:
+with home-manager.lib.hm.gvariant; {
   dconf.settings = {
     "org/gnome/Console" = {
       custom-font = "Victor Mono 10";
       last-window-maximised = false;
-      last-window-size = mkTuple [ 1341 981 ];
+      last-window-size = mkTuple [1341 981];
       use-system-font = false;
     };
 
@@ -17,7 +14,7 @@ with home-manager.lib.hm.gvariant;
     };
 
     "org/gnome/desktop/notifications" = {
-      application-children = [ "org-gnome-epiphany" "google-chrome" "org-gnome-nautilus" "slack" "gnome-power-panel" "org-gnome-console" ];
+      application-children = ["org-gnome-epiphany" "google-chrome" "org-gnome-nautilus" "slack" "gnome-power-panel" "org-gnome-console"];
     };
 
     "org/gnome/desktop/notifications/application/gnome-power-panel" = {
@@ -51,7 +48,7 @@ with home-manager.lib.hm.gvariant;
     };
 
     "org/gnome/shell" = {
-      favorite-apps = [ "org.wezfurlong.wezterm.desktop" "google-chrome.desktop" "slack.desktop" "obsidian.desktop" "1password.desktop" "org.gnome.Nautilus.desktop" ];
+      favorite-apps = ["org.wezfurlong.wezterm.desktop" "google-chrome.desktop" "slack.desktop" "obsidian.desktop" "1password.desktop" "org.gnome.Nautilus.desktop"];
     };
 
     "org/gnome/shell/world-clocks" = {
@@ -61,6 +58,5 @@ with home-manager.lib.hm.gvariant;
     "org/gnome/login-screen" = {
       enable-fingerprint-authentication = false;
     };
-
   };
 }

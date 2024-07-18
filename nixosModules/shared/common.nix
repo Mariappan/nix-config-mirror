@@ -61,7 +61,7 @@
     flake = "/home/maari/nix-config";
   };
 
-  networking.timeServers = [ "0.sg.pool.ntp.org" "1.sg.pool.ntp.org" "2.sg.pool.ntp.org" "3.sg.pool.ntp.org"];
+  networking.timeServers = ["0.sg.pool.ntp.org" "1.sg.pool.ntp.org" "2.sg.pool.ntp.org" "3.sg.pool.ntp.org"];
   services.ntp.enable = true;
 
   services.avahi.enable = true;
