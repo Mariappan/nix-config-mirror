@@ -12,5 +12,6 @@
     pkgs.swaynotificationcenter
     pkgs.kitty
     pkgs.ianny
+    pkgs.swww
   ];
 }
