@@ -7,6 +7,12 @@
 
   programs.waybar.enable = true;
 
+  services.logind.powerKey = "ignore";
+
+  services.logind.lidSwitch = "suspend";
+  services.logind.lidSwitchExternalPower = "ignore";
+  services.logind.lidSwitchDocked = "lock";
+
   environment.systemPackages = [
     pkgs.wl-clipboard
     pkgs.swaynotificationcenter
