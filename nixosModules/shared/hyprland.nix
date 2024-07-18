@@ -11,5 +11,6 @@
     pkgs.wl-clipboard
     pkgs.swaynotificationcenter
     pkgs.kitty
+    pkgs.ianny
   ];
 }
