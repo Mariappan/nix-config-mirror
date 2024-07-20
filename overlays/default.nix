@@ -22,5 +22,6 @@ inputs: rec {
     # hostapd
     wezterm
     inputs.nix-alien.overlays.default
+    inputs.nixpkgs-wayland.overlay
   ];
 }
