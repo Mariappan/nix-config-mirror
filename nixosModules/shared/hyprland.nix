@@ -14,10 +14,11 @@
   services.logind.lidSwitchDocked = "lock";
 
   environment.systemPackages = [
-    pkgs.wl-clipboard
+    pkgs.hyprpicker
     pkgs.swaynotificationcenter
     pkgs.kitty
     pkgs.ianny
     pkgs.swww
+    pkgs.wl-clipboard
   ];
 }
