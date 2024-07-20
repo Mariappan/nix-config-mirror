@@ -1,17 +1,9 @@
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
-
     "margin": "20 20 0 20",
 
-    // Choose the order of the modules
     "modules-left": ["hyprland/workspaces", "keyboard-state"],
     "modules-center": ["clock", "custom/weather"],
     "modules-right": ["pulseaudio", "custom/notification", "network", "custom/mem", "backlight", "battery", "tray", "custom/suspend"],
-
-    //***************************
-    //*  Modules configuration  *
-    //***************************
 
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -22,7 +14,7 @@
           "eDP-1": [ 1, 2, 3, 4, 5 ],
           "DP-2": [ 1, 2, 3, 4, 5 ],
           "DP-3": [ 1, 2, 3, 4, 5 ],
-          "DP-4": [ 1, 2, 3, 4, 5 ],
+          "DP-4": [ 1, 2, 3, 4, 5 ]
         }
     },
 
@@ -53,7 +45,7 @@
         "format-icons": {
             "locked": "",
             "unlocked": ""
-        },
+        }
     },
 
     "custom/pacman": {
@@ -61,9 +53,9 @@
         "interval": 3600,
         "exec": "(checkupdates;pacman -Qm | aur vercmp) | wc -l",
         "exec-if": "exit 0",
-        "on-click": "foot sh -c 'yay; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar", // update system
+        "on-click": "foot sh -c 'yay; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
         "signal": 8,
-        "tooltip": false,
+        "tooltip": false
     },
 
     "custom/mail": {
@@ -72,14 +64,14 @@
         "interval": 120,
         "on-click": "google-chrome-stable https://mail.google.com/mail/u/0/#inbox ; pkill -SIGRTMIN+9 waybar",
         "signal": 9,
-        "tooltip": false,
+        "tooltip": false
     },
 
     "custom/suspend": {
         "format": "襤",
         "on-click": "systemctl suspend",
         "signal": 9,
-        "tooltip": false,
+        "tooltip": false
     },
 
     "hyprland/mode": {
@@ -113,7 +105,6 @@
     },
 
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
         "reverse-scrolling": 1,
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
@@ -131,31 +122,28 @@
             "default": ["奄", "奔", "墳"]
         },
         "on-click": "pavucontrol",
-        "min-length": 13,
+        "min-length": 13
     },
 
     "custom/mem": {
         "format": "{} ",
         "interval": 3,
         "exec": "free -h | awk '/Mem:/{printf $3}'",
-        "tooltip": false,
+        "tooltip": false
     },
 
     "temperature": {
-        // "thermal-zone": 2,
-        // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
         "format": "{temperatureC}°C {icon}",
         "format-icons": ["", "", "", "", ""],
-        "tooltip": false,
+        "tooltip": false
     },
 
     "backlight": {
         "tooltip": false,
         "device": "intel_backlight",
         "format": "{percent}% {icon}",
-        "format-icons": ["","","","", "", "", ""],
+        "format-icons": ["","","","", "", "", ""]
     },
 
     "battery": {
@@ -167,11 +155,11 @@
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", "", ""],
+        "format-icons": ["", "", "", "", "", "", "", "", "", ""]
     },
 
     "tray": {
         "icon-size": 16,
         "spacing": 0
-    },
+    }
 }
