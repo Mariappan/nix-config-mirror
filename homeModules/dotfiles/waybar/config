@@ -48,25 +48,6 @@
         }
     },
 
-    "custom/pacman": {
-        "format": "{} ",
-        "interval": 3600,
-        "exec": "(checkupdates;pacman -Qm | aur vercmp) | wc -l",
-        "exec-if": "exit 0",
-        "on-click": "foot sh -c 'yay; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
-        "signal": 8,
-        "tooltip": false
-    },
-
-    "custom/mail": {
-        "format": "{} ",
-        "exec": "$HOME/.config/waybar/scripts/checkgmail.py",
-        "interval": 120,
-        "on-click": "google-chrome-stable https://mail.google.com/mail/u/0/#inbox ; pkill -SIGRTMIN+9 waybar",
-        "signal": 9,
-        "tooltip": false
-    },
-
     "custom/suspend": {
         "format": "襤",
         "on-click": "systemctl suspend",
@@ -84,7 +65,7 @@
         "format-disconnected": "Disabled 睊",
         "tooltip-format-wifi": "{essid} ({signalStrength}%) 直",
         "tooltip-format-disconnected": "Disconnected",
-        "on-click": "$HOME/.config/waybar/scripts/toggle_wifi.sh",
+        "on-click": "@togglewifi@",
         "max-length": 50
     },
 
@@ -98,7 +79,7 @@
         "format": "{}",
         "tooltip": true,
         "interval": 1800,
-        "exec": "$HOME/.config/waybar/scripts/wttr.py",
+        "exec": "@wttrpy@",
         "exec-on-event": true,
         "on-click": "exit 0",
         "return-type": "json"
@@ -123,13 +104,6 @@
         },
         "on-click": "pavucontrol",
         "min-length": 13
-    },
-
-    "custom/mem": {
-        "format": "{} ",
-        "interval": 3,
-        "exec": "free -h | awk '/Mem:/{printf $3}'",
-        "tooltip": false
     },
 
     "temperature": {

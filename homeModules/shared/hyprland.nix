@@ -2,25 +2,28 @@
   pkgs,
   config,
   ...
-}: {
+}:
+let
+  pkg_togglewifi = pkgs.writeScriptBin "waybar_togwifi.sh" (builtins.readFile ../dotfiles/waybar/scripts/toggle_wifi.sh);
+  pkg_wttrpy = pkgs.writers.writePython3Bin "waybar_wttr.py" {} (builtins.readFile ../dotfiles/waybar/scripts/wttr.py);
+  togglewifi = "${pkg_togglewifi}/bin/waybar_togwifi.sh";
+  wttrpy = "${pkg_wttrpy}/bin/waybar_wttr.py";
+in
+{
   imports = [
     ./hyprland_anyrun.nix
   ];
 
   wayland.windowManager.hyprland = {
-    # Whether to enable Hyprland wayland compositor
     enable = true;
-    # The hyprland package to use
     package = pkgs.hyprland;
-    # Whether to enable XWayland
     xwayland.enable = true;
 
     extraConfig = ''
       ${builtins.readFile ../dotfiles/hypr/hyprland.conf}
     '';
 
-    # Optional
-    # Whether to enable hyprland-session.target on hyprland startup
+    # enable hyprland-session.target on hyprland startup
     systemd.enable = true;
   };
 
@@ -35,7 +38,10 @@
   programs.waybar = {
     enable = true;
     settings = {
-      mainbar = builtins.fromJSON (builtins.readFile ../dotfiles/waybar/config);
+      mainbar = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile (pkgs.substituteAll {
+        src = ../dotfiles/waybar/config;
+        inherit togglewifi wttrpy;
+      })));
     };
     style = ''
       ${builtins.readFile ../dotfiles/waybar/style.css}
@@ -110,7 +116,6 @@
     };
   };
 
-
   home.packages = [
     pkgs.hyprpicker
     pkgs.ianny
@@ -126,5 +131,9 @@
 
     pkgs.wtype
     pkgs.wayprompt
+
+    # Keep it so that it is not garbage collected
+    pkg_togglewifi
+    pkg_wttrpy
   ];
 }
