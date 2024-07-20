@@ -3,6 +3,6 @@
     enable = true;
     enableScDaemon = true;
     enableSshSupport = true;
-    pinentryPackage = pkgs.pinentry-gnome3;
+    extraConfig = "pinentry-program ${pkgs.wayprompt}/bin/pinentry-wayprompt";
   };
 }

@@ -4,6 +4,7 @@
   programs.hyprland.enable = true;
   programs.hyprlock.enable = true;
   services.hypridle.enable = true;
+  programs.wshowkeys.enable = true;
 
   programs.waybar.enable = true;
 
@@ -20,5 +21,18 @@
     pkgs.ianny
     pkgs.swww
     pkgs.wl-clipboard
+
+    # Screenshot utility
+    pkgs.slurp
+    pkgs.grim
+
+    # Screenshot utility
+    pkgs.wf-recorder
+
+    # Image viewer
+    pkgs.imv
+
+    pkgs.wtype
+    pkgs.wayprompt
   ];
 }
