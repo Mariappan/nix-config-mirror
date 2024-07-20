@@ -23,11 +23,20 @@
 
   programs.imv.enable = true;
 
+  xdg.configFile = {
+    "wlr-which-key" = {
+      source = ../../dotfiles/wlr-which-key-config.yaml;
+      target = "wlr-which-key/config.yaml";
+    };
+  };
+
   home.packages = [
     pkgs.hyprpicker
     pkgs.ianny
     pkgs.swww
     pkgs.wl-clipboard
+
+    pkgs.wlr-which-key
 
     # Screenshot utility
     pkgs.slurp

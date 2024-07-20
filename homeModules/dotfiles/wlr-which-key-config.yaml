@@ -1,0 +1,23 @@
+# Theming
+font: Script12 BT 28
+background: "#282828f0"
+color: "#fbf1c7"
+border: "#8ec07c"
+separator: " ➟ "
+border_width: 2
+corner_r: 10
+padding: 15 # Defaults to corner_r
+anchor: center
+
+menu:
+  "w":
+    desc: WiFi 直
+    submenu:
+      "t": { desc: Toggle, cmd: waybar_togwifi.sh }
+      "c": { desc: Connections, cmd: wezterm start nmtui-connect }
+  "p":
+    desc: Power 襤
+    submenu:
+      "s": { desc: 懶 Sleep , cmd: systemctl suspend }
+      "r": { desc: 拉 Reboot , cmd: reboot }
+      "o": { desc: 襤 Off , cmd: poweroff }
