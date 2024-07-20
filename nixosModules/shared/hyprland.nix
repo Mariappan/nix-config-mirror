@@ -8,5 +8,5 @@
 
   services.logind.lidSwitch = "suspend";
   services.logind.lidSwitchExternalPower = "ignore";
-  services.logind.lidSwitchDocked = "lock";
+  services.logind.lidSwitchDocked = "ignore";
 }
