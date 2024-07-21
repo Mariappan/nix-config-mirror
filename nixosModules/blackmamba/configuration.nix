@@ -10,6 +10,7 @@
     ./users.nix
     ../shared/common.nix
     ../shared/gnome.nix
+    ../shared/hyprland.nix
     ../shared/sound.nix
     ../shared/headless.nix
     ../shared/docker.nix

@@ -49,6 +49,7 @@ in {
         ../../homeModules/shared/rust.nix
         ../../homeModules/shared/dev.nix
         ../../homeModules/shared/debug.nix
+        ../../homeModules/shared/hyprland
       ];
       programs.git = {
         userName = "${userName}";
