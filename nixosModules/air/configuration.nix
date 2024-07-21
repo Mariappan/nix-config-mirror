@@ -10,7 +10,6 @@
     ./users.nix
     ../shared/common.nix
     ../shared/lanzaboote.nix
-    ../shared/gnome.nix
     ../shared/hyprland.nix
     ../shared/sound.nix
     ../shared/fprint.nix
