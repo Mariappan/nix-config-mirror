@@ -6,13 +6,14 @@
     ./kanshi.nix
     ./swaync.nix
     ./waybar.nix
+    ./swww.nix
   ];
 
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
     xwayland.enable = true;
-    plugins = [ pkgs.hyprlandPlugins.hy3 ];
+    plugins = [pkgs.hyprlandPlugins.hy3];
 
     extraConfig = ''
       ${builtins.readFile ../../dotfiles/hypr/hyprland.conf}
@@ -36,7 +37,6 @@
 
     pkgs.hyprpicker
     pkgs.ianny
-    pkgs.swww
     pkgs.wl-clipboard
 
     pkgs.wlr-which-key
