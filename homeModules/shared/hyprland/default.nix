@@ -32,6 +32,16 @@
     };
   };
 
+  gtk = {
+    enable = true;
+    cursorTheme.name = "Adwaita";
+    cursorTheme.package = pkgs.adwaita-icon-theme;
+    theme.name = "adw-gtk3-dark";
+    theme.package = pkgs.adw-gtk3;
+  };
+
+  services.gnome-keyring.enable = true;
+
   home.packages = [
     pkgs.hyprlandPlugins.hy3
 

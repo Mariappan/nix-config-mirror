@@ -57,6 +57,8 @@ in {
       };
       home.sessionVariables = {
         EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
+        NIXOS_OZONE_WL = "1";
+        WLR_NO_HARDWARE_CURSORS = "1";
       };
     };
   };
