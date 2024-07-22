@@ -12,6 +12,7 @@
     enable = true;
     package = pkgs.hyprland;
     xwayland.enable = true;
+    plugins = [ pkgs.hyprlandPlugins.hy3 ];
 
     extraConfig = ''
       ${builtins.readFile ../../dotfiles/hypr/hyprland.conf}
@@ -31,6 +32,8 @@
   };
 
   home.packages = [
+    pkgs.hyprlandPlugins.hy3
+
     pkgs.hyprpicker
     pkgs.ianny
     pkgs.swww
