@@ -6,7 +6,7 @@
     "oops=panic"
   ];
 
-  powerManagement.enable = lib.mkDefault false;
+  powerManagement.enable = lib.mkForce false;
 
   # Without this, systemd-logind will eat 1 full CPU
   # https://discussion.fedoraproject.org/t/systemd-logind-eats-cpu-when-closing-laptop-lid/67805/3
