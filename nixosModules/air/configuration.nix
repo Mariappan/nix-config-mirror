@@ -11,7 +11,6 @@
     ../shared/common.nix
     ../shared/lanzaboote.nix
     ../shared/laptop.nix
-    ../shared/gnome.nix
     ../shared/hyprland.nix
     ../shared/sound.nix
     ../shared/fprint.nix
