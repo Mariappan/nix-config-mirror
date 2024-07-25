@@ -13,7 +13,6 @@
     ../shared/laptop.nix
     ../shared/hyprland.nix
     ../shared/sound.nix
-    ../shared/fprint.nix
     ../shared/docker.nix
     ../shared/virtualbox.nix
   ];
