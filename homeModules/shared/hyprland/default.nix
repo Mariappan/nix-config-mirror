@@ -47,15 +47,15 @@
   home.packages = [
     pkgs.hyprlandPlugins.hy3
 
+    # Screenshot utility
+    pkgs.hyprshot
+    pkgs.slurp
+
     pkgs.hyprpicker
     pkgs.ianny
     pkgs.wl-clipboard
 
     pkgs.wlr-which-key
-
-    # Screenshot utility
-    pkgs.slurp
-    pkgs.grim
 
     # Screenshot utility
     pkgs.wf-recorder
