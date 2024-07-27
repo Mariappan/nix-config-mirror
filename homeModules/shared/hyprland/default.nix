@@ -40,6 +40,8 @@
     theme.package = pkgs.adw-gtk3;
   };
 
+  home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
+
   services.gnome-keyring.enable = true;
 
   home.packages = [
