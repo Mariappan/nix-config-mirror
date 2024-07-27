@@ -40,4 +40,5 @@
   "ignore_*.conf"
   "ignore_custom_*.yaml"
   "ignore_custom_*.conf"
+  "local.properties"
 ]
