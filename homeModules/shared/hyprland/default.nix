@@ -11,7 +11,10 @@
 
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.hyprland;
+    # Enable it for debug
+    # package = pkgs.hyprland.override {
+    #   debug = true;
+    # };
     xwayland.enable = true;
     plugins = [pkgs.hyprlandPlugins.hy3];
 

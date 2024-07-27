@@ -19,6 +19,10 @@ in {
   imports = [./xserver.nix];
 
   programs.hyprland.enable = true;
+  # Enable it for debug package
+  # programs.hyprland.package = pkgs.hyprland.override {
+  #   debug = true;
+  # };
   programs.wshowkeys.enable = true;
   programs.dconf.enable = true;
 
