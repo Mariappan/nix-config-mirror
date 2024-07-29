@@ -46,10 +46,7 @@ in {
         ../../homeModules/shared/nixos.nix
         ../../homeModules/shared/git
         ../../homeModules/shared/xdg.nix
-        ../../homeModules/shared/rust.nix
-        ../../homeModules/shared/dev.nix
-        ../../homeModules/shared/debug.nix
-        ../../homeModules/shared/hyprland
+        ../../homeModules/shared/blackmamba.nix
       ];
       programs.git = {
         userName = "${userName}";
