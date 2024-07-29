@@ -24,7 +24,7 @@
           userName = "Mariappan Ramasamy";
           userEmail = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
           signing = {
-            key = "09260E7E819CB52451171823FF801DC77426D7C1";
+            key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
             signByDefault = true;
           };
         };
