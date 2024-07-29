@@ -74,7 +74,7 @@
     hide_running_in_container = false;
     shadow_other_users = true;
     show_thread_names = true;
-    show_program_path = true;
+    show_program_path = false;
     highlight_base_name = true;
     highlight_deleted_exe = true;
     highlight_threads = true;
