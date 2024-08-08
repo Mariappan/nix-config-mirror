@@ -20,6 +20,10 @@
       }
       {
         timeout = 300;
+        on-timeout = "[ \"$(cat /sys/class/power_supply/AC/online)\" = \"0\" ] && systemctl suspend";
+      }
+      {
+        timeout = 1800;
         on-timeout = "systemctl suspend";
       }
     ];
