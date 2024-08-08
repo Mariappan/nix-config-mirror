@@ -10,6 +10,8 @@
             criteria = "eDP-1";
             scale = 1.0;
             status = "enable";
+            position = "0,0";
+            mode = "1920x1200@60Hz";
           }
         ];
       };
@@ -33,7 +35,7 @@
           {
             criteria = "Beihai Century Joint Innovation Technology Co.,Ltd X340 PRO 165 Unknown";
             position = "0,0";
-            mode = "3440x1440@60Hz";
+            mode = "3440x1440@50Hz";
           }
           {
             criteria = "eDP-1";
