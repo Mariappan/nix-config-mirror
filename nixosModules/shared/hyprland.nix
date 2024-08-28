@@ -10,7 +10,7 @@
       sha256 = "sha256-V3084fBpuCkJ9N0Rw6uBvjQPtZi2BXGxlvmEYH7RahE=";
     };
 
-    cargoSha256 = "sha256-DGq+s5nStfQ0BYl3VBsf1uDbLpa+w0zjTMc+TCIiVF0=";
+    cargoHash = "sha256-DGq+s5nStfQ0BYl3VBsf1uDbLpa+w0zjTMc+TCIiVF0=";
     meta = with pkgs.stdenv.lib; {
       homepage = "https://github.com/deathowl/ddlm";
     };
