@@ -20,7 +20,7 @@ inputs: rec {
   default = inputs.nixos.lib.composeManyExtensions [
     # devenv
     # hostapd
-    # wezterm
+    wezterm
     inputs.nix-alien.overlays.default
     inputs.nixpkgs-wayland.overlay
   ];

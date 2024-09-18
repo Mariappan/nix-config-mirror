@@ -45,6 +45,7 @@
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     nix-alien.url = "github:thiagokokada/nix-alien";
+    wezterm.url = "github:wez/wezterm/2d0c5cddc91a9c59aef9a7667d90924e7cedd0ac?dir=nix";
   };
 
   outputs = inputs @ {
