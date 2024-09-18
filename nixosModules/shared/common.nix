@@ -42,6 +42,7 @@
     pkgs.opensc
     pkgs.openssh
     pkgs.sbctl
+    pkgs.usbutils
     pkgs.vim
   ];
 
