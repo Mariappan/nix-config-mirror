@@ -59,21 +59,6 @@ in {
      RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
   '';
 
-  xdg.portal = {
-    enable = true;
-    config = {
-      common = {
-        default = [
-          "xdph"
-          "gtk"
-        ];
-        "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
-        "org.freedesktop.portal.FileChooser" = ["xdg-desktop-portal-gtk"];
-      };
-    };
-    extraPortals = with pkgs; [xdg-desktop-portal-gtk];
-  };
-
   environment.systemPackages = [
     pkg_ddlm
   ];
