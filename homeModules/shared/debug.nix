@@ -3,6 +3,7 @@
     pkgs.tcpdump
     pkgs.socat
     pkgs.termshark
+    pkgs.binsider
     pkgs.whois
   ];
 }
