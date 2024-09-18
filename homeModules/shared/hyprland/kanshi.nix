@@ -40,7 +40,7 @@
           {
             criteria = "Beihai Century Joint Innovation Technology Co.,Ltd X340 PRO 165 Unknown";
             position = "0,0";
-            mode = "3440x1440@50Hz";
+            mode = "3440x1440@60Hz";
           }
         ];
       }
