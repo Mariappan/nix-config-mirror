@@ -34,6 +34,9 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P"
   ];
 
+  # To avoid HHKB sending Power key on ignoring "Fn+Esc"
+  services.logind.powerKey = "ignore";
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 }
