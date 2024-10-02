@@ -10,7 +10,7 @@
     ./users.nix
     ../shared/common.nix
     ../shared/lanzaboote.nix
-    ../shared/laptop.nix
+    ../shared/headless.nix
     ../shared/hyprland.nix
     ../shared/sound.nix
     ../shared/docker.nix
