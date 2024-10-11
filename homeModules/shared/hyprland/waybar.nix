@@ -6,7 +6,6 @@
 in {
   programs.waybar = {
     enable = true;
-    package = inputs.nixpkgs-wayland.packages.${pkgs.system}.waybar;
     settings = {
       mainbar = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile (pkgs.substituteAll {
         src = ../../dotfiles/waybar/config.json;

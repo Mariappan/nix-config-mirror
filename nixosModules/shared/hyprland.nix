@@ -31,7 +31,7 @@ in {
   services.greetd.settings = {
     default_session = {
       # command = "${pkg_ddlm}/bin/ddlm --target hyprland";
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd hyprland";
+      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
     };
   };
 
