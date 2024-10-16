@@ -9,6 +9,8 @@
   programs.git.aliases = {
     graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f";
     root = "rev-parse --show-toplevel";
+    rg = "log --all --pretty=\"format:%Cgreen%H %Cblue%s\n%b%Creset\" --name-status --grep -i";
+    rgs = "log --pretty=\"format:%Cgreen%H %Cblue%s%Creset\" --name-status --grep -i";
   };
   programs.gitui.enable = true;
   programs.git.delta.enable = true;
