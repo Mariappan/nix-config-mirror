@@ -4,6 +4,7 @@ local plugin = {
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope-github.nvim",
     "nvim-telescope/telescope-node-modules.nvim",
+    "gnfisher/nvim-telescope-ctags-plus",
   },
   config = function()
     local map = require("mappings").map
