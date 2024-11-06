@@ -5,5 +5,6 @@
     pkgs.termshark
     pkgs.binsider
     pkgs.whois
+    pkgs.wireshark
   ];
 }
