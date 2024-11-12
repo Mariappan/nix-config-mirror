@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     ./rust.nix
     ./dev.nix
@@ -12,5 +16,6 @@
     pkgs.google-chrome
     pkgs.slack
     pkgs.obsidian
+    inputs.zen-browser.packages."${pkgs.system}".specific
   ];
 }

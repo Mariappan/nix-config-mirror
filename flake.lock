@@ -881,6 +881,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_6": {
+      "locked": {
+        "lastModified": 1727348695,
+        "narHash": "sha256-J+PeFKSDV+pHL7ukkfpVzCOO7mBSrrpJ3svwBFABbhI=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "1925c603f17fc89f4c8f6bf6f631a802ad85d784",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "pre-commit-hooks-nix": {
       "inputs": {
         "flake-compat": [
@@ -925,7 +941,8 @@
         "nixos": "nixos",
         "nixpkgs": "nixpkgs_3",
         "nixpkgs-wayland": "nixpkgs-wayland",
-        "wezterm": "wezterm"
+        "wezterm": "wezterm",
+        "zen-browser": "zen-browser"
       }
     },
     "rust-overlay": {
@@ -1095,6 +1112,24 @@
         "owner": "wez",
         "repo": "wezterm",
         "rev": "2d0c5cddc91a9c59aef9a7667d90924e7cedd0ac",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_6"
+      },
+      "locked": {
+        "lastModified": 1731288014,
+        "narHash": "sha256-RcQdww+XgGUWTWKINDJ68A6DB/UiRaoc/IUWwa+0ZeI=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "4e9e06a66f9c225eb02d1a37b55bb0af8db3ad5e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     },
