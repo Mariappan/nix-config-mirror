@@ -13,6 +13,7 @@
     ../shared/sound.nix
     ../shared/headless.nix
     ../shared/docker.nix
+    ../shared/1password.nix
     ../shared/virtualbox.nix
   ];
 

@@ -14,6 +14,7 @@
     ../shared/hyprland.nix
     ../shared/sound.nix
     ../shared/docker.nix
+    ../shared/1password.nix
     ../shared/virtualbox.nix
   ];
 
