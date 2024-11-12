@@ -1,4 +1,8 @@
-{pkgs, inputs, ...}: let
+{
+  pkgs,
+  inputs,
+  ...
+}: let
   pkg_togglewifi = pkgs.writeScriptBin "waybar_togwifi.sh" (builtins.readFile ../../dotfiles/waybar/scripts/toggle_wifi.sh);
   pkg_wttrpy = pkgs.writers.writePython3Bin "waybar_wttr.py" {} (builtins.readFile ../../dotfiles/waybar/scripts/wttr.py);
   togglewifi = "${pkg_togglewifi}/bin/waybar_togwifi.sh";

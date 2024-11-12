@@ -59,9 +59,8 @@
         "org.freedesktop.portal.FileChooser" = ["xdg-desktop-portal-gtk"];
       };
     };
-    extraPortals = with pkgs; [ xdg-desktop-portal-hyprland xdg-desktop-portal-gtk];
+    extraPortals = with pkgs; [xdg-desktop-portal-hyprland xdg-desktop-portal-gtk];
   };
-
 
   home.packages = [
     pkgs.hyprlandPlugins.hy3
