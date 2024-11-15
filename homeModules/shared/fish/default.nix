@@ -67,6 +67,10 @@ args @ {
         alias vim="nvim"
       end
 
+      if command -q rbenv
+        rbenv init - --no-rehash fish | source
+      end
+
       abbr 4DIRS --set-cursor=! "$(string join \n -- 'for dir in */' 'cd $dir' '!' 'cd ..' 'end')"
     '';
 

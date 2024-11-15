@@ -32,6 +32,8 @@
     ];
   };
 
+  homebrew.brews = ["clang-format" "swift-format" "jq" "gnupg" "rbenv"];
+
   nix.settings.trusted-users = ["mariappan.ramasamy"];
 
   # The platform the configuration will be used on.
