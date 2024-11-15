@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   ...
 }: {
   imports = [
@@ -33,7 +34,6 @@
     pkgs.jq
     pkgs.lsd
     pkgs.lsof
-    pkgs.ncdu
     pkgs.qpdf
     pkgs.python3
     pkgs.rsync
@@ -55,6 +55,8 @@
     #pkgs.jetbrains.jdk
     #pkgs.yubikey-manager
     # pkgs.ookla-speedtest # Need export NIXPKGS_ALLOW_UNFREE=1
+  ] ++ lib.optionals pkgs.stdenv.isLinux [
+    pkgs.ncdu
   ];
 
   programs.neovim = {

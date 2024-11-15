@@ -49,7 +49,6 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [
     pkgs.curl
-    pkgs.opensc
     pkgs.openssh
     pkgs.pinentry_mac
     pkgs.vim
