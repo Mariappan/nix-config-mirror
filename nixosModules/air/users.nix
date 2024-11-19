@@ -60,7 +60,7 @@ in {
 
       home.sessionVariables = {
         NIXOS_OZONE_WL = "1";
-        SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
+        # SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
         EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
         WLR_NO_HARDWARE_CURSORS = "1";
       };
