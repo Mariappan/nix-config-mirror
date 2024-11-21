@@ -17,7 +17,7 @@ inputs: rec {
       ];
     });
   };
-  default = inputs.nixos.lib.composeManyExtensions [
+  default = inputs.nixpkgs.lib.composeManyExtensions [
     # devenv
     # hostapd
     wezterm
