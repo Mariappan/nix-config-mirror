@@ -52,6 +52,7 @@
     pkgs.openssh
     pkgs.pinentry_mac
     pkgs.vim
+    pkgs.terminal-notifier
   ];
 
   # Create /etc/zshrc that loads the nix-darwin environment.
@@ -83,7 +84,6 @@
       "obsidian"
       "vlc"
       "visual-studio-code"
-      "wezterm-nightly"
       "wireshark"
     ];
   };
