@@ -10,7 +10,7 @@
   boot.loader.systemd-boot.configurationLimit = 10;
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = ["kvm-intel"];
+  boot.kernelModules = [];
   boot.extraModulePackages = [];
 
   boot.kernelParams = ["ip=dhcp" "noresume"];
