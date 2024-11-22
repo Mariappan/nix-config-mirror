@@ -59,12 +59,6 @@
     pkgs.ncdu
   ];
 
-  programs.neovim = {
-    enable = true;
-    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
-    withPython3 = true;
-  };
-
   programs.atuin.enable = true;
   programs.atuin.enableFishIntegration = true;
   programs.atuin.flags = ["--disable-ctrl-r"];

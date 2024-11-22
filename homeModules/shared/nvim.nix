@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{pkgs, inputs, ...}: {
+  programs.neovim = {
+    enable = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+    withPython3 = true;
+  };
+
   xdg.configFile = {
     "nvim" = {
       enable = true;
