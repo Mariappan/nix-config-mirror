@@ -35,18 +35,18 @@ in {
   home-manager.users = {
     root = {
       imports = [
-        ../../../homeModules/shared/core.nix
-        ../../../homeModules/shared/nixos.nix
-        ../../../homeModules/shared/git
+        ../../../modules/homemanager/core.nix
+        ../../../modules/homemanager/nixos.nix
+        ../../../modules/homemanager/git
       ];
     };
     ${userId} = {
       imports = [
-        ../../../homeModules/shared/core.nix
-        ../../../homeModules/shared/nixos.nix
-        ../../../homeModules/shared/git
-        ../../../homeModules/shared/xdg.nix
-        ../../../homeModules/shared/air.nix
+        ../../../modules/homemanager/core.nix
+        ../../../modules/homemanager/nixos.nix
+        ../../../modules/homemanager/git
+        ../../../modules/homemanager/xdg.nix
+        ../../../modules/homemanager/air.nix
       ];
 
       programs.git = {

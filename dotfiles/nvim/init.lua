@@ -6,7 +6,7 @@
 --     dMP dMP dMP dMP dMP dMP dMP dMP dMP dMP
 --
 -- Author: Mariappan Ramasamy
--- repo  : https://gitlab.com/mariappan/dotfiles
+-- repo  : https://gitlab.com/mariappan/nix-config
 
 vim.cmd("filetype plugin indent on")
 
