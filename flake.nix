@@ -51,10 +51,12 @@
 
   outputs = inputs @ {
     self,
+    nixpkgs,
     flake-parts,
     ...
   }: let
     inherit (self) outputs;
+    libx = import ./libx {inherit inputs;};
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       flake = {
@@ -63,8 +65,11 @@
         # darwin-rebuild build --flake .#water
         darwinConfigurations = import ./darwinConfigurations.nix inputs outputs;
 
-        # sudo nixos-rebuild switch --flake .#water
-        nixosConfigurations = import ./nixosConfigurations.nix inputs outputs;
+        # sudo nixos-rebuild switch --flake .#air
+        nixosConfigurations = libx.mkNixOsConfs ./hosts;
+
+        homeManagerModules.default = {};
+        nixosModules.default = {};
       };
 
       systems = ["x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
