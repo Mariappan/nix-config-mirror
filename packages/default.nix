@@ -1,6 +1,5 @@
 {pkgs ? import <nixpkgs> {}, ...}: rec {
-  nixma = {
-    # Packages with an actual source
-    ddlm = pkgs.callPackage ./ddlm {};
-  };
+  # Packages with an actual source
+  ddlm = pkgs.callPackage ./ddlm {};
+  sagecipher = pkgs.callPackage ./sagecipher {};
 }

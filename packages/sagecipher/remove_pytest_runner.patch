@@ -1,0 +1,14 @@
+diff --git a/setup.py b/setup.py
+index 2f95af6..fca8e3f 100644
+--- a/setup.py
++++ b/setup.py
+@@ -37,7 +37,7 @@ setup(
+         "keyring",
+         "keyrings.alt",
+     ],
+-    setup_requires=["pytest-runner"],
++    setup_requires=[],
+     tests_require=["pytest"],
+     zip_safe=True,
+     entry_points={
+

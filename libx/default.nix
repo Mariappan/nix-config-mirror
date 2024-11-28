@@ -64,7 +64,7 @@ in rec {
         name = libx.fileNameOf host;
         value = libx.mkNixDarwinConf host;
       })
-    (filesIn dir));
+      (filesIn dir));
 
   # ========================== Extenders =========================== #
 
