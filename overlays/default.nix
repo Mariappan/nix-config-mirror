@@ -1,26 +1,26 @@
-inputs: rec {
-  devenv = final: prev: {
-    devenv = inputs.devenv.packages.${prev.stdenv.hostPlatform.system}.devenv;
-  };
-  wezterm = final: prev: {
+# Overlays
+# Ref: https://github.com/Misterio77/nix-config/blob/main/overlays/default.nix
+{inputs, ...}: {
+  # This one brings our custom packages from the 'packages' directory
+  additions = final: _prev: import ../packages {pkgs = final;};
+
+  # This one contains whatever you want to overlay
+  # You can change versions, add patches, set compilation flags, anything really.
+  # https://nixos.wiki/wiki/Overlays
+  modifications = _final: prev: {
     wezterm = inputs.wezterm.packages.${prev.stdenv.hostPlatform.system}.default;
   };
-  hostapd = final: prev: {
-    hostapd = prev.hostapd.overrideAttrs (oldAttrs: {
-      #patches = oldAttrs.patches ++ [
-      patches = [
-        (prev.fetchpatch {
-          # hack to work with intel LAR
-          url = "https://raw.githubusercontent.com/openwrt/openwrt/eefed841b05c3cd4c65a78b50ce0934d879e6acf/package/network/services/hostapd/patches/300-noscan.patch";
-          hash = "sha256-q9yWc5FYhzUFXNzkVIgNe6gxJyE1hQ/iShEluVroiTE=";
-        })
-      ];
-    });
+
+  # When applied, the stable nixpkgs set (declared in the flake inputs) will
+  # be accessible through 'pkgs.stable'
+  stable-packages = final: _prev: {
+    stable = import inputs.nixpkgs-stable {
+      system = final.system;
+      config.allowUnfree = true;
+    };
   };
+
   default = inputs.nixpkgs.lib.composeManyExtensions [
-    # devenv
-    # hostapd
-    wezterm
     inputs.nix-alien.overlays.default
     inputs.nixpkgs-wayland.overlay
   ];

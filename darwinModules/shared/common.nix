@@ -3,6 +3,7 @@
   config,
   lib,
   inputs,
+  outputs,
   home-manager,
   ...
 }: {
@@ -20,7 +21,7 @@
   # Nixpkgs config
   nixpkgs = {
     overlays = [
-      (import ../../overlays inputs).default
+      outputs.overlays.default
     ];
     config = {
       allowUnfree = true;

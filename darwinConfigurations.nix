@@ -1,9 +1,9 @@
-inputs: let
+inputs: outputs: let
   mkDarwinConf = module: let
     home-manager = inputs.home-manager;
   in
     inputs.nix-darwin.lib.darwinSystem {
-      specialArgs = {inherit inputs home-manager;};
+      specialArgs = {inherit inputs outputs home-manager;};
       modules = [module];
     };
 in {

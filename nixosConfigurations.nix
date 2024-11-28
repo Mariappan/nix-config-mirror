@@ -1,11 +1,11 @@
-inputs: let
+inputs: outputs: let
   mkNixosConf = modules: let
     nixpkgs = inputs.nixpkgs;
     lanzaboote = inputs.lanzaboote;
     home-manager = inputs.home-manager;
   in
     nixpkgs.lib.nixosSystem {
-      specialArgs = {inherit inputs nixpkgs home-manager lanzaboote;};
+      specialArgs = {inherit inputs outputs nixpkgs home-manager lanzaboote;};
       inherit modules;
     };
 in {

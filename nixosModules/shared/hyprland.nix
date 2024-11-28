@@ -1,21 +1,4 @@
-{pkgs, ...}: let
-  pkg_ddlm = pkgs.rustPlatform.buildRustPackage rec {
-    pname = "ddlm";
-    version = "0.1.0";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "deathowl";
-      repo = "ddlm";
-      rev = "8a7213909c7a7f4672a6db05ca5fdd0b37c5ceeb";
-      sha256 = "sha256-V3084fBpuCkJ9N0Rw6uBvjQPtZi2BXGxlvmEYH7RahE=";
-    };
-
-    cargoHash = "sha256-DGq+s5nStfQ0BYl3VBsf1uDbLpa+w0zjTMc+TCIiVF0=";
-    meta = with pkgs.stdenv.lib; {
-      homepage = "https://github.com/deathowl/ddlm";
-    };
-  };
-in {
+{pkgs, ...}: {
   imports = [./xserver.nix];
 
   programs.hyprland.enable = true;
@@ -60,6 +43,6 @@ in {
   '';
 
   environment.systemPackages = [
-    pkg_ddlm
+    pkgs.nixma.ddlm
   ];
 }

@@ -17,6 +17,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-24.11";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -52,14 +53,18 @@
     self,
     flake-parts,
     ...
-  }:
+  }: let
+    inherit (self) outputs;
+  in
     flake-parts.lib.mkFlake {inherit inputs;} {
       flake = {
+        overlays = import ./overlays {inherit inputs;};
+
         # darwin-rebuild build --flake .#water
-        darwinConfigurations = import ./darwinConfigurations.nix inputs;
+        darwinConfigurations = import ./darwinConfigurations.nix inputs outputs;
 
         # sudo nixos-rebuild switch --flake .#water
-        nixosConfigurations = import ./nixosConfigurations.nix inputs;
+        nixosConfigurations = import ./nixosConfigurations.nix inputs outputs;
       };
 
       systems = ["x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
@@ -73,6 +78,8 @@
           inherit system;
           overlays = [];
         };
+
+        packages = import ./packages {inherit pkgs;};
         formatter = pkgs.alejandra;
       };
     };
