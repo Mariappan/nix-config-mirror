@@ -48,6 +48,24 @@ in rec {
     )
     (dirsCleanIn dir);
 
+  mkNixDarwinConf = config:
+    inputs.nix-darwin.lib.darwinSystem {
+      specialArgs = {
+        inherit inputs outputs nixpkgs home-manager libx;
+      };
+      modules = [
+        config
+        outputs.nixDarwinModules.default
+      ];
+    };
+
+  mkNixDarwinConfs = dir:
+    builtins.listToAttrs (builtins.map (host: {
+        name = libx.fileNameOf host;
+        value = libx.mkNixDarwinConf host;
+      })
+    (filesIn dir));
+
   # ========================== Extenders =========================== #
 
   # Evaluates nixos/home-manager module and extends it's options / config

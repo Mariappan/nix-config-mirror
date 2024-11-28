@@ -63,13 +63,14 @@
         overlays = import ./overlays {inherit inputs;};
 
         # darwin-rebuild build --flake .#water
-        darwinConfigurations = import ./darwinConfigurations.nix inputs outputs;
+        darwinConfigurations = libx.mkNixDarwinConfs ./hosts/darwin;
 
         # sudo nixos-rebuild switch --flake .#air
-        nixosConfigurations = libx.mkNixOsConfs ./hosts;
+        nixosConfigurations = libx.mkNixOsConfs ./hosts/nixos;
 
         homeManagerModules.default = {};
         nixosModules.default = {};
+        nixDarwinModules.default = {};
       };
 
       systems = ["x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];

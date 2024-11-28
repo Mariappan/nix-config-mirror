@@ -35,34 +35,34 @@ in {
   home-manager.users = {
     root = {
       imports = [
-        ../../homeModules/shared/core.nix
-        ../../homeModules/shared/nixos.nix
-        ../../homeModules/shared/git
+        ../../../homeModules/shared/core.nix
+        ../../../homeModules/shared/nixos.nix
+        ../../../homeModules/shared/git
       ];
     };
     ${userId} = {
       imports = [
-        ../../homeModules/shared/core.nix
-        ../../homeModules/shared/nixos.nix
-        ../../homeModules/shared/git
-        ../../homeModules/shared/xdg.nix
-        ../../homeModules/shared/air.nix
+        ../../../homeModules/shared/core.nix
+        ../../../homeModules/shared/nixos.nix
+        ../../../homeModules/shared/git
+        ../../../homeModules/shared/xdg.nix
+        ../../../homeModules/shared/rust.nix
+        ../../../homeModules/shared/dev.nix
+        ../../../homeModules/shared/debug.nix
       ];
 
       programs.git = {
         userName = "${userName}";
         userEmail = "${userEmail}";
         signing = {
-          key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
+          key = "09260E7E819CB52451171823FF801DC77426D7C1";
           signByDefault = true;
         };
       };
 
       home.sessionVariables = {
         NIXOS_OZONE_WL = "1";
-        # SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
         EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
-        WLR_NO_HARDWARE_CURSORS = "1";
       };
     };
   };

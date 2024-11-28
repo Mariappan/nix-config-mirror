@@ -6,7 +6,7 @@
 }: let
   userId = "maari";
   userName = "Mariappan Ramasamy";
-  userEmail = "2441529+mariappan@users.noreply.gitlab.com";
+  userEmail = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
 in {
   users.users.${userId} = {
     name = "${userId}";
@@ -16,7 +16,7 @@ in {
     extraGroups = ["wheel" "docker" "networkmanager" "vboxusers" "input"];
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIHmCMRUlvFEr8DTgChajPHJA069XKU+RECk/hurkIo2h"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P"
     ];
   };
   nix.settings.trusted-users = ["${userId}"];
@@ -35,26 +35,33 @@ in {
   home-manager.users = {
     root = {
       imports = [
-        ../../homeModules/shared/core.nix
-        ../../homeModules/shared/nixos.nix
-        ../../homeModules/shared/git
+        ../../../homeModules/shared/core.nix
+        ../../../homeModules/shared/nixos.nix
+        ../../../homeModules/shared/git
       ];
     };
     ${userId} = {
       imports = [
-        ../../homeModules/shared/core.nix
-        ../../homeModules/shared/nixos.nix
-        ../../homeModules/shared/git
-        ../../homeModules/shared/xdg.nix
-        ../../homeModules/shared/blackmamba.nix
+        ../../../homeModules/shared/core.nix
+        ../../../homeModules/shared/nixos.nix
+        ../../../homeModules/shared/git
+        ../../../homeModules/shared/xdg.nix
+        ../../../homeModules/shared/air.nix
       ];
+
       programs.git = {
         userName = "${userName}";
         userEmail = "${userEmail}";
+        signing = {
+          key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
+          signByDefault = true;
+        };
       };
+
       home.sessionVariables = {
-        EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
         NIXOS_OZONE_WL = "1";
+        # SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
+        EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
         WLR_NO_HARDWARE_CURSORS = "1";
       };
     };
