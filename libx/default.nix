@@ -51,6 +51,16 @@ in rec {
     )
     (dirsCleanIn dir);
 
+  mkNixOsUserConf = user: config:
+    {
+      imports = [
+        inputs.nix-index-database.hmModules.nix-index
+        inputs.anyrun.homeManagerModules.default
+        outputs.homeManagerModules.default
+      ];
+      config = config;
+    };
+
   mkNixDarwinConf = config:
     inputs.nix-darwin.lib.darwinSystem {
       specialArgs = {

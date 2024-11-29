@@ -1,5 +1,6 @@
 {
   lib,
+  libx,
   pkgs,
   home-manager,
   inputs,
@@ -35,23 +36,12 @@ in {
   ];
 
   home-manager.users = {
-    root = {
-      imports = [
-        outputs.homeManagerModules.default
-        inputs.nix-index-database.hmModules.nix-index
-        inputs.anyrun.homeManagerModules.default
-      ];
+    root = libx.mkNixOsUserConf "root" {
       nixma.core.enable = true;
       nixma.nixos.enable = true;
       nixma.git.enable = true;
     };
-    ${userId} = {
-      imports = [
-        outputs.homeManagerModules.default
-        inputs.nix-index-database.hmModules.nix-index
-        inputs.anyrun.homeManagerModules.default
-      ];
-
+    ${userId} = libx.mkNixOsUserConf userId {
       nixma.helix.enable = true;
       nixma.core.enable = true;
       nixma.nixos.enable = true;
