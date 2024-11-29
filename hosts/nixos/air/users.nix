@@ -2,6 +2,8 @@
   lib,
   pkgs,
   home-manager,
+  inputs,
+  outputs,
   ...
 }: let
   userId = "maari";
@@ -35,19 +37,27 @@ in {
   home-manager.users = {
     root = {
       imports = [
-        ../../../modules/homemanager/features/core.nix
-        ../../../modules/homemanager/features/nixos.nix
-        ../../../modules/homemanager/features/git
+        outputs.homeManagerModules.default
+        inputs.nix-index-database.hmModules.nix-index
+        inputs.anyrun.homeManagerModules.default
       ];
+      nixma.core.enable = true;
+      nixma.nixos.enable = true;
+      nixma.git.enable = true;
     };
     ${userId} = {
       imports = [
-        ../../../modules/homemanager/features/core.nix
-        ../../../modules/homemanager/features/nixos.nix
-        ../../../modules/homemanager/features/git
-        ../../../modules/homemanager/features/xdg.nix
-        ../../../modules/homemanager/features/air.nix
+        outputs.homeManagerModules.default
+        inputs.nix-index-database.hmModules.nix-index
+        inputs.anyrun.homeManagerModules.default
       ];
+
+      nixma.helix.enable = true;
+      nixma.core.enable = true;
+      nixma.nixos.enable = true;
+      nixma.git.enable = true;
+      nixma.xdg.enable = true;
+      nixma.air.enable = true;
 
       programs.git = {
         userName = "${userName}";

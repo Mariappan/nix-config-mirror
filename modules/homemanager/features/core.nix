@@ -5,8 +5,6 @@
   ...
 }: {
   imports = [
-    inputs.nix-index-database.hmModules.nix-index
-    inputs.anyrun.homeManagerModules.default
     ./fish
     ./tmux.nix
     ./helix.nix
@@ -27,7 +25,6 @@
       pkgs.file
       pkgs.fzf
       pkgs.gnupg
-      pkgs.helix
       pkgs.htop
       pkgs.hurl
       pkgs.hyperfine
