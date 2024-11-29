@@ -5,7 +5,7 @@
   xdg.configFile = {
     "wezterm" = {
       enable = true;
-      source = ../../dotfiles/wezterm;
+      source = ../../../dotfiles/wezterm;
       target = "wezterm";
     };
   };

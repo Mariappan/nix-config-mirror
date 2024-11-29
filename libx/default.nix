@@ -1,3 +1,6 @@
+# Shamelssly copied from
+# https://github.com/vimjoyer/nixconf/blob/4e6241430e8025b65391ce3819218318387f1ad3/myLib/default.nix#L1 (MIT)
+
 {inputs}: let
   libx = (import ./default.nix) {inherit inputs;};
   outputs = inputs.self.outputs;

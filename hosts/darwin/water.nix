@@ -16,9 +16,9 @@
 
   home-manager.users.maari = {
     imports = [
-      ../../modules/homemanager/core.nix
-      ../../modules/homemanager/dev.nix
-      ../../modules/homemanager/git
+      ../../modules/homemanager/features/core.nix
+      ../../modules/homemanager/features/dev.nix
+      ../../modules/homemanager/features/git
       {
         programs.git = {
           enable = true;

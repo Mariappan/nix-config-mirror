@@ -19,7 +19,7 @@
     plugins = [pkgs.hyprlandPlugins.hy3];
 
     extraConfig = ''
-      ${builtins.readFile ../../../dotfiles/hypr/hyprland.conf}
+      ${builtins.readFile ../../../../dotfiles/hypr/hyprland.conf}
     '';
 
     # enable hyprland-session.target on hyprland startup
@@ -30,7 +30,7 @@
 
   xdg.configFile = {
     "wlr-which-key" = {
-      source = ../../../dotfiles/wlr-which-key-config.yaml;
+      source = ../../../../dotfiles/wlr-which-key-config.yaml;
       target = "wlr-which-key/config.yaml";
     };
   };

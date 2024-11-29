@@ -12,7 +12,7 @@
   xdg.configFile = {
     "nvim" = {
       enable = true;
-      source = ../../dotfiles/nvim;
+      source = ../../../dotfiles/nvim;
       target = "nvim";
     };
   };

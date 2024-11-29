@@ -35,20 +35,20 @@ in {
   home-manager.users = {
     root = {
       imports = [
-        ../../../modules/homemanager/core.nix
-        ../../../modules/homemanager/nixos.nix
-        ../../../modules/homemanager/git
+        ../../../modules/homemanager/features/core.nix
+        ../../../modules/homemanager/features/nixos.nix
+        ../../../modules/homemanager/features/git
       ];
     };
     ${userId} = {
       imports = [
-        ../../../modules/homemanager/core.nix
-        ../../../modules/homemanager/nixos.nix
-        ../../../modules/homemanager/git
-        ../../../modules/homemanager/xdg.nix
-        ../../../modules/homemanager/rust.nix
-        ../../../modules/homemanager/dev.nix
-        ../../../modules/homemanager/debug.nix
+        ../../../modules/homemanager/features/core.nix
+        ../../../modules/homemanager/features/nixos.nix
+        ../../../modules/homemanager/features/git
+        ../../../modules/homemanager/features/xdg.nix
+        ../../../modules/homemanager/features/rust.nix
+        ../../../modules/homemanager/features/dev.nix
+        ../../../modules/homemanager/features/debug.nix
       ];
 
       programs.git = {
