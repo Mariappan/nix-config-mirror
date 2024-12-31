@@ -1,8 +1,8 @@
 {pkgs, ...}: {
   services.gpg-agent = {
-    enable = false;
-    enableScDaemon = false;
-    enableSshSupport = false;
+    enable = true;
+    enableScDaemon = true;
+    enableSshSupport = true;
     # extraConfig = "pinentry-program ${pkgs.wayprompt}/bin/pinentry-wayprompt";
   };
 }
