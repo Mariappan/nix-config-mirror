@@ -11,6 +11,16 @@
   # https://nixos.wiki/wiki/Overlays
   modifications = _final: prev: {
     wezterm = inputs.wezterm.packages.${prev.stdenv.hostPlatform.system}.default;
+    wayprompt = prev.wayprompt.overrideAttrs (oldAttrs: {
+      version = "66fe87408d3cfba8c8cc6ff65c1868e5db6ad3bb";
+      src = prev.fetchFromSourcehut {
+        owner = "~leon_plickat";
+        repo = "wayprompt";
+        rev = "66fe87408d3cfba8c8cc6ff65c1868e5db6ad3bb";
+        sha256 = "sha256-Oz98oo3auhbBu9tl5pENoyJ9cMexcwPuRk18H4mLkjg=";
+        fetchSubmodules = true;
+      };
+    });
   };
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will
