@@ -6,7 +6,7 @@
   programs.tmux.mouse = true;
   programs.tmux.shortcut = "a";
   programs.tmux.baseIndex = 1;
-  programs.tmux.shell = "\${pkgs.fish}/bin/fish";
+  programs.tmux.shell = "${pkgs.fish}/bin/fish";
   programs.tmux.extraConfig = ''
     set -as terminal-features ",alacritty*:RGB"
     set -as terminal-overrides ",*:U8=0"

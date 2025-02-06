@@ -43,7 +43,7 @@
       pkgs.torsocks
       pkgs.tree
       pkgs.universal-ctags
-      pkgs.xsv
+      pkgs.xan
       pkgs.yasm
       pkgs.zip
       pkgs.unzip
