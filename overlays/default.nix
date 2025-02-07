@@ -10,7 +10,6 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = _final: prev: {
-    wezterm = inputs.wezterm.packages.${prev.stdenv.hostPlatform.system}.default;
     wayprompt = prev.wayprompt.overrideAttrs (oldAttrs: {
       version = "66fe87408d3cfba8c8cc6ff65c1868e5db6ad3bb";
       src = prev.fetchFromSourcehut {
