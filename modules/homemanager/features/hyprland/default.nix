@@ -79,6 +79,6 @@
     pkgs.wf-recorder
 
     pkgs.wtype
-    # pkgs.wayprompt
+    pkgs.wayprompt
   ];
 }

@@ -3,6 +3,6 @@
     enable = true;
     enableScDaemon = true;
     enableSshSupport = true;
-    # extraConfig = "pinentry-program ${pkgs.wayprompt}/bin/pinentry-wayprompt";
+    extraConfig = "pinentry-program ${pkgs.stable.wayprompt}/bin/pinentry-wayprompt";
   };
 }
