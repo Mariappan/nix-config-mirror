@@ -9,9 +9,12 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.configurationLimit = 10;
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # Unstable default kernel is 6.12
+  # Use latest if latest kernel is needed
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.kernelModules = [];
   boot.extraModulePackages = [];
+  boot.blacklistedKernelModules = ["kvm-intel"];
 
   boot.kernelParams = ["ip=dhcp" "noresume"];
 
