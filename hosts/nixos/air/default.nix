@@ -9,6 +9,7 @@
     ./boot.nix
     ./users.nix
     ../shared/common.nix
+    ../shared/manpages.nix
     ../shared/lanzaboote.nix
     ../shared/headless.nix
     ../shared/hyprland.nix
