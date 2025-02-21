@@ -59,6 +59,8 @@
   in
     flake-parts.lib.mkFlake {inherit inputs;} {
       flake = {
+        inherit libx;
+
         overlays = import ./overlays {inherit inputs;};
 
         # darwin-rebuild build --flake .#water
