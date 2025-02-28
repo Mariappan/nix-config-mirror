@@ -60,10 +60,15 @@
   programs.zsh.enable = true; # default shell on catalina
   programs.fish.enable = true;
 
-  programs.direnv.enable = true;
-  programs.direnv.loadInNixShell = true;
-  programs.direnv.nix-direnv.enable = true;
-  programs.direnv.silent = false;
+  programs.direnv = {
+    enable = true;
+    loadInNixShell = true;
+    nix-direnv.enable = true;
+    silent = true;
+    config = {
+      global.hide_env_diff = true;
+    };
+  };
 
   environment.shells = [pkgs.bashInteractive pkgs.zsh pkgs.fish];
 
