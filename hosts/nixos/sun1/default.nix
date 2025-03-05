@@ -1,0 +1,40 @@
+{
+  lib,
+  pkgs,
+  home-manager,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ./boot.nix
+    ./users.nix
+    ../shared/common.nix
+    ../shared/manpages.nix
+    ../shared/lanzaboote.nix
+    ../shared/headless.nix
+    ../shared/hyprland.nix
+    ../shared/sound.nix
+    ../shared/docker.nix
+    ../shared/1password.nix
+    ../shared/virtualbox.nix
+  ];
+
+  # System configs
+  networking.hostName = "sun1";
+  networking.networkmanager.enable = true;
+  networking.firewall.enable = true;
+
+  # Timezone
+  time.timeZone = "Asia/Singapore";
+
+  # Enable fstrim for SSD
+  services.fstrim.enable = true;
+
+  services.hardware.bolt.enable = true;
+
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3bwlIYLqj7YgfDNhFoAWgP5hg9+TOXmhnRZM9R8Bfi"
+  ];
+}
