@@ -7,7 +7,7 @@
   # Bootloader.
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.configurationLimit = 10;
+  boot.loader.systemd-boot.configurationLimit = 3;
 
   # Unstable default kernel is 6.12
   # Use latest if latest kernel is needed
@@ -23,6 +23,7 @@
     kernelModules = [];
     systemd = {
       enable = true;
+      # units = [ pkgs.systemd.unit "bolt.service" ];
       users.root.shell = lib.mkIf (config.boot.initrd.systemd.enable) "/bin/systemd-tty-ask-password-agent";
     };
     network = {

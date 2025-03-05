@@ -2,7 +2,8 @@ default: build
 
 # Update flake and build nixos
 update:
-    nh os switch -u . -- --accept-flake-config
+    nix flake update
+    nh os switch . -- --accept-flake-config
 
 # Build nixos
 build:
