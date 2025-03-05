@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [
     ./anyrun.nix
     ./hypridle.nix
@@ -44,6 +48,12 @@
   };
 
   home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
+
+  home.activation = {
+    hyprlandAction = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      run touch $HOME/.config/hypr/hyprland_after.conf
+    '';
+  };
 
   services.gnome-keyring.enable = true;
 

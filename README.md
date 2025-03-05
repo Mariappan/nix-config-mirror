@@ -185,9 +185,8 @@ sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 \
    nix profile install nixpkgs#hello
    ```
 
-## Roadmap or ToDo
+## ToDo
 - Integrate sops-nix
-- Create empty hyprland_after.conf
 - Download script12 and meslo font and install it
 
 ## Authors and acknowledgment
