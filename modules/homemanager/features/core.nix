@@ -35,7 +35,6 @@
       pkgs.qpdf
       pkgs.python3
       pkgs.rsync
-      pkgs.rustup
       pkgs.ripgrep
       pkgs.sshuttle
       pkgs.tldr
