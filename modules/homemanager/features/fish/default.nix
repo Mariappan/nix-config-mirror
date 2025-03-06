@@ -104,6 +104,12 @@ args @ {
       update-hardware-conf = "nixos-generate-config --show-hardware-config --no-filesystems > /etc/nixos/nixosModules/$(hostname)/hardware-configuration.nix && git -C /etc/nixos/ commit /etc/nixos/nixosModules/$(hostname)/hardware-configuration.nix -m \"$(hostname): update hardware-configuration.nix\"";
     };
 
+    home.activation = {
+      fishTideAction = lib.hm.dag.entryAfter ["writeBoundary"] ''
+        run tide configure --auto --style=Lean --prompt_colors='True color' --show_time=No --lean_prompt_height='Two lines' --prompt_connection=Disconnected --prompt_spacing=Sparse --icons='Many icons' --transient=Yes
+      '';
+    };
+
     plugins = with pkgs.fishPlugins; [
       {
         name = "tide"; # natively async
