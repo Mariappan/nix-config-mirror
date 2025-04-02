@@ -42,7 +42,6 @@ in {
       nixma.git.enable = true;
     };
     ${userId} = libx.mkNixOsUserConf userId {
-      nixma.helix.enable = true;
       nixma.core.enable = true;
       nixma.nixos.enable = true;
       nixma.git.enable = true;
