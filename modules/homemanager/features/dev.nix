@@ -5,6 +5,6 @@
     pkgs.uv # Python package manager
     pkgs.ipcalc
     pkgs.tigervnc
-    pkgs.netcat-openbsd
+    # pkgs.netcat-openbsd
   ];
 }
