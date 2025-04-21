@@ -32,7 +32,6 @@
   nix.settings.experimental-features = "nix-command flakes";
 
   nix.gc = {
-    user = "root";
     automatic = true;
     interval = {
       Weekday = 0;
@@ -42,8 +41,6 @@
     options = "--delete-older-than 7d";
   };
 
-  # Auto upgrade nix package and the daemon service.
-  services.nix-daemon.enable = true;
   # nix.package = pkgs.nix;
 
   # List packages installed in system profile. To search by name, run:
@@ -65,9 +62,9 @@
     loadInNixShell = true;
     nix-direnv.enable = true;
     silent = true;
-    config = {
-      global.hide_env_diff = true;
-    };
+    # config = {
+    #   global.hide_env_diff = true;
+    # };
   };
 
   environment.shells = [pkgs.bashInteractive pkgs.zsh pkgs.fish];
@@ -95,7 +92,7 @@
   };
 
   # Enable TouchId for sudo
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog
