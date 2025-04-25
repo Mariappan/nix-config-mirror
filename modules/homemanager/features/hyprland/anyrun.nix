@@ -11,7 +11,6 @@
         inputs.anyrun.packages.${pkgs.system}.applications
         inputs.anyrun.packages.${pkgs.system}.rink
         inputs.anyrun.packages.${pkgs.system}.shell
-        # "${inputs.anyrun.packages.${pkgs.system}.anyrun-with-all-plugins}/lib/kidex"
       ];
       x = {fraction = 0.5;};
       y = {fraction = 0.3;};

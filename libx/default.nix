@@ -53,7 +53,6 @@ in rec {
   mkNixOsUserConf = user: config: {
     imports = [
       inputs.nix-index-database.hmModules.nix-index
-      inputs.anyrun.homeManagerModules.default
       outputs.homeManagerModules.default
     ];
     config = config;

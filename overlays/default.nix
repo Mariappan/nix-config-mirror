@@ -10,12 +10,12 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = _final: prev: {
-    hyprlandPlugins.hy3 = prev.hyprlandPlugins.hy3.overrideAttrs (finalAttrs: prevAttrs: {
-      patches = [./hy3_fix.patch];
-    });
   };
 
   unused = _final: prev: {
+    hyprlandPlugins.hy3 = prev.hyprlandPlugins.hy3.overrideAttrs (finalAttrs: prevAttrs: {
+      patches = [./hy3_fix.patch];
+    });
     wayprompt = prev.wayprompt.overrideAttrs (oldAttrs: {
       version = "66fe87408d3cfba8c8cc6ff65c1868e5db6ad3bb";
       src = prev.fetchFromSourcehut {
