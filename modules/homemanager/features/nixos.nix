@@ -12,7 +12,7 @@
   };
 
   home.packages = [
-    pkgs.inetutils
+    pkgs.iputils
     pkgs.victor-mono
     pkgs.firefox
   ];
