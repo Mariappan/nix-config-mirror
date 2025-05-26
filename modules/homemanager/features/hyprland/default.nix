@@ -10,7 +10,8 @@
     ./kanshi.nix
     ./swaync.nix
     ./waybar.nix
-    ./swww.nix
+    # Disable swww until compilation is fixed
+    # ./swww.nix
   ];
 
   wayland.windowManager.hyprland = {
