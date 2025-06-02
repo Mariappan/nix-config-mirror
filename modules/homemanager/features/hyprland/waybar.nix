@@ -11,10 +11,11 @@ in {
   programs.waybar = {
     enable = true;
     settings = {
-      mainbar = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile (pkgs.substituteAll {
-        src = ../../../../dotfiles/waybar/config.json;
-        inherit togglewifi wttrpy;
-      })));
+      mainbar = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile (pkgs.replaceVars
+        ../../../../dotfiles/waybar/config.json
+        {
+          inherit togglewifi wttrpy;
+        })));
     };
     style = ''
       ${builtins.readFile ../../../../dotfiles/waybar/style.css}
