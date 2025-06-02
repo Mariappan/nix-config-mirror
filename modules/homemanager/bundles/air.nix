@@ -9,6 +9,5 @@
     pkgs.obsidian
     pkgs.remmina
     pkgs.nushell
-    inputs.zen-browser.packages."${pkgs.system}".default
   ];
 }

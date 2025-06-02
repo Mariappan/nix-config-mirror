@@ -43,7 +43,6 @@
       url = "github:nix-community/nixpkgs-wayland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    zen-browser.url = "github:0xc000022070/zen-browser-flake";
     flake-parts.url = "github:hercules-ci/flake-parts";
     nix-alien.url = "github:thiagokokada/nix-alien";
   };
