@@ -36,6 +36,9 @@
 
   nix.settings.trusted-users = ["mariappan.ramasamy"];
 
+  # Needed for nix darwin temp. Will be replaced soon
+  system.primaryUser = "mariappan.ramasamy";
+
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
 
