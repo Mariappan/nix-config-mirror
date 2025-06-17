@@ -10,7 +10,7 @@
     ./kanshi.nix
     ./swaync.nix
     ./waybar.nix
-    ./swww.nix
+    # ./swww.nix
   ];
 
   wayland.windowManager.hyprland = {
