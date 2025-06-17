@@ -47,6 +47,7 @@ in {
       nixma.git.enable = true;
       nixma.xdg.enable = true;
       nixma.air.enable = true;
+      nixma.bundles.sun1.enable = true;
 
       programs.git = {
         userName = "${userName}";
