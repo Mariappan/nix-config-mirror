@@ -4,7 +4,7 @@
   ...
 }: {
   imports = [
-    ./anyrun.nix
+    # ./anyrun.nix
     ./hypridle.nix
     ./hyprlock.nix
     ./kanshi.nix
