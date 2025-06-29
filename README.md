@@ -192,6 +192,8 @@ sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 \
 ## Authors and acknowledgment
 Show your appreciation to those who have contributed to the project.
 
+- QuickShell config - https://github.com/TLSingh1/dotfiles/tree/main/modules/wm/quickshell
+
 ## License
 [WTFPL](https://spdx.org/licenses/WTFPL.html)
 

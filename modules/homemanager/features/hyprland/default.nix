@@ -9,7 +9,7 @@
     ./hyprlock.nix
     ./kanshi.nix
     ./swaync.nix
-    ./waybar.nix
+    # ./waybar.nix
     # ./swww.nix
   ];
 
