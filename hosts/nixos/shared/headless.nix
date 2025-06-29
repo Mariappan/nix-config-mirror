@@ -12,7 +12,7 @@
   # https://discussion.fedoraproject.org/t/systemd-logind-eats-cpu-when-closing-laptop-lid/67805/3
   services.logind.lidSwitch = lib.mkDefault "ignore";
 
-  services.xserver.displayManager.gdm.autoSuspend = false;
+  services.displayManager.gdm.autoSuspend = false;
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
     if (action.id == "org.freedesktop.login1.suspend" ||
@@ -24,7 +24,7 @@
     })
   '';
 
-  services.xserver.desktopManager.gnome = {
+  services.desktopManager.gnome = {
     extraGSettingsOverrides = ''
       [org.gnome.settings-daemon.plugins.power]
       power-button-action='nothing'
