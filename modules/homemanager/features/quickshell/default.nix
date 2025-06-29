@@ -107,7 +107,6 @@
   # Shell aliases
   home.shellAliases = {
     caelestia-shell = "qs -c caelestia";
-    caelestia-edit = "cd ${config.xdg.configHome}/quickshell/caelestia && $EDITOR";
     caelestia = "caelestia-quickshell";
   };
 }
