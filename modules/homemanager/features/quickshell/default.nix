@@ -30,6 +30,9 @@
     wl-screenrec
     inputs.astal.packages.${pkgs.system}.default
 
+    foot
+    btop
+
     # Additional dependencies
     app2unit
     slurp

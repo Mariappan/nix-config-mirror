@@ -91,4 +91,8 @@
     pkgs.wtype
     pkgs.wayprompt
   ];
+
+  home.sessionVariables = {
+    XDG_SESSION_DESKTOP = "Hyprland";
+  };
 }
