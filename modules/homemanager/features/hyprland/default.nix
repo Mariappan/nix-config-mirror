@@ -8,7 +8,7 @@
     ./hypridle.nix
     ./hyprlock.nix
     ./kanshi.nix
-    ./swaync.nix
+    # ./swaync.nix
     # ./waybar.nix
     # ./swww.nix
   ];
