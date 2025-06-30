@@ -22,13 +22,14 @@ Singleton {
     }
 
     function launch(entry: DesktopEntry): void {
+        let path = Quickshell.env("PATH")
         let command = ["app2unit", "--", `${entry.id}.desktop`];
-        console.log("Starting desktop entry: ", entry.execString, entry.id, command)
+        console.log("Starting desktop entry: ", entry.execString, entry.id, "with path ", path)
         if (entry.execString.startsWith("sh -c"))
             Quickshell.execDetached(["sh", "-c", `app2unit -- ${entry.execString}`]);
         else
             // Quickshell.execDetached(["sh", "-c", `app2unit -- '${entry.id}.desktop'`]);
             Quickshell.execDetached({ "command": ["notify-send", "-u", "low", "Opening app", `${entry.id}`] });
-            Quickshell.execDetached({ "command": ["app2unit", "--", `${entry.id}.desktop`], "clearEnvironment": "false"  });
+            Quickshell.execDetached({ "command": command, "clearEnvironment": false  });
     }
 }
