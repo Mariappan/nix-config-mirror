@@ -3,29 +3,30 @@
 {
   imports = [
     ./packages.nix          # Caelestia scripts and quickshell wrapper derivations
-    ./config.nix           # Configuration files and environment setup
   ];
+
+  xdg.configFile = {
+    "quickshell/caelestia" = {
+      source = ./shell;
+      recursive = true;
+    };
+  };
 
   # Main packages
   home.packages = with pkgs; [
     config.programs.quickshell.finalPackage
     inputs.caelestia.packages.${pkgs.system}.default
+
     # Qt dependencies
     qt6.qt5compat
     qt6.qtdeclarative
 
     # Runtime dependencies
+    grim
     hyprpaper
     imagemagick
-    wl-clipboard
-    fuzzel
-    socat
-    foot
-    jq
-    python3
-    python3Packages.materialyoucolor
-    grim
     wayfreeze
+    wl-clipboard
     wl-screenrec
     inputs.astal.packages.${pkgs.system}.default
 
@@ -35,18 +36,15 @@
     swappy
     fuzzel
     lm_sensors
-    curl
     material-symbols
     nerd-fonts.jetbrains-mono
     ibm-plex
-    fd
-    python3Packages.pyaudio
-    python3Packages.numpy
     cava
     networkmanager
     bluez
     ddcutil
     brightnessctl
+    libqalculate
   ];
 
   # Systemd service
