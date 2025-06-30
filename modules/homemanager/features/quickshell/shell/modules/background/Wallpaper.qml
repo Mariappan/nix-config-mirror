@@ -4,20 +4,92 @@ import "root:/widgets"
 import "root:/services"
 import "root:/config"
 import QtQuick
+import QtQuick.Dialogs
 
 Item {
     id: root
 
-    property url source: Wallpapers.current ? `file://${Wallpapers.current}` : ""
+    property string source: Wallpapers.current
     property Image current: one
 
     anchors.fill: parent
 
     onSourceChanged: {
-        if (current === one)
+        if (!source)
+            current = null;
+        else if (current === one)
             two.update();
         else
             one.update();
+    }
+
+    Loader {
+        anchors.fill: parent
+
+        active: !root.source
+        asynchronous: true
+
+        sourceComponent: StyledRect {
+            color: Colours.palette.m3surfaceContainer
+
+            Row {
+                anchors.centerIn: parent
+                spacing: Appearance.spacing.large
+
+                MaterialIcon {
+                    text: "sentiment_stressed"
+                    color: Colours.palette.m3onSurfaceVariant
+                    font.pointSize: Appearance.font.size.extraLarge * 5
+                }
+
+                Column {
+                    anchors.verticalCenter: parent.verticalCenter
+                    spacing: Appearance.spacing.small
+
+                    StyledText {
+                        text: qsTr("Wallpaper missing?")
+                        color: Colours.palette.m3onSurfaceVariant
+                        font.pointSize: Appearance.font.size.extraLarge * 2
+                        font.bold: true
+                    }
+
+                    StyledRect {
+                        implicitWidth: selectWallText.implicitWidth + Appearance.padding.large * 2
+                        implicitHeight: selectWallText.implicitHeight + Appearance.padding.small * 2
+
+                        radius: Appearance.rounding.full
+                        color: Colours.palette.m3primary
+
+                        FileDialog {
+                            id: dialog
+
+                            nameFilters: [`Image files (${Wallpapers.extensions.map(e => `*.${e}`).join(" ")})`]
+
+                            onAccepted: Wallpapers.setWallpaper(selectedFile.toString().replace("file://", ""))
+                        }
+
+                        StateLayer {
+                            radius: parent.radius
+                            color: Colours.palette.m3onPrimary
+
+                            function onClicked(): void {
+                                dialog.open();
+                            }
+                        }
+
+                        StyledText {
+                            id: selectWallText
+
+                            anchors.centerIn: parent
+
+                            text: qsTr("Set it now!")
+                            color: Colours.palette.m3onPrimary
+                            font.pointSize: Appearance.font.size.large
+                        }
+                    }
+                }
+            }
+        }
     }
 
     Img {
@@ -32,19 +104,13 @@ Item {
         id: img
 
         function update(): void {
-            const srcPath = `${root.source}`.slice(7);
-            if (thumbnail.originalPath === srcPath) {
+            if (path === root.source)
                 root.current = this;
-            } else
-                path = srcPath;
+            else
+                path = root.source;
         }
 
         anchors.fill: parent
-
-        loadOriginal: true
-        asynchronous: true
-        cache: false
-        fillMode: Image.PreserveAspectCrop
 
         opacity: 0
         scale: Wallpapers.showPreview ? 1 : 0.8

@@ -3,8 +3,8 @@ pragma ComponentBehavior: Bound
 import "root:/widgets"
 import "root:/services"
 import "root:/config"
+import "root:/utils"
 import Quickshell
-import Quickshell.Io
 import QtQuick
 
 Column {
@@ -23,7 +23,7 @@ Column {
         id: logout
 
         icon: "logout"
-        command: ["uwsm", "stop"]
+        command: ["loginctl", "terminate-user", ""]
 
         KeyNavigation.down: shutdown
 
@@ -32,6 +32,11 @@ Column {
 
             function onSessionChanged(): void {
                 if (root.visibilities.session)
+                    logout.focus = true;
+            }
+
+            function onLauncherChanged(): void {
+                if (root.visibilities.session && !root.visibilities.launcher)
                     logout.focus = true;
             }
         }
@@ -48,15 +53,15 @@ Column {
     }
 
     AnimatedImage {
-        width: SessionConfig.sizes.button
-        height: SessionConfig.sizes.button
+        width: Config.session.sizes.button
+        height: Config.session.sizes.button
         sourceSize.width: width
         sourceSize.height: height
 
         playing: visible
         asynchronous: true
         speed: 0.7
-        source: "root:/assets/kurukuru.gif"
+        source: Paths.expandTilde(Config.paths.sessionGif)
     }
 
     SessionButton {
@@ -84,27 +89,22 @@ Column {
         required property string icon
         required property list<string> command
 
-        implicitWidth: SessionConfig.sizes.button
-        implicitHeight: SessionConfig.sizes.button
+        implicitWidth: Config.session.sizes.button
+        implicitHeight: Config.session.sizes.button
 
         radius: Appearance.rounding.large
         color: button.activeFocus ? Colours.palette.m3secondaryContainer : Colours.palette.m3surfaceContainer
 
-        Keys.onEnterPressed: proc.startDetached()
-        Keys.onReturnPressed: proc.startDetached()
+        Keys.onEnterPressed: Quickshell.execDetached(button.command)
+        Keys.onReturnPressed: Quickshell.execDetached(button.command)
         Keys.onEscapePressed: root.visibilities.session = false
-
-        Process {
-            id: proc
-
-            command: button.command
-        }
 
         StateLayer {
             radius: parent.radius
+            color: button.activeFocus ? Colours.palette.m3onSecondaryContainer : Colours.palette.m3onSurface
 
             function onClicked(): void {
-                proc.startDetached();
+                Quickshell.execDetached(button.command);
             }
         }
 
@@ -114,6 +114,7 @@ Column {
             text: button.icon
             color: button.activeFocus ? Colours.palette.m3onSecondaryContainer : Colours.palette.m3onSurface
             font.pointSize: Appearance.font.size.extraLarge
+            font.weight: 500
         }
     }
 }

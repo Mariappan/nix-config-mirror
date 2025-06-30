@@ -2,7 +2,6 @@ import "root:/widgets"
 import "root:/services"
 import "root:/config"
 import QtQuick
-import QtQuick.Controls
 
 Row {
     id: root
@@ -12,6 +11,10 @@ Row {
 
     padding: Appearance.padding.large
     spacing: Appearance.spacing.normal
+
+    Ref {
+        service: SystemUsage
+    }
 
     Resource {
         icon: "memory"
@@ -49,7 +52,7 @@ Row {
             anchors.bottom: icon.top
             anchors.bottomMargin: Appearance.spacing.small
 
-            implicitWidth: DashboardConfig.sizes.resourceProgessThickness
+            implicitWidth: Config.dashboard.sizes.resourceProgessThickness
 
             color: Colours.palette.m3surfaceContainerHigh
             radius: Appearance.rounding.full

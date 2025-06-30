@@ -1,32 +1,38 @@
 pragma Singleton
 
+import "root:/config"
 import "root:/utils"
 import Quickshell
-import Quickshell.Io
+import QtQuick
 
 Singleton {
     id: root
 
+    property string loc
     property string icon
     property string description
     property real temperature
 
     function reload(): void {
-        wttrProc.running = true;
+        if (Config.dashboard.weatherLocation)
+            loc = Config.dashboard.weatherLocation;
+        else if (!loc || timer.elapsed() > 900)
+            Requests.get("https://ipinfo.io/json", text => {
+                loc = JSON.parse(text).loc ?? "";
+                timer.restart();
+            });
     }
 
-    Process {
-        id: wttrProc
+    onLocChanged: Requests.get(`https://wttr.in/${loc}?format=j1`, text => {
+        const json = JSON.parse(text).current_condition[0];
+        icon = Icons.getWeatherIcon(json.weatherCode);
+        description = json.weatherDesc[0].value;
+        temperature = parseFloat(json.temp_C);
+    })
 
-        running: true
-        command: ["fish", "-c", `curl "https://wttr.in/$(curl ipinfo.io | jq -r '.city' | string replace -a ' ' '%20')?format=j1" | jq -c '.current_condition[0] | {code: .weatherCode, desc: .weatherDesc[0].value, temp: .temp_C}'`]
-        stdout: SplitParser {
-            onRead: data => {
-                const json = JSON.parse(data);
-                root.icon = Icons.getWeatherIcon(json.code);
-                root.description = json.desc;
-                root.temperature = parseFloat(json.temp);
-            }
-        }
+    Component.onCompleted: reload()
+
+    ElapsedTimer {
+        id: timer
     }
 }

@@ -6,10 +6,10 @@ import QtQuick
 Item {
     id: root
 
-    required property var modelData
+    required property Actions.Action modelData
     required property var list
 
-    implicitHeight: LauncherConfig.sizes.itemHeight
+    implicitHeight: Config.launcher.sizes.itemHeight
 
     anchors.left: parent?.left
     anchors.right: parent?.right
@@ -39,7 +39,7 @@ Item {
 
         Item {
             anchors.left: icon.right
-            anchors.leftMargin: Appearance.spacing.larger
+            anchors.leftMargin: Appearance.spacing.normal
             anchors.verticalCenter: icon.verticalCenter
 
             implicitWidth: parent.width - icon.width

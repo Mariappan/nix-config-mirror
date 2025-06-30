@@ -1,6 +1,9 @@
+pragma ComponentBehavior: Bound
+
 import "root:/widgets"
 import "root:/services"
 import "root:/config"
+import Quickshell
 import Quickshell.Widgets
 import QtQuick
 import QtQuick.Controls
@@ -9,8 +12,8 @@ Item {
     id: root
 
     required property real nonAnimWidth
-    property alias currentIndex: bar.currentIndex
-    readonly property TabBar bar: bar
+    required property PersistentProperties state
+    readonly property alias count: bar.count
 
     implicitHeight: bar.implicitHeight + indicator.implicitHeight + indicator.anchors.topMargin + separator.implicitHeight
 
@@ -21,6 +24,7 @@ Item {
         anchors.right: parent.right
         anchors.top: parent.top
 
+        currentIndex: root.state.currentTab
         background: null
 
         Tab {
@@ -38,24 +42,24 @@ Item {
             text: qsTr("Performance")
         }
 
-        Tab {
-            iconName: "workspaces"
-            text: qsTr("Workspaces")
-        }
+        // Tab {
+        //     iconName: "workspaces"
+        //     text: qsTr("Workspaces")
+        // }
     }
 
     Item {
         id: indicator
 
         anchors.top: bar.bottom
-        anchors.topMargin: DashboardConfig.sizes.tabIndicatorSpacing
+        anchors.topMargin: Config.dashboard.sizes.tabIndicatorSpacing
 
         implicitWidth: bar.currentItem.implicitWidth
-        implicitHeight: DashboardConfig.sizes.tabIndicatorHeight
+        implicitHeight: Config.dashboard.sizes.tabIndicatorHeight
 
         x: {
             const tab = bar.currentItem;
-            const width = (root.nonAnimWidth - DashboardConfig.sizes.tabIndicatorSpacing * (bar.count - 1) * 2) / bar.count
+            const width = (root.nonAnimWidth - bar.spacing * (bar.count - 1)) / bar.count;
             return width * tab.TabBar.index + (width - tab.implicitWidth) / 2;
         }
 
@@ -69,7 +73,6 @@ Item {
 
             color: Colours.palette.m3primary
             radius: Appearance.rounding.full
-
         }
 
         Behavior on x {
@@ -108,14 +111,14 @@ Item {
 
             cursorShape: Qt.PointingHandCursor
 
-            onPressed: ({x,y}) => {
-                tab.TabBar.tabBar.setCurrentIndex(tab.TabBar.index);
+            onPressed: event => {
+                root.state.currentTab = tab.TabBar.index;
 
                 const stateY = stateWrapper.y;
-                rippleAnim.x = x;
-                rippleAnim.y = y - stateY;
+                rippleAnim.x = event.x;
+                rippleAnim.y = event.y - stateY;
 
-                const dist = (ox,oy) => ox * ox + oy * oy;
+                const dist = (ox, oy) => ox * ox + oy * oy;
                 const stateEndY = stateY + stateWrapper.height;
                 rippleAnim.radius = Math.sqrt(Math.max(dist(0, stateY), dist(0, stateEndY), dist(width, stateY), dist(width, stateEndY)));
 
@@ -123,9 +126,9 @@ Item {
             }
             onWheel: event => {
                 if (event.angleDelta.y < 0)
-                    tab.TabBar.tabBar.incrementCurrentIndex();
+                    root.state.currentTab = Math.min(root.state.currentTab + 1, bar.count - 1);
                 else if (event.angleDelta.y > 0)
-                    tab.TabBar.tabBar.decrementCurrentIndex();
+                    root.state.currentTab = Math.max(root.state.currentTab - 1, 0);
             }
 
             SequentialAnimation {
@@ -176,7 +179,7 @@ Item {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
-                implicitHeight: parent.height + DashboardConfig.sizes.tabIndicatorSpacing * 2
+                implicitHeight: parent.height + Config.dashboard.sizes.tabIndicatorSpacing * 2
 
                 color: "transparent"
                 radius: Appearance.rounding.small
@@ -237,7 +240,6 @@ Item {
                 text: tab.text
                 color: tab.current ? Colours.palette.m3primary : Colours.palette.m3onSurfaceVariant
             }
-
         }
     }
 

@@ -4,6 +4,7 @@ pragma ComponentBehavior: Bound
 import "root:/widgets"
 import "root:/config"
 import Quickshell
+import Quickshell.Io
 import Quickshell.Services.Notifications
 import QtQuick
 
@@ -42,6 +43,15 @@ Singleton {
         }
     }
 
+    IpcHandler {
+        target: "notifs"
+
+        function clear(): void {
+            for (const notif of root.list)
+                notif.popup = false;
+        }
+    }
+
     component Notif: QtObject {
         id: notif
 
@@ -65,14 +75,14 @@ Singleton {
         readonly property string appIcon: notification.appIcon
         readonly property string appName: notification.appName
         readonly property string image: notification.image
-        readonly property var urgency: notification.urgency // Idk why NotificationUrgency doesn't work
+        readonly property int urgency: notification.urgency
         readonly property list<NotificationAction> actions: notification.actions
 
         readonly property Timer timer: Timer {
             running: true
-            interval: notif.notification.expireTimeout > 0 ? notif.notification.expireTimeout : NotifsConfig.defaultExpireTimeout
+            interval: notif.notification.expireTimeout > 0 ? notif.notification.expireTimeout : Config.notifs.defaultExpireTimeout
             onTriggered: {
-                if (NotifsConfig.expire)
+                if (Config.notifs.expire)
                     notif.popup = false;
             }
         }

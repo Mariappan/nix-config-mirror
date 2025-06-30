@@ -5,11 +5,14 @@ import "root:/config"
 import Quickshell.Widgets
 import Quickshell.Wayland
 import QtQuick
+import QtQuick.Layouts
 
 Item {
     id: root
 
-    implicitWidth: Hyprland.activeClient ? child.implicitWidth : -Appearance.padding.large * 2
+    required property Item wrapper
+
+    implicitWidth: Hyprland.activeToplevel ? child.implicitWidth : -Appearance.padding.large * 2
     implicitHeight: child.implicitHeight
 
     Column {
@@ -18,35 +21,65 @@ Item {
         anchors.centerIn: parent
         spacing: Appearance.spacing.normal
 
-        Row {
+        RowLayout {
             id: detailsRow
 
+            anchors.left: parent.left
+            anchors.right: parent.right
             spacing: Appearance.spacing.normal
 
             IconImage {
                 id: icon
 
+                Layout.alignment: Qt.AlignVCenter
                 implicitSize: details.implicitHeight
-                source: Icons.getAppIcon(Hyprland.activeClient?.wmClass ?? "", "image-missing")
+                source: Icons.getAppIcon(Hyprland.activeToplevel?.lastIpcObject.class ?? "", "image-missing")
             }
 
-            Column {
+            ColumnLayout {
                 id: details
 
-                StyledText {
-                    text: Hyprland.activeClient?.title ?? ""
-                    font.pointSize: Appearance.font.size.normal
+                spacing: 0
+                Layout.fillWidth: true
 
+                StyledText {
+                    Layout.fillWidth: true
+                    text: Hyprland.activeToplevel?.title ?? ""
+                    font.pointSize: Appearance.font.size.normal
                     elide: Text.ElideRight
-                    width: preview.implicitWidth - icon.implicitWidth - detailsRow.spacing
                 }
 
                 StyledText {
-                    text: Hyprland.activeClient?.wmClass ?? ""
+                    Layout.fillWidth: true
+                    text: Hyprland.activeToplevel?.lastIpcObject.class ?? ""
                     color: Colours.palette.m3onSurfaceVariant
-
                     elide: Text.ElideRight
-                    width: preview.implicitWidth - icon.implicitWidth - detailsRow.spacing
+                }
+            }
+
+            Item {
+                implicitWidth: expandIcon.implicitHeight + Appearance.padding.small * 2
+                implicitHeight: expandIcon.implicitHeight + Appearance.padding.small * 2
+
+                Layout.alignment: Qt.AlignVCenter
+
+                StateLayer {
+                    radius: Appearance.rounding.normal
+
+                    function onClicked(): void {
+                        root.wrapper.detach("winfo");
+                    }
+                }
+
+                MaterialIcon {
+                    id: expandIcon
+
+                    anchors.centerIn: parent
+                    anchors.horizontalCenterOffset: font.pointSize * 0.05
+
+                    text: "chevron_right"
+
+                    font.pointSize: Appearance.font.size.large
                 }
             }
         }
@@ -58,18 +91,12 @@ Item {
             ScreencopyView {
                 id: preview
 
-                captureSource: ToplevelManager.toplevels.values.find(t => t.title === Hyprland.activeClient?.title) ?? null
+                captureSource: Hyprland.activeToplevel?.wayland ?? null
                 live: visible
 
-                constraintSize.width: BarConfig.sizes.windowPreviewSize
-                constraintSize.height: BarConfig.sizes.windowPreviewSize
+                constraintSize.width: Config.bar.sizes.windowPreviewSize
+                constraintSize.height: Config.bar.sizes.windowPreviewSize
             }
         }
-    }
-
-    component Anim: NumberAnimation {
-        duration: Appearance.anim.durations.normal
-        easing.type: Easing.BezierSpline
-        easing.bezierCurve: Appearance.anim.curves.emphasized
     }
 }

@@ -1,16 +1,12 @@
 import "root:/widgets"
 import "root:/services"
 import "root:/config"
-import Quickshell
-import Quickshell.Io
-import Quickshell.Widgets
+import "root:/utils"
 import QtQuick
 import QtQuick.Shapes
 
 Item {
     id: root
-
-    required property bool shouldUpdate
 
     property real playerProgress: {
         const active = Players.active;
@@ -19,7 +15,7 @@ Item {
 
     anchors.top: parent.top
     anchors.bottom: parent.bottom
-    implicitWidth: DashboardConfig.sizes.mediaWidth
+    implicitWidth: Config.dashboard.sizes.mediaWidth
 
     Behavior on playerProgress {
         NumberAnimation {
@@ -30,8 +26,8 @@ Item {
     }
 
     Timer {
-        running: root.shouldUpdate && (Players.active?.isPlaying ?? false)
-        interval: DashboardConfig.mediaUpdateInterval
+        running: Players.active?.isPlaying ?? false
+        interval: Config.dashboard.mediaUpdateInterval
         triggeredOnStart: true
         repeat: true
         onTriggered: Players.active?.positionChanged()
@@ -43,16 +39,16 @@ Item {
         ShapePath {
             fillColor: "transparent"
             strokeColor: Colours.palette.m3surfaceContainerHigh
-            strokeWidth: DashboardConfig.sizes.mediaProgressThickness
+            strokeWidth: Config.dashboard.sizes.mediaProgressThickness
             capStyle: ShapePath.RoundCap
 
             PathAngleArc {
                 centerX: cover.x + cover.width / 2
                 centerY: cover.y + cover.height / 2
-                radiusX: (cover.width + DashboardConfig.sizes.mediaProgressThickness) / 2 + Appearance.spacing.small
-                radiusY: (cover.height + DashboardConfig.sizes.mediaProgressThickness) / 2 + Appearance.spacing.small
-                startAngle: -90 - DashboardConfig.sizes.mediaProgressSweep / 2
-                sweepAngle: DashboardConfig.sizes.mediaProgressSweep
+                radiusX: (cover.width + Config.dashboard.sizes.mediaProgressThickness) / 2 + Appearance.spacing.small
+                radiusY: (cover.height + Config.dashboard.sizes.mediaProgressThickness) / 2 + Appearance.spacing.small
+                startAngle: -90 - Config.dashboard.sizes.mediaProgressSweep / 2
+                sweepAngle: Config.dashboard.sizes.mediaProgressSweep
             }
 
             Behavior on strokeColor {
@@ -67,16 +63,16 @@ Item {
         ShapePath {
             fillColor: "transparent"
             strokeColor: Colours.palette.m3primary
-            strokeWidth: DashboardConfig.sizes.mediaProgressThickness
+            strokeWidth: Config.dashboard.sizes.mediaProgressThickness
             capStyle: ShapePath.RoundCap
 
             PathAngleArc {
                 centerX: cover.x + cover.width / 2
                 centerY: cover.y + cover.height / 2
-                radiusX: (cover.width + DashboardConfig.sizes.mediaProgressThickness) / 2 + Appearance.spacing.small
-                radiusY: (cover.height + DashboardConfig.sizes.mediaProgressThickness) / 2 + Appearance.spacing.small
-                startAngle: -90 - DashboardConfig.sizes.mediaProgressSweep / 2
-                sweepAngle: DashboardConfig.sizes.mediaProgressSweep * root.playerProgress
+                radiusX: (cover.width + Config.dashboard.sizes.mediaProgressThickness) / 2 + Appearance.spacing.small
+                radiusY: (cover.height + Config.dashboard.sizes.mediaProgressThickness) / 2 + Appearance.spacing.small
+                startAngle: -90 - Config.dashboard.sizes.mediaProgressSweep / 2
+                sweepAngle: Config.dashboard.sizes.mediaProgressSweep * root.playerProgress
             }
 
             Behavior on strokeColor {
@@ -95,7 +91,7 @@ Item {
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.margins: Appearance.padding.large + DashboardConfig.sizes.mediaProgressThickness + Appearance.spacing.small
+        anchors.margins: Appearance.padding.large + Config.dashboard.sizes.mediaProgressThickness + Appearance.spacing.small
 
         implicitHeight: width
         color: Colours.palette.m3surfaceContainerHigh
@@ -104,6 +100,7 @@ Item {
         MaterialIcon {
             anchors.centerIn: parent
 
+            grade: 200
             text: "art_track"
             color: Colours.palette.m3onSurfaceVariant
             font.pointSize: (parent.width * 0.4) || 1
@@ -220,9 +217,9 @@ Item {
         anchors.bottomMargin: Appearance.padding.large
         anchors.margins: Appearance.padding.large * 2
 
-        playing: root.shouldUpdate && (Players.active?.isPlaying ?? false)
+        playing: Players.active?.isPlaying ?? false
         speed: BeatDetector.bpm / 300
-        source: "root:/assets/bongocat.gif"
+        source: Paths.expandTilde(Config.paths.mediaGif)
         asynchronous: true
         fillMode: AnimatedImage.PreserveAspectFit
     }

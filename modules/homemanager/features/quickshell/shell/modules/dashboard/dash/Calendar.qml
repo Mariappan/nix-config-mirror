@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import "root:/widgets"
 import "root:/services"
 import "root:/config"
@@ -61,7 +63,7 @@ Column {
                     anchors.centerIn: parent
 
                     horizontalAlignment: Text.AlignHCenter
-                    text: grid.locale.toString(day.model.date, "d")
+                    text: Qt.formatDate(day.model.date, "d")
                     color: day.model.today ? Colours.palette.m3onPrimary : day.model.month === grid.month ? Colours.palette.m3onSurfaceVariant : Colours.palette.m3outline
                 }
             }
