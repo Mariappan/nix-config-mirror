@@ -16,7 +16,7 @@
   # Main packages
   home.packages = with pkgs; [
     config.programs.quickshell.finalPackage
-    inputs.caelestia.packages.${pkgs.system}.default
+    pkgs.nixma.caelestia
 
     # Qt dependencies
     qt6.qt5compat
