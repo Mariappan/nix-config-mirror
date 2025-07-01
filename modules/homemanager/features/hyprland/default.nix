@@ -28,6 +28,8 @@
 
     # enable hyprland-session.target on hyprland startup
     systemd.enable = true;
+    systemd.enableXdgAutostart = true;
+    systemd.variables = [ "XDG_SESSION_DESKTOP" ];
   };
 
   programs.imv.enable = true;
@@ -91,8 +93,4 @@
     pkgs.wtype
     pkgs.wayprompt
   ];
-
-  home.sessionVariables = {
-    XDG_SESSION_DESKTOP = "Hyprland";
-  };
 }
