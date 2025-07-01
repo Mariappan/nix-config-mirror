@@ -9,16 +9,7 @@
   programs.wshowkeys.enable = true;
   programs.dconf.enable = true;
 
-  services.greetd.enable = true;
-  services.greetd.package = pkgs.greetd.tuigreet;
-  services.greetd.settings = {
-    default_session = {
-      # command = "${pkg_ddlm}/bin/ddlm --target hyprland";
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd Hyprland";
-    };
-  };
-
-  users.users.greeter.extraGroups = ["video" "input"];
+  services.displayManager.ly.enable = true;
 
   # Ref: https://www.reddit.com/r/NixOS/comments/171mexa/polkit_on_hyprland/
   services.gnome.gnome-keyring.enable = true;
