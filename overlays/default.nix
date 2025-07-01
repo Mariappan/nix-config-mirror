@@ -39,6 +39,6 @@
 
   default = inputs.nixpkgs.lib.composeManyExtensions [
     inputs.nix-alien.overlays.default
-    inputs.nixpkgs-wayland.overlay
+    # inputs.nixpkgs-wayland.overlay
   ];
 }
