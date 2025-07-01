@@ -29,7 +29,6 @@
     wayfreeze
     wl-clipboard
     wl-screenrec
-    inputs.astal.packages.${pkgs.system}.default
 
     foot
     btop
