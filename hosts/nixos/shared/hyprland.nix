@@ -24,6 +24,13 @@
     polkit-1.u2fAuth = true;
   };
 
+  xdg.terminal-exec.enable = true;
+  xdg.terminal-exec.settings = {
+      Hyprland = [
+          "org.wezfurlong.wezterm.desktop"
+      ];
+  };
+
   services.udev.extraRules = ''
     ACTION=="remove",\
      ENV{ID_BUS}=="usb",\
