@@ -18,10 +18,6 @@
     config.programs.quickshell.finalPackage
     pkgs.nixma.caelestia
 
-    # Qt dependencies
-    qt6.qt5compat
-    qt6.qtdeclarative
-
     # Runtime dependencies
     grim
     hyprpaper
@@ -29,6 +25,7 @@
     wayfreeze
     wl-clipboard
     wl-screenrec
+    libqalculate
 
     foot
     btop
@@ -47,7 +44,6 @@
     bluez
     ddcutil
     brightnessctl
-    libqalculate
   ];
 
   # Systemd service
