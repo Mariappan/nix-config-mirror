@@ -35,21 +35,21 @@ in {
   home-manager.users = {
     root = {
       imports = [
-        ../../../modules/homemanager/features/core.nix
-        ../../../modules/homemanager/features/nixos.nix
-        ../../../modules/homemanager/features/git
+        nixma.core.enable = true;
+        nixma.nixos.enable = true;
+        nixma.git.enable = true;
       ];
     };
     ${userId} = {
       imports = [
-        ../../../modules/homemanager/features/core.nix
-        ../../../modules/homemanager/features/nixos.nix
-        ../../../modules/homemanager/features/git
-        ../../../modules/homemanager/features/jujutsu.nix
-        ../../../modules/homemanager/features/xdg.nix
-        ../../../modules/homemanager/features/rust.nix
-        ../../../modules/homemanager/features/dev.nix
-        ../../../modules/homemanager/features/debug.nix
+        nixma.core.enable = true;
+        nixma.nixos.enable = true;
+        nixma.git.enable = true;
+        nixma.jujutsu.enable = true;
+        nixma.xdg.enable = true;
+        nixma.rust.enable = true;
+        nixma.dev.enable = true;
+        nixma.debug.enable = true;
       ];
 
       programs.git = {

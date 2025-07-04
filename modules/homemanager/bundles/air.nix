@@ -4,7 +4,14 @@
   lib,
   ...
 }: {
-  import = [] ++ lib.optionals pkgs.stdenv.isLinux [ ./air_dconf.nix ];
+  imports = [
+        ../features/rust.nix
+        ../features/dev.nix
+        ../features/debug.nix
+        ../features/gpgagent.nix
+        ../features/hyprland
+    ];
+# ++ lib.optionals pkgs.stdenv.isLinux [ ./air_dconf.nix ];
 
   home.packages = [
     pkgs.google-chrome
@@ -13,10 +20,4 @@
     pkgs.remmina
     pkgs.nushell
   ];
-
-  nixma.rust.enable = true;
-  nixma.dev.enable = true;
-  nixma.debug.enable = true;
-  nixma.gpgagent.enable = true;
-  nixma.hyprland.enable = true;
 }

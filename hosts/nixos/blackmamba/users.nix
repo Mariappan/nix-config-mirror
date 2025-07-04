@@ -35,19 +35,19 @@ in {
   home-manager.users = {
     root = {
       imports = [
-        ../../../modules/homemanager/features/core.nix
-        ../../../modules/homemanager/features/nixos.nix
-        ../../../modules/homemanager/features/git
+        nixma.core.enable = true;
+        nixma.nixos.enable = true;
+        nixma.git.enable = true;
       ];
     };
     ${userId} = {
       imports = [
-        ../../../modules/homemanager/features/core.nix
-        ../../../modules/homemanager/features/nixos.nix
-        ../../../modules/homemanager/features/git
-        ../../../modules/homemanager/features/jujutsu.nix
-        ../../../modules/homemanager/features/xdg.nix
-        ../../../modules/homemanager/features/blackmamba.nix
+        nixma.core.enable = true;
+        nixma.nixos.enable = true;
+        nixma.git.enable = true;
+        nixma.jujutsu.enable = true;
+        nixma.xdg.enable = true;
+        nixma.blackmamba.enable = true;
       ];
       programs.git = {
         userName = "${userName}";
