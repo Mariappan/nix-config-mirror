@@ -42,10 +42,9 @@ in {
             key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
           };
           git = {
-            signOnPush = true;
+            sign-on-push = true;
           };
         };
-
       }
     ];
   };
