@@ -3,7 +3,11 @@
   pkgs,
   home-manager,
   ...
-}: {
+}: let
+  userId = "maari";
+  userName = "Mariappan Ramasamy";
+  userEmail = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
+in {
   imports = [
     ./shared/common.nix
   ];
@@ -19,15 +23,29 @@
       ../../modules/homemanager/features/core.nix
       ../../modules/homemanager/features/dev.nix
       ../../modules/homemanager/features/git
+      ../../modules/homemanager/features/jujutsu.nix
       {
         programs.git = {
-          userName = "Mariappan Ramasamy";
-          userEmail = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
+          userName = "${userName}";
+          userEmail = "${userEmail}";
           signing = {
             key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
             signByDefault = true;
           };
         };
+        programs.jujutsu.settings = {
+          user = {
+            email = "${userEmail}";
+            name = "${userName}";
+          };
+          signing = {
+            key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
+          };
+          git = {
+            signOnPush = true;
+          };
+        };
+
       }
     ];
   };

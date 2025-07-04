@@ -45,6 +45,7 @@ in {
         ../../../modules/homemanager/features/core.nix
         ../../../modules/homemanager/features/nixos.nix
         ../../../modules/homemanager/features/git
+        ../../../modules/homemanager/features/jujutsu.nix
         ../../../modules/homemanager/features/xdg.nix
         ../../../modules/homemanager/features/rust.nix
         ../../../modules/homemanager/features/dev.nix
@@ -57,6 +58,13 @@ in {
         signing = {
           key = "09260E7E819CB52451171823FF801DC77426D7C1";
           signByDefault = true;
+        };
+      };
+
+      programs.jujutsu.settings = {
+        user = {
+          email = "${userEmail}";
+          name = "${userName}";
         };
       };
 

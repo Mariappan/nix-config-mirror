@@ -45,6 +45,7 @@ in {
       nixma.core.enable = true;
       nixma.nixos.enable = true;
       nixma.git.enable = true;
+      nixma.jujutsu.enable = true;
       nixma.xdg.enable = true;
       nixma.air.enable = true;
       nixma.quickshell.enable = true;
@@ -55,6 +56,13 @@ in {
         userEmail = "${userEmail}";
         signing = {
           signByDefault = false;
+        };
+      };
+
+      programs.jujutsu.settings = {
+        user = {
+          email = "${userEmail}";
+          name = "${userName}";
         };
       };
 

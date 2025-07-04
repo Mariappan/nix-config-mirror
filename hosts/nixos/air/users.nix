@@ -47,6 +47,7 @@ in {
       nixma.git.enable = true;
       nixma.xdg.enable = true;
       nixma.air.enable = true;
+      nixma.jujutsu.enable = true;
 
       programs.git = {
         userName = "${userName}";
@@ -54,6 +55,19 @@ in {
         signing = {
           key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
           signByDefault = true;
+        };
+      };
+
+      programs.jujutsu.settings = {
+        user = {
+          email = "${userEmail}";
+          name = "${userName}";
+        };
+        signing = {
+          key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
+        };
+        git = {
+          signOnPush = true;
         };
       };
 

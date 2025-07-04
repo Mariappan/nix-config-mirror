@@ -45,6 +45,7 @@ in {
         ../../../modules/homemanager/features/core.nix
         ../../../modules/homemanager/features/nixos.nix
         ../../../modules/homemanager/features/git
+        ../../../modules/homemanager/features/jujutsu.nix
         ../../../modules/homemanager/features/xdg.nix
         ../../../modules/homemanager/features/blackmamba.nix
       ];
@@ -52,6 +53,14 @@ in {
         userName = "${userName}";
         userEmail = "${userEmail}";
       };
+
+      programs.jujutsu.settings = {
+        user = {
+          email = "${userEmail}";
+          name = "${userName}";
+        };
+      };
+
       home.sessionVariables = {
         EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
         NIXOS_OZONE_WL = "1";
