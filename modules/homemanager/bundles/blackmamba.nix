@@ -4,14 +4,13 @@
   nixma.git.enable = true;
   nixma.jujutsu.enable = true;
   nixma.xdg.enable = true;
-  nixma.quickshell.enable = true;
   nixma.rust.enable = true;
   nixma.dev.enable = true;
   nixma.debug.enable = true;
-  nixma.gpgagent.enable = true;
   nixma.hyprland.enable = true;
 
   home.packages = [
-    pkgs.vivaldi
+    pkgs.google-chrome
+    pkgs.obsidian
   ];
 }

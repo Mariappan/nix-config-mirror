@@ -42,11 +42,6 @@ in {
       nixma.git.enable = true;
     };
     ${userId} = libx.mkNixOsUserConf userId {
-      nixma.core.enable = true;
-      nixma.nixos.enable = true;
-      nixma.git.enable = true;
-      nixma.xdg.enable = true;
-      nixma.jujutsu.enable = true;
       nixma.bundles.air.enable = true;
 
       programs.git = {

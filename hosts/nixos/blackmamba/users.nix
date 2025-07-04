@@ -39,12 +39,7 @@ in {
       nixma.git.enable = true;
     };
     ${userId} = {
-      nixma.core.enable = true;
-      nixma.nixos.enable = true;
-      nixma.git.enable = true;
-      nixma.jujutsu.enable = true;
-      nixma.xdg.enable = true;
-      nixma.blackmamba.enable = true;
+      nixma.bundles.blackmamba.enable = true;
 
       programs.git = {
         userName = "${userName}";
