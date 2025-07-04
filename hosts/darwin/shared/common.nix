@@ -87,7 +87,7 @@
       "obsidian"
       "vlc"
       "visual-studio-code"
-      "wireshark"
+      "wireshark-app"
     ];
   };
 
