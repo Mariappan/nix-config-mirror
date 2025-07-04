@@ -41,13 +41,13 @@
     };
   };
 
-  gtk = {
-    enable = true;
-    cursorTheme.name = "Adwaita";
-    cursorTheme.package = pkgs.adwaita-icon-theme;
-    theme.name = "adw-gtk3-dark";
-    theme.package = pkgs.adw-gtk3;
-  };
+  # gtk = {
+  #   enable = true;
+  #   cursorTheme.name = "Adwaita";
+  #   cursorTheme.package = pkgs.adwaita-icon-theme;
+  #   theme.name = "adw-gtk3-dark";
+  #   theme.package = pkgs.adw-gtk3;
+  # };
 
   home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
 
