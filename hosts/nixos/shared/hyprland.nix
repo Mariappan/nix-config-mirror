@@ -26,9 +26,9 @@
 
   xdg.terminal-exec.enable = true;
   xdg.terminal-exec.settings = {
-      Hyprland = [
-          "org.wezfurlong.wezterm.desktop"
-      ];
+    Hyprland = [
+      "org.wezfurlong.wezterm.desktop"
+    ];
   };
 
   services.udev.extraRules = ''

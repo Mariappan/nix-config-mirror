@@ -5,13 +5,14 @@
   ...
 }: {
   imports = [
-        ../features/rust.nix
-        ../features/dev.nix
-        ../features/debug.nix
-        ../features/gpgagent.nix
-        ../features/hyprland
-    ];
-# ++ lib.optionals pkgs.stdenv.isLinux [ ./air_dconf.nix ];
+    ../features/rust.nix
+    ../features/dev.nix
+    ../features/debug.nix
+    ../features/gpgagent.nix
+    ../features/hyprland
+    ./air_dconf.nix
+  ];
+  # ++ lib.optionals pkgs.stdenv.isLinux [ ./air_dconf.nix ];
 
   home.packages = [
     pkgs.google-chrome

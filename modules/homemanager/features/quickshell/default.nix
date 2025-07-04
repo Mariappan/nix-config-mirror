@@ -1,8 +1,12 @@
-{ config, pkgs, inputs, lib, ... }:
-
 {
+  config,
+  pkgs,
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
-    ./packages.nix          # Caelestia scripts and quickshell wrapper derivations
+    ./packages.nix # Caelestia scripts and quickshell wrapper derivations
   ];
 
   xdg.configFile = {
@@ -50,7 +54,7 @@
   systemd.user.services.caelestia-shell = {
     Unit = {
       Description = "Caelestia desktop shell";
-      After = [ "graphical-session.target" ];
+      After = ["graphical-session.target"];
     };
     Service = {
       Type = "exec";
@@ -59,7 +63,7 @@
       Slice = "app-graphical.slice";
     };
     Install = {
-      WantedBy = [ "graphical-session.target" ];
+      WantedBy = ["graphical-session.target"];
     };
   };
 }
