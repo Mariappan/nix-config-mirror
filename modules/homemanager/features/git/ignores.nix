@@ -34,6 +34,7 @@
   "__pycache__"
   "perf.data"
   ".devenv"
+  ".jj"
 
   # Custom
   "ignore_*.yaml"
