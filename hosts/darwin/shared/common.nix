@@ -77,7 +77,8 @@
       cleanup = "zap";
     };
     taps = ["homebrew/cask-versions"];
-    brews = ["m4" "autoconf" "automake" "cmake" "git-lfs" "libtool"];
+    brews = [];
+    # brews = ["m4" "autoconf" "automake" "cmake" "git-lfs" "libtool"];
     # updates homebrew packages on activation,
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
     casks = [
