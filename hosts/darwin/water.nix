@@ -17,20 +17,33 @@
 
   home-manager.users.maari = {
     imports = [
-      ../../modules/homemanager/features/core.nix
-      ../../modules/homemanager/features/dev.nix
-      ../../modules/homemanager/features/git
+      outputs.homeManagerModules.default
       {
+        nixma.core.enable = true;
+        nixma.dev.enable = true;
+        nixma.git.enable = true;
+        nixma.jujutsu.enable = true;
+        nixma.wezterm.enable = true;
+
         programs.git = {
           enable = true;
           userName = "Mariappan Ramasamy";
           userEmail = "maari@qq.com";
+        };
+        programs.jujutsu.settings = {
+          user = {
+            email = "Mariappan Ramasamy";
+            name = "maari@qq.com";
+          };
         };
       }
     ];
   };
 
   nix.settings.trusted-users = [ "maari" ];
+
+  # Needed for nix darwin temp. Will be replaced soon
+  system.primaryUser = "maari";
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
