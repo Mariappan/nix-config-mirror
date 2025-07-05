@@ -12,6 +12,9 @@
     ./vim.nix
   ];
 
+  home.sessionVariables = {
+    EDITOR = "hx";
+  };
   home.packages =
     [
       pkgs.atuin
