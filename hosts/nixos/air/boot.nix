@@ -16,7 +16,14 @@
   boot.extraModulePackages = [];
   boot.blacklistedKernelModules = ["kvm-intel"];
 
-  boot.kernelParams = ["ip=dhcp" "noresume"];
+  boot.kernelParams = ["ip=dhcp" "noresume" "quiet"];
+
+  boot.plymouth.enable = true;
+  boot.plymouth.theme = "breeze";
+  environment.systemPackages = with pkgs; [
+    plymouth
+    kdePackages.breeze-plymouth
+  ];
 
   boot.initrd = {
     availableKernelModules = ["xhci_pci" "r8152" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
