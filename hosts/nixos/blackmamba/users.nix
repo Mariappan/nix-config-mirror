@@ -34,12 +34,10 @@ in {
 
   home-manager.users = {
     root = {
-      nixma.core.enable = true;
-      nixma.nixos.enable = true;
-      nixma.git.enable = true;
+      nixma.linux.bundles.root.enable = true;
     };
     ${userId} = {
-      nixma.bundles.blackmamba.enable = true;
+      nixma.linux.bundles.blackmamba.enable = true;
 
       programs.git = {
         userName = "${userName}";

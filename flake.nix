@@ -66,7 +66,8 @@
         # sudo nixos-rebuild switch --flake .#air
         nixosConfigurations = libx.mkNixOsConfs ./hosts/nixos;
 
-        homeManagerModules.default = ./modules/homemanager;
+        homeManagerModules.default = ./modules/homemanager/shared;
+        homeManagerModules.linux = ./modules/homemanager/linux;
         nixosModules.default = {};
         nixDarwinModules.default = {};
       };

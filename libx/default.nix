@@ -54,6 +54,7 @@ in rec {
     imports = [
       inputs.nix-index-database.hmModules.nix-index
       outputs.homeManagerModules.default
+      outputs.homeManagerModules.linux
     ];
     config = config;
   };

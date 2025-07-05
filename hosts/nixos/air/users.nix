@@ -37,12 +37,10 @@ in {
 
   home-manager.users = {
     root = libx.mkNixOsUserConf "root" {
-      nixma.core.enable = true;
-      nixma.nixos.enable = true;
-      nixma.git.enable = true;
+      nixma.linux.bundles.root.enable = true;
     };
     ${userId} = libx.mkNixOsUserConf userId {
-      nixma.bundles.air.enable = true;
+      nixma.linux.bundles.air.enable = true;
 
       programs.git = {
         userName = "${userName}";

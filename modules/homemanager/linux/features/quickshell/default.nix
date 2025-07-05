@@ -12,7 +12,7 @@
   xdg.configFile = {
     "quickshell/caelestia" = {
       enable = true;
-      source = ../../../../dotfiles/caelestia;
+      source = ../../../../../dotfiles/caelestia;
       recursive = true;
     };
   };

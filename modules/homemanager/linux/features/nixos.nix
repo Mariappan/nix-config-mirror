@@ -1,6 +1,4 @@
 {pkgs, ...}: {
-  imports = [./wezterm.nix];
-
   programs.fish.enable = true;
   programs.direnv = {
     enable = true;
