@@ -1,7 +1,8 @@
 {
   lib,
-  pkgs,
   home-manager,
+  outputs,
+  pkgs,
   ...
 }: let
   userId = "maari";
@@ -20,11 +21,12 @@ in {
 
   home-manager.users."mariappan.ramasamy" = {
     imports = [
-      ../../modules/homemanager/features/core.nix
-      ../../modules/homemanager/features/dev.nix
-      ../../modules/homemanager/features/git
-      ../../modules/homemanager/features/jujutsu.nix
+      outputs.homeManagerModules.default
       {
+        nixma.core.enable = true;
+        nixma.dev.enable = true;
+        nixma.git.enable = true;
+        nixma.jujutsu.enable = true;
         programs.git = {
           userName = "${userName}";
           userEmail = "${userEmail}";
