@@ -10,5 +10,13 @@
       behavior = "drop";
       backend = "gpg";
     };
+    git = {
+      private-commits = "private()";
+    };
+    revset-aliases = {
+      "stash()" = "description(glob:\"stash:*\")";
+      "private()" = "mutable() & (description(glob:\"private:*\") | stash() | (empty() & ~merges()))";
+    };
   };
 }
+
