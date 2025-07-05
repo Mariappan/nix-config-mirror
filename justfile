@@ -3,8 +3,14 @@ default: build
 # Update flake and build nixos
 update:
     nix flake update
-    nh os switch . -- --accept-flake-config
 
 # Build nixos
-build:
-    nh os switch . -- --accept-flake-config
+[linux]
+build flake='.':
+    nh os switch {{flake}} -- --accept-flake-config
+
+# Build nix-darwin
+[macos]
+build flake='.':
+    sudo darwin-rebuild switch --flake {{flake}}
+
