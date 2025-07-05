@@ -2,7 +2,7 @@
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
-    polkitPolicyOwners = ["maari"];
+    polkitPolicyOwners = [ "maari" ];
     # polkitPolicyOwners = ["${userId}"];  # TODO: Remove this hardcoding
   };
 

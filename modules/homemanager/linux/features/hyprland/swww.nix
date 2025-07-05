@@ -1,7 +1,9 @@
-{pkgs, ...}: let
+{ pkgs, ... }:
+let
   systemdTarget = "hyprland-session.target";
   swwwSystemdService = "swww.service";
-in {
+in
+{
   systemd.user.services.swww = {
     Unit = {
       Description = "Wallpaper manager";
@@ -17,7 +19,9 @@ in {
       Restart = "always";
     };
 
-    Install = {WantedBy = [systemdTarget];};
+    Install = {
+      WantedBy = [ systemdTarget ];
+    };
   };
 
   systemd.user.services.swww-wallpaper = {
@@ -33,7 +37,9 @@ in {
       ExecStart = "${pkgs.swww}/bin/swww img %h/pictures/wallpaper.jpg";
     };
 
-    Install = {WantedBy = [swwwSystemdService];};
+    Install = {
+      WantedBy = [ swwwSystemdService ];
+    };
   };
 
   home.packages = [

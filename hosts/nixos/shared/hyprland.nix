@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  imports = [./xserver.nix];
+{ pkgs, ... }:
+{
+  imports = [ ./xserver.nix ];
 
   programs.hyprland.enable = true;
   # Enable it for debug package

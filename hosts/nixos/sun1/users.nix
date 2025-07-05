@@ -6,30 +6,38 @@
   inputs,
   outputs,
   ...
-}: let
+}:
+let
   userId = "maari";
   userName = "Mariappan Ramasamy";
   userEmail = "1221719+nappairam@users.noreply.github.com";
-in {
+in
+{
   users.users.${userId} = {
     name = "${userId}";
     description = "${userName}";
     home = "/home/${userId}";
     shell = "${pkgs.fish}/bin/fish";
-    extraGroups = ["wheel" "docker" "networkmanager" "vboxusers" "input"];
+    extraGroups = [
+      "wheel"
+      "docker"
+      "networkmanager"
+      "vboxusers"
+      "input"
+    ];
     isNormalUser = true;
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3bwlIYLqj7YgfDNhFoAWgP5hg9+TOXmhnRZM9R8Bfi"
     ];
   };
-  nix.settings.trusted-users = ["${userId}"];
+  nix.settings.trusted-users = [ "${userId}" ];
   security.sudo.extraRules = [
     {
-      users = ["${userId}"];
+      users = [ "${userId}" ];
       commands = [
         {
           command = "ALL";
-          options = ["NOPASSWD"];
+          options = [ "NOPASSWD" ];
         }
       ];
     }

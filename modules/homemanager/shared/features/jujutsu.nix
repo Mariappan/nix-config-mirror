@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   programs.jujutsu.enable = true;
   programs.jujutsu.settings = {
     ui = {

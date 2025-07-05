@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
 
   nixma.core.enable = true;
   nixma.git.enable = true;

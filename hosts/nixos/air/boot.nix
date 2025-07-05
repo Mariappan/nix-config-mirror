@@ -3,7 +3,8 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   # Bootloader.
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.systemd-boot.enable = true;
@@ -12,15 +13,26 @@
   # Unstable default kernel is 6.12
   # Use latest if latest kernel is needed
   # boot.kernelPackages = pkgs.linuxPackages_latest;
-  boot.kernelModules = [];
-  boot.extraModulePackages = [];
-  boot.blacklistedKernelModules = ["kvm-intel"];
+  boot.kernelModules = [ ];
+  boot.extraModulePackages = [ ];
+  boot.blacklistedKernelModules = [ "kvm-intel" ];
 
-  boot.kernelParams = ["ip=dhcp" "noresume"];
+  boot.kernelParams = [
+    "ip=dhcp"
+    "noresume"
+  ];
 
   boot.initrd = {
-    availableKernelModules = ["xhci_pci" "r8152" "thunderbolt" "nvme" "usb_storage" "sd_mod" "rtsx_pci_sdmmc"];
-    kernelModules = [];
+    availableKernelModules = [
+      "xhci_pci"
+      "r8152"
+      "thunderbolt"
+      "nvme"
+      "usb_storage"
+      "sd_mod"
+      "rtsx_pci_sdmmc"
+    ];
+    kernelModules = [ ];
     systemd = {
       enable = true;
       users.root.shell = lib.mkIf (config.boot.initrd.systemd.enable) "/bin/systemd-tty-ask-password-agent";
@@ -31,7 +43,7 @@
         enable = true;
         port = 2022;
         authorizedKeys = config.users.users.root.openssh.authorizedKeys.keys;
-        hostKeys = ["/etc/secrets/initrd/ssh_host_ed25519_key"];
+        hostKeys = [ "/etc/secrets/initrd/ssh_host_ed25519_key" ];
         shell = lib.mkIf (!config.boot.initrd.systemd.enable) "/bin/cryptsetup-askpass";
       };
     };

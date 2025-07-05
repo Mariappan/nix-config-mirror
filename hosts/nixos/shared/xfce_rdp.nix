@@ -1,5 +1,6 @@
-{pkgs, ...}: {
-  imports = [./xserver.nix];
+{ pkgs, ... }:
+{
+  imports = [ ./xserver.nix ];
 
   # Enable XFCE4 Desktop Environment for RDP
   services.xserver.desktopManager.xfce.enable = true;

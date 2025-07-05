@@ -4,11 +4,13 @@
   outputs,
   pkgs,
   ...
-}: let
+}:
+let
   userId = "maari";
   userName = "Mariappan Ramasamy";
   userEmail = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
-in {
+in
+{
   imports = [
     ./shared/common.nix
   ];
@@ -53,9 +55,15 @@ in {
     ];
   };
 
-  homebrew.brews = ["clang-format" "swift-format" "jq" "gnupg" "rbenv"];
+  homebrew.brews = [
+    "clang-format"
+    "swift-format"
+    "jq"
+    "gnupg"
+    "rbenv"
+  ];
 
-  nix.settings.trusted-users = ["mariappan.ramasamy"];
+  nix.settings.trusted-users = [ "mariappan.ramasamy" ];
 
   # Needed for nix darwin temp. Will be replaced soon
   system.primaryUser = "mariappan.ramasamy";

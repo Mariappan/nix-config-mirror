@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   home.packages = [
     pkgs.wezterm
   ];
@@ -31,7 +32,7 @@
   };
 
   home.activation = {
-    weztermAction = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    weztermAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run install -m 444 -C ${builtins.toPath ../../../../dotfiles/wezterm/machine_local.lua} -D $HOME/.config/wezterm/machine_local/init.lua
     '';
   };

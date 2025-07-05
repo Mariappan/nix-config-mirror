@@ -7,7 +7,8 @@
   home-manager,
   options,
   ...
-}: {
+}:
+{
   imports = [
     home-manager.nixosModules.home-manager
     ./fishpathfix.nix
@@ -27,10 +28,13 @@
   };
 
   # Necessary for using flakes on this system.
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   nix.optimise.automatic = true;
-  nix.optimise.dates = ["03:45"];
+  nix.optimise.dates = [ "03:45" ];
   # Following optimize on every build but may result in slow build time
   # nix.settings.auto-optimise-store = true;
 
@@ -55,7 +59,11 @@
 
   programs.bcc.enable = true;
 
-  environment.shells = [pkgs.bashInteractive pkgs.zsh pkgs.fish];
+  environment.shells = [
+    pkgs.bashInteractive
+    pkgs.zsh
+    pkgs.fish
+  ];
 
   # For running native binaries without patchelf
   programs.nix-ld.enable = true;
@@ -66,7 +74,12 @@
     flake = "/home/maari/nix-config";
   };
 
-  networking.timeServers = ["0.sg.pool.ntp.org" "1.sg.pool.ntp.org" "2.sg.pool.ntp.org" "3.sg.pool.ntp.org"];
+  networking.timeServers = [
+    "0.sg.pool.ntp.org"
+    "1.sg.pool.ntp.org"
+    "2.sg.pool.ntp.org"
+    "3.sg.pool.ntp.org"
+  ];
   services.ntp.enable = true;
 
   services.avahi.enable = true;

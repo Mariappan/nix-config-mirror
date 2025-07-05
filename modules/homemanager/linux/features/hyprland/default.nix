@@ -2,7 +2,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     # ./anyrun.nix
     ./hypridle.nix
@@ -20,7 +21,7 @@
     #   debug = true;
     # };
     xwayland.enable = true;
-    plugins = [pkgs.hyprlandPlugins.hy3];
+    plugins = [ pkgs.hyprlandPlugins.hy3 ];
 
     extraConfig = ''
       ${builtins.readFile ../../../../../dotfiles/hypr/hyprland.conf}
@@ -29,7 +30,7 @@
     # enable hyprland-session.target on hyprland startup
     systemd.enable = true;
     systemd.enableXdgAutostart = true;
-    systemd.variables = ["XDG_SESSION_DESKTOP"];
+    systemd.variables = [ "XDG_SESSION_DESKTOP" ];
   };
 
   programs.imv.enable = true;
@@ -52,7 +53,7 @@
   home.file.".icons/default".source = "${pkgs.vanilla-dmz}/share/icons/Vanilla-DMZ";
 
   home.activation = {
-    hyprlandAction = lib.hm.dag.entryAfter ["writeBoundary"] ''
+    hyprlandAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
       run touch $HOME/.config/hypr/hyprland_after.conf
     '';
   };
@@ -67,11 +68,14 @@
           "xdph"
           "gtk"
         ];
-        "org.freedesktop.impl.portal.Secret" = ["gnome-keyring"];
-        "org.freedesktop.portal.FileChooser" = ["xdg-desktop-portal-gtk"];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+        "org.freedesktop.portal.FileChooser" = [ "xdg-desktop-portal-gtk" ];
       };
     };
-    extraPortals = with pkgs; [xdg-desktop-portal-hyprland xdg-desktop-portal-gtk];
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
   };
 
   home.packages = [

@@ -1,4 +1,5 @@
-{lib, ...}: {
+{ lib, ... }:
+{
   boot.kernelParams = [
     # when there's an issue, we want the server to reboot, not hang
     "panic=10"

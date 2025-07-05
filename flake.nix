@@ -45,20 +45,22 @@
     };
   };
 
-  outputs = inputs @ {
-    self,
-    nixpkgs,
-    flake-parts,
-    ...
-  }: let
-    inherit (self) outputs;
-    libx = import ./libx {inherit inputs;};
-  in
-    flake-parts.lib.mkFlake {inherit inputs;} {
+  outputs =
+    inputs@{
+      self,
+      nixpkgs,
+      flake-parts,
+      ...
+    }:
+    let
+      inherit (self) outputs;
+      libx = import ./libx { inherit inputs; };
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
       flake = {
         inherit libx;
 
-        overlays = import ./overlays {inherit inputs;};
+        overlays = import ./overlays { inherit inputs; };
 
         # darwin-rebuild build --flake .#water
         darwinConfigurations = libx.mkNixDarwinConfs ./hosts/darwin;
@@ -68,24 +70,31 @@
 
         homeManagerModules.default = ./modules/homemanager/shared;
         homeManagerModules.linux = ./modules/homemanager/linux;
-        nixosModules.default = {};
-        nixDarwinModules.default = {};
+        nixosModules.default = { };
+        nixDarwinModules.default = { };
       };
 
-      systems = ["x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
+      systems = [
+        "x86_64-linux"
+        "x86_64-darwin"
+        "aarch64-linux"
+        "aarch64-darwin"
+      ];
 
-      perSystem = {
-        pkgs,
-        system,
-        ...
-      }: {
-        _module.args.pkgs = import inputs.nixpkgs {
-          inherit system;
-          overlays = [];
+      perSystem =
+        {
+          pkgs,
+          system,
+          ...
+        }:
+        {
+          _module.args.pkgs = import inputs.nixpkgs {
+            inherit system;
+            overlays = [ ];
+          };
+
+          packages = import ./packages { inherit pkgs; };
+          formatter = pkgs.nixfmt-tree;
         };
-
-        packages = import ./packages {inherit pkgs;};
-        formatter = pkgs.alejandra;
-      };
     };
 }

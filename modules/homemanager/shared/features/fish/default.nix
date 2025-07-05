@@ -1,8 +1,9 @@
-args @ {
+args@{
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   xdg.configFile = {
     "gitalias" = {
       enable = true;
@@ -81,25 +82,29 @@ args @ {
     '';
 
     loginShellInit =
-      ''
-      ''
-      + lib.optionalString (args ? darwinConfig) (let
-        # fish path: https://github.com/LnL7/nix-darwin/issues/122#issuecomment-1659465635
-        # add quotes and remove brackets '${XDG}/foo' => '"$XDG/foo"'
-        dquote = str: "\"" + (builtins.replaceStrings ["{" "}"] ["" ""] str) + "\"";
+      ''''
+      + lib.optionalString (args ? darwinConfig) (
+        let
+          # fish path: https://github.com/LnL7/nix-darwin/issues/122#issuecomment-1659465635
+          # add quotes and remove brackets '${XDG}/foo' => '"$XDG/foo"'
+          dquote = str: "\"" + (builtins.replaceStrings [ "{" "}" ] [ "" "" ] str) + "\"";
 
-        makeBinPathList = map (path: path + "/bin");
-      in ''
-        fish_add_path --move --prepend --path ${lib.concatMapStringsSep " " dquote (makeBinPathList args.darwinConfig.environment.profiles)}
-        set fish_user_paths $fish_user_paths
+          makeBinPathList = map (path: path + "/bin");
+        in
+        ''
+          fish_add_path --move --prepend --path ${
+            lib.concatMapStringsSep " " dquote (makeBinPathList args.darwinConfig.environment.profiles)
+          }
+          set fish_user_paths $fish_user_paths
 
-        # Add user local paths
-        fish_add_path ~/.local/bin
-        fish_add_path ~/.krew/bin
-        fish_add_path ~/.cargo/bin
-        fish_add_path /opt/homebrew/bin
-        fish_add_path ~/Applications/Bin
-      '');
+          # Add user local paths
+          fish_add_path ~/.local/bin
+          fish_add_path ~/.krew/bin
+          fish_add_path ~/.cargo/bin
+          fish_add_path /opt/homebrew/bin
+          fish_add_path ~/Applications/Bin
+        ''
+      );
 
     shellAliases = {
       icat = "kitty +kitten icat";

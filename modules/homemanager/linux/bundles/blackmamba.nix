@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   nixma.core.enable = true;
   nixma.git.enable = true;
   nixma.jujutsu.enable = true;

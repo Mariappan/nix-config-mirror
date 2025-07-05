@@ -3,7 +3,8 @@
   inputs,
   lib,
   ...
-}: {
+}:
+{
   imports = [
     ./fish
     ./tmux.nix
@@ -62,7 +63,7 @@
 
   programs.atuin.enable = true;
   programs.atuin.enableFishIntegration = true;
-  programs.atuin.flags = ["--disable-ctrl-r"];
+  programs.atuin.flags = [ "--disable-ctrl-r" ];
 
   programs.htop.enable = true;
   programs.htop.settings = {

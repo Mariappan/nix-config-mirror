@@ -6,35 +6,28 @@
   lib,
   libx,
   ...
-}: let
+}:
+let
   cfg = config.nixma.linux;
 
   # Taking all modules in ./features and adding enables to them
-  features =
-    libx.extendModules
-    (name: {
-      extraOptions = {
-        nixma.linux.${name}.enable = lib.mkEnableOption "enable my ${name} configuration";
-      };
+  features = libx.extendModules (name: {
+    extraOptions = {
+      nixma.linux.${name}.enable = lib.mkEnableOption "enable my ${name} configuration";
+    };
 
-      configExtension = config: (lib.mkIf cfg.${name}.enable config);
-    })
-    (libx.filesIn ./features);
+    configExtension = config: (lib.mkIf cfg.${name}.enable config);
+  }) (libx.filesIn ./features);
 
   # Taking all module bundles in ./bundles and adding bundle.enables to them
-  bundles =
-    libx.extendModules
-    (name: {
-      extraOptions = {
-        nixma.linux.bundles.${name}.enable = lib.mkEnableOption "enable ${name} module bundle";
-      };
+  bundles = libx.extendModules (name: {
+    extraOptions = {
+      nixma.linux.bundles.${name}.enable = lib.mkEnableOption "enable ${name} module bundle";
+    };
 
-      configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
-    })
-    (libx.filesIn ./bundles);
-in {
-  imports =
-    []
-    ++ features
-    ++ bundles;
+    configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
+  }) (libx.filesIn ./bundles);
+in
+{
+  imports = [ ] ++ features ++ bundles;
 }

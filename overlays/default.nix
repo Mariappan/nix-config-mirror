@@ -1,9 +1,10 @@
 # Overlays
 # Ref: https://github.com/Misterio77/nix-config/blob/main/overlays/default.nix
-{inputs, ...}: {
+{ inputs, ... }:
+{
   # This one brings our custom packages from the 'packages' directory
   additions = final: _prev: {
-    nixma = import ../packages {pkgs = final;};
+    nixma = import ../packages { pkgs = final; };
   };
 
   # This one contains whatever you want to overlay
@@ -13,9 +14,11 @@
   };
 
   unused = _final: prev: {
-    hyprlandPlugins.hy3 = prev.hyprlandPlugins.hy3.overrideAttrs (finalAttrs: prevAttrs: {
-      patches = [./hy3_fix.patch];
-    });
+    hyprlandPlugins.hy3 = prev.hyprlandPlugins.hy3.overrideAttrs (
+      finalAttrs: prevAttrs: {
+        patches = [ ./hy3_fix.patch ];
+      }
+    );
     wayprompt = prev.wayprompt.overrideAttrs (oldAttrs: {
       version = "66fe87408d3cfba8c8cc6ff65c1868e5db6ad3bb";
       src = prev.fetchFromSourcehut {

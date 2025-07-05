@@ -6,7 +6,8 @@
   outputs,
   home-manager,
   ...
-}: {
+}:
+{
   imports = [
     home-manager.darwinModules.home-manager
     {
@@ -67,7 +68,11 @@
     # };
   };
 
-  environment.shells = [pkgs.bashInteractive pkgs.zsh pkgs.fish];
+  environment.shells = [
+    pkgs.bashInteractive
+    pkgs.zsh
+    pkgs.fish
+  ];
 
   homebrew = {
     enable = true;
@@ -76,8 +81,8 @@
       upgrade = true;
       cleanup = "zap";
     };
-    taps = ["homebrew/cask-versions"];
-    brews = [];
+    taps = [ "homebrew/cask-versions" ];
+    brews = [ ];
     # brews = ["m4" "autoconf" "automake" "cmake" "git-lfs" "libtool"];
     # updates homebrew packages on activation,
     # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
