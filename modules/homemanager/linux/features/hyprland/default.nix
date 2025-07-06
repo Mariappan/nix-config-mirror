@@ -27,10 +27,11 @@
       ${builtins.readFile ../../../../../dotfiles/hypr/hyprland.conf}
     '';
 
+    # Not needed since we have `programs.hyprland.withUWSM = true`
     # enable hyprland-session.target on hyprland startup
-    systemd.enable = true;
-    systemd.enableXdgAutostart = true;
-    systemd.variables = [ "XDG_SESSION_DESKTOP" ];
+    # systemd.enable = true;
+    # systemd.enableXdgAutostart = true;
+    # systemd.variables = [ "XDG_SESSION_DESKTOP" ];
   };
 
   programs.imv.enable = true;
