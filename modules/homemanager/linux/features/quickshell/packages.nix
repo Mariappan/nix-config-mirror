@@ -6,6 +6,11 @@
   ...
 }:
 let
+  # Dummy beat_detector binary needed by caelestia shell
+  pkg_beat_detector = pkgs.writeScriptBin "beat_detector" ''
+    echo "BPM: 600.0"
+  '';
+
   # Wrap quickshell with Qt dependencies and required tools in PATH
   quickshell-wrapped =
     pkgs.runCommand "quickshell-wrapped"
@@ -23,6 +28,7 @@ let
             lib.makeBinPath [
               pkgs.fd
               pkgs.coreutils
+              pkg_beat_detector
             ]
           }
       '';
@@ -33,6 +39,13 @@ in
       type = lib.types.package;
       default = quickshell-wrapped;
       description = "The wrapped quickshell package with Qt dependencies";
+    };
+  };
+  options.programs.beat_detector = {
+    finalPackage = lib.mkOption {
+      type = lib.types.package;
+      default = pkg_beat_detector;
+      description = "Mock beat detector";
     };
   };
 }

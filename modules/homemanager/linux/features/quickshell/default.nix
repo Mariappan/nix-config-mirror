@@ -21,6 +21,7 @@
   # Main packages
   home.packages = with pkgs; [
     config.programs.quickshell.finalPackage
+    config.programs.beat_detector.finalPackage
     pkgs.nixma.caelestia
 
     # Runtime dependencies
@@ -44,6 +45,7 @@
     material-symbols
     nerd-fonts.jetbrains-mono
     ibm-plex
+    inotify-tools
     cava
     networkmanager
     bluez
