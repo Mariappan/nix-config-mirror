@@ -58,6 +58,9 @@
           mode.select = "SELECT";
         };
       };
+      keys.insert = {
+        j.k = "normal_mode";
+      };
       keys.normal = {
         space.space = "file_picker";
         space.w = ":w";
