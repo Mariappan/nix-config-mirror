@@ -117,14 +117,8 @@ args@{
 
     plugins = with pkgs.fishPlugins; [
       {
-        name = "tide"; # natively async
-        #src = tide.src; # 5.6 on 23.11
-        src = pkgs.fetchFromGitHub {
-          owner = "IlanCosman";
-          repo = "tide";
-          rev = "v6.0.1";
-          sha256 = "sha256-oLD7gYFCIeIzBeAW1j62z5FnzWAp3xSfxxe7kBtTLgA=";
-        };
+        name = "tide"; # Prompt PS1
+        src = tide.src;
       }
       {
         name = "puffer"; # adds "...", "!!" and "!$"
@@ -134,16 +128,14 @@ args@{
         name = "pisces"; # pisces # auto pairing of bracket"'
         src = pisces.src;
       }
-      # {
-      #   name = "plugin-git"; # git abbrs
-      #   #src = plugin-git.src;
-      #   src = pkgs.fetchFromGitHub { # https://github.com/jhillyerd/plugin-git/pull/103
-      #     owner = "hexclover";
-      #     repo = "plugin-git";
-      #     rev = "master";
-      #     sha256 = "sha256-efKPbsXxjHm1wVWPJCV8teG4DgZN5dshEzX8PWuhKo4";
-      #   };
-      # }
+      {
+        name = "colored_man_pages";
+        src = colored-man-pages.src;
+      }
+      {
+        name = "sudope";
+        src = plugin-sudope.src;
+      }
       {
         name = "done"; # doesn't work on wayland
         src = done.src;
