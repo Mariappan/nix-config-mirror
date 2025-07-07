@@ -22,6 +22,7 @@
   home.packages = [
     pkgs.google-chrome
     pkgs.slack
+    pkgs.spotify
     pkgs.obsidian
     pkgs.remmina
     pkgs.nushell
