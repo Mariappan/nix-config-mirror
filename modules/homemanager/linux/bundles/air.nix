@@ -27,5 +27,6 @@
     pkgs.remmina
     pkgs.nushell
     pkgs.vivaldi
+    pkgs.claude-code
   ];
 }
