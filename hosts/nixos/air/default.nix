@@ -18,6 +18,7 @@
     ../shared/docker.nix
     ../shared/1password.nix
     ../shared/virtualbox.nix
+    ../shared/nvidia.nix
   ];
 
   # System configs
