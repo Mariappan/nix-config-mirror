@@ -12,7 +12,6 @@
     ../shared/common.nix
     ../shared/manpages.nix
     ../shared/lanzaboote.nix
-    ../shared/headless.nix
     ../shared/hyprland.nix
     ../shared/sound.nix
     ../shared/docker.nix
