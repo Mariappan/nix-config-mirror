@@ -28,5 +28,6 @@
     pkgs.nushell
     pkgs.vivaldi
     pkgs.claude-code
+    pkgs.gpclient
   ];
 }
