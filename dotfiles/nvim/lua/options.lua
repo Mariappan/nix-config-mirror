@@ -68,6 +68,8 @@ Option.g({
   complete = ".,w,b,u,t,k",
   formatoptions = "jtcroql",
   inccommand = "nosplit",
+  winblend = 25,
+  pumblend = 25,
   isfname = table.concat(
     vim.tbl_filter(function(entry)
       if entry == "=" then

@@ -12,6 +12,7 @@
   nixma.dev.enable = true;
   nixma.debug.enable = true;
   nixma.gpgagent.enable = true;
+  nixma.neovide.enable = true;
   nixma.wezterm.enable = true;
   nixma.linux.dconf.enable = true;
   nixma.linux.hyprland.enable = true;
@@ -29,5 +30,6 @@
     pkgs.vivaldi
     pkgs.claude-code
     pkgs.gpclient
+    pkgs.neovide
   ];
 }
