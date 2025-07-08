@@ -28,6 +28,7 @@ let
             lib.makeBinPath [
               pkgs.fd
               pkgs.coreutils
+              pkgs.procps
               pkg_beat_detector
             ]
           }
