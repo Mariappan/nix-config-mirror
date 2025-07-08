@@ -13,6 +13,7 @@
     ../shared/manpages.nix
     ../shared/lanzaboote.nix
     ../shared/hyprland.nix
+    ../shared/laptop.nix
     ../shared/sound.nix
     ../shared/docker.nix
     ../shared/1password.nix
