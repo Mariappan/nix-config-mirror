@@ -21,6 +21,8 @@
     ../shared/nvidia.nix
   ];
 
+  programs.yubikey-touch-detector.enable = true;
+
   # System configs
   networking.hostName = "air";
   networking.networkmanager.enable = true;
