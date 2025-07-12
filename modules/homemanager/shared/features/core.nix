@@ -59,6 +59,7 @@
     ]
     ++ lib.optionals pkgs.stdenv.isLinux [
       pkgs.ncdu
+      pkgs.app2unit
     ];
 
   programs.atuin.enable = true;
