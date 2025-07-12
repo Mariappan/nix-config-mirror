@@ -27,7 +27,7 @@
     pkgs.obsidian
     pkgs.remmina
     pkgs.nushell
-    pkgs.vivaldi
+    pkgs.vivaldi-wayland
     pkgs.claude-code
     pkgs.gpclient
     pkgs.neovide
