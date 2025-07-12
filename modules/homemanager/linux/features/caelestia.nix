@@ -1,7 +1,6 @@
 { pkgs, inputs, ... }: {
 
   home.packages = [
-    pkgs.vivaldi
     pkgs.caelestia-shell
     pkgs.caelestia-cli
   ];
