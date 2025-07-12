@@ -2,6 +2,7 @@
 {
   imports = [ ./xserver.nix ];
 
+  programs.regreet.enable = true;
   programs.hyprland.enable = true;
   programs.hyprland.withUWSM  = true;
   # Enable it for debug package
@@ -10,17 +11,6 @@
   # };
   programs.wshowkeys.enable = true;
   programs.dconf.enable = true;
-
-  # services.displayManager.ly.enable = true;
-  services.greetd.enable = true;
-  services.greetd.package = pkgs.greetd.tuigreet;
-  services.greetd.settings = {
-    default_session = {
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --cmd 'uwsm start -S hyprland-uwsm.desktop'";
-    };
-  };
-
-  users.users.greeter.extraGroups = ["video" "input"];
 
   # Ref: https://www.reddit.com/r/NixOS/comments/171mexa/polkit_on_hyprland/
   services.gnome.gnome-keyring.enable = true;
