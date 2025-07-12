@@ -60,6 +60,7 @@
   };
 
   services.gnome-keyring.enable = true;
+  services.hyprpolkitagent.enable = true;
 
   xdg.portal = {
     enable = true;
