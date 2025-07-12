@@ -31,5 +31,6 @@
     pkgs.claude-code
     pkgs.gpclient
     pkgs.neovide
+    pkgs.safeeyes
   ];
 }
