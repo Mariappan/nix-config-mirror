@@ -10,7 +10,7 @@
   nixma.wezterm.enable = true;
   nixma.linux.dconf.enable = true;
   nixma.linux.hyprland.enable = true;
-  nixma.linux.quickshell.enable = true;
+  nixma.linux.caelestia.enable = true;
   nixma.linux.nixos.enable = true;
   nixma.linux.xdg.enable = true;
 

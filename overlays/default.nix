@@ -3,14 +3,21 @@
 { inputs, ... }:
 {
   # This one brings our custom packages from the 'packages' directory
-  additions = final: _prev: {
+  additions = final: prev: {
     nixma = import ../packages { pkgs = final; };
+    caelestia-shell = inputs.caelestia-shell.packages.${prev.system}.default;
+    caelestia-cli = inputs.caelestia-cli.packages.${prev.system}.default;
   };
 
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = _final: prev: {
+    caelestia-shell = prev.caelestia-shell.overrideAttrs (
+      finalAttrs: prevAttrs: {
+        withCli = true;
+      }
+    );
   };
 
   unused = _final: prev: {
