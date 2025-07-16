@@ -1,5 +1,6 @@
-{
+{ pkgs, ... }: {
   virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.package = pkgs.stable.virtualbox;
   # virtualisation.virtualbox.host.enable = true;
   # virtualisation.virtualbox.host.enableExtensionPack = true;
   # virtualisation.virtualbox.guest.enable = true;
