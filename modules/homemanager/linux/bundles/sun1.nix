@@ -15,6 +15,6 @@
   nixma.linux.xdg.enable = true;
 
   home.packages = [
-    pkgs.vivaldi
+    pkgs.vivaldi-wayland
   ];
 }

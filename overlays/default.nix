@@ -13,20 +13,19 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = _final: prev: {
-    caelestia-shell = prev.caelestia-shell.overrideAttrs (
-      finalAttrs: prevAttrs: {
-        withCli = true;
-      }
-    );
+    caelestia-shell-with-cli = prev.caelestia-shell.override {
+      withCli = true;
+      caelestia-cli = prev.caelestia-cli;
+    };
     vivaldi-wayland =
       prev.vivaldi.override {
         commandLineArgs = ''
-          --enable-features=UseOzonePlatform
-          --ozone-platform=wayland
-          --ozone-platform-hint=auto
-          --enable-features=WaylandWindowDecorations
-        '';
-      };
+            --enable-features=UseOzonePlatform
+            --ozone-platform=wayland
+            --ozone-platform-hint=auto
+            --enable-features=WaylandWindowDecorations
+          '';
+        };
   };
 
   unused = _final: prev: {

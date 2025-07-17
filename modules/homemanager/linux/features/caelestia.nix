@@ -1,7 +1,7 @@
 { pkgs, inputs, ... }: {
 
   home.packages = [
-    pkgs.caelestia-shell
+    pkgs.caelestia-shell-with-cli
     pkgs.caelestia-cli
   ];
 
@@ -20,7 +20,7 @@
     };
     Service = {
       Type = "exec";
-      ExecStart = "${pkgs.caelestia-shell}/bin/caelestia-shell";
+      ExecStart = "${pkgs.caelestia-shell-with-cli}/bin/caelestia-shell";
       Restart = "on-failure";
       Slice = "app-graphical.slice";
     };
