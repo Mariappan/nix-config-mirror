@@ -5,12 +5,6 @@
     pkgs.caelestia-cli
   ];
 
-  xdg.configFile.app2unit_env = {
-    enable = true;
-    target = "environment.d/999-app2unit.conf";
-    text = "APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'\n";
-  };
-
   xdg.configFile = {
     "caelestia" = {
       source = ../../../../dotfiles/caelestia-shell.json;

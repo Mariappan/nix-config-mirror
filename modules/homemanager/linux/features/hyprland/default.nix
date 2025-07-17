@@ -39,6 +39,12 @@
     };
   };
 
+  xdg.configFile.app2unit_env = {
+    enable = true;
+    target = "environment.d/999-app2unit.conf";
+    text = "APP2UNIT_SLICES='a=app-graphical.slice b=background-graphical.slice s=session-graphical.slice'\n";
+  };
+
   gtk = {
     enable = true;
     cursorTheme.name = "Adwaita";
