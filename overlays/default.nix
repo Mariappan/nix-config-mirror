@@ -6,7 +6,6 @@
   additions = final: prev: {
     nixma = import ../packages { pkgs = final; };
     caelestia-shell = inputs.caelestia-shell.packages.${prev.system}.default;
-    caelestia-cli = inputs.caelestia-cli.packages.${prev.system}.default;
   };
 
   # This one contains whatever you want to overlay
@@ -15,7 +14,6 @@
   modifications = _final: prev: {
     caelestia-shell-with-cli = prev.caelestia-shell.override {
       withCli = true;
-      caelestia-cli = prev.caelestia-cli;
     };
     vivaldi-wayland =
       prev.vivaldi.override {

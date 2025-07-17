@@ -2,7 +2,6 @@
 
   home.packages = [
     pkgs.caelestia-shell-with-cli
-    pkgs.caelestia-cli
   ];
 
   xdg.configFile = {
