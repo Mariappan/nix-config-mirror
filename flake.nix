@@ -33,10 +33,6 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    anyrun = {
-      url = "github:anyrun-org/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-parts.url = "github:hercules-ci/flake-parts";
     nix-alien.url = "github:thiagokokada/nix-alien";
     caelestia-shell = {
