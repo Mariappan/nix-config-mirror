@@ -80,6 +80,15 @@
     ];
   };
 
+  xdg.configFile.wayland_env = {
+    enable = true;
+    target = "environment.d/999-wayland.conf";
+    text = ''
+      NIXOS_OZONE_WL = '1'
+      WLR_NO_HARDWARE_CURSORS = '1'
+     '';
+  };
+
   home.packages = [
     pkgs.hyprlandPlugins.hy3
 
