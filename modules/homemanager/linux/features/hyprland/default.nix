@@ -5,13 +5,9 @@
 }:
 {
   imports = [
-    # ./anyrun.nix
     ./hypridle.nix
     ./hyprlock.nix
     ./kanshi.nix
-    # ./swaync.nix
-    # ./waybar.nix
-    # ./swww.nix
   ];
 
   wayland.windowManager.hyprland = {
@@ -97,7 +93,6 @@
     pkgs.slurp
 
     pkgs.hyprpicker
-    pkgs.ianny
     pkgs.wl-clipboard
 
     pkgs.wlr-which-key
