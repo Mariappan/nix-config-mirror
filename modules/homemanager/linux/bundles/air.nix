@@ -32,5 +32,6 @@
     pkgs.gpclient
     pkgs.neovide
     pkgs.safeeyes
+    pkgs.spicetify-cli
   ];
 }
