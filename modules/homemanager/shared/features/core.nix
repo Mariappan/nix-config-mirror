@@ -85,6 +85,8 @@
     };
   };
 
+  programs.ghostty.enable = true;
+
   programs.htop.enable = true;
   programs.htop.settings = {
     hide_kernel_threads = true;
