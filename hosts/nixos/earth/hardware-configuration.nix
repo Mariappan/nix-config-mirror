@@ -11,8 +11,8 @@
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.luks.devices."cryptwork".device = "/dev/disk/by-partlabel/WORK";
-  boot.initrd.luks.devices."cryptwork".bypassWorkqueues = true;
+    # boot.initrd.luks.devices."cryptwork".device = "/dev/disk/by-partlabel/WORK";
+    # boot.initrd.luks.devices."cryptwork".bypassWorkqueues = true;
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/NIXROOT";
@@ -22,6 +22,12 @@
   fileSystems."/work" = {
     device = "/dev/mapper/cryptwork";
     fsType = "ext4";
+    depends = ["/"];
+    encrypted = {
+      enable = true;
+      label = "cryptwork";
+      blkDev = "/dev/disk/by-partlabel/WORK";
+    };
   };
 
   fileSystems."/boot" = {

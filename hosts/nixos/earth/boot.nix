@@ -42,6 +42,7 @@
       enable = true;
       useTang = true;
       devices."${config.fileSystems."/".device}".secretFile = ./secret.jwe;
+            # devices."${config.fileSystems."/work".device}".secretFile = ./secret.jwe;
     };
     network = {
       enable = true;
