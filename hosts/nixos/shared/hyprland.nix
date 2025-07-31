@@ -13,7 +13,7 @@
     theme.package = pkgs.adw-gtk3;
   };
   programs.hyprland.enable = true;
-  programs.hyprland.withUWSM  = true;
+  programs.hyprland.withUWSM = true;
   # Enable it for debug package
   # programs.hyprland.package = pkgs.hyprland.override {
   #   debug = true;

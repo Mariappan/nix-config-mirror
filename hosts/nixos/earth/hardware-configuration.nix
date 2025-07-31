@@ -7,8 +7,9 @@
   pkgs,
   modulesPath,
   ...
-}: {
-  imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+}:
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   boot.initrd.luks.devices."cryptwork".device = "/dev/disk/by-partlabel/WORK";
   boot.initrd.luks.devices."cryptwork".bypassWorkqueues = true;
@@ -26,12 +27,15 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/NIXBOOT";
     fsType = "vfat";
-    options = [ "fmask=0022" "dmask=0022" ];
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
   };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-label/NIXSWAP"; }
-    ];
+  swapDevices = [
+    { device = "/dev/disk/by-label/NIXSWAP"; }
+  ];
 
   virtualisation.vmware.guest.enable = true;
 

@@ -9,14 +9,14 @@
   services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = {
     battery = {
-       governor = "powersave";
-       turbo = "always";
-       # default performance balance_performance balance_power power
-       energy_performance_preference = "balance_power";
+      governor = "powersave";
+      turbo = "always";
+      # default performance balance_performance balance_power power
+      energy_performance_preference = "balance_power";
     };
     charger = {
-       governor = "performance";
-       turbo = "auto";
+      governor = "performance";
+      turbo = "auto";
     };
   };
 

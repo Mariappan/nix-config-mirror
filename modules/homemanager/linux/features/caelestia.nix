@@ -1,4 +1,5 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, ... }:
+{
 
   home.packages = [
     pkgs.caelestia-shell-with-cli

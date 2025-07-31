@@ -17,15 +17,14 @@
       withCli = true;
       caelestia-cli = prev.caelestia-cli;
     };
-    vivaldi-wayland =
-      prev.vivaldi.override {
-        commandLineArgs = ''
-            --enable-features=UseOzonePlatform
-            --ozone-platform=wayland
-            --ozone-platform-hint=auto
-            --enable-features=WaylandWindowDecorations
-          '';
-        };
+    vivaldi-wayland = prev.vivaldi.override {
+      commandLineArgs = ''
+        --enable-features=UseOzonePlatform
+        --ozone-platform=wayland
+        --ozone-platform-hint=auto
+        --enable-features=WaylandWindowDecorations
+      '';
+    };
   };
 
   unused = _final: prev: {
