@@ -15,6 +15,7 @@
   boot.kernelModules = [];
   boot.extraModulePackages = [];
   boot.blacklistedKernelModules = [ ];
+  boot.supportedFilesystems = [ "bcachefs" ];
 
   boot.kernelParams = ["ip=dhcp"];
 

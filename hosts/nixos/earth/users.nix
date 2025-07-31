@@ -37,10 +37,21 @@ in {
 
   home-manager.users = {
     root = {
-      nixma.linux.bundles.root.enable = true;
+      imports = [ 
+	../../../modules/homemanager/shared/features/core.nix
+      ];
     };
     ${userId} = {
-      nixma.linux.bundles.earth.enable = true;
+      imports = [ 
+	../../../modules/homemanager/shared/features/core.nix
+	../../../modules/homemanager/shared/features/git
+	../../../modules/homemanager/shared/features/jujutsu.nix
+	../../../modules/homemanager/linux/features/hyprland
+	../../../modules/homemanager/linux/features/caelestia.nix
+	../../../modules/homemanager/linux/features/nixos.nix
+	../../../modules/homemanager/linux/features/xdg.nix
+      ];
+      # nixma.linux.bundles.air.enable = true;
 
       programs.git = {
         userName = "${userName}";
