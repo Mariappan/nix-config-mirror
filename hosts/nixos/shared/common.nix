@@ -53,6 +53,7 @@
     pkgs.usbutils
     pkgs.procps
     pkgs.vim
+    pkgs.clevis
   ];
 
   # Create /etc/zshrc that loads the nix-darwin environment.
