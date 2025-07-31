@@ -30,11 +30,18 @@
       "ehci_pci"
       "nvme"
       "sr_mod"
+      "tpm_crb"
+      "tpm_tis"
     ];
     kernelModules = [ ];
     systemd = {
       enable = true;
       users.root.shell = lib.mkIf (config.boot.initrd.systemd.enable) "/bin/systemd-tty-ask-password-agent";
+    };
+    clevis = {
+      enable = true;
+      useTang = true;
+      devices."${config.fileSystems."/".device}".secretFile = ./secret.jwe;
     };
     network = {
       enable = true;
