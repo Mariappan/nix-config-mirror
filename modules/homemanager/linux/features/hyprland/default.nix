@@ -108,5 +108,7 @@
 
     pkgs.wtype
     pkgs.wayprompt
+
+    pkgs.hyprlockfix
   ];
 }

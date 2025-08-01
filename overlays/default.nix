@@ -7,6 +7,11 @@
     nixma = import ../packages { pkgs = final; };
     caelestia-shell = inputs.caelestia-shell.packages.${prev.system}.default;
     caelestia-cli = inputs.caelestia-cli.packages.${prev.system}.default;
+
+    hyprlockfix = prev.pkgs.writeShellScriptBin "hyprlockfix" ''
+        hyprctl --instance 0 "keyword misc:allow_session_lock_restore 1"
+        hyprctl --instance 0 "dispatch exec hyprlock"
+    '';
   };
 
   # This one contains whatever you want to overlay
