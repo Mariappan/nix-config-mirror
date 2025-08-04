@@ -1,4 +1,10 @@
 {
+    "general": {
+        "apps": {
+            "terminal": ["foot"],
+            "audio": ["pavucontrol"]
+        }
+    },
     "background": {
         "enabled": true,
         "desktopClock": {
@@ -10,7 +16,7 @@
         "persistent": true,
         "showOnHover": true,
         "status": {
-            "showAudio": false,
+            "showAudio": true,
             "showBattery": true,
             "showBluetooth": true,
             "showKbLayout": false,
