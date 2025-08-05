@@ -4,14 +4,15 @@ local wezterm = require("wezterm")
 
 function module.apply(config)
   config.font = wezterm.font_with_fallback({
+    { family = "Maple Mono", weight = "Light" },
     { family = "Victor Mono", weight = "Regular" },
     { family = "MesloLGS NF", weight = "Regular" },
     { family = "Fira Code", weight = "Medium" },
     { family = "Script12 BT", weight = "Regular" }, -- cursive font
   })
 
-  config.font_size = 10.0
-  config.line_height = 1.1
+  config.font_size = 10.5
+  config.line_height = 1.0
   config.font_rules = {
     {
       italic = true,
@@ -19,7 +20,7 @@ function module.apply(config)
       font = wezterm.font({
         family = "Script12 BT",
         weight = "Bold",
-        style = "Italic",
+        style = "Normal",
         scale = 1,
       }),
     },
@@ -29,7 +30,7 @@ function module.apply(config)
       font = wezterm.font({
         family = "Script12 BT",
         weight = "DemiBold",
-        style = "Italic",
+        style = "Normal",
         scale = 1,
       }),
     },
@@ -39,8 +40,8 @@ function module.apply(config)
       font = wezterm.font({
         weight = "Regular",
         family = "Script12 BT",
-        style = "Italic",
-        scale = 1.1,
+        style = "Normal",
+        scale = 1,
       }),
     },
   }

@@ -50,6 +50,11 @@
      RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
   '';
 
+  fonts.packages = with pkgs; [
+    # Maple Mono (Ligature TTF unhinted)
+    maple-mono.truetype
+  ];
+
   environment.systemPackages = [
     pkgs.nixma.ddlm
   ];
