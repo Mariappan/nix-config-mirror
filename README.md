@@ -187,7 +187,6 @@ sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 \
 
 ## ToDo
 - Integrate sops-nix
-- Download script12 and meslo font and install it
 
 ## Authors and acknowledgment
 Show your appreciation to those who have contributed to the project.

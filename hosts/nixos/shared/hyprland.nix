@@ -53,6 +53,10 @@
   fonts.packages = with pkgs; [
     # Maple Mono (Ligature TTF unhinted)
     maple-mono.truetype
+    # MesloLGS NF font
+    nixma.meslolgsnf-font
+    # Script12 BT font with custom sizing
+    nixma.script12bt-font
   ];
 
   environment.systemPackages = [
