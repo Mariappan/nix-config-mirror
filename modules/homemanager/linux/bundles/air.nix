@@ -31,7 +31,7 @@
     pkgs.claude-code
     pkgs.gpclient
     pkgs.neovide
-    pkgs.safeeyes
+    pkgs.pavucontrol
     pkgs.spicetify-cli
   ];
 }

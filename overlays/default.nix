@@ -5,8 +5,6 @@
   # This one brings our custom packages from the 'packages' directory
   additions = final: prev: {
     nixma = import ../packages { pkgs = final; };
-    caelestia-shell = inputs.caelestia-shell.packages.${prev.system}.default;
-    caelestia-cli = inputs.caelestia-cli.packages.${prev.system}.default;
 
     hyprlockfix = prev.pkgs.writeShellScriptBin "hyprlockfix" ''
         hyprctl --instance 0 "keyword misc:allow_session_lock_restore 1"
@@ -18,10 +16,10 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = _final: prev: {
-    caelestia-shell-with-cli = prev.caelestia-shell.override {
-      withCli = true;
-      caelestia-cli = prev.caelestia-cli;
-    };
+    caelestia-cli = inputs.caelestia-cli.packages.${prev.system}.default;
+    caelestia-shell = inputs.caelestia-shell.packages.${prev.system}.default.overrideAttrs (old: {
+        patches = (old.patches or []) ++ [];
+    });
     vivaldi-wayland =
       prev.vivaldi.override {
         commandLineArgs = ''
