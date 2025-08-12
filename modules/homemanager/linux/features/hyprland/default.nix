@@ -29,8 +29,10 @@
     # systemd.enableXdgAutostart = true;
     # systemd.variables = [ "XDG_SESSION_DESKTOP" ];
   };
-
-  programs.imv.enable = true;
+  xdg.configFile.hyprland_configs = {
+    source = ../../../../../dotfiles/hypr/hyprland;
+    target = "hypr/hyprland";
+  };
 
   xdg.configFile = {
     "wlr-which-key" = {
@@ -90,6 +92,8 @@
       WLR_NO_HARDWARE_CURSORS = '1'
      '';
   };
+
+  programs.imv.enable = true;
 
   home.packages = [
     pkgs.hyprlandPlugins.hy3
