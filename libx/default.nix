@@ -63,6 +63,7 @@ rec {
   mkNixOsUserConf = user: config: {
     imports = [
       inputs.nix-index-database.homeModules.nix-index
+      inputs.caelestia-shell.homeManagerModules.default
       outputs.homeManagerModules.default
       outputs.homeManagerModules.linux
     ];

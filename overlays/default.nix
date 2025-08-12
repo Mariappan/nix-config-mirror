@@ -16,7 +16,6 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = _final: prev: {
-    caelestia-cli = inputs.caelestia-cli.packages.${prev.system}.default;
     caelestia-shell = inputs.caelestia-shell.packages.${prev.system}.default.overrideAttrs (old: {
         patches = (old.patches or []) ++ [];
     });

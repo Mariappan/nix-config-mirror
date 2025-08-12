@@ -35,14 +35,9 @@
     };
     flake-parts.url = "github:hercules-ci/flake-parts";
     nix-alien.url = "github:thiagokokada/nix-alien";
-    caelestia-cli = {
-      url = "github:caelestia-dots/cli";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     caelestia-shell = {
       url = "github:caelestia-dots/shell";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.caelestia-cli.follows = "caelestia-cli";
     };
   };
 
