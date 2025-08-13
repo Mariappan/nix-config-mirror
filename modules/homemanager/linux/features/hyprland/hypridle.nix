@@ -2,8 +2,8 @@
   services.hypridle.enable = true;
   services.hypridle.settings = {
     general = {
-      lock_cmd = "hyprlock";
-      before_sleep_cmd = "hyprlock";
+      lock_cmd = "caelestia shell lock lock";
+      before_sleep_cmd = "caelestia shell lock lock";
       after_sleep_cmd = "hyprctl dispatch dpms on";
       ignore_dbus_inhibit = false;
     };
@@ -11,12 +11,7 @@
     listener = [
       {
         timeout = 180;
-        on-timeout = "hyprlock";
-      }
-      {
-        timeout = 280;
-        on-timeout = "systemctl --user stop app-io.github.slgobinath.SafeEyes@autostart.service";
-        on-resume = "systemctl --user start app-io.github.slgobinath.SafeEyes@autostart.service";
+        on-timeout = "caelestia shell lock lock";
       }
       {
         timeout = 290;

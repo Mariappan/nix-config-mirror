@@ -1,0 +1,45 @@
+{
+    "theme": {
+        "enableTerm": true,
+        "enableHypr": true,
+        "enableDiscord": true,
+        "enableSpicetify": false,
+        "enableFuzzel": false,
+        "enableBtop": false,
+        "enableGtk": true,
+        "enableQt": true
+    },
+    "toggles": {
+        "communication": {
+            "slack": {
+                "enable": true,
+                "match": [{ "class": "Slack" }],
+                "command": ["slack"],
+                "move": true
+            }
+        },
+        "music": {
+            "spotify": {
+                "enable": true,
+                "match": [{ "class": "Spotify" }, { "initialTitle": "Spotify" }, { "initialTitle": "Spotify Free" }],
+                "command": ["spotify"],
+                "move": true
+            }
+        },
+        "sysmon": {
+            "btop": {
+                "enable": true,
+                "match": [{ "class": "btop", "title": "btop", "workspace": { "name": "special:sysmon" } }],
+                "command": ["foot", "-a", "btop", "-T", "btop", "fish", "-C", "exec btop"]
+            }
+        },
+        "todo": {
+            "todoist.desktop": {
+                "enable": true,
+                "match": [{ "class": "obsidian" }],
+                "command": ["obsidian"],
+                "move": true
+            }
+        }
+    }
+}
