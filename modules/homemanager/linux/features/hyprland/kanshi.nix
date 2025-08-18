@@ -21,7 +21,8 @@
         profile.outputs = [
           {
             criteria = "eDP-1";
-            status = "disable";
+            position = "2560,0";
+            mode = "1920x1200@60Hz";
           }
           {
             criteria = "Dell Inc. DELL U2724DE 1LRK7P3";
