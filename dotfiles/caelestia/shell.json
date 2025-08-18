@@ -53,6 +53,7 @@
             { "id": "tray", "enabled": true },
             { "id": "statusIcons", "enabled": true },
             { "id": "clock", "enabled": true },
+            { "id": "idleInhibitor", "enabled": true },
             { "id": "power", "enabled": true }
         ],
         "persistent": true,
