@@ -5,7 +5,7 @@ local Util = require("utils")
 -- vim.opt.guifont = { "Operator Mono Lig,MesloLGS NF", "h14" }
 
 -- Set colorscheme
-vim.api.nvim_cmd({ cmd = "colorscheme", args = { "darcula" } }, {})
+vim.api.nvim_cmd({ cmd = "colorscheme", args = { "catppuccin-mocha" } }, {})
 
 -- Disable vim.notify for 500ms
 Util.lazy_notify()
