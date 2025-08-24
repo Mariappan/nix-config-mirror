@@ -39,19 +39,6 @@ local lsp_config = {
       },
     })
 
-    -- Set up completion using nvim_cmp with LSP source
-    local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-    nvim_lsp.flow.setup({
-      on_attach = on_attach,
-      capabilities = capabilities,
-    })
-
-    nvim_lsp.pyright.setup({
-      on_attach = on_attach,
-      capabilities = capabilities,
-    })
-
     -- Show line diagnostics automatically in hover window
     vim.o.updatetime = 250
     -- vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
