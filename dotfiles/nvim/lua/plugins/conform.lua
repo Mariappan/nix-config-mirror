@@ -15,6 +15,13 @@ local plugin = {
       timeout_ms = 500,
       lsp_format = "fallback",
     },
+    formatters = {
+      rustfmt = {
+        options = {
+          default_edition = "2024",
+        }
+      }
+    }
   },
 }
 

@@ -7,7 +7,7 @@ local leap = {
   end,
 }
 
--- Highlight current word, Enable cursorline after a second
+-- Enhanced F/T motions
 local flit = {
   "ggandor/flit.nvim",
   event = "VeryLazy",

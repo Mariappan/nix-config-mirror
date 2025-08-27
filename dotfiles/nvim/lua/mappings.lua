@@ -46,7 +46,6 @@ M.map("n", "X", "<cmd>bnext<cr>") -- Move between buffers
 M.map("n", "W", "<cmd>w<cr>")
 M.map("n", "Q", "<cmd>Sayonara<cr>")
 
-M.map("n", "<Leader>r", ":vsplit $MYVIMRC<cr>")
 M.map("n", "<Leader>=", "gg=G`'") -- Indent the entire file
 
 -- Alignment in visual mode

@@ -40,6 +40,12 @@
         "enabled": true,
         "desktopClock": {
             "enabled": true
+        },
+        "visualiser": {
+            "enabled": true,
+            "autoHide": true,
+            "rounding": 1,
+            "spacing": 1
         }
     },
     "bar": {
@@ -116,6 +122,9 @@
         "expire": true
     },
     "osd": {
+        "enabled": true,
+        "enableBrightness": true,
+        "enableMicrophone": true,
         "hideDelay": 2000
     },
     "paths": {
