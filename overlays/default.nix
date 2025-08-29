@@ -16,9 +16,6 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = _final: prev: {
-    caelestia-shell = inputs.caelestia-shell.packages.${prev.system}.default.overrideAttrs (old: {
-        patches = (old.patches or []) ++ [];
-    });
     vivaldi-wayland =
       prev.vivaldi.override {
         commandLineArgs = ''
