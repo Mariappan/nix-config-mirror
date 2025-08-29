@@ -30,7 +30,7 @@
       pkgs.fzf
       pkgs.gnupg
       pkgs.htop
-      pkgs.hurl
+      # pkgs.hurl
       pkgs.hyperfine
       pkgs.iperf
       pkgs.jq
