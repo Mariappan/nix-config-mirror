@@ -49,6 +49,7 @@
         }
     },
     "bar": {
+        "clock": { "showIcon": false },
         "dragThreshold": 20,
         "entries": [
             { "id": "logo", "enabled": true },
@@ -94,7 +95,8 @@
     },
     "dashboard": {
         "mediaUpdateInterval": 500,
-        "visualiserBars": 45
+        "visualiserBars": 45,
+        "showOnHover": true
     },
     "launcher": {
         "actionPrefix": ">",
@@ -109,7 +111,8 @@
             "schemes": false,
             "variants": false,
             "wallpapers": false
-        }
+        },
+        "showOnHover": false
     },
     "lock": {
         "recolourLogo": false
@@ -122,7 +125,7 @@
         "expire": true
     },
     "osd": {
-        "enabled": true,
+        "enabled": false,
         "enableBrightness": true,
         "enableMicrophone": true,
         "hideDelay": 2000
@@ -133,7 +136,8 @@
         "wallpaperDir": "~/pictures/Wallpapers"
     },
     "services": {
-      "weatherLocation": "10,10",
+      "defaultPlayer": "Spotify",
+      "weatherLocation": "",
       "smartScheme": true,
       "useFahrenheit": false
     },
