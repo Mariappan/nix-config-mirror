@@ -28,6 +28,40 @@
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
 
+  networking.networkmanager = {
+    dispatcherScripts = [ {
+        source = pkgs.writeText "wired-wifi-toggle" ''
+          #!/usr/bin/env ${pkgs.bash}/bin/bash
+
+          # Redirect script output to the system log for easy debugging.
+          exec 1> >(${pkgs.util-linux}/bin/logger -t nm-dispatcher-wired-wifi) 2>&1
+
+          INTERFACE="$1"
+          ACTION="$2"
+
+          # Check if the event is for an Ethernet connection
+          # if [[ "$(${pkgs.networkmanager}/bin/nmcli -g GENERAL.TYPE device show "$INTERFACE")" == "ethernet" ]]; then
+
+          if [[  "$INTERFACE" == "enp0s13f0u4u4u2" ]]; then
+            echo "Ethernet event detected on interface $INTERFACE with action $ACTION."
+
+            case "$ACTION" in
+              "up")
+                echo "Ethernet connection is up. Disabling Wi-Fi..."
+                ${pkgs.networkmanager}/bin/nmcli radio wifi off
+                ;;
+              "down")
+                echo "Ethernet connection is down. Enabling Wi-Fi..."
+                ${pkgs.networkmanager}/bin/nmcli radio wifi on
+                ;;
+            esac
+          fi
+        '';
+        type = "basic";
+      }
+    ];
+  };
+
   # Timezone
   time.timeZone = "Asia/Singapore";
 
