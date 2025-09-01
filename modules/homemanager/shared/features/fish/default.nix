@@ -47,6 +47,22 @@ args@{
           end
         '';
       };
+      _tide_item_netns = {
+        body = ''
+          # echo $tide_right_prompt_items
+          # set --append tide_right_prompt_items netns
+
+          # set -lx tide_netns_color CCFF00
+          # set -lx tide_netns_bg_color normal
+          # set -U tide_netns_icon '<U+F0C53>'
+
+          set output (ip netns identify)
+          if not string length --quiet $output
+            return
+          end
+          _tide_print_item netns $tide_netns_icon' ' $output
+        '';
+      };
     };
 
     shellInit = ''
