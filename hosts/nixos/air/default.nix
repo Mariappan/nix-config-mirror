@@ -75,7 +75,7 @@
   ];
 
   # To avoid HHKB sending Power key on ignoring "Fn+Esc"
-  services.logind.powerKey = "ignore";
+  services.logind.settings.Login.HandlePowerKey = "ignore";
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

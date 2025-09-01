@@ -1,7 +1,7 @@
 {
-  services.logind.lidSwitch = "suspend";
-  services.logind.lidSwitchExternalPower = "ignore";
-  services.logind.lidSwitchDocked = "ignore";
+  services.logind.settings.Login.HandleLidSwitch = "suspend";
+  services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
+  services.logind.settings.Login.HandleLidSwitchDocked = "ignore";
 
   services.upower.enable = true;
   # services.power-profiles-daemon.enable = true;
