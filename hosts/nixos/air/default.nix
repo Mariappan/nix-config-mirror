@@ -29,7 +29,8 @@
   networking.firewall.enable = true;
 
   networking.networkmanager = {
-    dispatcherScripts = [ {
+    dispatcherScripts = [
+      {
         source = pkgs.writeText "wired-wifi-toggle" ''
           #!/usr/bin/env ${pkgs.bash}/bin/bash
 

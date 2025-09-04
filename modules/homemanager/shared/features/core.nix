@@ -16,51 +16,50 @@
   home.sessionVariables = {
     EDITOR = "hx";
   };
-  home.packages =
-    [
-      pkgs.atuin
-      pkgs.bat
-      pkgs.chezmoi
-      pkgs.cmake
-      pkgs.difftastic
-      pkgs.earthly
-      pkgs.expect
-      pkgs.fd
-      pkgs.file
-      pkgs.fzf
-      pkgs.gnupg
-      pkgs.htop
-      # pkgs.hurl
-      pkgs.hyperfine
-      pkgs.iperf
-      pkgs.jq
-      pkgs.lsd
-      pkgs.lsof
-      pkgs.qpdf
-      pkgs.python3
-      pkgs.rsync
-      pkgs.ripgrep
-      pkgs.sshuttle
-      pkgs.tldr
-      pkgs.tor
-      pkgs.torsocks
-      pkgs.tree
-      pkgs.universal-ctags
-      pkgs.xan
-      pkgs.yasm
-      pkgs.zip
-      pkgs.unzip
-      pkgs.wget
-      pkgs.devenv
-      #pkgs.jetbrains.rust-rover
-      #pkgs.jetbrains.jdk
-      #pkgs.yubikey-manager
-      # pkgs.ookla-speedtest # Need export NIXPKGS_ALLOW_UNFREE=1
-    ]
-    ++ lib.optionals pkgs.stdenv.isLinux [
-      pkgs.ncdu
-      pkgs.app2unit
-    ];
+  home.packages = [
+    pkgs.atuin
+    pkgs.bat
+    pkgs.chezmoi
+    pkgs.cmake
+    pkgs.difftastic
+    pkgs.earthly
+    pkgs.expect
+    pkgs.fd
+    pkgs.file
+    pkgs.fzf
+    pkgs.gnupg
+    pkgs.htop
+    # pkgs.hurl
+    pkgs.hyperfine
+    pkgs.iperf
+    pkgs.jq
+    pkgs.lsd
+    pkgs.lsof
+    pkgs.qpdf
+    pkgs.python3
+    pkgs.rsync
+    pkgs.ripgrep
+    pkgs.sshuttle
+    pkgs.tldr
+    pkgs.tor
+    pkgs.torsocks
+    pkgs.tree
+    pkgs.universal-ctags
+    pkgs.xan
+    pkgs.yasm
+    pkgs.zip
+    pkgs.unzip
+    pkgs.wget
+    pkgs.devenv
+    #pkgs.jetbrains.rust-rover
+    #pkgs.jetbrains.jdk
+    #pkgs.yubikey-manager
+    # pkgs.ookla-speedtest # Need export NIXPKGS_ALLOW_UNFREE=1
+  ]
+  ++ lib.optionals pkgs.stdenv.isLinux [
+    pkgs.ncdu
+    pkgs.app2unit
+  ];
 
   programs.atuin.enable = true;
   programs.atuin.enableFishIntegration = true;

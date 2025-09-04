@@ -7,8 +7,8 @@
     nixma = import ../packages { pkgs = final; };
 
     hyprlockfix = prev.pkgs.writeShellScriptBin "hyprlockfix" ''
-        hyprctl --instance 0 "keyword misc:allow_session_lock_restore 1"
-        hyprctl --instance 0 "dispatch exec hyprlock"
+      hyprctl --instance 0 "keyword misc:allow_session_lock_restore 1"
+      hyprctl --instance 0 "dispatch exec hyprlock"
     '';
   };
 
@@ -16,15 +16,14 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = _final: prev: {
-    vivaldi-wayland =
-      prev.vivaldi.override {
-        commandLineArgs = ''
-            --enable-features=UseOzonePlatform
-            --ozone-platform=wayland
-            --ozone-platform-hint=auto
-            --enable-features=WaylandWindowDecorations
-          '';
-        };
+    vivaldi-wayland = prev.vivaldi.override {
+      commandLineArgs = ''
+        --enable-features=UseOzonePlatform
+        --ozone-platform=wayland
+        --ozone-platform-hint=auto
+        --enable-features=WaylandWindowDecorations
+      '';
+    };
   };
 
   unused = _final: prev: {
