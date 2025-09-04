@@ -132,7 +132,7 @@
     },
     "paths": {
         "mediaGif": "root:/assets/bongocat.gif",
-        "sessionGif": "root:/assets/kurukuru.gif",
+        "sessionGif": "~/.face.gif",
         "wallpaperDir": "~/pictures/Wallpapers"
     },
     "services": {
