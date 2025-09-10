@@ -7,7 +7,8 @@ update:
 # Build nixos
 [linux]
 build flake='.':
-    nh os switch {{flake}} -- --accept-flake-config
+    # nh os switch {{flake}} -- --accept-flake-config
+    sudo nixos-rebuild switch --flake {{flake}}
 
 # Build nix-darwin
 [macos]

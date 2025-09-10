@@ -19,4 +19,6 @@
 
   xdg.cacheHome = "${config.home.homeDirectory}/.cache";
   xdg.configHome = "${config.home.homeDirectory}/.config";
+
+  xdg.mime.enable = true;
 }

@@ -17,7 +17,7 @@
 
   home.activation = {
     caelestiaAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      run cp ../../../../dotfiles/caelestia/goku.gif ~/.face.gif
+      run cp ${../../../../dotfiles/caelestia/goku.gif} ~/.face.gif
     '';
   };
 }

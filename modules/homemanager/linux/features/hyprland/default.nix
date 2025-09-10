@@ -94,17 +94,29 @@
   };
 
   programs.imv.enable = true;
+  xdg.mimeApps.enable = true;
+  xdg.mimeApps.defaultApplications = {
+    "image/*" = "imv.desktop";
+    "image/gif" = "imv.desktop";
+    "text/html" = "neovide.desktop";
+    "application/pdf" = "vivaldi-stable.desktop";
+    "application/rdf+xml" = "vivaldi-stable.desktop";
+    "application/rss+xml" = "vivaldi-stable.desktop";
+    "application/xhtml+xml" = "vivaldi-stable.desktop";
+    "application/xhtml_xml" = "vivaldi-stable.desktop";
+    "application/xml" = "vivaldi-stable.desktop";
+    "x-scheme-handler/http" = "vivaldi-stable.desktop";
+    "x-scheme-handler/https" = "vivaldi-stable.desktop";
+    "x-scheme-handler/about" = "vivaldi-stable.desktop";
+    "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
+  };
 
   home.packages = [
-    pkgs.hyprlandPlugins.hy3
-
-    # Screenshot utility
-    pkgs.hyprshot
-    pkgs.slurp
-
-    pkgs.hyprpicker
     pkgs.wl-clipboard
 
+    pkgs.hyprlandPlugins.hy3
+
+    pkgs.hyprpicker
     pkgs.wlr-which-key
 
     # Screenshot utility

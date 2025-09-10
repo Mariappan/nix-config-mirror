@@ -143,6 +143,14 @@
                 "dangerous": false
             },
             {
+                "name": "Screenshot",
+                "icon": "screenshot",
+                "description": "Take a screenshot",
+                "command": ["caelestia", "screenshot", "-r"],
+                "enabled": true,
+                "dangerous": false
+            },
+            {
                 "name": "Random",
                 "icon": "casino",
                 "description": "Switch to a random wallpaper",
