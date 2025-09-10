@@ -43,6 +43,7 @@ in
     }
   ];
 
+  home-manager.verbose = true;
   home-manager.users = {
     root = libx.mkNixOsUserConf "root" {
       nixma.linux.bundles.root.enable = true;
