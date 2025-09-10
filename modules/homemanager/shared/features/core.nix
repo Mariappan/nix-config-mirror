@@ -28,6 +28,7 @@
     pkgs.file
     pkgs.fzf
     pkgs.gnupg
+    pkgs.duf
     pkgs.htop
     # pkgs.hurl
     pkgs.hyperfine
