@@ -36,5 +36,6 @@
     pkgs.awscli2
     pkgs.aws-sso-cli
     pkgs.nixma.treewalker
+    pkgs.ookla-speedtest
   ];
 }
