@@ -13,8 +13,9 @@ local plugin = {
       "gitignore", "go", "gomod", "gosum", "gotmpl", "gowork", "gpg", "hcl", "helm", "html",
       "http", "hurl", "java", "javascript", "jq", "json", "llvm", "lua", "luau", "markdown",
       "meson", "nasm", "ninja", "nix", "nu", "objdump", "passwd", "pem", "perl", "printf",
-      "python", "readline", "regex", "rust", "sql", "ssh_config", "strace", "terraform", "tmux",
-      "toml", "tsv", "typescript", "udev", "vim", "vimdoc", "query", "xml", "yaml", "yang", "zig",
+      "python", "readline", "regex", "rust", "sql", "ssh_config", "strace", "svelte",
+      "terraform", "tmux", "toml", "tsv", "typescript", "udev", "vim", "vimdoc", "query",
+      "xml", "yaml", "yang", "zig",
     }
     ts.setup({
       ensure_installed = langs,
