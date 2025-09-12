@@ -12,6 +12,6 @@
     # pkgs.netcat-openbsd
   ]
   ++ lib.optionals pkgs.stdenv.isLinux [
-    pkgs.tigervnc
+    # pkgs.tigervnc
   ];
 }
