@@ -5,10 +5,16 @@
     settings = {
       font = {
         normal = [
-          "Victor Mono"
-          "MesloNGS NF"
+          "Maple Mono Light"
+          "MesloLGS NF"
         ];
         size = 10.0;
+        bold_italic = [
+          {
+            family = "Script12 BT";
+            style = "Bold Italic";
+          }
+        ];
         italic = [
           {
             family = "Script12 BT";

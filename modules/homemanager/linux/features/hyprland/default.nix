@@ -126,5 +126,6 @@
     pkgs.wayprompt
 
     pkgs.hyprlockfix
+    pkgs.brightnessctl
   ];
 }

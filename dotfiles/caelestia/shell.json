@@ -139,7 +139,7 @@
                 "icon": "opacity",
                 "description": "Change shell transparency",
                 "command": ["autocomplete", "transparency"],
-                "enabled": false,
+                "enabled": true,
                 "dangerous": false
             },
             {
@@ -173,30 +173,6 @@
                 "command": ["setMode", "dark"],
                 "enabled": true,
                 "dangerous": false
-            },
-            {
-                "name": "Shutdown",
-                "icon": "power_settings_new",
-                "description": "Shutdown the system",
-                "command": ["systemctl", "poweroff"],
-                "enabled": true,
-                "dangerous": true
-            },
-            {
-                "name": "Reboot",
-                "icon": "cached",
-                "description": "Reboot the system",
-                "command": ["systemctl", "reboot"],
-                "enabled": true,
-                "dangerous": true
-            },
-            {
-                "name": "Logout",
-                "icon": "exit_to_app",
-                "description": "Log out of the current session",
-                "command": ["loginctl", "terminate-user", ""],
-                "enabled": true,
-                "dangerous": true
             },
             {
                 "name": "Lock",
@@ -240,7 +216,7 @@
         "expire": true
     },
     "osd": {
-        "enabled": false,
+        "enabled": true,
         "enableBrightness": true,
         "enableMicrophone": true,
         "hideDelay": 2000
@@ -265,6 +241,9 @@
             "hibernate": ["systemctl", "hibernate"],
             "reboot": ["systemctl", "reboot"]
         }
+    },
+    "utilities": {
+      "enabled": true
     }
 }
 
