@@ -40,7 +40,7 @@ pkgs.writeScriptBin "wired_wifi_toggle" ''
 
           if [[ -n "$GATEWAY" ]] && ${pkgs.iputils}/bin/ping -c 2 -W 3 "$GATEWAY" >/dev/null 2>&1; then
             echo "Gateway $GATEWAY is reachable via ethernet. Disabling Wi-Fi..."
-            # ${pkgs.networkmanager}/bin/nmcli radio wifi off
+            ${pkgs.networkmanager}/bin/nmcli radio wifi off
           else
             echo "Gateway not reachable via ethernet. Keeping Wi-Fi enabled."
           fi
@@ -50,7 +50,7 @@ pkgs.writeScriptBin "wired_wifi_toggle" ''
         ;;
       "down")
         echo "Ethernet connection is down. Enabling Wi-Fi..."
-        # ${pkgs.networkmanager}/bin/nmcli radio wifi on
+        ${pkgs.networkmanager}/bin/nmcli radio wifi on
         ;;
     esac
   fi
