@@ -88,7 +88,7 @@
   programs.ghostty.enable = true;
   programs.ghostty.enableFishIntegration = true;
   programs.ghostty.settings = {
-    theme = "GruvboxDark";
+    theme = "Gruvbox Dark";
 
     font-family = [
       "Maple Mono"
@@ -118,10 +118,13 @@
 
     app-notifications = "clipboard-copy";
     window-padding-x = "5,5";
+    quick-terminal-position = "top";
+    quick-terminal-size = "35%,75%";
 
     keybind = [
       # Claude shift enter to enter
       "shift+enter=text:\x1b\r"
+      "global:ctrl+grave_accent=toggle_quick_terminal"
     ];
   };
 
