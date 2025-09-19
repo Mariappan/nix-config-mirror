@@ -66,6 +66,8 @@
   services.gnome-keyring.enable = true;
   services.hyprpolkitagent.enable = true;
 
+  services.udiskie.enable = true;
+
   xdg.portal = {
     enable = true;
     config = {

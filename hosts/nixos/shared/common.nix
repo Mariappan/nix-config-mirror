@@ -83,6 +83,8 @@
   ];
   services.ntp.enable = true;
 
+  services.udisks2.enable = true;
+
   services.avahi.enable = true;
   services.avahi.nssmdns4 = true;
   services.avahi.publish.enable = true;
