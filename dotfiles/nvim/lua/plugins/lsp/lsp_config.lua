@@ -1,30 +1,7 @@
 local lsp_config = {
   "neovim/nvim-lspconfig",
   config = function()
-    local nvim_lsp = require("lspconfig")
     local vim = vim
-
-    nvim_lsp.lua_ls.setup({
-      on_attach = on_attach,
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
-          workspace = {
-            library = vim.api.nvim_get_runtime_file("", true),
-            checkThirdParty = false,
-          },
-        },
-      },
-      commands = {
-        Format = {
-          function()
-            require("stylua-nvim").format_file()
-          end,
-        },
-      },
-    })
 
     -- Show line diagnostics automatically in hover window
     vim.o.updatetime = 250

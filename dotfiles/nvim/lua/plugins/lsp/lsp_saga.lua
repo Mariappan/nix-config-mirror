@@ -12,18 +12,6 @@ local plugin = {
       return
     end
 
-    saga.setup({
-      symbol_in_winbar = {
-        enable = true,
-        separator = "  ",
-        hide_keyword = true,
-        show_file = true,
-        folder_level = 2,
-        respect_root = false,
-        color_mode = true,
-      },
-    })
-
     local vim = vim
     local opts = { noremap = true, silent = true }
     vim.keymap.set("n", "<C-j>", "<Cmd>Lspsaga diagnostic_jump_next<CR>", opts)
