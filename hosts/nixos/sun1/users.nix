@@ -24,6 +24,7 @@ in
       "networkmanager"
       "vboxusers"
       "input"
+      "incus-admin"
     ];
     isNormalUser = true;
     openssh.authorizedKeys.keys = [

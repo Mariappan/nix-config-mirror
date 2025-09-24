@@ -15,9 +15,9 @@
     };
   };
 
-  home.activation = {
-    caelestiaAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-      run cp ${../../../../dotfiles/caelestia/goku.gif} ~/.face.gif
-    '';
-  };
+  # home.activation = {
+  #   caelestiaAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  #     run cp ${../../../../dotfiles/caelestia/goku.gif} ~/.face.gif
+  #   '';
+  # };
 }

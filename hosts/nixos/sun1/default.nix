@@ -33,6 +33,11 @@
 
   services.hardware.bolt.enable = true;
 
+  virtualisation.incus.enable = true;
+  networking.nftables.enable = true;
+  networking.firewall.trustedInterfaces = [ "incusbr0" ];
+  virtualisation.vswitch.enable = true;
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [

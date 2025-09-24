@@ -100,6 +100,7 @@
 
   xdg.mimeApps.enable = true;
   xdg.mimeApps.defaultApplications = {
+    "default-web-browser" = [ "vivaldi-stable.desktop" ];
     "image/*" = "imv.desktop";
     "image/gif" = "imv.desktop";
     "text/html" = "neovide.desktop";
