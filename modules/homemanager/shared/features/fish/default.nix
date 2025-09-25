@@ -120,12 +120,19 @@ args@{
           }
           set fish_user_paths $fish_user_paths
 
-          # Add user local paths
-          fish_add_path ~/.local/bin
-          fish_add_path ~/.krew/bin
-          fish_add_path ~/.cargo/bin
-          fish_add_path /opt/homebrew/bin
-          fish_add_path ~/Applications/Bin
+          set -l os (uname)
+          if test "$os" = Darwin
+              # Add user local paths
+              fish_add_path ~/.local/bin
+              fish_add_path ~/.krew/bin
+              fish_add_path ~/.cargo/bin
+              fish_add_path /opt/homebrew/bin
+              fish_add_path ~/Applications/Bin
+          else if test "$os" = Linux
+              # do things for Linux
+          else
+              # do things for other operating systems
+          end
         ''
       );
 
