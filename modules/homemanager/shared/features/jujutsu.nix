@@ -22,6 +22,7 @@
   };
 
   home.packages = [
-    # pkgs.lazyjj
+     pkgs.lazyjj
+     pkgs.meld
   ];
 }
