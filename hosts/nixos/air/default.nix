@@ -19,6 +19,7 @@
     ../shared/1password.nix
     ../shared/virtualbox.nix
     ../shared/nvidia.nix
+    ../shared/fprint.nix
   ];
 
   programs.yubikey-touch-detector.enable = true;
