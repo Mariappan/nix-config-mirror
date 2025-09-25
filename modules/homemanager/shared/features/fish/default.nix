@@ -90,6 +90,10 @@ args@{
         alias vim="nvim"
       end
 
+      if command -q hx
+        alias vim="hx"
+      end
+
       if command -q rbenv
         rbenv init - --no-rehash fish | source
       end
