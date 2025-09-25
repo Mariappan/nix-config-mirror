@@ -99,6 +99,9 @@ args@{
       end
 
       abbr 4DIRS --set-cursor=! "$(string join \n -- 'for dir in */' 'cd $dir' '!' 'cd ..' 'end')"
+
+      # Fix until Atiun adapt for new fish syntax
+      bind up _atuin_bind_up
     '';
 
     loginShellInit =
