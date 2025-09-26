@@ -19,6 +19,7 @@
     ../shared/1password.nix
     ../shared/virtualbox.nix
     ../shared/nvidia.nix
+    ../shared/screenrecorder.nix
     ../shared/fprint.nix
   ];
 
