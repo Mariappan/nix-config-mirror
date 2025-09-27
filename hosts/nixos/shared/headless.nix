@@ -11,7 +11,7 @@
 
   # Without this, systemd-logind will eat 1 full CPU
   # https://discussion.fedoraproject.org/t/systemd-logind-eats-cpu-when-closing-laptop-lid/67805/3
-  services.logind.lidSwitch = lib.mkDefault "ignore";
+  services.logind.settings.Login.HandleLidSwitch = lib.mkDefault "ignore";
 
   services.displayManager.gdm.autoSuspend = false;
   security.polkit.extraConfig = ''

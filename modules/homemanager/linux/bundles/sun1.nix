@@ -16,5 +16,6 @@
 
   home.packages = [
     pkgs.vivaldi-wayland
+    pkgs.claude-code
   ];
 }
