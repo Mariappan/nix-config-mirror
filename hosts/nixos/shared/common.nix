@@ -75,8 +75,6 @@
     flake = "/home/maari/nix-config";
   };
 
-  programs.gpu-screen-recorder.enable = true;
-
   networking.timeServers = [
     "0.sg.pool.ntp.org"
     "1.sg.pool.ntp.org"

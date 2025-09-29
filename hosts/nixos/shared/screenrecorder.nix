@@ -1,7 +1,9 @@
 { pkgs, ... }: {
+
   nixpkgs.config.packageOverrides = pkgs: {
     intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
   };
+
   hardware.opengl = { # hardware.graphics since NixOS 24.11
     enable = true;
     extraPackages = with pkgs; [
