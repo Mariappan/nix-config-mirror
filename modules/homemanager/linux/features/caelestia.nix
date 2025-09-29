@@ -15,9 +15,13 @@
     };
   };
 
-  # home.activation = {
-  #   caelestiaAction = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-  #     run cp ${../../../../dotfiles/caelestia/goku.gif} ~/.face.gif
-  #   '';
-  # };
+  programs.swappy.enable = true;
+  programs.swappy.settings = {
+    Default = {
+      auto_save = false;
+      save_dir = "$XDG_PICTURES_DIR/Screenshots/";
+      save_filename_format = "Screenshot-%Y%m%d-%H%M%S.png";
+      transparent = false;
+    };
+  };
 }
