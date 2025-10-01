@@ -38,6 +38,8 @@
   networking.firewall.trustedInterfaces = [ "incusbr0" "net_ovsbr0" ];
   virtualisation.vswitch.enable = true;
 
+  programs.niri.enable = true;
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [

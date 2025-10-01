@@ -64,6 +64,9 @@ rec {
     imports = [
       inputs.nix-index-database.homeModules.nix-index
       inputs.caelestia-shell.homeManagerModules.default
+      inputs.niri.homeModules.niri
+      inputs.dankMaterialShell.homeModules.dankMaterialShell.default
+      inputs.dankMaterialShell.homeModules.dankMaterialShell.niri
       outputs.homeManagerModules.default
       outputs.homeManagerModules.linux
     ];
