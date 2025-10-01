@@ -141,14 +141,14 @@
   "dockAutoHide": true,
   "dockGroupByApp": false,
   "dockOpenOnOverview": true,
-  "dockPosition": 1,
+  "dockPosition": 0,
   "dockSpacing": 4,
   "dockBottomGap": 0,
   "cornerRadius": 12,
-  "notificationOverlayEnabled": false,
+  "notificationOverlayEnabled": true,
   "dankBarAutoHide": false,
-  "dankBarOpenOnOverview": false,
-  "dankBarVisible": true,
+  "dankBarOpenOnOverview": true,
+  "dankBarVisible": false,
   "dankBarSpacing": 4,
   "dankBarBottomGap": 0,
   "dankBarInnerPadding": 4,
@@ -161,9 +161,16 @@
   "widgetBackgroundColor": "sch",
   "surfaceBase": "s",
   "notificationTimeoutLow": 5000,
-  "notificationTimeoutNormal": 5000,
+  "notificationTimeoutNormal": 10000,
   "notificationTimeoutCritical": 0,
   "notificationPopupPosition": 0,
-  "screenPreferences": {},
+  "screenPreferences": {
+    "dankBar": [
+      "all"
+    ],
+    "dock": [
+      "all"
+    ]
+  },
   "animationSpeed": 2
 }

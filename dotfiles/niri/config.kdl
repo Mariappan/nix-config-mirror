@@ -331,6 +331,14 @@ window-rule {
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id="^1Password$"
+    match title="^VirtualBox "
+    match app-id="^imv"
+    match app-id="^mpv"
+    match app-id="^spotify"
+    match title="^Select what to share$"
+    match app-id="^xdg-desktop-portal-gtk" title="^All Files$"
+
     open-floating true
 }
 
@@ -338,6 +346,7 @@ window-rule {
 window-rule {
     match app-id=r#"^org\.keepassxc\.KeePassXC$"#
     match app-id=r#"^org\.gnome\.World\.Secrets$"#
+    match app-id="^1Password$"
 
     block-out-from "screen-capture"
 
@@ -349,6 +358,15 @@ window-rule {
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
+}
+
+layer-rule {
+    match namespace="^notifications$"
+
+    block-out-from "screen-capture"
+
+    // Use this instead if you want them visible on third-party screenshot tools.
+    // block-out-from "screencast"
 }
 
 binds {
@@ -617,4 +635,17 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+
+    Mod+Ctrl+Q { spawn "dms" "ipc" "lock" "lock"; }
+    Mod+Shift+Q { spawn "dms" "ipc" "powermenu" "toggle"; }
+
+    Mod+Return { spawn "ghostty"; }
+    Mod+Space { spawn "dms" "ipc" "spotlight" "toggle"; }
+    Mod+Shift+D { spawn "dms" "ipc" "notifications" "toggle"; }
+
+    // 1password
+    Mod+Backslash { spawn "1password" "--toggle"; }
+    Mod+Shift+Space { spawn "1password" "--quick-access"; }
+
+    Mod+Ctrl+Alt+Q allow-when-locked=true { spawn "hyprlock"; }
 }
