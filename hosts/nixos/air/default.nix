@@ -45,6 +45,8 @@
   # Enable fstrim for SSD
   services.fstrim.enable = true;
 
+  programs.niri.enable = true;
+
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [

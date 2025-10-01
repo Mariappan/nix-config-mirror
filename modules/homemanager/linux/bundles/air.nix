@@ -15,10 +15,13 @@
   nixma.neovide.enable = true;
   nixma.wezterm.enable = true;
   nixma.linux.dconf.enable = true;
-  nixma.linux.hyprland.enable = true;
-  nixma.linux.caelestia.enable = true;
   nixma.linux.nixos.enable = true;
   nixma.linux.xdg.enable = true;
+
+  nixma.linux.ghostty.enable = true;
+  programs.niri.enable = true;
+  programs.dankMaterialShell.enable = true;
+  programs.dankMaterialShell.enableSystemd = true;
 
   home.packages = [
     pkgs.google-chrome

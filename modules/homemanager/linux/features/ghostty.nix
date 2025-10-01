@@ -36,6 +36,8 @@
     quick-terminal-position = "top";
     quick-terminal-size = "35%,75%";
 
+    window-decoration = "none";
+
     keybind = [
       # Claude shift enter to enter
       "shift+enter=text:\x1b\r"
