@@ -3,7 +3,6 @@
     ./wayland
     ./ghostty.nix
     ./foot.nix
-    ./wayland/waybar.nix
     ./wayland/swaync.nix
     ./wayland/walker.nix
     ./wayland/swww.nix
