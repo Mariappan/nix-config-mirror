@@ -12,7 +12,7 @@
     ../shared/common.nix
     ../shared/manpages.nix
     ../shared/lanzaboote.nix
-    ../shared/hyprland.nix
+    ../shared/niri.nix
     ../shared/laptop.nix
     ../shared/sound.nix
     ../shared/docker.nix
@@ -45,8 +45,6 @@
   # Enable fstrim for SSD
   services.fstrim.enable = true;
 
-  programs.niri.enable = true;
-
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
@@ -55,6 +53,16 @@
 
   # To avoid HHKB sending Power key on ignoring "Fn+Esc"
   services.logind.settings.Login.HandlePowerKey = "ignore";
+
+  # Lock when yubikey is plugged out
+  services.udev.extraRules = ''
+    ACTION=="remove",\
+     ENV{ID_BUS}=="usb",\
+     ENV{ID_MODEL_ID}=="0407",\
+     ENV{ID_VENDOR_ID}=="1050",\
+     ENV{ID_VENDOR}=="Yubico",\
+     RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
+  '';
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
