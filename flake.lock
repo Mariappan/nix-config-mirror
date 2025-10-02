@@ -46,6 +46,22 @@
         "type": "github"
       }
     },
+    "cosmic-ext-extra-sessions": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743593657,
+        "narHash": "sha256-6JiWdBry63NrnmK3mt9gGSDAcyx/f6L5QsIgZSUakQI=",
+        "owner": "KiaraGrouwstra",
+        "repo": "cosmic-ext-extra-sessions",
+        "rev": "66e065728d81eab86171e542dad08fb628c88494",
+        "type": "github"
+      },
+      "original": {
+        "owner": "KiaraGrouwstra",
+        "repo": "cosmic-ext-extra-sessions",
+        "type": "github"
+      }
+    },
     "crane": {
       "locked": {
         "lastModified": 1731098351,
@@ -749,6 +765,7 @@
     "root": {
       "inputs": {
         "caelestia-shell": "caelestia-shell",
+        "cosmic-ext-extra-sessions": "cosmic-ext-extra-sessions",
         "dankMaterialShell": "dankMaterialShell",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",

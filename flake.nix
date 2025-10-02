@@ -49,6 +49,10 @@
       url = "github:sodiboo/niri-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    cosmic-ext-extra-sessions = {
+      url = "github:KiaraGrouwstra/cosmic-ext-extra-sessions?niri-screen-share";
+      flake = false;
+    };
   };
 
   outputs =

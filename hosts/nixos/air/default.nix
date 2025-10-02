@@ -12,7 +12,6 @@
     ../shared/common.nix
     ../shared/manpages.nix
     ../shared/lanzaboote.nix
-    ../shared/niri.nix
     ../shared/laptop.nix
     ../shared/sound.nix
     ../shared/docker.nix
@@ -21,6 +20,8 @@
     ../shared/nvidia.nix
     ../shared/screenrecorder.nix
     ../shared/fprint.nix
+
+    ../shared/cosmic.nix
   ];
 
   programs.yubikey-touch-detector.enable = true;

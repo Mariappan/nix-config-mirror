@@ -10,4 +10,5 @@ rec {
   script12bt-font = pkgs.callPackage ./script12bt-font { };
   meslolgsnf-font = pkgs.callPackage ./meslolgsnf-font { };
   wired_wifi_toggle = pkgs.callPackage ./wired_wifi_toggle { };
+  cosmic-ext-alt = pkgs.callPackage ./cosmic-ext-alt { };
 }
