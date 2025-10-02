@@ -1,7 +1,7 @@
 {
     "margin": "20 20 0 20",
 
-    "modules-left": ["hyprland/workspaces", "keyboard-state"],
+    "modules-left": ["niri/workspaces", "keyboard-state"],
     "modules-center": ["clock", "custom/weather"],
     "modules-right": ["pulseaudio", "custom/notification", "network", "custom/mem", "backlight", "battery", "tray", "custom/suspend"],
 
@@ -16,6 +16,17 @@
           "DP-3": [ 1, 2, 3, 4, 5 ],
           "DP-4": [ 1, 2, 3, 4, 5 ]
         }
+    },
+
+    "niri/workspaces": {
+    	"format": "{icon}",
+    	"format-icons": {
+    		"browser": "",
+    		"discord": "",
+    		"chat": "<b></b>",
+    		"active": "",
+    		"default": ""
+    	}
     },
 
     "custom/notification": {

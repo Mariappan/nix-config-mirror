@@ -222,6 +222,7 @@ layout {
 
 // This line starts waybar, a commonly used bar for Wayland compositors.
 // spawn-at-startup "waybar"
+spawn-at-startup "ghostty"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -578,7 +579,7 @@ binds {
     Mod+Shift+Q { spawn "dms" "ipc" "powermenu" "toggle"; }
 
     Mod+Return { spawn "ghostty"; }
-    Mod+Space { spawn "dms" "ipc" "spotlight" "toggle"; }
+    Mod+Space { spawn "walker"; }
     Mod+Shift+D { spawn "dms" "ipc" "notifications" "toggle"; }
 
     // 1password

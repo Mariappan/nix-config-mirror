@@ -32,7 +32,7 @@ in
     '';
 
     systemd.enable = true;
-    systemd.target = "hyprland-session.target";
+    systemd.target = "graphical-session.target";
   };
 
   home.packages = [

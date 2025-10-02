@@ -3,11 +3,13 @@
     ./wayland
     ./ghostty.nix
     ./foot.nix
+    ./wayland/waybar.nix
+    ./wayland/swaync.nix
+    ./wayland/walker.nix
+    ./wayland/swww.nix
   ];
 
   programs.niri.enable = true;
-  programs.dankMaterialShell.enable = true;
-  programs.dankMaterialShell.enableSystemd = true;
 
   xdg.portal = {
     extraPortals = with pkgs; [

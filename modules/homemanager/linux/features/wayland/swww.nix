@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  systemdTarget = "hyprland-session.target";
+  systemdTarget = "graphical-session.target";
   swwwSystemdService = "swww.service";
 in
 {
@@ -34,6 +34,7 @@ in
 
     Service = {
       Type = "oneshot";
+      ExecStartPre = "sleep 2";
       ExecStart = "${pkgs.swww}/bin/swww img %h/pictures/wallpaper.jpg";
     };
 
