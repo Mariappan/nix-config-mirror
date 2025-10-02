@@ -6,9 +6,9 @@
 {
   imports = [
     ../wayland
+    ../wayland/kanshi.nix
     ./hypridle.nix
     ./hyprlock.nix
-    ./kanshi.nix
   ];
 
   wayland.windowManager.hyprland = {
