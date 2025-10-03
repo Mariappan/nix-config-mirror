@@ -2,15 +2,27 @@
   imports = [
     ./wayland
     ./ghostty.nix
-    ./foot.nix
   ];
 
   programs.niri.enable = true;
 
+  # Polkit for auth
+  services.polkit-gnome.enable = true;
+
+  # Poral for xdg-open
   xdg.portal = {
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-gnome
-    ];
+    config = {
+      niri = {
+        default = [
+          "gtk"
+          "gnome"
+        ];
+        "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+        "org.freedesktop.impl.portal.Screenshot" = [ "gnome" ];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+        "org.freedesktop.portal.FileChooser" = [ "xdg-desktop-portal-gtk" ];
+      };
+    };
   };
 
   home.packages = [

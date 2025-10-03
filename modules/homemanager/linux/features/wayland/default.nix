@@ -43,15 +43,17 @@
     config = {
       common = {
         default = [
-          "xdph"
           "gtk"
+          "gnome"
         ];
         "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
         "org.freedesktop.portal.FileChooser" = [ "xdg-desktop-portal-gtk" ];
       };
     };
     extraPortals = with pkgs; [
+      xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
     ];
   };
 

@@ -9,6 +9,7 @@
     ../wayland/kanshi.nix
     ./hypridle.nix
     ./hyprlock.nix
+    ../ghostty.nix
   ];
 
   wayland.windowManager.hyprland = {
@@ -44,9 +45,17 @@
   services.hyprpolkitagent.enable = true;
 
   xdg.portal = {
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
-    ];
+    config = {
+      Hyprland = {
+        default = [
+          "xdph"
+          "gtk"
+          "gnome"
+        ];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+        "org.freedesktop.portal.FileChooser" = [ "xdg-desktop-portal-gtk" ];
+      };
+    };
   };
 
   home.packages = [

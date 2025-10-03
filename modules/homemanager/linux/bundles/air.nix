@@ -1,10 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
-{
-
+{ pkgs, ... }: {
   nixma.core.enable = true;
   nixma.git.enable = true;
   nixma.jujutsu.enable = true;
@@ -20,7 +14,6 @@
   nixma.linux.xdg.enable = true;
 
   nixma.linux.niri.enable = true;
-  services.hyprpolkitagent.enable = true;
 
   home.packages = [
     pkgs.google-chrome
