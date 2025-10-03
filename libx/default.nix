@@ -67,6 +67,7 @@ rec {
       inputs.caelestia-shell.homeManagerModules.default
       inputs.niri.homeModules.niri
       inputs.noctalia.homeModules.default
+      inputs.vicinae.homeManagerModules.default
       outputs.homeManagerModules.default
       outputs.homeManagerModules.linux
     ];
