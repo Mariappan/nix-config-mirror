@@ -3,9 +3,6 @@
     ./wayland
     ./ghostty.nix
     ./foot.nix
-    ./wayland/swaync.nix
-    ./wayland/walker.nix
-    ./wayland/swww.nix
   ];
 
   programs.niri.enable = true;

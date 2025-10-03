@@ -15,4 +15,6 @@
       "com.mitchellh.ghostty"
     ];
   };
+
+  services.noctalia-shell.enable = true;
 }

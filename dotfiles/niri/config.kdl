@@ -305,6 +305,7 @@ window-rule {
 
 layer-rule {
     match namespace="notification"
+    match namespace="^noctalia-notifications$"
     block-out-from "screen-capture"
 }
 
@@ -333,23 +334,7 @@ binds {
     // For example, this is a standard bind to toggle the screen reader (orca).
     Super+Alt+S allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill orca || exec orca"; }
 
-    // Example volume keys mappings for PipeWire & WirePlumber.
-    // The allow-when-locked=true property makes them work even when the session is locked.
-    // Using spawn-sh allows to pass multiple arguments together with the command.
-    XF86AudioRaiseVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.1-"; }
-    XF86AudioMute        allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"; }
-    XF86AudioMicMute     allow-when-locked=true { spawn-sh "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"; }
-
-    // Example brightness key mappings for brightnessctl.
-    // You can use regular spawn with multiple arguments too (to avoid going through "sh"),
-    // but you need to manually put each argument in separate "" quotes.
-    XF86MonBrightnessUp allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "+10%"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "brightnessctl" "--class=backlight" "set" "10%-"; }
-
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
-    // You can also move the mouse into the top-left hot corner,
-    // or do a four-finger swipe up on a touchpad.
     Mod+O repeat=false { toggle-overview; }
 
     Mod+Q repeat=false { close-window; }
@@ -575,16 +560,29 @@ binds {
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
 
-    Mod+Ctrl+Q { spawn "dms" "ipc" "lock" "lock"; }
-    Mod+Shift+Q { spawn "dms" "ipc" "powermenu" "toggle"; }
-
-    Mod+Return { spawn "ghostty"; }
-    Mod+Space { spawn "walker"; }
-    Mod+Shift+D { spawn "dms" "ipc" "notifications" "toggle"; }
-
     // 1password
     Mod+Backslash { spawn "1password" "--toggle"; }
     Mod+Shift+Space { spawn "1password" "--quick-access"; }
 
+    Mod+Return { spawn "ghostty"; }
+    Mod+Shift+D { spawn "noctalia-shell" "ipc" "call" "notifications" "toggleHistory"; }
+
+    Mod+Ctrl+Q { spawn "noctalia-shell" "ipc" "call" "lockScreen" "toggle"; }
+    Mod+Shift+Q { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
+
+    // Core Noctalia binds
+    Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
+
+    // Audio controls
+    XF86AudioRaiseVolume { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
+    XF86AudioLowerVolume { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
+    XF86AudioMute { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+
+    // Brightness controls
+    XF86MonBrightnessUp { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
+    XF86MonBrightnessDown { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+
+    // Backup to recover a locked Wayland crashed lockscreen
     Mod+Ctrl+Alt+Q allow-when-locked=true { spawn "hyprlock"; }
 }

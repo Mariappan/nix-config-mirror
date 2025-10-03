@@ -53,6 +53,7 @@ rec {
       };
       modules = [
         config
+        inputs.noctalia.nixosModules.default
         outputs.nixosModules.default
       ];
     };
@@ -65,6 +66,7 @@ rec {
       inputs.nix-index-database.homeModules.nix-index
       inputs.caelestia-shell.homeManagerModules.default
       inputs.niri.homeModules.niri
+      inputs.noctalia.homeModules.default
       outputs.homeManagerModules.default
       outputs.homeManagerModules.linux
     ];

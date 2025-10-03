@@ -21,7 +21,6 @@
 
   nixma.linux.niri.enable = true;
   services.hyprpolkitagent.enable = true;
-  nixma.linux.caelestia.enable = true;
 
   home.packages = [
     pkgs.google-chrome
