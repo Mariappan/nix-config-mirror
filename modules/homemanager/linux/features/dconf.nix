@@ -72,9 +72,5 @@ with home-manager.lib.hm.gvariant;
     "org/gnome/shell/world-clocks" = {
       locations = [ ];
     };
-
-    "org/gnome/login-screen" = {
-      enable-fingerprint-authentication = false;
-    };
   };
 }

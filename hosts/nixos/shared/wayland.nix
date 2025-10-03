@@ -7,6 +7,15 @@
   security.polkit.enable = true;
 
   security.pam.services = {
+    # GreetD - regreet uses separate `greetd` PAM context
+    # Disable Fingerprint/Yubikey for allowing to unlock Keyring
+    greetd = {
+      enableGnomeKeyring = true;
+      u2fAuth = false;
+      fprintAuth = false;
+    };
+    # noctalia-shell uses login pam context
+    # for system-lock
     login = {
       enableGnomeKeyring = true;
     };
