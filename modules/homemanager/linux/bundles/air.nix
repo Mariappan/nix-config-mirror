@@ -25,9 +25,7 @@
     pkgs.vivaldi-wayland
     pkgs.claude-code
     pkgs.gpclient
-    pkgs.neovide
     pkgs.pavucontrol
-    pkgs.spicetify-cli
     pkgs.awscli2
     pkgs.aws-sso-cli
     pkgs.nixma.treewalker
