@@ -4,10 +4,10 @@
         "enableClipboardHistory": false,
         "pinnedExecs": [
         ],
-        "position": "center",
+        "position": "bottom_center",
         "sortByMostUsed": true,
-        "terminalCommand": "ghostty -- ",
-        "useApp2Unit": true
+        "terminalCommand": "ghostty --e",
+        "useApp2Unit": false
     },
     "audio": {
         "cavaFrameRate": 60,
@@ -31,11 +31,11 @@
         "widgets": {
             "center": [
                 {
-                    "customFont": "",
+                    "customFont": "Roboto",
                     "formatHorizontal": "HH:mm ddd, MMM dd",
-                    "formatVertical": "HH mm ---- MMM dd ----- ddd",
+                    "formatVertical": "hh mm AP ---- MMM dd ----- ddd",
                     "id": "Clock",
-                    "useCustomFont": false,
+                    "useCustomFont": true,
                     "usePrimaryColor": true
                 }
             ],
@@ -47,9 +47,14 @@
                     "useDistroLogo": true
                 },
                 {
+                    "displayMode": "onhover",
+                    "id": "Battery",
+                    "warningThreshold": 30
+                },
+                {
                     "hideUnoccupied": true,
                     "id": "Workspace",
-                    "labelMode": "none"
+                    "labelMode": "index"
                 }
             ],
             "right": [
@@ -57,7 +62,14 @@
                     "id": "ScreenRecorder"
                 },
                 {
-                    "id": "Tray"
+                    "id": "WiFi"
+                },
+                {
+                    "id": "WallpaperSelector"
+                },
+                {
+                    "displayMode": "onhover",
+                    "id": "Volume"
                 },
                 {
                     "hideWhenZero": true,
@@ -65,32 +77,7 @@
                     "showUnreadBadge": true
                 },
                 {
-                    "id": "WiFi"
-                },
-                {
-                    "displayMode": "onhover",
-                    "id": "Battery",
-                    "warningThreshold": 30
-                },
-                {
-                    "displayMode": "onhover",
-                    "id": "Volume"
-                },
-                {
-                    "displayMode": "onhover",
-                    "id": "Microphone"
-                },
-                {
-                    "icon": "heart",
-                    "id": "CustomButton",
-                    "leftClickExec": "",
-                    "middleClickExec": "",
-                    "rightClickExec": "",
-                    "textCommand": "",
-                    "textIntervalMs": 3000
-                },
-                {
-                    "id": "SessionMenu"
+                    "id": "Tray"
                 }
             ]
         }
@@ -150,7 +137,7 @@
         "vesktop": false
     },
     "network": {
-        "wifiEnabled": true
+        "wifiEnabled": false
     },
     "nightLight": {
         "autoSchedule": true,
@@ -165,7 +152,7 @@
         "alwaysOnTop": false,
         "criticalUrgencyDuration": 15,
         "doNotDisturb": false,
-        "lastSeenTs": 1759463257000,
+        "lastSeenTs": 1759500642000,
         "location": "top_right",
         "lowUrgencyDuration": 3,
         "monitors": [
@@ -216,7 +203,12 @@
             {
                 "directory": "/home/maari/pictures/Wallpapers",
                 "name": "eDP-1",
-                "wallpaper": "/home/maari/pictures/Wallpapers/pexels-shanekell-1363873.jpg"
+                "wallpaper": "/home/maari/pictures/Wallpapers/cloud-computing-illustration-technology-b6624efdf7a3acfd66efde56825a08c4.jpg"
+            },
+            {
+                "directory": "/home/maari/pictures/Wallpapers",
+                "name": "DP-4",
+                "wallpaper": "/home/maari/pictures/Wallpapers/cloud-computing-illustration-technology-b6624efdf7a3acfd66efde56825a08c4.jpg"
             }
         ],
         "randomEnabled": false,
