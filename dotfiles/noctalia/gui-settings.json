@@ -59,13 +59,7 @@
             ],
             "right": [
                 {
-                    "id": "ScreenRecorder"
-                },
-                {
                     "id": "WiFi"
-                },
-                {
-                    "id": "WallpaperSelector"
                 },
                 {
                     "displayMode": "onhover",
@@ -87,14 +81,17 @@
     },
     "colorSchemes": {
         "darkMode": true,
-        "matugenSchemeType": "scheme-fruit-salad",
-        "predefinedScheme": "Monochrome",
+        "generateTemplatesForPredefined": true,
+        "matugenSchemeType": "scheme-neutral",
+        "predefinedScheme": "Everforest",
         "useWallpaperColors": false
     },
+    "controlCenter": {
+        "position": "top_center"
+    },
     "dock": {
-        "autoHide": false,
         "backgroundOpacity": 1,
-        "exclusive": false,
+        "displayMode": "always_visible",
         "floatingRatio": 1,
         "monitors": [
         ],
@@ -123,19 +120,6 @@
         "use12hourFormat": true,
         "useFahrenheit": false
     },
-    "matugen": {
-        "enableUserTemplates": false,
-        "foot": false,
-        "fuzzel": false,
-        "ghostty": false,
-        "gtk3": false,
-        "gtk4": false,
-        "kitty": false,
-        "pywalfox": false,
-        "qt5": false,
-        "qt6": false,
-        "vesktop": false
-    },
     "network": {
         "wifiEnabled": true
     },
@@ -152,7 +136,7 @@
         "alwaysOnTop": false,
         "criticalUrgencyDuration": 15,
         "doNotDisturb": false,
-        "lastSeenTs": 1759500642000,
+        "lastSeenTs": 1759753087000,
         "location": "top_right",
         "lowUrgencyDuration": 3,
         "monitors": [
@@ -179,6 +163,17 @@
         "videoSource": "portal"
     },
     "settingsVersion": 12,
+    "templates": {
+        "enableUserTemplates": false,
+        "foot": false,
+        "fuzzel": false,
+        "ghostty": false,
+        "gtk": false,
+        "kitty": false,
+        "pywalfox": false,
+        "qt": false,
+        "vesktop": false
+    },
     "ui": {
         "fontDefault": "Roboto",
         "fontDefaultScale": 1,
@@ -186,9 +181,11 @@
         "fontFixedScale": 1,
         "idleInhibitorEnabled": false,
         "monitorsScaling": [
-        ]
+        ],
+        "tooltipsEnabled": true
     },
     "wallpaper": {
+        "defaultWallpaper": "/nix/store/lm24v5sh31pbjqxmc9rcc1v9rvqj35cd-noctalia-shell-bc7c821d33acdc5fd301364b483d590544e64df9/share/noctalia-shell/Assets/Wallpaper/noctalia.png",
         "directory": "/home/maari/pictures/Wallpapers",
         "enableMultiMonitorDirectories": false,
         "enabled": true,
@@ -203,7 +200,7 @@
             {
                 "directory": "/home/maari/pictures/Wallpapers",
                 "name": "eDP-1",
-                "wallpaper": "/home/maari/pictures/Wallpapers/cloud-computing-illustration-technology-b6624efdf7a3acfd66efde56825a08c4.jpg"
+                "wallpaper": "/home/maari/pictures/Wallpapers/baby-groot-superheroes-abstract-digital-art-wallpaper-f482e9e1a11a5d11b9a74a8bcfb3e96a.jpg"
             },
             {
                 "directory": "/home/maari/pictures/Wallpapers",
