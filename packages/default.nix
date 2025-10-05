@@ -4,6 +4,7 @@
 }:
 rec {
   # Packages with an actual source
+  cthulock = pkgs.callPackage ./cthulock { };
   ddlm = pkgs.callPackage ./ddlm { };
   treewalker = pkgs.callPackage ./treewalker { };
   sagecipher = pkgs.callPackage ./sagecipher { };

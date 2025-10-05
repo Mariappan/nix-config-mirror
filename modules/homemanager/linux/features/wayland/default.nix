@@ -61,7 +61,10 @@
     pkgs.wl-clipboard
     pkgs.wayprompt
     pkgs.wtype
+    # Check wayland protocol support
+    pkgs.waycheck
     pkgs.brightnessctl
     pkgs.nautilus
+    pkgs.nixma.cthulock
   ];
 }
