@@ -213,6 +213,14 @@ layout {
         // top 64
         // bottom 64
     }
+
+    tab-indicator {
+        width 8
+        gap 8
+        length total-proportion=1.0
+        position "top"
+        place-within-column
+    }
 }
 
 // Add lines like this to spawn processes at startup.
@@ -540,7 +548,7 @@ binds {
 
     Print { screenshot; }
     Ctrl+Print { screenshot-screen; }
-    Alt+Print { screenshot-window; }
+    Alt+Print { screenshot-window write-to-disk=false; }
 
     // Applications such as remote-desktop clients and software KVM switches may
     // request that niri stops processing the keyboard shortcuts defined here
@@ -585,4 +593,5 @@ binds {
 
     // Backup to recover a locked Wayland crashed lockscreen
     Mod+Ctrl+Alt+Q allow-when-locked=true { spawn "hyprlock"; }
+
 }

@@ -52,12 +52,14 @@
     pkgs.sbctl
     pkgs.usbutils
     pkgs.procps
+    pkgs.helix
     pkgs.vim
   ];
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
 
+  # BPF tools
   programs.bcc.enable = true;
 
   environment.shells = [
@@ -70,8 +72,8 @@
   programs.nix-ld.enable = true;
   programs.nh = {
     enable = true;
-    # clean.enable = true;
-    # clean.extraArgs = "--keep-since 4d --keep 3";
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "/home/maari/nix-config";
   };
 

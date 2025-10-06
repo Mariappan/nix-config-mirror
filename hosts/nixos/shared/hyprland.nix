@@ -16,5 +16,6 @@
   xdg.terminal-exec.settings = {
     Hyprland = [
       "com.mitchellh.ghostty"
+    ];
   };
 }
