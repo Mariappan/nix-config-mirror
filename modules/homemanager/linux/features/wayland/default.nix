@@ -10,6 +10,7 @@
     ./media-viewer.nix
     ./udiskie.nix
     ./shikane.nix
+    ./satty.nix
   ];
 
   xdg.configFile.wayland_env = {
