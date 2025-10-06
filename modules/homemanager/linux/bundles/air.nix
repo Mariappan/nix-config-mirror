@@ -19,6 +19,7 @@
     pkgs.google-chrome
     pkgs.slack
     pkgs.spotify
+    pkgs.spotify-player
     pkgs.obsidian
     pkgs.remmina
     pkgs.nushell
