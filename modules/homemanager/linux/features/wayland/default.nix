@@ -9,6 +9,7 @@
     ../foot.nix
     ./media-viewer.nix
     ./udiskie.nix
+    ./shikane.nix
   ];
 
   xdg.configFile.wayland_env = {
