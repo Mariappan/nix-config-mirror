@@ -25,6 +25,8 @@
     pkgs.earthly
     pkgs.expect
     pkgs.fd
+    pkgs.sd
+    pkgs.pik
     pkgs.file
     pkgs.fzf
     pkgs.gnupg
