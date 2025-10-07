@@ -24,6 +24,13 @@
         --enable-features=WaylandWindowDecorations
       '';
     };
+
+    slack = prev.slack.overrideAttrs (oldAttrs: {
+      postInstall = (oldAttrs.postInstall or "") + ''
+        substituteInPlace $out/share/applications/slack.desktop \
+          --replace-fail 'bin/slack -s' 'bin/slack --ozone-platform=wayland -s'
+      '';
+    });
   };
 
   unused = _final: prev: {
