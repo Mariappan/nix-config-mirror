@@ -59,21 +59,18 @@ output "eDP-1" {
     scale 1
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
     transform "normal"
-
-    // Position of the output in the global coordinate space.
-    // This affects directional monitor actions like "focus-monitor-left", and cursor movement.
-    // The cursor can only move between directly adjacent outputs.
-    // Output scale and rotation has to be taken into account for positioning:
-    // outputs are sized in logical, or scaled, pixels.
-    // For example, a 3840×2160 output with scale 2.0 will have a logical size of 1920×1080,
-    // so to put another output directly adjacent to it on the right, set its x to 1920.
-    // If the position is unset or results in an overlap, the output is instead placed
-    // automatically.
-    position x=2560 y=0
+    position x=3840 y=0
 }
 
 output "Dell Inc. DELL U2724DE 1LRK7P3" {
     mode "2560x1440"
+    scale 1
+    transform "normal"
+    position x=0 y=0
+}
+
+output "Beihai Century Joint Innovation Technology Co.,Ltd X340 PRO 165 Unknown" {
+    mode "3440x1440"
     scale 1
     transform "normal"
     position x=0 y=0
@@ -284,14 +281,15 @@ window-rule {
     // This app-id regular expression will work for both:
     // - host Firefox (app-id is "firefox")
     // - Flatpak Firefox (app-id is "org.mozilla.firefox")
+    match app-id="^xdg-desktop-portal-gtk" title="^All Files$"
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id="^1Password$"
     match title="^VirtualBox "
     match app-id="^imv"
     match app-id="^mpv"
     match app-id="^spotify"
+    match title="^Vicinae Launcher"
     match title="^Select what to share$"
-    match app-id="^xdg-desktop-portal-gtk" title="^All Files$"
 
     open-floating true
 }
@@ -308,6 +306,17 @@ window-rule {
 window-rule {
     match app-id="^com.gabm.satty$"
     open-floating true
+}
+
+window-rule {
+    match app-id="^com.gabm.satty$"
+    default-column-width {}
+}
+
+window-rule {
+    match app-id="firefox$" title="^Picture-in-Picture$"
+
+    default-floating-position x=32 y=32 relative-to="bottom-left"
 }
 
 // Example: enable rounded corners for all windows.
@@ -566,7 +575,6 @@ binds {
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
 
     // The quit action will show a confirmation dialog to avoid accidental exits.
-    Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
 
     // Powers off the monitors. To turn them back on, do any input like
@@ -597,6 +605,6 @@ binds {
     XF86MonBrightnessDown { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
 
     // Backup to recover a locked Wayland crashed lockscreen
-    Mod+Ctrl+Alt+Q allow-when-locked=true { spawn "hyprlock"; }
+    Mod+Ctrl+Alt+Q allow-when-locked=true { spawn "cthulock"; }
 
 }
