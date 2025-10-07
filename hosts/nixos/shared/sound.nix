@@ -18,4 +18,8 @@
     #   };
     # };
   };
+
+  hardware.firmware = [
+    pkgs.sof-firmware
+  ];
 }

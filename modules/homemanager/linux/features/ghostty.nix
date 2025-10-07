@@ -43,5 +43,7 @@
       "shift+enter=text:\x1b\r"
       "global:ctrl+grave_accent=toggle_quick_terminal"
     ];
+
+    config-file = "config-local";
   };
 }
