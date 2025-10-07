@@ -58,10 +58,6 @@ in
           name = "${userName}";
         };
       };
-
-      home.sessionVariables = {
-        EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
-      };
     };
   };
 }

@@ -65,8 +65,14 @@
     pkgs.wtype
     # Check wayland protocol support
     pkgs.waycheck
+
     pkgs.brightnessctl
-    pkgs.nautilus
     pkgs.nixma.cthulock
+
+    pkgs.app2unit
+
+    # UI Tools
+    pkgs.qpdf
+    pkgs.nautilus
   ];
 }

@@ -72,11 +72,6 @@ in
           sign-on-push = true;
         };
       };
-
-      home.sessionVariables = {
-        # SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
-        EARTHLY_SSH_AUTH_SOCK = "/home/${userId}/.ssh/agent/1password.sock";
-      };
     };
   };
 }
