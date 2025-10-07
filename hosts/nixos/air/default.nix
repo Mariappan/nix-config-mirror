@@ -64,6 +64,8 @@
      RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
   '';
 
+  services.tailscale.enable = true;
+
   # Enable CUPS to print documents.
   services.printing.enable = true;
 }
