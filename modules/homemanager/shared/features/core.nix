@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
+{ pkgs, ... }:
 {
   imports = [
     ./fish
@@ -33,6 +28,7 @@
   programs.nix-index.enable = true;
 
   home.stateVersion = "25.11";
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }

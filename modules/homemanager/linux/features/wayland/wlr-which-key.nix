@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   xdg.configFile = {
     "wlr-which-key" = {
       source = ../../../../../dotfiles/wlr-which-key-config.yaml;

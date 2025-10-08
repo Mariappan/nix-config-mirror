@@ -1,3 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   services.udiskie.enable = true;
 }

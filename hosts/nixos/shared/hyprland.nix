@@ -1,9 +1,9 @@
 { pkgs, ... }:
 {
   imports = [
-     ./wayland.nix
-     ./wayland-dm.nix
-   ];
+    ./wayland.nix
+    ./wayland-dm.nix
+  ];
 
   programs.hyprland.enable = true;
   programs.hyprland.withUWSM = true;

@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   # Tools which are replacement for older versions
   home.packages = [
     pkgs.bat

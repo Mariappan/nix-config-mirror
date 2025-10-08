@@ -22,7 +22,12 @@
         color-modes = true;
         insert-final-newline = true;
         auto-pairs = true;
-        rulers = [ 80 100 110 120 ];
+        rulers = [
+          80
+          100
+          110
+          120
+        ];
         text-width = 100;
         trim-trailing-whitespace = true;
 
@@ -89,11 +94,11 @@
     themes = {
       my-catppuccin-frappe = {
         inherits = "catppuccin_frappe";
-        "ui.background" = {};
+        "ui.background" = { };
       };
       my-darcula = {
         inherits = "darcula";
-        "ui.background" = {};
+        "ui.background" = { };
       };
     };
   };
