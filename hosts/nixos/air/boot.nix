@@ -18,7 +18,7 @@
   boot.blacklistedKernelModules = [ "kvm-intel" ];
 
   boot.tmp.useTmpfs = true;
-  boot.tmp.tmpfsSize = "4G";
+  boot.tmp.tmpfsSize = "8G";
 
   boot.kernelParams = [
     "ip=dhcp"
