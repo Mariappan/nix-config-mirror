@@ -1,6 +1,8 @@
 {
     "appLauncher": {
         "backgroundOpacity": 1,
+        "customLaunchPrefix": "",
+        "customLaunchPrefixEnabled": false,
         "enableClipboardHistory": false,
         "pinnedExecs": [
         ],
@@ -52,6 +54,7 @@
                     "warningThreshold": 30
                 },
                 {
+                    "characterCount": 2,
                     "hideUnoccupied": true,
                     "id": "Workspace",
                     "labelMode": "none"
@@ -59,6 +62,7 @@
             ],
             "right": [
                 {
+                    "displayMode": "onhover",
                     "id": "WiFi"
                 },
                 {
@@ -83,13 +87,17 @@
         "chargingMode": 0
     },
     "brightness": {
-        "brightnessStep": 5
+        "brightnessStep": 5,
+        "enforceMinimum": true
     },
     "colorSchemes": {
         "darkMode": true,
         "generateTemplatesForPredefined": true,
+        "manualSunrise": "06:30",
+        "manualSunset": "18:30",
         "matugenSchemeType": "scheme-tonal-spot",
         "predefinedScheme": "Everforest",
+        "schedulingMode": "off",
         "useWallpaperColors": false
     },
     "controlCenter": {
@@ -148,20 +156,23 @@
         "backgroundOpacity": 1,
         "colorizeIcons": false,
         "displayMode": "always_visible",
+        "enabled": false,
         "floatingRatio": 1,
         "monitors": [
         ],
         "onlySameOutput": true,
         "pinnedApps": [
-        ]
+        ],
+        "size": 1
     },
     "general": {
         "animationDisabled": false,
         "animationSpeed": 1,
         "avatarImage": "/home/maari/.face",
-        "compactLockScreen": true,
-        "dimDesktop": false,
+        "compactLockScreen": false,
         "forceBlackScreenCorners": false,
+        "language": "",
+        "lockOnSuspend": true,
         "radiusRatio": 0.75,
         "scaleRatio": 1,
         "screenRadiusRatio": 1,
@@ -173,13 +184,18 @@
         "wallpaperChange": ""
     },
     "location": {
+        "analogClockInCalendar": false,
+        "firstDayOfWeek": -1,
         "name": "Singapore",
+        "showCalendarEvents": true,
+        "showCalendarWeather": true,
         "showWeekNumberInCalendar": false,
         "use12hourFormat": true,
-        "useFahrenheit": false
+        "useFahrenheit": false,
+        "weatherEnabled": true
     },
     "network": {
-        "wifiEnabled": false
+        "wifiEnabled": true
     },
     "nightLight": {
         "autoSchedule": true,
@@ -191,24 +207,24 @@
         "nightTemp": "4000"
     },
     "notifications": {
-        "alwaysOnTop": false,
+        "backgroundOpacity": 1,
         "criticalUrgencyDuration": 15,
         "doNotDisturb": false,
-        "lastSeenTs": 1760595172000,
         "location": "top_right",
         "lowUrgencyDuration": 3,
         "monitors": [
         ],
         "normalUrgencyDuration": 8,
+        "overlayLayer": true,
         "respectExpireTimeout": false
     },
     "osd": {
-        "alwaysOnTop": true,
         "autoHideMs": 3000,
         "enabled": true,
         "location": "bottom",
         "monitors": [
-        ]
+        ],
+        "overlayLayer": true
     },
     "screenRecorder": {
         "audioCodec": "opus",
@@ -224,6 +240,8 @@
     "settingsVersion": 16,
     "setupCompleted": true,
     "templates": {
+        "alacritty": false,
+        "code": false,
         "discord": false,
         "discord_armcord": false,
         "discord_dorion": false,
@@ -239,14 +257,17 @@
         "kcolorscheme": false,
         "kitty": false,
         "pywalfox": false,
-        "qt": false
+        "qt": false,
+        "vicinae": false,
+        "walker": false
     },
     "ui": {
         "fontDefault": "Roboto",
         "fontDefaultScale": 1,
         "fontFixed": "Maple Mono ExtraLight",
         "fontFixedScale": 1,
-        "idleInhibitorEnabled": false,
+        "panelsAttachedToBar": true,
+        "panelsOverlayLayer": true,
         "tooltipsEnabled": true
     },
     "wallpaper": {
@@ -280,6 +301,7 @@
         ],
         "randomEnabled": false,
         "randomIntervalSec": 1800,
+        "recursiveSearch": false,
         "setWallpaperOnAllMonitors": true,
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,

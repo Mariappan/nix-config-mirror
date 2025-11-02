@@ -59,7 +59,7 @@
       inputs.quickshell.follows = "quickshell";
     };
     vicinae = {
-      url = "github:knoopx/vicinae";
+      url = "github:vicinaehq/vicinae";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

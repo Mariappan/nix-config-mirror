@@ -641,11 +641,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1760585041,
-        "narHash": "sha256-K3DjBHj6cTaNC3/Idtuden+FbjlsgfTVTW+2z+xi+1E=",
+        "lastModified": 1762029476,
+        "narHash": "sha256-mzV+bsCorAaZTW33w7OjsUr813obCgM6AX/3ip0U6oo=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "3615f039705e6b8ebc73fe8bbfc56a17ae72397d",
+        "rev": "b189b4b16454ad6737d143838ad1a1204e2adb32",
         "type": "github"
       },
       "original": {
@@ -820,15 +820,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1756558610,
-        "narHash": "sha256-8hIrMjRJtwiU6sA20YjfS2t3eFjzPn+fOf7WY0wiesM=",
-        "owner": "knoopx",
+        "lastModified": 1762059074,
+        "narHash": "sha256-VaVffllx5CHRJ+Lq1JuFe+7GVk6TRz77gXubz/gHol8=",
+        "owner": "vicinaehq",
         "repo": "vicinae",
-        "rev": "c592b1daffdbd9eb7c13da5ce1301da3c1455626",
+        "rev": "54be71a862d67078a6fb91ac0ba24824a67c08b9",
         "type": "github"
       },
       "original": {
-        "owner": "knoopx",
+        "owner": "vicinaehq",
         "repo": "vicinae",
         "type": "github"
       }
