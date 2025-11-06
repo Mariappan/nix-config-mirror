@@ -28,6 +28,7 @@ in
         nixma.dev.enable = true;
         nixma.git.enable = true;
         nixma.jujutsu.enable = true;
+        nixma.moderntools.enable = true;
 
         programs.git = {
           userName = "${userName}";
