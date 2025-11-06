@@ -11,8 +11,6 @@ let
   userEmail = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
 in
 {
-  imports = [ ];
-
   users.users."mariappan.ramasamy" = {
     name = "mariappan.ramasamy";
     home = "/Users/mariappan.ramasamy";
@@ -21,37 +19,37 @@ in
   home-manager.users."mariappan.ramasamy" = {
     imports = [
       outputs.homeManagerModules.default
-      {
-        nixma.hm.core.enable = true;
-        nixma.hm.dev.enable = true;
-        nixma.hm.git.enable = true;
-        nixma.hm.jujutsu.enable = true;
-        nixma.hm.moderntools.enable = true;
-
-        programs.git = {
-          settings.user = {
-            name = "${userName}";
-            email = "${userEmail}";
-          };
-          signing = {
-            key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
-            signByDefault = true;
-          };
-        };
-        programs.jujutsu.settings = {
-          user = {
-            email = "${userEmail}";
-            name = "${userName}";
-          };
-          signing = {
-            key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
-          };
-          git = {
-            sign-on-push = true;
-          };
-        };
-      }
     ];
+
+    nixma.hm.core.enable = true;
+    nixma.hm.dev.enable = true;
+    nixma.hm.git.enable = true;
+    nixma.hm.jujutsu.enable = true;
+    nixma.hm.moderntools.enable = true;
+    nixma.hm.gpgagent.enable = true;
+
+    programs.git = {
+      settings.user = {
+        name = "${userName}";
+        email = "${userEmail}";
+      };
+      signing = {
+        key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
+        signByDefault = true;
+      };
+    };
+    programs.jujutsu.settings = {
+      user = {
+        email = "${userEmail}";
+        name = "${userName}";
+      };
+      signing = {
+        key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
+      };
+      git = {
+        sign-on-push = true;
+      };
+    };
   };
 
   homebrew.brews = [

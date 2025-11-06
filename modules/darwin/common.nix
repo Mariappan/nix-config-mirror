@@ -10,12 +10,6 @@
 {
   imports = [
     home-manager.darwinModules.home-manager
-    {
-      home-manager.useGlobalPkgs = true;
-      home-manager.useUserPackages = true;
-      home-manager.extraSpecialArgs = config._module.specialArgs;
-      home-manager.backupFileExtension = "backup";
-    }
   ];
 
   # Nixpkgs config
@@ -30,6 +24,11 @@
       allowUnfree = true;
     };
   };
+
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.extraSpecialArgs = config._module.specialArgs;
+  home-manager.backupFileExtension = "backup";
 
   # Disable nix-darwin nix management. Determindated nixd will take care of it
   nix.enable = false;
