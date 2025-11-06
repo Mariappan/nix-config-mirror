@@ -6,6 +6,7 @@
   ];
 
   programs.git.enable = true;
+  programs.git.lfs.enable = true;
   programs.git.ignores = import ./ignores.nix;
   programs.git.aliases = {
     graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f";
