@@ -2,7 +2,6 @@
 {
   home.packages = [
     pkgs.git-absorb
-    pkgs.gnupg
   ];
 
   programs.git.enable = true;

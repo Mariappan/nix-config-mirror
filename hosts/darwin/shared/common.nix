@@ -32,33 +32,22 @@
     };
   };
 
-  # Necessary for using flakes on this system.
-  nix.settings.experimental-features = "nix-command flakes";
+  # Disable nix-darwin nix management. Determindated nixd will take care of it
+  nix.enable = false;
 
-  #nix.gc = {
-  #  automatic = true;
-  #  interval = {
-  #    Weekday = 0;
-  #    Hour = 2;
-  #    Minute = 0;
-  #  };
-  #  options = "--delete-older-than 7d";
-  #};
-
-  # nix.package = pkgs.nix;
+  # Not needed for determinate nix
+  # nix.settings.experimental-features = "nix-command flakes";
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = [
     pkgs.curl
-    pkgs.openssh
     pkgs.pinentry_mac
-    pkgs.vim
     pkgs.terminal-notifier
   ];
 
-  # Create /etc/zshrc that loads the nix-darwin environment.
-  programs.zsh.enable = true; # default shell on catalina
+  # Create /etc/zshrc that loads the nix-darwin environment
+  programs.zsh.enable = true;
   programs.fish.enable = true;
 
   programs.direnv = {
@@ -66,13 +55,9 @@
     loadInNixShell = true;
     nix-direnv.enable = true;
     silent = true;
-    # config = {
-    #   global.hide_env_diff = true;
-    # };
   };
 
   environment.shells = [
-    pkgs.bashInteractive
     pkgs.zsh
     pkgs.fish
   ];
@@ -84,15 +69,9 @@
       upgrade = true;
       cleanup = "zap";
     };
-    taps = [ "homebrew/cask-versions" ];
-    brews = [ ];
-    # brews = ["m4" "autoconf" "automake" "cmake" "git-lfs" "libtool"];
-    # updates homebrew packages on activation,
-    # can make darwin-rebuild much slower (otherwise i'd forget to do it ever though)
+    brews = [];
     casks = [
-      "arc"
       "boop"
-      "iterm2"
       "obsidian"
       "vlc"
       "visual-studio-code"

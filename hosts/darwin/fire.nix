@@ -18,7 +18,6 @@ in
   users.users."mariappan.ramasamy" = {
     name = "mariappan.ramasamy";
     home = "/Users/mariappan.ramasamy";
-    shell = "${pkgs.fish}/bin/fish";
   };
 
   home-manager.users."mariappan.ramasamy" = {
@@ -29,7 +28,6 @@ in
         nixma.dev.enable = true;
         nixma.git.enable = true;
         nixma.jujutsu.enable = true;
-        nixma.wezterm.enable = true;
 
         programs.git = {
           userName = "${userName}";
@@ -56,9 +54,6 @@ in
   };
 
   homebrew.brews = [
-    "clang-format"
-    "swift-format"
-    "jq"
     "gnupg"
     "rbenv"
   ];
