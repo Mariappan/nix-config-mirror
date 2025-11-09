@@ -2,6 +2,7 @@
 {
   imports = [
     ./wayland
+    ./wayland/stasis.nix
     ./ghostty.nix
   ];
 
