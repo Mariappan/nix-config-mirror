@@ -8,7 +8,7 @@
         ],
         "position": "bottom_center",
         "sortByMostUsed": true,
-        "terminalCommand": "ghostty --e",
+        "terminalCommand": "ghostty -e",
         "useApp2Unit": false
     },
     "audio": {
@@ -23,11 +23,13 @@
     "bar": {
         "backgroundOpacity": 1,
         "density": "comfortable",
+        "exclusive": true,
         "floating": false,
         "marginHorizontal": 0.25,
         "marginVertical": 0.25,
         "monitors": [
         ],
+        "outerCorners": true,
         "position": "left",
         "showCapsule": true,
         "widgets": {
@@ -82,6 +84,9 @@
                     "blacklist": [
                     ],
                     "colorizeIcons": false,
+                    "drawerEnabled": true,
+                    "favorites": [
+                    ],
                     "id": "Tray"
                 }
             ]
@@ -92,6 +97,7 @@
     },
     "brightness": {
         "brightnessStep": 5,
+        "enableDdcSupport": false,
         "enforceMinimum": true
     },
     "colorSchemes": {
@@ -174,12 +180,17 @@
         "animationSpeed": 1,
         "avatarImage": "/home/maari/.face",
         "compactLockScreen": false,
+        "dimDesktop": true,
+        "enableShadows": true,
         "forceBlackScreenCorners": false,
         "language": "",
         "lockOnSuspend": true,
         "radiusRatio": 0.75,
         "scaleRatio": 1,
         "screenRadiusRatio": 1,
+        "shadowDirection": "bottom_right",
+        "shadowOffsetX": 2,
+        "shadowOffsetY": 3,
         "showScreenCorners": true
     },
     "hooks": {
@@ -199,7 +210,7 @@
         "weatherEnabled": true
     },
     "network": {
-        "wifiEnabled": true
+        "wifiEnabled": false
     },
     "nightLight": {
         "autoSchedule": true,
@@ -214,13 +225,14 @@
         "backgroundOpacity": 1,
         "criticalUrgencyDuration": 15,
         "doNotDisturb": false,
+        "enabled": true,
         "location": "top_right",
         "lowUrgencyDuration": 3,
         "monitors": [
         ],
         "normalUrgencyDuration": 8,
         "overlayLayer": true,
-        "respectExpireTimeout": false
+        "respectExpireTimeout": true
     },
     "osd": {
         "autoHideMs": 3000,
@@ -241,7 +253,7 @@
         "videoCodec": "h264",
         "videoSource": "portal"
     },
-    "settingsVersion": 16,
+    "settingsVersion": 20,
     "setupCompleted": true,
     "templates": {
         "alacritty": false,
@@ -263,7 +275,8 @@
         "pywalfox": false,
         "qt": false,
         "vicinae": false,
-        "walker": false
+        "walker": false,
+        "wezterm": false
     },
     "ui": {
         "fontDefault": "Roboto",
@@ -271,7 +284,7 @@
         "fontFixed": "Maple Mono ExtraLight",
         "fontFixedScale": 1,
         "panelsAttachedToBar": true,
-        "panelsOverlayLayer": true,
+        "settingsPanelAttachToBar": false,
         "tooltipsEnabled": true
     },
     "wallpaper": {
@@ -290,7 +303,7 @@
             {
                 "directory": "/home/maari/pictures/Wallpapers",
                 "name": "eDP-1",
-                "wallpaper": "/home/maari/pictures/Wallpapers/WorldMap.jpg"
+                "wallpaper": "/home/maari/pictures/Wallpapers/game-of-thrones-battle-of-dragons-1E72B.jpg"
             },
             {
                 "directory": "/home/maari/pictures/Wallpapers",
@@ -301,9 +314,16 @@
                 "directory": "/home/maari/pictures/Wallpapers",
                 "name": "DP-5",
                 "wallpaper": "/home/maari/pictures/Wallpapers/minimalism-minimalist-hd-4k-wallpaper-a846adf88040dcd890cca10e680294ea.jpg"
+            },
+            {
+                "directory": "/home/maari/pictures/Wallpapers",
+                "name": "DP-1",
+                "wallpaper": "/home/maari/pictures/Wallpapers/game-of-thrones-battle-of-dragons-1E72B.jpg"
             }
         ],
-        "randomEnabled": false,
+        "overviewEnabled": false,
+        "panelPosition": "follow_bar",
+        "randomEnabled": true,
         "randomIntervalSec": 1800,
         "recursiveSearch": false,
         "setWallpaperOnAllMonitors": true,

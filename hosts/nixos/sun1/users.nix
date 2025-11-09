@@ -52,8 +52,10 @@ in
       nixma.linux.bundles.sun1.enable = true;
 
       programs.git = {
-        userName = "${userName}";
-        userEmail = "${userEmail}";
+        settings.user = {
+          name = "${userName}";
+          email = "${userEmail}";
+        };
         signing = {
           signByDefault = false;
         };

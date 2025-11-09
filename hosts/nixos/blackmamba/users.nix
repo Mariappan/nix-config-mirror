@@ -48,8 +48,10 @@ in
       nixma.linux.bundles.blackmamba.enable = true;
 
       programs.git = {
-        userName = "${userName}";
-        userEmail = "${userEmail}";
+        settings.user = {
+          name = "${userName}";
+          email = "${userEmail}";
+        };
       };
 
       programs.jujutsu.settings = {
