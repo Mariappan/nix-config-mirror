@@ -28,11 +28,12 @@
   boot.initrd = {
     availableKernelModules = [
       "xhci_pci"
-      "r8152"
       "thunderbolt"
       "nvme"
+      "usbhid"
       "usb_storage"
       "sd_mod"
+      "r8152"
       "rtsx_pci_sdmmc"
     ];
     kernelModules = [ ];

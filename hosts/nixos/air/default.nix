@@ -10,15 +10,14 @@
     ./boot.nix
     ./users.nix
     ../shared/common.nix
+    ../shared/bluetooth.nix
     ../shared/manpages.nix
-    ../shared/lanzaboote.nix
     ../shared/niri.nix
     ../shared/laptop.nix
     ../shared/sound.nix
     ../shared/docker.nix
     ../shared/1password.nix
     ../shared/virtualbox.nix
-    ../shared/nvidia.nix
     ../shared/screenrecorder.nix
     ../shared/fprint.nix
   ];
@@ -63,8 +62,6 @@
      ENV{ID_VENDOR}=="Yubico",\
      RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
   '';
-
-  services.tailscale.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

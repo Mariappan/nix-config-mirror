@@ -55,15 +55,14 @@ input {
 
 output "eDP-1" {
     // off
-    mode "1920x1200"
-    scale 1
+    mode "2880x1800"
+    scale 1.5
     // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
     transform "normal"
     position x=3840 y=0
 }
 
 output "Dell Inc. DELL U2724DE 1LRK7P3" {
-    off
     mode "2560x1440"
     scale 1
     transform "normal"

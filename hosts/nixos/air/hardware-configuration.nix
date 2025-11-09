@@ -11,18 +11,18 @@
 {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-partlabel/NIXROOT";
-  boot.initrd.luks.devices."cryptwork".device = "/dev/disk/by-partlabel/WORK";
-  boot.initrd.luks.devices."cryptwork".bypassWorkqueues = true;
-  boot.initrd.luks.devices."cryptroot".bypassWorkqueues = true;
+  # boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-partlabel/NIXROOT";
+  # boot.initrd.luks.devices."cryptwork".device = "/dev/disk/by-partlabel/WORK";
+  # boot.initrd.luks.devices."cryptwork".bypassWorkqueues = true;
+  # boot.initrd.luks.devices."cryptroot".bypassWorkqueues = true;
 
   fileSystems."/" = {
-    device = "/dev/mapper/cryptroot";
+    device = "/dev/disk/by-partlabel/NIXROOT";
     fsType = "ext4";
   };
 
   fileSystems."/work" = {
-    device = "/dev/mapper/cryptwork";
+    device = "/dev/disk/by-partlabel/WORK";
     fsType = "ext4";
   };
 
@@ -38,14 +38,8 @@
   swapDevices = [
     {
       device = "/dev/disk/by-partlabel/NIXSWAP";
-      randomEncryption.enable = true;
     }
   ];
-
-  hardware.ipu6 = {
-    enable = true;
-    platform = "ipu6ep";
-  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
