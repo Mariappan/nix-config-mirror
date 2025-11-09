@@ -22,7 +22,6 @@
 
   boot.kernelParams = [
     "ip=dhcp"
-    "noresume"
   ];
 
   boot.initrd = {
