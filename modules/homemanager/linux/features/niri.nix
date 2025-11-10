@@ -3,6 +3,7 @@
   imports = [
     ./wayland
     ./wayland/stasis.nix
+    ./wayland/kanshi.nix
     ./ghostty.nix
   ];
 
