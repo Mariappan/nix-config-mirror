@@ -65,4 +65,5 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  programs.vscode.enable = true;
 }
