@@ -1,6 +1,5 @@
 {
     "appLauncher": {
-        "backgroundOpacity": 1,
         "customLaunchPrefix": "",
         "customLaunchPrefixEnabled": false,
         "enableClipboardHistory": false,
@@ -16,6 +15,7 @@
         "mprisBlacklist": [
         ],
         "preferredPlayer": "spotify",
+        "visualizerQuality": "high",
         "visualizerType": "linear",
         "volumeOverdrive": false,
         "volumeStep": 5
@@ -45,6 +45,7 @@
             ],
             "left": [
                 {
+                    "colorizeDistroLogo": false,
                     "customIconPath": "",
                     "icon": "",
                     "id": "ControlCenter",
@@ -85,9 +86,9 @@
                     ],
                     "colorizeIcons": false,
                     "drawerEnabled": true,
-                    "favorites": [
-                    ],
-                    "id": "Tray"
+                    "id": "Tray",
+                    "pinned": [
+                    ]
                 }
             ]
         }
@@ -98,7 +99,7 @@
     "brightness": {
         "brightnessStep": 5,
         "enableDdcSupport": false,
-        "enforceMinimum": true
+        "enforceMinimum": false
     },
     "colorSchemes": {
         "darkMode": true,
@@ -176,11 +177,12 @@
         "size": 1
     },
     "general": {
+        "allowPanelsOnScreenWithoutBar": true,
         "animationDisabled": false,
         "animationSpeed": 1,
         "avatarImage": "/home/maari/.face",
         "compactLockScreen": false,
-        "dimDesktop": true,
+        "dimmerOpacity": 0.8,
         "enableShadows": true,
         "forceBlackScreenCorners": false,
         "language": "",
@@ -210,7 +212,7 @@
         "weatherEnabled": true
     },
     "network": {
-        "wifiEnabled": false
+        "wifiEnabled": true
     },
     "nightLight": {
         "autoSchedule": true,
@@ -224,7 +226,7 @@
     "notifications": {
         "backgroundOpacity": 1,
         "criticalUrgencyDuration": 15,
-        "doNotDisturb": false,
+        "enableKeyboardLayoutToast": true,
         "enabled": true,
         "location": "top_right",
         "lowUrgencyDuration": 3,
@@ -236,6 +238,7 @@
     },
     "osd": {
         "autoHideMs": 3000,
+        "backgroundOpacity": 1,
         "enabled": true,
         "location": "bottom",
         "monitors": [
@@ -247,24 +250,69 @@
         "audioSource": "default_output",
         "colorRange": "limited",
         "directory": "/home/maari/media/video",
-        "frameRate": 60,
+        "frameRate": 30,
         "quality": "high",
         "showCursor": true,
-        "videoCodec": "h264",
+        "videoCodec": "hevc",
         "videoSource": "portal"
     },
-    "settingsVersion": 20,
+    "sessionMenu": {
+        "countdownDuration": 10000,
+        "enableCountdown": true,
+        "position": "center",
+        "powerOptions": [
+            {
+                "action": "lock",
+                "countdownEnabled": true,
+                "enabled": true
+            },
+            {
+                "action": "suspend",
+                "countdownEnabled": true,
+                "enabled": true
+            },
+            {
+                "action": "hibernate",
+                "countdownEnabled": true,
+                "enabled": true
+            },
+            {
+                "action": "reboot",
+                "countdownEnabled": true,
+                "enabled": true
+            },
+            {
+                "action": "logout",
+                "countdownEnabled": true,
+                "enabled": true
+            },
+            {
+                "action": "shutdown",
+                "countdownEnabled": true,
+                "enabled": true
+            }
+        ],
+        "showHeader": true
+    },
+    "settingsVersion": 23,
     "setupCompleted": true,
+    "systemMonitor": {
+        "cpuCriticalThreshold": 90,
+        "cpuWarningThreshold": 80,
+        "criticalColor": "",
+        "diskCriticalThreshold": 90,
+        "diskWarningThreshold": 80,
+        "memCriticalThreshold": 90,
+        "memWarningThreshold": 80,
+        "tempCriticalThreshold": 90,
+        "tempWarningThreshold": 80,
+        "useCustomColors": false,
+        "warningColor": ""
+    },
     "templates": {
         "alacritty": false,
         "code": false,
         "discord": false,
-        "discord_armcord": false,
-        "discord_dorion": false,
-        "discord_equibop": false,
-        "discord_lightcord": false,
-        "discord_vesktop": false,
-        "discord_webcord": false,
         "enableUserTemplates": false,
         "foot": false,
         "fuzzel": false,
@@ -274,6 +322,7 @@
         "kitty": false,
         "pywalfox": false,
         "qt": false,
+        "spicetify": false,
         "vicinae": false,
         "walker": false,
         "wezterm": false
@@ -283,6 +332,7 @@
         "fontDefaultScale": 1,
         "fontFixed": "Maple Mono ExtraLight",
         "fontFixedScale": 1,
+        "panelBackgroundOpacity": 1,
         "panelsAttachedToBar": true,
         "settingsPanelAttachToBar": false,
         "tooltipsEnabled": true
@@ -293,7 +343,8 @@
         "enableMultiMonitorDirectories": false,
         "enabled": true,
         "fillColor": "#000000",
-        "fillMode": "crop",
+        "fillMode": "stretch",
+        "hideWallpaperFilenames": false,
         "monitors": [
             {
                 "directory": "/home/maari/pictures/Wallpapers",
@@ -303,7 +354,7 @@
             {
                 "directory": "/home/maari/pictures/Wallpapers",
                 "name": "eDP-1",
-                "wallpaper": "/home/maari/pictures/Wallpapers/game-of-thrones-battle-of-dragons-1E72B.jpg"
+                "wallpaper": "/home/maari/pictures/Wallpapers/Island-Dusk-464C0.jpg"
             },
             {
                 "directory": "/home/maari/pictures/Wallpapers",
@@ -318,7 +369,7 @@
             {
                 "directory": "/home/maari/pictures/Wallpapers",
                 "name": "DP-1",
-                "wallpaper": "/home/maari/pictures/Wallpapers/game-of-thrones-battle-of-dragons-1E72B.jpg"
+                "wallpaper": "/home/maari/pictures/Wallpapers/rainbow_six_siege_outbreak_4k_8k-7680x4320-6F40C.jpg"
             }
         ],
         "overviewEnabled": false,
@@ -329,6 +380,15 @@
         "setWallpaperOnAllMonitors": true,
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,
-        "transitionType": "random"
+        "transitionType": "random",
+        "useWallhaven": false,
+        "wallhavenCategories": "111",
+        "wallhavenOrder": "desc",
+        "wallhavenPurity": "100",
+        "wallhavenQuery": "",
+        "wallhavenResolutionHeight": "",
+        "wallhavenResolutionMode": "atleast",
+        "wallhavenResolutionWidth": "",
+        "wallhavenSorting": "relevance"
     }
 }

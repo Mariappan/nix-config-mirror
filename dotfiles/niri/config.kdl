@@ -585,7 +585,7 @@ binds {
     Mod+Return { spawn "ghostty"; }
     Mod+Shift+D { spawn "noctalia-shell" "ipc" "call" "notifications" "toggleHistory"; }
 
-    Mod+Ctrl+Q { spawn "noctalia-shell" "ipc" "call" "lockScreen" "lock"; }
+    Mod+Ctrl+Q { spawn-sh "cthulock"; }
     Mod+Shift+Q { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
 
     // Core Noctalia binds
