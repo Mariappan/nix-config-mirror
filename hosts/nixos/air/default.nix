@@ -65,5 +65,10 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
   programs.vscode.enable = true;
+  programs.vscode.extensions = with pkgs.vscode-extensions; [
+    ms-vsliveshare.vsliveshare
+    rust-lang.rust-analyzer
+  ];
 }
