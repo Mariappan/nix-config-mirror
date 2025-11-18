@@ -1,8 +1,9 @@
+{ ... }:
 {
   programs.hyprlock = {
     enable = true;
     extraConfig = ''
-      ${builtins.readFile ../../../../../dotfiles/hypr/hyprlock.conf}
+      ${builtins.readFile ../../../../dotfiles/hypr/hyprlock.conf}
     '';
   };
 }
