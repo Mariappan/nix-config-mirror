@@ -26,8 +26,10 @@
 
         programs.git = {
           enable = true;
-          userName = "Mariappan Ramasamy";
-          userEmail = "maari@qq.com";
+          settings.user = {
+            name = "Mariappan Ramasamy";
+            email = "maari@qq.com";
+          };
         };
         programs.jujutsu.settings = {
           user = {

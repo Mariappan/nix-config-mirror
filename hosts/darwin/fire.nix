@@ -29,8 +29,10 @@ in
         nixma.hm.moderntools.enable = true;
 
         programs.git = {
-          userName = "${userName}";
-          userEmail = "${userEmail}";
+          settings.user = {
+            name = "${userName}";
+            email = "${userEmail}";
+          };
           signing = {
             key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
             signByDefault = true;
