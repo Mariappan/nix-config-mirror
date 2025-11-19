@@ -16,8 +16,15 @@ let
     inherit config lib;
     optionPrefix = "nixma.nixos";
   };
+
+  # Load users as separate features
+  users = libx.mkFeatures {
+    featuresDir = ./users;
+    inherit config lib;
+    optionPrefix = "nixma.nixos.users";
+  };
 in
 {
   # Always import common.nix (contains base config and options)
-  imports = [ ./common.nix ] ++ features;
+  imports = [ ./common.nix ] ++ features ++ users;
 }

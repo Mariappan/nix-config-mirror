@@ -8,11 +8,23 @@
   imports = [
     ./hardware-configuration.nix
     ./boot.nix
-    ./users.nix
   ];
 
   # Set the primary user for this system
   nixma.primaryUser = "maari";
+
+  # Configure users
+  nixma.nixos.users.root.enable = true;
+  nixma.nixos.users.maari = {
+    enable = true;
+    email = "1221719+nappairam@users.noreply.github.com";
+    sshKeys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3bwlIYLqj7YgfDNhFoAWgP5hg9+TOXmhnRZM9R8Bfi"
+    ];
+    extraGroups = [ "incus-admin" ];  # Added to default groups
+    bundle = "sun1";
+    gitSignByDefault = false;
+  };
 
   # Enable nixos features
   nixma.nixos = {
