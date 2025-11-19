@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  self,
+  ...
+}:
 {
   home.packages = [
     pkgs.earthly
@@ -11,7 +15,7 @@
   home.file = {
     "earthly" = {
       enable = true;
-      source = ../../../dotfiles/earthly_config.yml;
+      source = self + /dotfiles/earthly_config.yml;
       target = ".earthly/config.yml";
     };
   };

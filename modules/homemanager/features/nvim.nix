@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  self,
   ...
 }:
 {
@@ -13,7 +14,7 @@
   xdg.configFile = {
     "nvim" = {
       enable = true;
-      source = ../../../dotfiles/nvim;
+      source = self + /dotfiles/nvim;
       target = "nvim";
     };
   };

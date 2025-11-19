@@ -147,6 +147,7 @@ rec {
           home-manager
           libx
           ;
+        inherit (inputs) self;
       };
       modules = [
         config
@@ -182,6 +183,7 @@ rec {
           home-manager
           libx
           ;
+        inherit (inputs) self;
       };
       modules = [
         config

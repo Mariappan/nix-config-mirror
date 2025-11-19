@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  self,
+  ...
+}:
 {
   programs.caelestia = {
     enable = true;
@@ -8,10 +13,10 @@
       target = "graphical-session.target";
       environment = [ ];
     };
-    extraConfig = builtins.readFile ../../../dotfiles/caelestia/shell.json;
+    extraConfig = builtins.readFile (self + /dotfiles/caelestia/shell.json);
     cli = {
       enable = true;
-      extraConfig = builtins.readFile ../../../dotfiles/caelestia/cli.json;
+      extraConfig = builtins.readFile (self + /dotfiles/caelestia/cli.json);
     };
   };
 
