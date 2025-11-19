@@ -1,13 +1,12 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./fish
-    ./htop.nix
-    ./tmux.nix
-    ./helix.nix
-    ./nvim.nix
-    ./vim.nix
-  ];
+  # Enable related features
+  nixma.fish.enable = true;
+  nixma.htop.enable = true;
+  nixma.tmux.enable = true;
+  nixma.helix.enable = true;
+  nixma.nvim.enable = true;
+  nixma.vim.enable = true;
 
   home.packages = [
     pkgs.file

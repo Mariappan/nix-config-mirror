@@ -37,6 +37,81 @@ rec {
 
   fileNameOf = path: (builtins.head (builtins.split "\\." (baseNameOf path)));
 
+  # ==================== Feature Module Loader ===================== #
+
+  # Load features from a directory with nested support
+  # Creates options like:
+  #   - Top-level files: {optionPrefix}.{name}.enable
+  #   - Directories with default.nix: {optionPrefix}.{dirname}.enable
+  #   - Other files in dirs: {optionPrefix}.{dirname}.{filename}.enable
+  mkFeatures =
+    {
+      featuresDir, # Path to features directory
+      config, # The config object
+      lib, # The lib object
+      optionPrefix, # e.g., "nixma.linux" or "nixma"
+    }:
+    let
+      # Get config at the option prefix path
+      cfg = lib.attrByPath (lib.splitString "." optionPrefix) { } config;
+
+      # Get all entries in features directory
+      allEntries = builtins.readDir featuresDir;
+
+      # Top-level .nix files become {optionPrefix}.{name}.enable
+      # Skip files starting with _ (data files, not modules)
+      nixFiles = lib.filterAttrs (
+        name: type: type == "regular" && lib.hasSuffix ".nix" name && !lib.hasPrefix "_" name
+      ) allEntries;
+      topLevelFeatures = libx.extendModules (name: {
+        extraOptions = lib.setAttrByPath (lib.splitString "." "${optionPrefix}.${name}.enable") (
+          lib.mkEnableOption "enable my ${name} configuration"
+        );
+        configExtension = config: (lib.mkIf cfg.${name}.enable config);
+      }) (map (name: featuresDir + "/${name}") (builtins.attrNames nixFiles));
+
+      # Directories become nested features
+      directories = lib.filterAttrs (name: type: type == "directory") allEntries;
+      nestedFeatures = lib.flatten (
+        map (
+          dirName:
+          let
+            dirPath = featuresDir + "/${dirName}";
+            filesInDir = builtins.readDir dirPath;
+            nixFilesInDir = lib.filterAttrs (
+              name: type: type == "regular" && lib.hasSuffix ".nix" name && !lib.hasPrefix "_" name
+            ) filesInDir;
+
+            # Separate default.nix from other files
+            defaultNix = if nixFilesInDir ? "default.nix" then [ (dirPath + "/default.nix") ] else [ ];
+            otherNixFiles = lib.filterAttrs (name: type: name != "default.nix") nixFilesInDir;
+
+            # default.nix creates {optionPrefix}.{dirname}.enable
+            defaultFeature =
+              if (builtins.length defaultNix > 0) then
+                libx.extendModules (name: {
+                  extraOptions = lib.setAttrByPath (lib.splitString "." "${optionPrefix}.${dirName}.enable") (
+                    lib.mkEnableOption "enable ${dirName} configuration"
+                  );
+                  configExtension = config: (lib.mkIf cfg.${dirName}.enable config);
+                }) defaultNix
+              else
+                [ ];
+
+            # Other files create {optionPrefix}.{dirname}.{filename}.enable
+            otherFeatures = libx.extendModules (fileName: {
+              extraOptions = lib.setAttrByPath (lib.splitString "." "${optionPrefix}.${dirName}.${fileName}.enable") (
+                lib.mkEnableOption "enable ${dirName} ${fileName} configuration"
+              );
+              configExtension = config: (lib.mkIf cfg.${dirName}.${fileName}.enable config);
+            }) (map (name: dirPath + "/${name}") (builtins.attrNames otherNixFiles));
+          in
+          defaultFeature ++ otherFeatures
+        ) (builtins.attrNames directories)
+      );
+    in
+    topLevelFeatures ++ nestedFeatures;
+
   # ========================== Buildables ========================== #
 
   mkNixOsConf =
