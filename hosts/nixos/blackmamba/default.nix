@@ -9,14 +9,17 @@
     ./hardware-configuration.nix
     ./boot.nix
     ./users.nix
-    ../shared/common.nix
-    ../shared/hyprland.nix
-    ../shared/sound.nix
-    ../shared/headless.nix
-    ../shared/docker.nix
-    ../shared/1password.nix
-    ../shared/virtualbox.nix
+    ../../../modules/nixos/common.nix
+    ../../../modules/nixos/hyprland.nix
+    ../../../modules/nixos/sound.nix
+    ../../../modules/nixos/headless.nix
+    ../../../modules/nixos/docker.nix
+    ../../../modules/nixos/1password.nix
+    ../../../modules/nixos/virtualbox.nix
   ];
+
+  # Set the primary user for this system
+  nixma.primaryUser = "maari";
 
   # System configs
   networking.hostName = "blackmamba";

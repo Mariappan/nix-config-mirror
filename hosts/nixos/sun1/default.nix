@@ -9,16 +9,16 @@
     ./hardware-configuration.nix
     ./boot.nix
     ./users.nix
-    ../shared/common.nix
-    ../shared/manpages.nix
-    ../shared/lanzaboote.nix
-    ../shared/headless.nix
-    ../shared/niri.nix
-    ../shared/sound.nix
-    ../shared/docker.nix
-    ../shared/1password.nix
-    ../shared/virtualbox.nix
-    ../shared/screenrecorder.nix
+    ../../../modules/nixos/common.nix
+    ../../../modules/nixos/manpages.nix
+    ../../../modules/nixos/lanzaboote.nix
+    ../../../modules/nixos/headless.nix
+    ../../../modules/nixos/niri.nix
+    ../../../modules/nixos/sound.nix
+    ../../../modules/nixos/docker.nix
+    ../../../modules/nixos/1password.nix
+    ../../../modules/nixos/virtualbox.nix
+    ../../../modules/nixos/screenrecorder.nix
   ];
 
   # Set the primary user for this system

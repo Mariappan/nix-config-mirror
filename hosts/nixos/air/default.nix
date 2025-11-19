@@ -9,17 +9,17 @@
     ./hardware-configuration.nix
     ./boot.nix
     ./users.nix
-    ../shared/common.nix
-    ../shared/bluetooth.nix
-    ../shared/manpages.nix
-    ../shared/niri.nix
-    ../shared/laptop.nix
-    ../shared/sound.nix
-    ../shared/docker.nix
-    ../shared/1password.nix
-    ../shared/virtualbox.nix
-    ../shared/screenrecorder.nix
-    ../shared/fprint.nix
+    ../../../modules/nixos/common.nix
+    ../../../modules/nixos/bluetooth.nix
+    ../../../modules/nixos/manpages.nix
+    ../../../modules/nixos/niri.nix
+    ../../../modules/nixos/laptop.nix
+    ../../../modules/nixos/sound.nix
+    ../../../modules/nixos/docker.nix
+    ../../../modules/nixos/1password.nix
+    ../../../modules/nixos/virtualbox.nix
+    ../../../modules/nixos/screenrecorder.nix
+    ../../../modules/nixos/fprint.nix
   ];
 
   # Set the primary user for this system
