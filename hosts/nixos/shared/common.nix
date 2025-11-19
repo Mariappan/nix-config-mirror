@@ -14,6 +14,13 @@
     ./fishpathfix.nix
   ];
 
+  # Define primary user option
+  options.nixma.primaryUser = lib.mkOption {
+    type = lib.types.str;
+    description = "The primary user of the system";
+    example = "maari";
+  };
+
   # Nixpkgs config
   nixpkgs = {
     overlays = [

@@ -21,6 +21,9 @@
     ../shared/screenrecorder.nix
   ];
 
+  # Set the primary user for this system
+  nixma.primaryUser = "maari";
+
   # System configs
   networking.hostName = "sun1";
   networking.networkmanager.enable = true;

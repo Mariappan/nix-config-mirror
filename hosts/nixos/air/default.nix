@@ -22,6 +22,9 @@
     ../shared/fprint.nix
   ];
 
+  # Set the primary user for this system
+  nixma.primaryUser = "maari";
+
   programs.yubikey-touch-detector.enable = true;
 
   # System configs

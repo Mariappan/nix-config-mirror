@@ -1,9 +1,9 @@
+{ config, ... }:
 {
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
-    polkitPolicyOwners = [ "maari" ];
-    # polkitPolicyOwners = ["${userId}"];  # TODO: Remove this hardcoding
+    polkitPolicyOwners = [ config.nixma.primaryUser ];
   };
 
   environment.etc = {
