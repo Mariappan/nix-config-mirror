@@ -9,20 +9,23 @@
     ./hardware-configuration.nix
     ./boot.nix
     ./users.nix
-    ../../../modules/nixos/common.nix
-    ../../../modules/nixos/manpages.nix
-    ../../../modules/nixos/lanzaboote.nix
-    ../../../modules/nixos/headless.nix
-    ../../../modules/nixos/niri.nix
-    ../../../modules/nixos/sound.nix
-    ../../../modules/nixos/docker.nix
-    ../../../modules/nixos/1password.nix
-    ../../../modules/nixos/virtualbox.nix
-    ../../../modules/nixos/screenrecorder.nix
   ];
 
   # Set the primary user for this system
   nixma.primaryUser = "maari";
+
+  # Enable nixos features
+  nixma.nixos = {
+    "1password".enable = true;
+    docker.enable = true;
+    headless.enable = true;
+    lanzaboote.enable = true;
+    manpages.enable = true;
+    niri.enable = true;
+    screenrecorder.enable = true;
+    sound.enable = true;
+    virtualbox.enable = true;
+  };
 
   # System configs
   networking.hostName = "sun1";

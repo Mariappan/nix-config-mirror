@@ -1,5 +1,6 @@
 # Copied from nixos-hardware:
 # https://github.com/NixOS/nixos-hardware/blob/497ae1357f1ac97f1aea31a4cb74ad0d534ef41f/common/gpu/nvidia/disable.nix#L1
+{ ... }:
 {
   ##### disable nvidia, very nice battery life.
   boot.extraModprobeConfig = ''

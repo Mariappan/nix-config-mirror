@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
-  imports = [ ./xserver.nix ];
+  # Enable xserver module
+  nixma.nixos.xserver.enable = true;
 
   # Enable XFCE4 Desktop Environment for RDP
   services.xserver.desktopManager.xfce.enable = true;

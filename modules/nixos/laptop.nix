@@ -1,3 +1,4 @@
+{ ... }:
 {
   services.logind.settings.Login.HandleLidSwitch = "suspend-then-hibernate";
   services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";

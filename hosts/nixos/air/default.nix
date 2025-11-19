@@ -9,21 +9,24 @@
     ./hardware-configuration.nix
     ./boot.nix
     ./users.nix
-    ../../../modules/nixos/common.nix
-    ../../../modules/nixos/bluetooth.nix
-    ../../../modules/nixos/manpages.nix
-    ../../../modules/nixos/niri.nix
-    ../../../modules/nixos/laptop.nix
-    ../../../modules/nixos/sound.nix
-    ../../../modules/nixos/docker.nix
-    ../../../modules/nixos/1password.nix
-    ../../../modules/nixos/virtualbox.nix
-    ../../../modules/nixos/screenrecorder.nix
-    ../../../modules/nixos/fprint.nix
   ];
 
   # Set the primary user for this system
   nixma.primaryUser = "maari";
+
+  # Enable nixos features
+  nixma.nixos = {
+    "1password".enable = true;
+    bluetooth.enable = true;
+    docker.enable = true;
+    fprint.enable = true;
+    laptop.enable = true;
+    manpages.enable = true;
+    niri.enable = true;
+    screenrecorder.enable = true;
+    sound.enable = true;
+    virtualbox.enable = true;
+  };
 
   programs.yubikey-touch-detector.enable = true;
 

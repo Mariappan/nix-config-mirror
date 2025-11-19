@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
-  imports = [ ./xserver.nix ];
+  # Enable xserver module
+  nixma.nixos.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
