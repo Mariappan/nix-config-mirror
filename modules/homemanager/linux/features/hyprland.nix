@@ -5,13 +5,10 @@
   ...
 }:
 {
-  imports = [
-    ./wayland
-    ./wayland/kanshi.nix
-    ./ghostty.nix
-  ];
-
-  # Enable hypridle and hyprlock features when hyprland is enabled
+  # Enable related features
+  nixma.linux.wayland.enable = true;
+  nixma.linux.wayland.kanshi.enable = true;
+  nixma.linux.ghostty.enable = true;
   nixma.linux.hypridle.enable = true;
   nixma.linux.hyprlock.enable = true;
 

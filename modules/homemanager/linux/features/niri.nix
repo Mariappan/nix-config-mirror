@@ -1,11 +1,10 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./wayland
-    ./wayland/stasis.nix
-    ./wayland/kanshi.nix
-    ./ghostty.nix
-  ];
+  # Enable related features
+  nixma.linux.wayland.enable = true;
+  nixma.linux.wayland.stasis.enable = true;
+  nixma.linux.wayland.kanshi.enable = true;
+  nixma.linux.ghostty.enable = true;
 
   programs.niri.enable = true;
 

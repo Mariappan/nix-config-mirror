@@ -4,13 +4,12 @@
   ...
 }:
 {
-  imports = [
-    ../ghostty.nix
-    ../foot.nix
-    ./media-viewer.nix
-    ./udiskie.nix
-    ./satty.nix
-  ];
+  # Enable related features
+  nixma.linux.ghostty.enable = true;
+  nixma.linux.foot.enable = true;
+  nixma.linux.wayland.media-viewer.enable = true;
+  nixma.linux.wayland.udiskie.enable = true;
+  nixma.linux.wayland.satty.enable = true;
 
   xdg.configFile.wayland_env = {
     enable = true;

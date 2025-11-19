@@ -1,3 +1,4 @@
+{ ... }:
 {
   programs.satty = {
     enable = true;
