@@ -90,7 +90,7 @@
         homeManagerModules.default = ./modules/homemanager;
         homeManagerModules.linux = ./modules/homemanager/linux.nix;
         nixosModules.default = ./modules/nixos;
-        nixDarwinModules.default = { };
+        nixDarwinModules.default = ./modules/darwin;
       };
 
       systems = [

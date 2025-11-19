@@ -11,9 +11,7 @@ let
   userEmail = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
 in
 {
-  imports = [
-    ./shared/common.nix
-  ];
+  imports = [ ];
 
   users.users."mariappan.ramasamy" = {
     name = "mariappan.ramasamy";

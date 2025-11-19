@@ -6,9 +6,7 @@
   ...
 }:
 {
-  imports = [
-    ./shared/common.nix
-  ];
+  imports = [ ];
 
   users.users.maari = {
     name = "maari";
