@@ -84,7 +84,7 @@ in
     ];
 
     home-manager.users.${username} = libx.mkNixOsUserConf username {
-        nixma.linux.bundles.${cfg.bundle}.enable = true;
+        nixma.hm.bundle.${cfg.bundle}.enable = true;
 
         programs.git = {
           settings.user = {

@@ -115,7 +115,7 @@ rec {
   # ==================== Bundle Module Loader ====================== #
 
   # Load bundles from a directory
-  # Creates options like: {optionPrefix}.bundles.{name}.enable
+  # Creates options like: {optionPrefix}.bundle.{name}.enable
   mkBundles =
     {
       bundlesDir, # Path to bundles directory
@@ -128,10 +128,10 @@ rec {
       cfg = lib.attrByPath (lib.splitString "." optionPrefix) { } config;
     in
     libx.extendModules (name: {
-      extraOptions = lib.setAttrByPath (lib.splitString "." "${optionPrefix}.bundles.${name}.enable") (
+      extraOptions = lib.setAttrByPath (lib.splitString "." "${optionPrefix}.bundle.${name}.enable") (
         lib.mkEnableOption "enable ${name} module bundle"
       );
-      configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
+      configExtension = config: (lib.mkIf cfg.bundle.${name}.enable config);
     }) (libx.filesIn bundlesDir);
 
   # ========================== Buildables ========================== #

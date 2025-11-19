@@ -3,7 +3,7 @@
   home.file = {
     "vim" = {
       enable = true;
-      source = ../../../../dotfiles/vimrc;
+      source = ../../../dotfiles/vimrc;
       target = ".vimrc";
     };
   };

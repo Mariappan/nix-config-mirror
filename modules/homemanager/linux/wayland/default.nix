@@ -5,11 +5,11 @@
 }:
 {
   # Enable related features
-  nixma.linux.ghostty.enable = true;
-  nixma.linux.foot.enable = true;
-  nixma.linux.wayland.media-viewer.enable = true;
-  nixma.linux.wayland.udiskie.enable = true;
-  nixma.linux.wayland.satty.enable = true;
+  nixma.hm.linux.ghostty.enable = true;
+  nixma.hm.linux.foot.enable = true;
+  nixma.hm.linux.wayland.media-viewer.enable = true;
+  nixma.hm.linux.wayland.udiskie.enable = true;
+  nixma.hm.linux.wayland.satty.enable = true;
 
   xdg.configFile.wayland_env = {
     enable = true;

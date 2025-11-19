@@ -6,11 +6,11 @@
 }:
 {
   # Enable related features
-  nixma.linux.wayland.enable = true;
-  nixma.linux.wayland.kanshi.enable = true;
-  nixma.linux.ghostty.enable = true;
-  nixma.linux.hypridle.enable = true;
-  nixma.linux.hyprlock.enable = true;
+  nixma.hm.linux.wayland.enable = true;
+  nixma.hm.linux.wayland.kanshi.enable = true;
+  nixma.hm.linux.ghostty.enable = true;
+  nixma.hm.linux.hypridle.enable = true;
+  nixma.hm.linux.hyprlock.enable = true;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -22,7 +22,7 @@
     plugins = [ pkgs.hyprlandPlugins.hy3 ];
 
     extraConfig = ''
-      ${builtins.readFile ../../../../dotfiles/hypr/hyprland.conf}
+      ${builtins.readFile ../../../dotfiles/hypr/hyprland.conf}
     '';
 
     # Not needed since we have `programs.hyprland.withUWSM = true`
@@ -32,7 +32,7 @@
     # systemd.variables = [ "XDG_SESSION_DESKTOP" ];
   };
   xdg.configFile.hyprland_configs = {
-    source = ../../../../dotfiles/hypr/hyprland;
+    source = ../../../dotfiles/hypr/hyprland;
     target = "hypr/hyprland";
   };
 

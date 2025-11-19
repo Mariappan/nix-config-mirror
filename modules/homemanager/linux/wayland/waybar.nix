@@ -5,10 +5,10 @@
 }:
 let
   pkg_togglewifi = pkgs.writeScriptBin "waybar_togwifi.sh" (
-    builtins.readFile ../../../../../dotfiles/waybar/scripts/toggle_wifi.sh
+    builtins.readFile ../../../../dotfiles/waybar/scripts/toggle_wifi.sh
   );
   pkg_wttrpy = pkgs.writers.writePython3Bin "waybar_wttr.py" { } (
-    builtins.readFile ../../../../../dotfiles/waybar/scripts/wttr.py
+    builtins.readFile ../../../../dotfiles/waybar/scripts/wttr.py
   );
   togglewifi = "${pkg_togglewifi}/bin/waybar_togwifi.sh";
   wttrpy = "${pkg_wttrpy}/bin/waybar_wttr.py";
@@ -20,7 +20,7 @@ in
       mainbar = builtins.fromJSON (
         builtins.unsafeDiscardStringContext (
           builtins.readFile (
-            pkgs.replaceVars ../../../../../dotfiles/waybar/config.json {
+            pkgs.replaceVars ../../../../dotfiles/waybar/config.json {
               inherit togglewifi wttrpy;
             }
           )
@@ -28,7 +28,7 @@ in
       );
     };
     style = ''
-      ${builtins.readFile ../../../../../dotfiles/waybar/style.css}
+      ${builtins.readFile ../../../../dotfiles/waybar/style.css}
     '';
 
     systemd.enable = true;

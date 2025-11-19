@@ -20,11 +20,11 @@
     imports = [
       outputs.homeManagerModules.default
       {
-        nixma.core.enable = true;
-        nixma.dev.enable = true;
-        nixma.git.enable = true;
-        nixma.jujutsu.enable = true;
-        nixma.wezterm.enable = true;
+        nixma.hm.core.enable = true;
+        nixma.hm.dev.enable = true;
+        nixma.hm.git.enable = true;
+        nixma.hm.jujutsu.enable = true;
+        nixma.hm.wezterm.enable = true;
 
         programs.git = {
           enable = true;

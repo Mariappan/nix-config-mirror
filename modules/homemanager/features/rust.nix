@@ -3,7 +3,7 @@
   home.file = {
     "cargo" = {
       enable = true;
-      source = ../../../../dotfiles/cargo_config.toml;
+      source = ../../../dotfiles/cargo_config.toml;
       target = ".cargo/config.toml";
     };
   };

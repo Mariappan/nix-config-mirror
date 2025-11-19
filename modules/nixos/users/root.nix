@@ -14,7 +14,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home-manager.users.root = libx.mkNixOsUserConf "root" {
-      nixma.linux.bundles.root.enable = true;
+      nixma.hm.bundle.root.enable = true;
     };
   };
 }

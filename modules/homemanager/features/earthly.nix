@@ -11,7 +11,7 @@
   home.file = {
     "earthly" = {
       enable = true;
-      source = ../../../../dotfiles/earthly_config.yml;
+      source = ../../../dotfiles/earthly_config.yml;
       target = ".earthly/config.yml";
     };
   };

@@ -1,12 +1,12 @@
 { pkgs, ... }:
 {
   # Enable related features
-  nixma.fish.enable = true;
-  nixma.htop.enable = true;
-  nixma.tmux.enable = true;
-  nixma.helix.enable = true;
-  nixma.nvim.enable = true;
-  nixma.vim.enable = true;
+  nixma.hm.fish.enable = true;
+  nixma.hm.htop.enable = true;
+  nixma.hm.tmux.enable = true;
+  nixma.hm.helix.enable = true;
+  nixma.hm.nvim.enable = true;
+  nixma.hm.vim.enable = true;
 
   home.packages = [
     pkgs.file

@@ -1,10 +1,10 @@
 { pkgs, ... }:
 {
   # Enable related features
-  nixma.linux.wayland.enable = true;
-  nixma.linux.wayland.stasis.enable = true;
-  nixma.linux.wayland.kanshi.enable = true;
-  nixma.linux.ghostty.enable = true;
+  nixma.hm.linux.wayland.enable = true;
+  nixma.hm.linux.wayland.stasis.enable = true;
+  nixma.hm.linux.wayland.kanshi.enable = true;
+  nixma.hm.linux.ghostty.enable = true;
 
   programs.niri.enable = true;
 
