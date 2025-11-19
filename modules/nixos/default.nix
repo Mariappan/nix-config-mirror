@@ -11,7 +11,7 @@ let
   cfg = config.nixma.nixos;
 
   # Load all .nix files in this directory as features
-  # except for default.nix, common.nix, and fishpathfix.nix
+  # except for default.nix, common.nix
   featuresDir = ./.;
   allEntries = builtins.readDir featuresDir;
 
@@ -22,7 +22,6 @@ let
       && lib.hasSuffix ".nix" name
       && name != "default.nix"       # default.nix is the current file, ignore it
       && name != "common.nix"        # common.nix is included unconditionally
-      && name != "fishpathfix.nix"
       && !lib.hasPrefix "_" name
   ) allEntries;
 

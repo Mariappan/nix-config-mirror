@@ -16,7 +16,6 @@
       home-manager.extraSpecialArgs = config._module.specialArgs;
       home-manager.backupFileExtension = "backup";
     }
-    ./fishpathfix.nix
   ];
 
   # Nixpkgs config

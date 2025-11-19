@@ -11,7 +11,6 @@
 {
   imports = [
     home-manager.nixosModules.home-manager
-    ./fishpathfix.nix
   ];
 
   # Define primary user option
