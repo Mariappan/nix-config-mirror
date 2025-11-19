@@ -17,14 +17,12 @@ let
     optionPrefix = "nixma";
   };
 
-  # Taking all module bundles in ./bundles and adding bundle.enables to them
-  bundles = libx.extendModules (name: {
-    extraOptions = {
-      nixma.bundles.${name}.enable = lib.mkEnableOption "enable ${name} module bundle";
-    };
-
-    configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
-  }) (libx.filesIn ./bundles);
+  # Load bundles using the reusable function
+  bundles = libx.mkBundles {
+    bundlesDir = ./bundles;
+    inherit config lib;
+    optionPrefix = "nixma";
+  };
 in
 {
   imports = [ ] ++ features ++ bundles;

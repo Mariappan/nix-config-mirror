@@ -112,6 +112,28 @@ rec {
     in
     topLevelFeatures ++ nestedFeatures;
 
+  # ==================== Bundle Module Loader ====================== #
+
+  # Load bundles from a directory
+  # Creates options like: {optionPrefix}.bundles.{name}.enable
+  mkBundles =
+    {
+      bundlesDir, # Path to bundles directory
+      config, # The config object
+      lib, # The lib object
+      optionPrefix, # e.g., "nixma.linux" or "nixma"
+    }:
+    let
+      # Get config at the option prefix path
+      cfg = lib.attrByPath (lib.splitString "." optionPrefix) { } config;
+    in
+    libx.extendModules (name: {
+      extraOptions = lib.setAttrByPath (lib.splitString "." "${optionPrefix}.bundles.${name}.enable") (
+        lib.mkEnableOption "enable ${name} module bundle"
+      );
+      configExtension = config: (lib.mkIf cfg.bundles.${name}.enable config);
+    }) (libx.filesIn bundlesDir);
+
   # ========================== Buildables ========================== #
 
   mkNixOsConf =
