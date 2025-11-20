@@ -64,7 +64,8 @@ in
         "networkmanager"
         "vboxusers"
         "input"
-      ] ++ cfg.extraGroups;
+      ]
+      ++ cfg.extraGroups;
       isNormalUser = true;
       openssh.authorizedKeys.keys = cfg.sshKeys;
     };
@@ -84,31 +85,31 @@ in
     ];
 
     home-manager.users.${username} = libx.mkNixOsUserConf username {
-        nixma.hm.bundle.${cfg.bundle}.enable = true;
+      nixma.hm.bundle.${cfg.bundle}.enable = true;
 
-        programs.git = {
-          settings.user = {
-            name = cfg.name;
-            email = cfg.email;
-          };
-          signing = lib.mkIf (cfg.gitSigningKey != null) {
-            key = cfg.gitSigningKey;
-            signByDefault = cfg.gitSignByDefault;
-          };
+      programs.git = {
+        settings.user = {
+          name = cfg.name;
+          email = cfg.email;
         };
-
-        programs.jujutsu.settings = {
-          user = {
-            email = cfg.email;
-            name = cfg.name;
-          };
-          signing = lib.mkIf (cfg.gitSigningKey != null) {
-            key = cfg.gitSigningKey;
-          };
-          git = lib.mkIf cfg.gitSignByDefault {
-            sign-on-push = true;
-          };
+        signing = lib.mkIf (cfg.gitSigningKey != null) {
+          key = cfg.gitSigningKey;
+          signByDefault = cfg.gitSignByDefault;
         };
       };
+
+      programs.jujutsu.settings = {
+        user = {
+          email = cfg.email;
+          name = cfg.name;
+        };
+        signing = lib.mkIf (cfg.gitSigningKey != null) {
+          key = cfg.gitSigningKey;
+        };
+        git = lib.mkIf cfg.gitSignByDefault {
+          sign-on-push = true;
+        };
+      };
+    };
   };
 }

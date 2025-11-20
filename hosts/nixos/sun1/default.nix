@@ -21,7 +21,7 @@
     sshKeys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3bwlIYLqj7YgfDNhFoAWgP5hg9+TOXmhnRZM9R8Bfi"
     ];
-    extraGroups = [ "incus-admin" ];  # Added to default groups
+    extraGroups = [ "incus-admin" ]; # Added to default groups
     bundle = "sun1";
     gitSignByDefault = false;
   };

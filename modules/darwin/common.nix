@@ -68,7 +68,7 @@
       upgrade = true;
       cleanup = "zap";
     };
-    brews = [];
+    brews = [ ];
     casks = [
       "boop"
       "obsidian"
