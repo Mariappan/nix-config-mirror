@@ -4,7 +4,7 @@
     pkgs.git-absorb
   ];
 
-  programs.gitui.enable = true;
+  programs.gitui.enable = pkgs.stdenv.isLinux;
   programs.git.enable = true;
   programs.git.lfs.enable = true;
   programs.git.ignores = import ./_ignores.nix;

@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.jujutsu.enable = true;
 
@@ -23,6 +23,8 @@
 
   home.packages = [
     pkgs.lazyjj
+  ]
+  ++ lib.optionals pkgs.stdenv.isLinux [
     pkgs.meld
   ];
 }
