@@ -6,20 +6,14 @@
   ...
 }:
 let
-  username = "maari";
-  cfg = config.nixma.nixos.users.${username};
+  moduleName = "maari";
+  cfg = config.nixma.nixos.users.${moduleName};
 in
 {
-  options.nixma.nixos.users.${username} =
+  options.nixma.nixos.users.${moduleName} =
     # Common user options (shared with Darwin)
-    (libx.mkCommonUserOptions lib) // {
+    (libx.mkCommonUserOptions lib moduleName) // {
       # NixOS-specific options
-      sshKeys = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [ ];
-        description = "SSH authorized keys";
-      };
-
       extraGroups = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [ ];
@@ -28,10 +22,9 @@ in
     };
 
   config = lib.mkIf cfg.enable {
-    users.users.${username} = {
-      name = username;
-      description = cfg.name;
-      home = "/home/${username}";
+    users.users.${cfg.username} = {
+      name = cfg.username;
+      home = "/home/${cfg.username}";
       shell = "${pkgs.fish}/bin/fish";
       extraGroups = [
         "wheel"
@@ -45,11 +38,11 @@ in
       openssh.authorizedKeys.keys = cfg.sshKeys;
     };
 
-    nix.settings.trusted-users = [ username ];
+    nix.settings.trusted-users = [ cfg.username ];
 
     security.sudo.extraRules = [
       {
-        users = [ username ];
+        users = [ cfg.username ];
         commands = [
           {
             command = "ALL";
@@ -59,7 +52,7 @@ in
       }
     ];
 
-    home-manager.users.${username} = libx.mkHmUserConf {
+    home-manager.users.${cfg.username} = libx.mkHmUserConf {
       nixma.hm.user = {
         enable = true;
         bundle = cfg.bundle;

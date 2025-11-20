@@ -137,7 +137,14 @@ rec {
   # ==================== User Options Generator ==================== #
 
   # Generate common user options (used by both NixOS and Darwin user modules)
-  mkCommonUserOptions = lib: {
+  # Note: username option needs to be added by the calling module with moduleName as default
+  mkCommonUserOptions = lib: moduleName: {
+    username = lib.mkOption {
+      type = lib.types.str;
+      default = moduleName;
+      description = "System username (defaults to module name)";
+    };
+
     name = lib.mkOption {
       type = lib.types.str;
       default = "Mariappan Ramasamy";
@@ -164,6 +171,12 @@ rec {
       type = lib.types.bool;
       default = false;
       description = "Whether to sign commits by default";
+    };
+
+    sshKeys = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
+      description = "SSH authorized keys";
     };
   };
 

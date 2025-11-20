@@ -6,16 +6,13 @@
   ...
 }:
 let
-  # The module name (from filename)
   moduleName = "maari";
-  # The actual system username
-  username = "mariappan.ramasamy";
   cfg = config.nixma.darwin.users.${moduleName};
 in
 {
   options.nixma.darwin.users.${moduleName} =
     # Common user options (shared with NixOS)
-    (libx.mkCommonUserOptions lib) // {
+    (libx.mkCommonUserOptions lib moduleName) // {
       # Darwin-specific options
       homebrewBrews = lib.mkOption {
         type = lib.types.listOf lib.types.str;
@@ -25,17 +22,17 @@ in
     };
 
   config = lib.mkIf cfg.enable {
-    users.users.${username} = {
-      name = username;
-      home = "/Users/${username}";
+    users.users.${cfg.username} = {
+      name = cfg.username;
+      home = "/Users/${cfg.username}";
+      openssh.authorizedKeys.keys = cfg.sshKeys;
     };
 
-    nix.settings.trusted-users = [ username ];
+    nix.settings.trusted-users = [ cfg.username ];
 
-    # Set as primary user (temporary, will be replaced with params module)
-    system.primaryUser = username;
+    system.primaryUser = cfg.username;
 
-    home-manager.users.${username} = libx.mkHmUserConf {
+    home-manager.users.${cfg.username} = libx.mkHmUserConf {
       nixma.hm.user = {
         enable = true;
         bundle = cfg.bundle;

@@ -12,6 +12,7 @@
   # Configure users
   nixma.darwin.users.maari = {
     enable = true;
+    username = "mariappan.ramasamy";
     bundle = "fire";
     name = "Mariappan Ramasamy";
     email = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
