@@ -11,7 +11,7 @@
   ];
 
   # Set the primary user for this system
-  nixma.primaryUser = "maari";
+  nixma.nixos.params.primaryUser = "maari";
 
   # Configure users
   nixma.nixos.users.root.enable = true;

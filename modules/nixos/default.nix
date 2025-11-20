@@ -25,6 +25,11 @@ let
   };
 in
 {
-  # Always import common.nix (contains base config and options)
-  imports = [ ./common.nix ] ++ features ++ users;
+  # Always import common modules
+  imports = [
+    ./params.nix
+    ./common.nix
+  ]
+  ++ features
+  ++ users;
 }
