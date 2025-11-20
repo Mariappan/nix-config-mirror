@@ -6,61 +6,36 @@
   ...
 }:
 let
-  # The actual system username
-  systemUsername = "mariappan.ramasamy";
   # The module name (from filename)
   moduleName = "maari";
+  # The actual system username
+  username = "mariappan.ramasamy";
   cfg = config.nixma.darwin.users.${moduleName};
 in
 {
-  options.nixma.darwin.users.${moduleName} = {
-    name = lib.mkOption {
-      type = lib.types.str;
-      default = "Mariappan Ramasamy";
-      description = "Full name of the user";
+  options.nixma.darwin.users.${moduleName} =
+    # Common user options (shared with NixOS)
+    (libx.mkCommonUserOptions lib) // {
+      # Darwin-specific options
+      homebrewBrews = lib.mkOption {
+        type = lib.types.listOf lib.types.str;
+        default = [ ];
+        description = "Additional homebrew brews to install for this user";
+      };
     };
-
-    email = lib.mkOption {
-      type = lib.types.str;
-      description = "Email address for git/jujutsu";
-    };
-
-    gitSigningKey = lib.mkOption {
-      type = lib.types.nullOr lib.types.str;
-      default = null;
-      description = "GPG key for git signing";
-    };
-
-    gitSignByDefault = lib.mkOption {
-      type = lib.types.bool;
-      default = false;
-      description = "Whether to sign commits by default";
-    };
-
-    bundle = lib.mkOption {
-      type = lib.types.str;
-      description = "Home-manager bundle to enable (e.g., 'fire')";
-    };
-
-    homebrewBrews = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
-      description = "Additional homebrew brews to install for this user";
-    };
-  };
 
   config = lib.mkIf cfg.enable {
-    users.users.${systemUsername} = {
-      name = systemUsername;
-      home = "/Users/${systemUsername}";
+    users.users.${username} = {
+      name = username;
+      home = "/Users/${username}";
     };
 
-    nix.settings.trusted-users = [ systemUsername ];
+    nix.settings.trusted-users = [ username ];
 
     # Set as primary user (temporary, will be replaced with params module)
-    system.primaryUser = systemUsername;
+    system.primaryUser = username;
 
-    home-manager.users.${systemUsername} = libx.mkHmUserConf {
+    home-manager.users.${username} = libx.mkHmUserConf {
       nixma.hm.user = {
         enable = true;
         bundle = cfg.bundle;

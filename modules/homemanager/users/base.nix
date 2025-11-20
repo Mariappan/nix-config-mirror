@@ -20,6 +20,12 @@ in
       description = "Email address for git/jujutsu";
     };
 
+    bundle = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+      description = "Home-manager bundle to enable (e.g., 'air', 'fire')";
+    };
+
     gitSigningKey = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
       default = null;
@@ -31,17 +37,12 @@ in
       default = false;
       description = "Whether to sign commits by default";
     };
-
-    bundle = lib.mkOption {
-      type = lib.types.nullOr lib.types.str;
-      default = null;
-      description = "Home-manager bundle to enable (e.g., 'air', 'fire')";
-    };
   };
 
   config = lib.mkIf cfg.enable {
     # Automatically enable the specified bundle
     nixma.hm.bundle.${cfg.bundle}.enable = lib.mkIf (cfg.bundle != null) true;
+
     programs.git = {
       settings.user = {
         name = cfg.name;

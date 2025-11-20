@@ -134,6 +134,39 @@ rec {
       configExtension = config: (lib.mkIf cfg.bundle.${name}.enable config);
     }) (libx.filesIn bundlesDir);
 
+  # ==================== User Options Generator ==================== #
+
+  # Generate common user options (used by both NixOS and Darwin user modules)
+  mkCommonUserOptions = lib: {
+    name = lib.mkOption {
+      type = lib.types.str;
+      default = "Mariappan Ramasamy";
+      description = "Full name of the user";
+    };
+
+    email = lib.mkOption {
+      type = lib.types.str;
+      description = "Email address for git/jujutsu";
+    };
+
+    bundle = lib.mkOption {
+      type = lib.types.str;
+      description = "Home-manager bundle to enable (e.g., 'air', 'fire')";
+    };
+
+    gitSigningKey = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+      description = "GPG key for git signing";
+    };
+
+    gitSignByDefault = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = "Whether to sign commits by default";
+    };
+  };
+
   # ========================== Buildables ========================== #
 
   mkNixOsConf =
