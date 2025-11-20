@@ -5,62 +5,22 @@
   pkgs,
   ...
 }:
-let
-  userId = "maari";
-  userName = "Mariappan Ramasamy";
-  userEmail = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
-in
 {
-  users.users."mariappan.ramasamy" = {
-    name = "mariappan.ramasamy";
-    home = "/Users/mariappan.ramasamy";
-  };
+  # Set the primary user for this system
+  nixma.darwin.params.primaryUser = "mariappan.ramasamy";
 
-  home-manager.users."mariappan.ramasamy" = {
-    imports = [
-      outputs.homeManagerModules.default
+  # Configure users
+  nixma.darwin.users."mariappan.ramasamy" = {
+    enable = true;
+    name = "Mariappan Ramasamy";
+    email = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
+    gitSigningKey = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
+    gitSignByDefault = true;
+    homebrewBrews = [
+      "gnupg"
+      "rbenv"
     ];
-
-    nixma.hm.core.enable = true;
-    nixma.hm.dev.enable = true;
-    nixma.hm.git.enable = true;
-    nixma.hm.jujutsu.enable = true;
-    nixma.hm.moderntools.enable = true;
-    nixma.hm.gpgagent.enable = true;
-
-    programs.git = {
-      settings.user = {
-        name = "${userName}";
-        email = "${userEmail}";
-      };
-      signing = {
-        key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
-        signByDefault = true;
-      };
-    };
-    programs.jujutsu.settings = {
-      user = {
-        email = "${userEmail}";
-        name = "${userName}";
-      };
-      signing = {
-        key = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
-      };
-      git = {
-        sign-on-push = true;
-      };
-    };
   };
-
-  homebrew.brews = [
-    "gnupg"
-    "rbenv"
-  ];
-
-  nix.settings.trusted-users = [ "mariappan.ramasamy" ];
-
-  # Needed for nix darwin temp. Will be replaced soon
-  system.primaryUser = "mariappan.ramasamy";
 
   # The platform the configuration will be used on.
   nixpkgs.hostPlatform = "aarch64-darwin";
