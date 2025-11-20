@@ -10,11 +10,6 @@ update flake='':
 test flake='.':
     nh os test {{flake}} -- --accept-flake-config
 
-# Activate the new config. Dont update the bootloader
-[macos]
-test flake='.':
-    sudo darwin-rebuild activate --flake {{flake}}
-
 # Build and see the diff
 [linux]
 verify flake='.':
@@ -25,8 +20,13 @@ verify flake='.':
 build flake='.':
     sudo nixos-rebuild switch --flake {{flake}}
 
+# Activate the new config. Dont update the bootloader
+[macos]
+test flake='.':
+    sudo darwin-rebuild activate --flake {{flake}} --option accept-flake-config true
+
 # Build nix-darwin
 [macos]
 build flake='.':
-    sudo darwin-rebuild switch --flake {{flake}}
+    sudo darwin-rebuild switch --flake {{flake}} --option accept-flake-config true
 
