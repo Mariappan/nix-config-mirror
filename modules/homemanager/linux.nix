@@ -16,14 +16,7 @@ let
     inherit config lib;
     optionPrefix = "nixma.hm.linux";
   };
-
-  # Load bundles (Linux-specific, includes linux feature enables)
-  bundles = libx.mkBundles {
-    bundlesDir = ./bundle;
-    inherit config lib;
-    optionPrefix = "nixma.hm";
-  };
 in
 {
-  imports = [ ] ++ linuxFeatures ++ bundles;
+  imports = [ ] ++ linuxFeatures;
 }

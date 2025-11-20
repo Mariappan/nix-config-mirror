@@ -56,12 +56,7 @@ in
     system.primaryUser = systemUsername;
 
     home-manager.users.${systemUsername} = libx.mkHmUserConf {
-      nixma.hm.core.enable = true;
-      nixma.hm.dev.enable = true;
-      nixma.hm.git.enable = true;
-      nixma.hm.jujutsu.enable = true;
-      nixma.hm.moderntools.enable = true;
-      nixma.hm.gpgagent.enable = true;
+      nixma.hm.bundle.fire.enable = true;
 
       nixma.hm.user = {
         enable = true;
