@@ -160,7 +160,7 @@ rec {
   mkNixOsConfs =
     dir: builtins.mapAttrs (host: _: libx.mkNixOsConf (dir + "/${host}")) (dirsCleanIn dir);
 
-  mkNixOsUserConf = user: config: {
+  mkHmUserConf = user: config: {
     imports = [
       inputs.nix-index-database.homeModules.nix-index
       inputs.caelestia-shell.homeManagerModules.default
