@@ -22,6 +22,7 @@
 
   boot.kernelParams = [
     "ip=dhcp"
+    "boot.shell_on_fail"
   ];
 
   boot.initrd = {

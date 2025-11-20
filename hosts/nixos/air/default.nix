@@ -35,6 +35,7 @@
     laptop.enable = true;
     manpages.enable = true;
     niri.enable = true;
+    plymouth.enable = true;
     screenrecorder.enable = true;
     sound.enable = true;
     virtualbox.enable = true;
