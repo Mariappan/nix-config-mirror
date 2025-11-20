@@ -89,7 +89,12 @@
           name = "rust";
           auto-format = true;
         }
+        {
+          name = "nix";
+          language-servers = [ "nixd" ];
+        }
       ];
+      language-server.nixd.command = "nixd";
     };
     themes = {
       my-catppuccin-frappe = {
