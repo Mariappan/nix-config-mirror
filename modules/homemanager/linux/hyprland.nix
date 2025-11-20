@@ -2,7 +2,7 @@
   config,
   pkgs,
   lib,
-  self,
+  dotfilesPath,
   ...
 }:
 {
@@ -23,7 +23,7 @@
     plugins = [ pkgs.hyprlandPlugins.hy3 ];
 
     extraConfig = ''
-      ${builtins.readFile (self + /dotfiles/hypr/hyprland.conf)}
+      ${builtins.readFile (dotfilesPath + "/hypr/hyprland.conf")}
     '';
 
     # Not needed since we have `programs.hyprland.withUWSM = true`
@@ -33,7 +33,7 @@
     # systemd.variables = [ "XDG_SESSION_DESKTOP" ];
   };
   xdg.configFile.hyprland_configs = {
-    source = self + /dotfiles/hypr/hyprland;
+    source = dotfilesPath + "/hypr/hyprland";
     target = "hypr/hyprland";
   };
 

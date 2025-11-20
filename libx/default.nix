@@ -148,6 +148,7 @@ rec {
           libx
           ;
         inherit (inputs) self;
+        dotfilesPath = inputs.self + /dotfiles;
       };
       modules = [
         config
@@ -184,6 +185,7 @@ rec {
           libx
           ;
         inherit (inputs) self;
+        dotfilesPath = inputs.self + /dotfiles;
       };
       modules = [
         config

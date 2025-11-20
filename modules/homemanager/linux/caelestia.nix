@@ -1,7 +1,7 @@
 {
   pkgs,
   lib,
-  self,
+  dotfilesPath,
   ...
 }:
 {
@@ -13,10 +13,10 @@
       target = "graphical-session.target";
       environment = [ ];
     };
-    extraConfig = builtins.readFile (self + /dotfiles/caelestia/shell.json);
+    extraConfig = builtins.readFile (dotfilesPath + "/caelestia/shell.json");
     cli = {
       enable = true;
-      extraConfig = builtins.readFile (self + /dotfiles/caelestia/cli.json);
+      extraConfig = builtins.readFile (dotfilesPath + "/caelestia/cli.json");
     };
   };
 

@@ -1,13 +1,13 @@
 {
   pkgs,
-  self,
+  dotfilesPath,
   ...
 }:
 {
   home.file = {
     "cargo" = {
       enable = true;
-      source = self + /dotfiles/cargo_config.toml;
+      source = dotfilesPath + "/cargo_config.toml";
       target = ".cargo/config.toml";
     };
   };

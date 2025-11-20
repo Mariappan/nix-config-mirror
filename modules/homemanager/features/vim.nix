@@ -1,13 +1,13 @@
 {
   pkgs,
-  self,
+  dotfilesPath,
   ...
 }:
 {
   home.file = {
     "vim" = {
       enable = true;
-      source = self + /dotfiles/vimrc;
+      source = dotfilesPath + "/vimrc";
       target = ".vimrc";
     };
   };
