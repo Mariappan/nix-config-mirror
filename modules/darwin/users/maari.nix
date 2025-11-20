@@ -37,6 +37,11 @@ in
       description = "Whether to sign commits by default";
     };
 
+    bundle = lib.mkOption {
+      type = lib.types.str;
+      description = "Home-manager bundle to enable (e.g., 'fire')";
+    };
+
     homebrewBrews = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [ ];
@@ -56,10 +61,9 @@ in
     system.primaryUser = systemUsername;
 
     home-manager.users.${systemUsername} = libx.mkHmUserConf {
-      nixma.hm.bundle.fire.enable = true;
-
       nixma.hm.user = {
         enable = true;
+        bundle = cfg.bundle;
         name = cfg.name;
         email = cfg.email;
         gitSigningKey = cfg.gitSigningKey;

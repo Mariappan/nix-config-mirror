@@ -85,10 +85,9 @@ in
     ];
 
     home-manager.users.${username} = libx.mkHmUserConf {
-      nixma.hm.bundle.${cfg.bundle}.enable = true;
-
       nixma.hm.user = {
         enable = true;
+        bundle = cfg.bundle;
         name = cfg.name;
         email = cfg.email;
         gitSigningKey = cfg.gitSigningKey;
