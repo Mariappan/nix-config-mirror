@@ -18,5 +18,8 @@ let
   };
 in
 {
-  imports = [ ] ++ features;
+  imports = [
+    ./users/base.nix
+  ]
+  ++ features;
 }

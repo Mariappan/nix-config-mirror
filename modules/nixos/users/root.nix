@@ -13,7 +13,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home-manager.users.root = libx.mkHmUserConf "root" {
+    home-manager.users.root = libx.mkHmUserConf {
       nixma.hm.bundle.root.enable = true;
     };
   };

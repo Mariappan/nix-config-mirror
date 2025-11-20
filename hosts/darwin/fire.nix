@@ -10,7 +10,7 @@
   nixma.darwin.params.primaryUser = "mariappan.ramasamy";
 
   # Configure users
-  nixma.darwin.users."mariappan.ramasamy" = {
+  nixma.darwin.users.maari = {
     enable = true;
     name = "Mariappan Ramasamy";
     email = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";

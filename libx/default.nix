@@ -160,7 +160,8 @@ rec {
   mkNixOsConfs =
     dir: builtins.mapAttrs (host: _: libx.mkNixOsConf (dir + "/${host}")) (dirsCleanIn dir);
 
-  mkHmUserConf = user: config: {
+  # Home manager user config - works for both NixOS and Darwin
+  mkHmUserConf = config: {
     imports = [
       inputs.nix-index-database.homeModules.nix-index
       inputs.caelestia-shell.homeManagerModules.default

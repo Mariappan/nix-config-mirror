@@ -84,31 +84,15 @@ in
       }
     ];
 
-    home-manager.users.${username} = libx.mkHmUserConf username {
+    home-manager.users.${username} = libx.mkHmUserConf {
       nixma.hm.bundle.${cfg.bundle}.enable = true;
 
-      programs.git = {
-        settings.user = {
-          name = cfg.name;
-          email = cfg.email;
-        };
-        signing = lib.mkIf (cfg.gitSigningKey != null) {
-          key = cfg.gitSigningKey;
-          signByDefault = cfg.gitSignByDefault;
-        };
-      };
-
-      programs.jujutsu.settings = {
-        user = {
-          email = cfg.email;
-          name = cfg.name;
-        };
-        signing = lib.mkIf (cfg.gitSigningKey != null) {
-          key = cfg.gitSigningKey;
-        };
-        git = lib.mkIf cfg.gitSignByDefault {
-          sign-on-push = true;
-        };
+      nixma.hm.user = {
+        enable = true;
+        name = cfg.name;
+        email = cfg.email;
+        gitSigningKey = cfg.gitSigningKey;
+        gitSignByDefault = cfg.gitSignByDefault;
       };
     };
   };
