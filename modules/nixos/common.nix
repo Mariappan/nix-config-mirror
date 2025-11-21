@@ -43,19 +43,6 @@
   home-manager.extraSpecialArgs = config._module.specialArgs;
   home-manager.backupFileExtension = "backup";
 
-  environment.systemPackages = [
-    pkgs.curl
-    pkgs.git
-    pkgs.nix-alien
-    pkgs.opensc
-    pkgs.openssh
-    pkgs.sbctl
-    pkgs.usbutils
-    pkgs.procps
-    pkgs.helix
-    pkgs.vim
-  ];
-
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;
 
@@ -66,6 +53,18 @@
     pkgs.bashInteractive
     pkgs.zsh
     pkgs.fish
+  ];
+
+  environment.systemPackages = [
+    pkgs.curl
+    pkgs.nix-alien
+    pkgs.opensc
+    pkgs.openssh
+    pkgs.sbctl
+    pkgs.usbutils
+    pkgs.procps
+    pkgs.helix
+    pkgs.vim
   ];
 
   # For running native binaries without patchelf

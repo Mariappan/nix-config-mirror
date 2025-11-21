@@ -8,14 +8,6 @@
     enable = true;
     bundle = "water";
     name = "Mariappan Ramasamy";
-    email = "maari@qq.com";
+    email = "2441529-Mariappan@users.noreply.gitlab.com";
   };
-
-  # The platform the configuration will be used on.
-  nixpkgs.hostPlatform = "aarch64-darwin";
-
-  # Enable x64 using rosetta
-  nix.extraOptions = ''
-    extra-platforms = x86_64-darwin aarch64-darwin
-  '';
 }

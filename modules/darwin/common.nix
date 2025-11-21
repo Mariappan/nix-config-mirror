@@ -23,24 +23,22 @@
     };
   };
 
+  # Should not be hardcoded. But I am not gonna buy x64 macbook anytime
+  # So this is fine for now
+  nixpkgs.hostPlatform = "aarch64-darwin";
+
+  # Disable nix-darwin nix management. Determindated nixd will take care of it
+  nix.enable = false;
+  # nix.settings.experimental-features = "nix-command flakes";
+  # Enable x64 using rosetta
+  nix.extraOptions = ''
+    extra-platforms = x86_64-darwin aarch64-darwin
+  '';
+
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.extraSpecialArgs = config._module.specialArgs;
   home-manager.backupFileExtension = "backup";
-
-  # Disable nix-darwin nix management. Determindated nixd will take care of it
-  nix.enable = false;
-
-  # Not needed for determinate nix
-  # nix.settings.experimental-features = "nix-command flakes";
-
-  # List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
-  environment.systemPackages = [
-    pkgs.curl
-    pkgs.pinentry_mac
-    pkgs.terminal-notifier
-  ];
 
   # Create /etc/zshrc that loads the nix-darwin environment
   programs.zsh.enable = true;
@@ -56,6 +54,12 @@
   environment.shells = [
     pkgs.zsh
     pkgs.fish
+  ];
+
+  environment.systemPackages = [
+    pkgs.curl
+    pkgs.pinentry_mac
+    pkgs.terminal-notifier
   ];
 
   homebrew = {
