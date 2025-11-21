@@ -4,10 +4,13 @@
     pkgs.git-absorb
   ];
 
-  programs.gitui.enable = pkgs.stdenv.isLinux;
+  programs.gitui.enable = true;
+  programs.gitui.package = pkgs.stable.gitui;
+
   programs.git.enable = true;
   programs.git.lfs.enable = true;
   programs.git.ignores = import ./_ignores.nix;
+
   programs.git.settings = {
     alias = {
       graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f";
