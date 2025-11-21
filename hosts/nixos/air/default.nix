@@ -1,9 +1,5 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./boot.nix
-  ];
-
   # Set the primary user for this system
   nixma.nixos.params.primaryUser = "maari";
 
@@ -22,10 +18,28 @@
 
   # Hardware configuration
   nixma.nixos.hardware = {
-    luks.enable = false;
     work.enable = true;
     swap.enable = true;
     cpu.vendor = "intel";
+  };
+
+  # Boot configuration
+  nixma.nixos.boot = {
+    blacklistedKernelModules = [ "kvm-intel" ];
+    tmpfs = {
+      enable = true;
+      size = "8G";
+    };
+    initrd.availableKernelModules = [
+      "xhci_pci"
+      "thunderbolt"
+      "nvme"
+      "usbhid"
+      "usb_storage"
+      "sd_mod"
+      "r8152"
+      "rtsx_pci_sdmmc"
+    ];
   };
 
   # Enable nixos features

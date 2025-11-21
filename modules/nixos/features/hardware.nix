@@ -14,6 +14,7 @@ in
   options.nixma.nixos.hardware = {
     luks = {
       enable = lib.mkEnableOption "LUKS encryption for root and work partitions";
+      default = false;
 
       bypassWorkqueues = lib.mkOption {
         type = lib.types.bool;
@@ -24,6 +25,7 @@ in
 
     work = {
       enable = lib.mkEnableOption "separate /work partition";
+      default = false;
 
       partitionLabel = lib.mkOption {
         type = lib.types.str;
@@ -68,7 +70,6 @@ in
           "intel"
           "amd"
         ];
-        default = "intel";
         description = "CPU vendor for microcode updates";
       };
     };

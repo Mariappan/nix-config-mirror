@@ -1,9 +1,5 @@
 { ... }:
 {
-  imports = [
-    ./boot.nix
-  ];
-
   # Set the primary user for this system
   nixma.nixos.params.primaryUser = "maari";
 
@@ -24,11 +20,21 @@
   nixma.nixos.hardware = {
     luks.enable = true;
     work.enable = true;
-    swap = {
-      enable = true;
-      randomEncryption = true;
-    };
+    swap.enable = true;
     cpu.vendor = "amd";
+  };
+
+  # Boot configuration
+  nixma.nixos.boot = {
+    kernelModules = [ "kvm-amd" ];
+    initrd.availableKernelModules = [
+      "nvme"
+      "xhci_pci"
+      "thunderbolt"
+      "usbhid"
+      "usb_storage"
+      "sd_mod"
+    ];
   };
 
   # Enable nixos features
