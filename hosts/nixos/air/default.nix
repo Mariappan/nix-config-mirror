@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   imports = [
-    ./hardware-configuration.nix
     ./boot.nix
   ];
 
@@ -19,6 +18,14 @@
     bundle = "air";
     gitSigningKey = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
     gitSignByDefault = true;
+  };
+
+  # Hardware configuration
+  nixma.nixos.hardware = {
+    luks.enable = false;
+    work.enable = true;
+    swap.enable = true;
+    cpu.vendor = "intel";
   };
 
   # Enable nixos features
@@ -40,6 +47,7 @@
 
   # System configs
   networking.hostName = "air";
+  networking.useDHCP = true;
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
 

@@ -1,7 +1,6 @@
 { ... }:
 {
   imports = [
-    ./hardware-configuration.nix
     ./boot.nix
   ];
 
@@ -21,6 +20,17 @@
     gitSignByDefault = false;
   };
 
+  # Hardware configuration
+  nixma.nixos.hardware = {
+    luks.enable = true;
+    work.enable = true;
+    swap = {
+      enable = true;
+      randomEncryption = true;
+    };
+    cpu.vendor = "amd";
+  };
+
   # Enable nixos features
   nixma.nixos = {
     "1password".enable = true;
@@ -36,6 +46,7 @@
 
   # System configs
   networking.hostName = "sun1";
+  networking.useDHCP = true;
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
 
