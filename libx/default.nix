@@ -230,8 +230,7 @@ rec {
     };
 
   # NixOS Config generators
-  mkNixOsConfs =
-    dir: builtins.mapAttrs (host: _: libx.mkNixOsConf (dir + "/${host}")) (dirsIn dir);
+  mkNixOsConfs = dir: builtins.mapAttrs (host: _: libx.mkNixOsConf (dir + "/${host}")) (dirsIn dir);
 
   # NixDarwin Config generators
   mkNixDarwinConf =
