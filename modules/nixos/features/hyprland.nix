@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   # Enable wayland modules
   nixma.nixos.wayland.enable = true;

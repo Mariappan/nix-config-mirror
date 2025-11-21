@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   fetchurl,
 }:
@@ -34,7 +33,7 @@ pkgs.stdenvNoCC.mkDerivation rec {
     # find . -name '*.otf' -exec install -Dt $out/share/fonts/opentype {} \;
   '';
 
-  meta = with lib; {
+  meta = {
     description = "MesloLGS NF font";
     homepage = "https://github.com/romkatv/powerlevel10k";
   };

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  lib,
-  ...
-}:
+{ ... }:
 {
   # Core features
   nixma.hm.core.enable = true;

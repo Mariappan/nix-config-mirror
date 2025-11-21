@@ -12,6 +12,38 @@ rec {
   # =                            My Lib                            = #
   # ================================================================ #
 
+  # ======================== Function Index ======================== #
+  #
+  # Package Helpers:
+  #   - pkgsFor                  : Get packages for a specific system
+  #
+  # Directory & File Utilities:
+  #   - filesIn                  : Get all files in a directory
+  #   - dirsIn                   : Get all directories in a directory
+  #   - dirsHiddenIn             : Get non-hidden directories (excludes _ prefix)
+  #   - dirsCleanIn              : Get directories excluding "shared"
+  #   - fileNameOf               : Extract filename without extension
+  #
+  # Module Loaders:
+  #   - mkFeatures               : Load feature modules with nested support
+  #   - mkBundles                : Load bundle modules from a directory
+  #
+  # User Options:
+  #   - mkCommonUserOptions      : Generate common user options for NixOS/Darwin
+  #
+  # System Configuration Builders:
+  #   - mkNixOsConf              : Build single NixOS system configuration
+  #   - mkNixOsConfs             : Build multiple NixOS configurations
+  #   - mkHmUserConf             : Build home-manager user configuration
+  #   - mkNixDarwinConf          : Build single Darwin (macOS) configuration
+  #   - mkNixDarwinConfs         : Build multiple Darwin configurations
+  #
+  # Module Extenders:
+  #   - extendModule             : Extend a module's options/config
+  #   - extendModules            : Apply extendModule to multiple modules
+  #
+  # ================================================================ #
+
   # ======================= Package Helpers ======================== #
 
   pkgsFor = sys: inputs.nixpkgs.legacyPackages.${sys};

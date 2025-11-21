@@ -1,15 +1,10 @@
 {
-  pkgs,
-  system,
-  inputs,
   config,
   lib,
   libx,
   ...
 }:
 let
-  cfg = config.nixma.darwin;
-
   # Load users as separate modules
   users = libx.mkFeatures {
     featuresDir = ./users;

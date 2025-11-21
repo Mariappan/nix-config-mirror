@@ -1,11 +1,8 @@
 {
   pkgs,
   config,
-  lib,
-  inputs,
   outputs,
   home-manager,
-  options,
   ...
 }:
 {

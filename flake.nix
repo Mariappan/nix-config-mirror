@@ -71,7 +71,6 @@
       ...
     }:
     let
-      inherit (self) outputs;
       libx = import ./libx { inherit inputs; };
     in
     flake-parts.lib.mkFlake { inherit inputs; } {

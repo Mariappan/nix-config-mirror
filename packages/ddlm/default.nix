@@ -18,7 +18,7 @@ pkgs.rustPlatform.buildRustPackage {
   };
 
   cargoHash = "sha256-TcT3dm4ubzij50zPCrgI9YV9UbMdlqL+68ETD8MyhWM=";
-  meta = with lib; {
+  meta = {
     homepage = "https://github.com/deathowl/ddlm";
   };
 }

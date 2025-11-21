@@ -1,10 +1,4 @@
-{
-  lib,
-  home-manager,
-  outputs,
-  pkgs,
-  ...
-}:
+{ ... }:
 {
   # Set the primary user for this system
   nixma.darwin.params.primaryUser = "mariappan.ramasamy";

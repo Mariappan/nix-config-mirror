@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ ... }:
 {
   programs.ghostty.enable = true;
   programs.ghostty.enableFishIntegration = true;
