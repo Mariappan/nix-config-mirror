@@ -52,7 +52,8 @@
 
   # System configs
   networking.hostName = "sun1";
-  networking.useDHCP = true;
+  # NetworkManager handles DHCP, so useDHCP is not needed
+  # networking.useDHCP = true;
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
 

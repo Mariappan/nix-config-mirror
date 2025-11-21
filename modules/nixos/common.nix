@@ -10,6 +10,10 @@
     home-manager.nixosModules.home-manager
   ];
 
+  # Enable core system modules
+  nixma.nixos.hardware.enable = true;
+  nixma.nixos.boot.enable = true;
+
   # Nixpkgs config
   nixpkgs = {
     overlays = [

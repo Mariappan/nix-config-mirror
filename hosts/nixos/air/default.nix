@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
   # Set the primary user for this system
   nixma.nixos.params.primaryUser = "maari";
@@ -61,7 +61,8 @@
 
   # System configs
   networking.hostName = "air";
-  networking.useDHCP = true;
+  # NetworkManager handles DHCP, so useDHCP is not needed
+  # networking.useDHCP = true;
   networking.networkmanager.enable = true;
   networking.firewall.enable = true;
 

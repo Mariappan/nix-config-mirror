@@ -11,7 +11,10 @@ in
   options.nixma.nixos.boot = {
     kernelParams = lib.mkOption {
       type = lib.types.listOf lib.types.str;
-      default = [ "ip=dhcp" "boot.shell_on_fail" ];
+      default = [
+        "ip=dhcp"
+        "boot.shell_on_fail"
+      ];
       description = "Kernel boot parameters";
     };
 

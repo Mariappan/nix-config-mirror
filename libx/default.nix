@@ -21,7 +21,6 @@ rec {
   #   - filesIn                  : Get all files in a directory
   #   - dirsIn                   : Get all directories in a directory
   #   - dirsHiddenIn             : Get non-hidden directories (excludes _ prefix)
-  #   - dirsCleanIn              : Get directories excluding "shared"
   #   - fileNameOf               : Extract filename without extension
   #
   # Module Loaders:
@@ -52,6 +51,8 @@ rec {
 
   filesIn = dir: (map (fname: dir + "/${fname}") (builtins.attrNames (builtins.readDir dir)));
 
+  fileNameOf = path: (builtins.head (builtins.split "\\." (baseNameOf path)));
+
   dirsIn =
     dir: inputs.nixpkgs.lib.filterAttrs (name: value: value == "directory") (builtins.readDir dir);
 
@@ -60,14 +61,6 @@ rec {
     inputs.nixpkgs.lib.filterAttrs (
       name: value: value == "directory" && !inputs.nixpkgs.lib.strings.hasPrefix "_" name
     ) (builtins.readDir dir);
-
-  dirsCleanIn =
-    dir:
-    inputs.nixpkgs.lib.filterAttrs (name: value: value == "directory" && name != "shared") (
-      builtins.readDir dir
-    );
-
-  fileNameOf = path: (builtins.head (builtins.split "\\." (baseNameOf path)));
 
   # ==================== Feature Module Loader ===================== #
 
@@ -214,6 +207,7 @@ rec {
 
   # ========================== Buildables ========================== #
 
+  # NixOS Config generators
   mkNixOsConf =
     config:
     inputs.nixpkgs.lib.nixosSystem {
@@ -235,23 +229,11 @@ rec {
       ];
     };
 
+  # NixOS Config generators
   mkNixOsConfs =
-    dir: builtins.mapAttrs (host: _: libx.mkNixOsConf (dir + "/${host}")) (dirsCleanIn dir);
+    dir: builtins.mapAttrs (host: _: libx.mkNixOsConf (dir + "/${host}")) (dirsIn dir);
 
-  # Home manager user config - works for both NixOS and Darwin
-  mkHmUserConf = config: {
-    imports = [
-      inputs.nix-index-database.homeModules.nix-index
-      inputs.caelestia-shell.homeManagerModules.default
-      inputs.niri.homeModules.niri
-      inputs.noctalia.homeModules.default
-      inputs.vicinae.homeManagerModules.default
-      outputs.homeManagerModules.default
-      outputs.homeManagerModules.linux
-    ];
-    config = config;
-  };
-
+  # NixDarwin Config generators
   mkNixDarwinConf =
     config:
     inputs.nix-darwin.lib.darwinSystem {
@@ -272,6 +254,7 @@ rec {
       ];
     };
 
+  # NixDarwin Config generators
   mkNixDarwinConfs =
     dir:
     builtins.listToAttrs (
@@ -280,6 +263,20 @@ rec {
         value = libx.mkNixDarwinConf host;
       }) (filesIn dir)
     );
+
+  # Home manager user config - works for both NixOS and Darwin
+  mkHmUserConf = config: {
+    imports = [
+      inputs.nix-index-database.homeModules.nix-index
+      inputs.caelestia-shell.homeManagerModules.default
+      inputs.niri.homeModules.niri
+      inputs.noctalia.homeModules.default
+      inputs.vicinae.homeManagerModules.default
+      outputs.homeManagerModules.default
+      outputs.homeManagerModules.linux
+    ];
+    config = config;
+  };
 
   # ========================== Extenders =========================== #
 
