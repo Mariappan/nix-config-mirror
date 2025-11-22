@@ -4,6 +4,8 @@
     ../../shared/fonts.nix
   ];
 
+  nixma.nixos.wayland-dm.enable = true;
+
   programs.dconf.enable = true;
 
   # Ref: https://www.reddit.com/r/NixOS/comments/171mexa/polkit_on_hyprland/

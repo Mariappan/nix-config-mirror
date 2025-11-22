@@ -2,7 +2,6 @@
 {
   # Enable wayland modules
   nixma.nixos.wayland.enable = true;
-  nixma.nixos.wayland-dm.enable = true;
 
   programs.hyprland.enable = true;
   programs.hyprland.withUWSM = true;

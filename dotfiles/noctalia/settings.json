@@ -384,7 +384,7 @@
             {
                 "directory": "/home/maari/pictures/Wallpapers",
                 "name": "eDP-1",
-                "wallpaper": "/home/maari/pictures/Wallpapers/firewatch-5B189.jpg"
+                "wallpaper": "/home/maari/pictures/Wallpapers/wallhaven_kw37y7.jpg"
             },
             {
                 "directory": "/home/maari/pictures/Wallpapers",
@@ -411,11 +411,11 @@
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,
         "transitionType": "random",
-        "useWallhaven": false,
+        "useWallhaven": true,
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
         "wallhavenPurity": "100",
-        "wallhavenQuery": "anime",
+        "wallhavenQuery": "material",
         "wallhavenResolutionHeight": "",
         "wallhavenResolutionMode": "atleast",
         "wallhavenResolutionWidth": "",
