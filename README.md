@@ -185,6 +185,66 @@ sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 \
    nix profile install nixpkgs#hello
    ```
 
+## Just Commands
+
+This project uses [just](https://github.com/casey/just) as a command runner for common tasks.
+
+### Available Commands
+
+#### NixOS (Linux)
+
+```bash
+# Update flake inputs
+just update [flake]
+
+# Test configuration (activate without updating bootloader)
+just test [flake]
+
+# Verify changes (build and show diff)
+just verify [flake]
+
+# Build and switch (updates bootloader)
+just build [flake]
+
+# Evaluate any configuration parameter for air host
+just eval-air <parameter>
+```
+
+#### Darwin (macOS)
+
+```bash
+# Update flake inputs
+just update [flake]
+
+# Test configuration (activate)
+just test [flake]
+
+# Build and switch
+just build [flake]
+```
+
+### Usage Examples
+
+```bash
+# Update all flake inputs
+just update
+
+# Test configuration changes without updating bootloader
+just test
+
+# Build and show what will change
+just verify
+
+# Apply changes and update bootloader
+just build
+
+# Evaluate specific configuration options for air host
+just eval-air boot.initrd.kernelModules
+just eval-air networking.hostName
+just eval-air hardware.graphics.enable
+just eval-air system.stateVersion
+```
+
 ## ToDo
 - Integrate sops-nix
 
