@@ -16,16 +16,8 @@
   # So this is fine for now
   nixpkgs.hostPlatform = "aarch64-darwin";
 
-  nix = {
-    # Determindated nixd will take care of it
-    enable = false;
-    # settings.experimental-features = "nix-command flakes";
-
-    # Enable x64 using rosetta
-    extraOptions = ''
-      extra-platforms = x86_64-darwin aarch64-darwin
-    '';
-  };
+  # Determindated nixd will take care of it
+  nix.enable = false;
 
   environment.systemPackages = [
     pkgs.curl

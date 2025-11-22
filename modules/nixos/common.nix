@@ -20,14 +20,16 @@
 
   environment.systemPackages = [
     pkgs.curl
+    pkgs.file
+    pkgs.iputils
+    pkgs.helix
     pkgs.opensc
     pkgs.openssh
-    pkgs.sbctl
-    pkgs.usbutils
-    pkgs.iputils
     pkgs.procps
-    pkgs.helix
+    pkgs.usbutils
+    pkgs.unzip
     pkgs.vim
+    pkgs.zip
   ];
 
   system.stateVersion = "25.11";
