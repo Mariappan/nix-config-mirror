@@ -17,6 +17,7 @@
     pkgs.tldr
     pkgs.tree
     pkgs.xan
+    pkgs.yazi
     pkgs.yasm
   ];
 
