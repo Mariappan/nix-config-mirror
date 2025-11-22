@@ -1,5 +1,13 @@
-{ pkgs, ... }:
 {
+  pkgs,
+  inputs,
+  ...
+}:
+{
+  imports = [
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-13th-gen
+  ];
+
   # Set the primary user for this system
   nixma.nixos.params.primaryUser = "maari";
 
