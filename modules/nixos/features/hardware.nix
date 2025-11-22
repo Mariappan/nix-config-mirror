@@ -134,6 +134,12 @@ in
       )
     ];
 
+    # Enable fstrim for SSD
+    services.fstrim.enable = true;
+
+    # Thunderbolt manager daemon boltctl
+    services.hardware.bolt.enable = true;
+
     # Platform
     nixpkgs.hostPlatform = lib.mkDefault cfg.hostPlatform;
 

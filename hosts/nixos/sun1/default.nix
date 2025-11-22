@@ -47,6 +47,7 @@
     niri.enable = true;
     screenrecorder.enable = true;
     sound.enable = true;
+    incus.enable = true;
     virtualbox.enable = true;
   };
 
@@ -55,17 +56,4 @@
 
   # Host-specific networking configuration
   time.timeZone = "Asia/Singapore";
-
-  # Enable fstrim for SSD
-  services.fstrim.enable = true;
-
-  services.hardware.bolt.enable = true;
-
-  virtualisation.incus.enable = true;
-  networking.nftables.enable = true;
-  networking.firewall.trustedInterfaces = [
-    "incusbr0"
-    "net_ovsbr0"
-  ];
-  virtualisation.vswitch.enable = true;
 }

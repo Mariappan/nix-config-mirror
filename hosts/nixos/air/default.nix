@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   # Set the primary user for this system
   nixma.nixos.params.primaryUser = "maari";
@@ -57,19 +57,21 @@
     virtualbox.enable = true;
   };
 
-  programs.yubikey-touch-detector.enable = true;
-
   # System configs
   networking.hostName = "air";
 
   # Timezone
   time.timeZone = "Asia/Singapore";
 
-  # Enable fstrim for SSD
-  services.fstrim.enable = true;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  programs.yubikey-touch-detector.enable = true;
+  programs.vscode.enable = true;
+  programs.vscode.extensions = with pkgs.vscode-extensions; [
+    ms-vsliveshare.vsliveshare
+    rust-lang.rust-analyzer
+  ];
 
   # To avoid HHKB sending Power key on ignoring "Fn+Esc"
   services.logind.settings.Login.HandlePowerKey = "ignore";
@@ -83,10 +85,4 @@
      ENV{ID_VENDOR}=="Yubico",\
      RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
   '';
-
-  programs.vscode.enable = true;
-  programs.vscode.extensions = with pkgs.vscode-extensions; [
-    ms-vsliveshare.vsliveshare
-    rust-lang.rust-analyzer
-  ];
 }
