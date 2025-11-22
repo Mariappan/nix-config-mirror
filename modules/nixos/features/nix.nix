@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   # Necessary for using flakes on this system
   nix.settings.experimental-features = [
@@ -22,4 +22,9 @@
     clean.extraArgs = "--keep-since 4d --keep 3";
     flake = "/home/maari/nix-config";
   };
+
+  environment.systemPackages = [
+    pkgs.nix-alien
+  ];
+
 }

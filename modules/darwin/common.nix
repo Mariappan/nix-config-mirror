@@ -8,6 +8,8 @@
     home-manager.darwinModules.home-manager
     ../shared/nixpkgs.nix
     ../shared/homemanager.nix
+    ../shared/shells.nix
+    ../shared/fonts.nix
   ];
 
   # Should not be hardcoded. But I am not gonna buy x64 macbook anytime
@@ -22,9 +24,11 @@
     extra-platforms = x86_64-darwin aarch64-darwin
   '';
 
-  # Create /etc/zshrc that loads the nix-darwin environment
-  programs.zsh.enable = true;
-  programs.fish.enable = true;
+  environment.systemPackages = [
+    pkgs.curl
+    pkgs.pinentry_mac
+    pkgs.terminal-notifier
+  ];
 
   programs.direnv = {
     enable = true;
@@ -32,17 +36,6 @@
     nix-direnv.enable = true;
     silent = true;
   };
-
-  environment.shells = [
-    pkgs.zsh
-    pkgs.fish
-  ];
-
-  environment.systemPackages = [
-    pkgs.curl
-    pkgs.pinentry_mac
-    pkgs.terminal-notifier
-  ];
 
   homebrew = {
     enable = true;
@@ -60,15 +53,6 @@
       "wireshark-app"
     ];
   };
-
-  fonts.packages = with pkgs; [
-    # Maple Mono (Ligature TTF unhinted)
-    maple-mono.truetype
-    # MesloLGS NF font
-    nixma.meslolgsnf-font
-    # Script12 BT font with custom sizing
-    nixma.script12bt-font
-  ];
 
   # Enable TouchId for sudo
   security.pam.services.sudo_local.touchIdAuth = true;

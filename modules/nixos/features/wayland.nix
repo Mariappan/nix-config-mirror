@@ -1,10 +1,16 @@
 { pkgs, ... }:
 {
+  imports = [
+    ../../shared/fonts.nix
+  ];
+
   programs.dconf.enable = true;
 
   # Ref: https://www.reddit.com/r/NixOS/comments/171mexa/polkit_on_hyprland/
   services.gnome.gnome-keyring.enable = true;
   security.polkit.enable = true;
+
+  services.udisks2.enable = true;
 
   security.pam.services = {
     # GreetD - regreet uses separate `greetd` PAM context
@@ -38,15 +44,5 @@
 
   environment.systemPackages = [
     pkgs.libnotify
-  ];
-
-  fonts.packages = with pkgs; [
-    # Maple Mono (Ligature TTF unhinted)
-    maple-mono.truetype
-    maple-mono.NF-unhinted
-    # MesloLGS NF font
-    nixma.meslolgsnf-font
-    # Script12 BT font with custom sizing
-    nixma.script12bt-font
   ];
 }
