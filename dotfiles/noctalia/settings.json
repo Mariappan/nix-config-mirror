@@ -63,6 +63,12 @@
                     "hideUnoccupied": true,
                     "id": "Workspace",
                     "labelMode": "none"
+                },
+                {
+                    "id": "WallpaperSelector"
+                },
+                {
+                    "id": "ScreenRecorder"
                 }
             ],
             "right": [
@@ -77,6 +83,27 @@
                 {
                     "displayMode": "onhover",
                     "id": "Volume"
+                },
+                {
+                    "hideMode": "visible",
+                    "hideWhenIdle": false,
+                    "id": "MediaMini",
+                    "maxWidth": 145,
+                    "scrollingMode": "hover",
+                    "showAlbumArt": true,
+                    "showArtistFirst": true,
+                    "showVisualizer": true,
+                    "useFixedWidth": false,
+                    "visualizerType": "wave"
+                },
+                {
+                    "capsLockIcon": "square-rounded-letter-c-filled",
+                    "id": "LockKeys",
+                    "numLockIcon": "letter-n",
+                    "scrollLockIcon": "letter-s",
+                    "showCapsLock": true,
+                    "showNumLock": false,
+                    "showScrollLock": false
                 },
                 {
                     "hideWhenZero": true,
@@ -98,7 +125,7 @@
     "brightness": {
         "brightnessStep": 5,
         "enableDdcSupport": false,
-        "enforceMinimum": false
+        "enforceMinimum": true
     },
     "changelog": {
         "lastSeenVersion": "v3.1.1-dev"
@@ -357,7 +384,7 @@
             {
                 "directory": "/home/maari/pictures/Wallpapers",
                 "name": "eDP-1",
-                "wallpaper": "/home/maari/pictures/Wallpapers/altoSaturated-CCF0A.png"
+                "wallpaper": "/home/maari/pictures/Wallpapers/firewatch-5B189.jpg"
             },
             {
                 "directory": "/home/maari/pictures/Wallpapers",
@@ -388,7 +415,7 @@
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
         "wallhavenPurity": "100",
-        "wallhavenQuery": "",
+        "wallhavenQuery": "anime",
         "wallhavenResolutionHeight": "",
         "wallhavenResolutionMode": "atleast",
         "wallhavenResolutionWidth": "",
