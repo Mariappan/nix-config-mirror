@@ -21,6 +21,7 @@ let
 in
 {
   imports = [
+    ./common.nix
     ./users/base.nix
   ]
   ++ features

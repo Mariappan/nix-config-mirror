@@ -32,7 +32,6 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3bwlIYLqj7YgfDNhFoAWgP5hg9+TOXmhnRZM9R8Bfi"
   ];
 
-
   # Avahi (mDNS/Bonjour) configuration for service discovery
   services.avahi.enable = true;
   services.avahi.nssmdns4 = true;

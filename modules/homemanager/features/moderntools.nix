@@ -8,6 +8,7 @@
     pkgs.fd
     pkgs.fzf
     pkgs.hyperfine
+    pkgs.jq
     pkgs.lsd
     pkgs.ncdu
     pkgs.pik
