@@ -30,3 +30,8 @@ test flake='.':
 build flake='.':
     sudo darwin-rebuild switch --flake {{flake}} --option accept-flake-config true
 
+# Evaluate config Ex: just eval-air hardware.graphics
+[linux]
+eval-air param:
+    nix eval .#nixosConfigurations.air.config.{{param}} --json | jq .
+
