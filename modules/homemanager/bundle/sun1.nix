@@ -14,8 +14,6 @@
   nixma.hm.gpgagent.enable = true;
 
   # Linux-specific configuration
-  nixma.hm.linux.dconf.enable = lib.mkIf pkgs.stdenv.isLinux true;
-  nixma.hm.linux.xdg.enable = lib.mkIf pkgs.stdenv.isLinux true;
   nixma.hm.linux.niri.enable = lib.mkIf pkgs.stdenv.isLinux true;
 
   home.packages = lib.mkIf pkgs.stdenv.isLinux [

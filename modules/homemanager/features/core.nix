@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   # Enable related features
   nixma.hm.fish.enable = true;
@@ -7,6 +7,7 @@
   nixma.hm.helix.enable = true;
   nixma.hm.nvim.enable = true;
   nixma.hm.vim.enable = true;
+  nixma.hm.xdg.enable = lib.mkIf pkgs.stdenv.isLinux true;
 
   home.packages = [
     pkgs.file
@@ -28,7 +29,7 @@
   programs.nix-index = {
     enable = true;
     enableFishIntegration = true;
-  }
+  };
 
   programs.direnv = {
     enable = true;
@@ -38,7 +39,6 @@
       global.hide_env_diff = true;
     };
   };
-
 
   home.stateVersion = "25.11";
 

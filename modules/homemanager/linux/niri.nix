@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   # Enable related features
   nixma.hm.linux.wayland.enable = true;
@@ -6,6 +6,7 @@
   nixma.hm.linux.wayland.kanshi.enable = true;
   nixma.hm.linux.hyprlock.enable = true;
   nixma.hm.linux.ghostty.enable = true;
+  nixma.hm.linux.dconf.enable = true;
 
   programs.niri.enable = true;
 
