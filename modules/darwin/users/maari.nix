@@ -10,15 +10,8 @@ let
 in
 {
   options.nixma.darwin.users.${moduleName} =
-    # Common user options (shared with NixOS)
-    (libx.mkCommonUserOptions lib moduleName) // {
-      # Darwin-specific options
-      homebrewBrews = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [ ];
-        description = "Additional homebrew brews to install for this user";
-      };
-    };
+    # Common user options
+    libx.mkCommonUserOptions lib moduleName;
 
   config = lib.mkIf cfg.enable {
     users.users.${cfg.username} = {
@@ -41,8 +34,5 @@ in
         gitSignByDefault = cfg.gitSignByDefault;
       };
     };
-
-    # Add user-specific homebrew brews
-    homebrew.brews = cfg.homebrewBrews;
   };
 }
