@@ -24,6 +24,7 @@
     pkgs.openssh
     pkgs.sbctl
     pkgs.usbutils
+    pkgs.iputils
     pkgs.procps
     pkgs.helix
     pkgs.vim

@@ -24,7 +24,21 @@
   programs.atuin.enableFishIntegration = true;
   programs.atuin.flags = [ "--disable-ctrl-r" ];
 
-  programs.nix-index.enable = true;
+  programs.command-not-found.enable = false;
+  programs.nix-index = {
+    enable = true;
+    enableFishIntegration = true;
+  }
+
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+    silent = true;
+    config = {
+      global.hide_env_diff = true;
+    };
+  };
+
 
   home.stateVersion = "25.11";
 

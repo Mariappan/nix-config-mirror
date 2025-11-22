@@ -30,13 +30,6 @@
     pkgs.terminal-notifier
   ];
 
-  programs.direnv = {
-    enable = true;
-    loadInNixShell = true;
-    nix-direnv.enable = true;
-    silent = true;
-  };
-
   homebrew = {
     enable = true;
     onActivation = {
