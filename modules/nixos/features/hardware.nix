@@ -102,16 +102,6 @@ in
       fsType = "ext4";
     };
 
-    # Work filesystem - optional
-    fileSystems."/work" = lib.mkIf cfg.work.enable {
-      device =
-        if cfg.luks.enable then
-          "/dev/mapper/cryptwork"
-        else
-          "/dev/disk/by-partlabel/${cfg.work.partitionLabel}";
-      fsType = "ext4";
-    };
-
     # Boot filesystem
     fileSystems."/boot" = {
       device = "/dev/disk/by-partlabel/${cfg.partitions.boot}";
@@ -120,6 +110,16 @@ in
         "fmask=0022"
         "dmask=0022"
       ];
+    };
+
+    # Work filesystem - optional
+    fileSystems."/work" = lib.mkIf cfg.work.enable {
+      device =
+        if cfg.luks.enable then
+          "/dev/mapper/cryptwork"
+        else
+          "/dev/disk/by-partlabel/${cfg.work.partitionLabel}";
+      fsType = "ext4";
     };
 
     # Swap device - optional
