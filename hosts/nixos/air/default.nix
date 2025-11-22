@@ -61,19 +61,6 @@
 
   # System configs
   networking.hostName = "air";
-  # NetworkManager handles DHCP, so useDHCP is not needed
-  # networking.useDHCP = true;
-  networking.networkmanager.enable = true;
-  networking.firewall.enable = true;
-
-  networking.networkmanager = {
-    dispatcherScripts = [
-      {
-        source = "${pkgs.nixma.wired_wifi_toggle}/bin/wired_wifi_toggle";
-        type = "basic";
-      }
-    ];
-  };
 
   # Timezone
   time.timeZone = "Asia/Singapore";

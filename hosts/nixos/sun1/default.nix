@@ -54,10 +54,8 @@
   networking.hostName = "sun1";
   # NetworkManager handles DHCP, so useDHCP is not needed
   # networking.useDHCP = true;
-  networking.networkmanager.enable = true;
-  networking.firewall.enable = true;
 
-  # Timezone
+  # Host-specific networking configuration
   time.timeZone = "Asia/Singapore";
 
   # Enable fstrim for SSD

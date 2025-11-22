@@ -13,6 +13,7 @@
   # Enable core system modules
   nixma.nixos.hardware.enable = true;
   nixma.nixos.boot.enable = true;
+  nixma.nixos.networking.enable = true;
 
   # Nixpkgs config
   nixpkgs = {
@@ -76,20 +77,7 @@
     flake = "/home/maari/nix-config";
   };
 
-  networking.timeServers = [
-    "0.sg.pool.ntp.org"
-    "1.sg.pool.ntp.org"
-    "2.sg.pool.ntp.org"
-    "3.sg.pool.ntp.org"
-  ];
-  services.ntp.enable = true;
-
   services.udisks2.enable = true;
-
-  services.avahi.enable = true;
-  services.avahi.nssmdns4 = true;
-  services.avahi.publish.enable = true;
-  services.avahi.publish.addresses = true;
 
   i18n.defaultLocale = "en_US.UTF-8";
   i18n.extraLocaleSettings = {
