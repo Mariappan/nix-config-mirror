@@ -52,8 +52,6 @@
 
   # System configs
   networking.hostName = "sun1";
-  # NetworkManager handles DHCP, so useDHCP is not needed
-  # networking.useDHCP = true;
 
   # Host-specific networking configuration
   time.timeZone = "Asia/Singapore";
@@ -70,10 +68,4 @@
     "net_ovsbr0"
   ];
   virtualisation.vswitch.enable = true;
-
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3bwlIYLqj7YgfDNhFoAWgP5hg9+TOXmhnRZM9R8Bfi"
-  ];
 }

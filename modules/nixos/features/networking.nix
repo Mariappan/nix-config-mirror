@@ -25,6 +25,14 @@
   ];
   services.ntp.enable = true;
 
+  # Enable the OpenSSH daemon.
+  services.openssh.enable = true;
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3bwlIYLqj7YgfDNhFoAWgP5hg9+TOXmhnRZM9R8Bfi"
+  ];
+
+
   # Avahi (mDNS/Bonjour) configuration for service discovery
   services.avahi.enable = true;
   services.avahi.nssmdns4 = true;

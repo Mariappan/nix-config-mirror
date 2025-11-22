@@ -68,11 +68,8 @@
   # Enable fstrim for SSD
   services.fstrim.enable = true;
 
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  users.users.root.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P"
-  ];
+  # Enable CUPS to print documents.
+  services.printing.enable = true;
 
   # To avoid HHKB sending Power key on ignoring "Fn+Esc"
   services.logind.settings.Login.HandlePowerKey = "ignore";
@@ -86,9 +83,6 @@
      ENV{ID_VENDOR}=="Yubico",\
      RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
   '';
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
 
   programs.vscode.enable = true;
   programs.vscode.extensions = with pkgs.vscode-extensions; [

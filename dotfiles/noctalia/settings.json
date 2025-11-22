@@ -215,7 +215,7 @@
         "weatherShowEffects": true
     },
     "network": {
-        "wifiEnabled": false
+        "wifiEnabled": true
     },
     "nightLight": {
         "autoSchedule": true,
@@ -357,7 +357,7 @@
             {
                 "directory": "/home/maari/pictures/Wallpapers",
                 "name": "eDP-1",
-                "wallpaper": "/home/maari/pictures/Wallpapers/Island-Dusk-464C0.jpg"
+                "wallpaper": "/home/maari/pictures/Wallpapers/altoSaturated-CCF0A.png"
             },
             {
                 "directory": "/home/maari/pictures/Wallpapers",
