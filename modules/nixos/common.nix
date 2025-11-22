@@ -14,6 +14,7 @@
   nixma.nixos.hardware.enable = true;
   nixma.nixos.boot.enable = true;
   nixma.nixos.networking.enable = true;
+  nixma.nixos.nix.enable = true;
 
   # Nixpkgs config
   nixpkgs = {
@@ -27,17 +28,6 @@
       allowUnfree = true;
     };
   };
-
-  # Necessary for using flakes on this system.
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-
-  nix.optimise.automatic = true;
-  nix.optimise.dates = [ "03:45" ];
-  # Following optimize on every build but may result in slow build time
-  # nix.settings.auto-optimise-store = true;
 
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
@@ -67,15 +57,6 @@
     pkgs.helix
     pkgs.vim
   ];
-
-  # For running native binaries without patchelf
-  programs.nix-ld.enable = true;
-  programs.nh = {
-    enable = true;
-    clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/maari/nix-config";
-  };
 
   services.udisks2.enable = true;
 
