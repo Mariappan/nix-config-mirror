@@ -1,13 +1,13 @@
 {
   pkgs,
-  config,
-  outputs,
   home-manager,
   ...
 }:
 {
   imports = [
     home-manager.nixosModules.home-manager
+    ../shared/nixpkgs.nix
+    ../shared/homemanager.nix
   ];
 
   # Enable core system modules
@@ -16,24 +16,6 @@
   nixma.nixos.networking.enable = true;
   nixma.nixos.nix.enable = true;
   nixma.nixos.i18n.enable = true;
-
-  # Nixpkgs config
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.default
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.stable-packages
-    ];
-    config = {
-      allowUnfree = true;
-    };
-  };
-
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = config._module.specialArgs;
-  home-manager.backupFileExtension = "backup";
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true;

@@ -1,27 +1,14 @@
 {
   pkgs,
-  config,
-  outputs,
   home-manager,
   ...
 }:
 {
   imports = [
     home-manager.darwinModules.home-manager
+    ../shared/nixpkgs.nix
+    ../shared/homemanager.nix
   ];
-
-  # Nixpkgs config
-  nixpkgs = {
-    overlays = [
-      outputs.overlays.default
-      outputs.overlays.additions
-      outputs.overlays.modifications
-      outputs.overlays.stable-packages
-    ];
-    config = {
-      allowUnfree = true;
-    };
-  };
 
   # Should not be hardcoded. But I am not gonna buy x64 macbook anytime
   # So this is fine for now
@@ -34,11 +21,6 @@
   nix.extraOptions = ''
     extra-platforms = x86_64-darwin aarch64-darwin
   '';
-
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = config._module.specialArgs;
-  home-manager.backupFileExtension = "backup";
 
   # Create /etc/zshrc that loads the nix-darwin environment
   programs.zsh.enable = true;
