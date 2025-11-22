@@ -1,4 +1,3 @@
-
 { pkgs, ... }:
 {
   nixma.hm.fish.enable = true;
