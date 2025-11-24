@@ -2,13 +2,15 @@
     "appLauncher": {
         "customLaunchPrefix": "",
         "customLaunchPrefixEnabled": false,
+        "enableClipPreview": true,
         "enableClipboardHistory": false,
         "pinnedExecs": [
         ],
         "position": "bottom_center",
         "sortByMostUsed": true,
         "terminalCommand": "ghostty -e",
-        "useApp2Unit": false
+        "useApp2Unit": true,
+        "viewMode": "list"
     },
     "audio": {
         "cavaFrameRate": 60,
@@ -54,12 +56,13 @@
                     "useDistroLogo": true
                 },
                 {
-                    "displayMode": "onhover",
+                    "displayMode": "alwaysShow",
                     "id": "Battery",
                     "warningThreshold": 30
                 },
                 {
                     "characterCount": 2,
+                    "followFocusedScreen": false,
                     "hideUnoccupied": true,
                     "id": "Workspace",
                     "labelMode": "none"
@@ -92,6 +95,7 @@
                     "scrollingMode": "hover",
                     "showAlbumArt": true,
                     "showArtistFirst": true,
+                    "showProgressRing": true,
                     "showVisualizer": true,
                     "useFixedWidth": false,
                     "visualizerType": "wave"
@@ -124,8 +128,28 @@
     },
     "brightness": {
         "brightnessStep": 5,
-        "enableDdcSupport": false,
+        "enableDdcSupport": true,
         "enforceMinimum": true
+    },
+    "calendar": {
+        "cards": [
+            {
+                "enabled": true,
+                "id": "banner-card"
+            },
+            {
+                "enabled": true,
+                "id": "calendar-card"
+            },
+            {
+                "enabled": true,
+                "id": "timer-card"
+            },
+            {
+                "enabled": true,
+                "id": "weather-card"
+            }
+        ]
     },
     "changelog": {
         "lastSeenVersion": "v3.1.1-dev"
@@ -203,6 +227,7 @@
         "onlySameOutput": true,
         "pinnedApps": [
         ],
+        "radiusRatio": 0.1,
         "size": 1
     },
     "general": {
@@ -222,6 +247,7 @@
         "shadowDirection": "bottom_right",
         "shadowOffsetX": 2,
         "shadowOffsetY": 3,
+        "showHibernateOnLockScreen": false,
         "showScreenCorners": true
     },
     "hooks": {
@@ -270,6 +296,8 @@
         "autoHideMs": 3000,
         "backgroundOpacity": 1,
         "enabled": true,
+        "enabledTypes": [
+        ],
         "location": "bottom",
         "monitors": [
         ],
@@ -324,8 +352,7 @@
         ],
         "showHeader": true
     },
-    "settingsVersion": 23,
-    "setupCompleted": true,
+    "settingsVersion": 25,
     "systemMonitor": {
         "cpuCriticalThreshold": 90,
         "cpuWarningThreshold": 80,
@@ -341,6 +368,7 @@
     },
     "templates": {
         "alacritty": false,
+        "cava": false,
         "code": false,
         "discord": false,
         "enableUserTemplates": false,
@@ -353,6 +381,7 @@
         "pywalfox": false,
         "qt": false,
         "spicetify": false,
+        "telegram": false,
         "vicinae": false,
         "walker": false,
         "wezterm": false
@@ -384,7 +413,7 @@
             {
                 "directory": "/home/maari/pictures/Wallpapers",
                 "name": "eDP-1",
-                "wallpaper": "/home/maari/pictures/Wallpapers/wallhaven_kw37y7.jpg"
+                "wallpaper": "/home/maari/pictures/Wallpapers/wallhaven_72dy7v.jpg"
             },
             {
                 "directory": "/home/maari/pictures/Wallpapers",
@@ -399,13 +428,13 @@
             {
                 "directory": "/home/maari/pictures/Wallpapers",
                 "name": "DP-1",
-                "wallpaper": "/home/maari/pictures/Wallpapers/rainbow_six_siege_outbreak_4k_8k-7680x4320-6F40C.jpg"
+                "wallpaper": "/home/maari/pictures/Wallpapers/star-wars-battlefront-2-2017-uhd-4k-wallpa-23F4E.jpg"
             }
         ],
         "overviewEnabled": false,
         "panelPosition": "follow_bar",
         "randomEnabled": true,
-        "randomIntervalSec": 1800,
+        "randomIntervalSec": 3600,
         "recursiveSearch": true,
         "setWallpaperOnAllMonitors": true,
         "transitionDuration": 1500,

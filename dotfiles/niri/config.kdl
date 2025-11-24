@@ -220,13 +220,7 @@ layout {
     }
 }
 
-// Add lines like this to spawn processes at startup.
-// Note that running niri as a session supports xdg-desktop-autostart,
-// which may be more convenient to use.
-// See the binds section below for more spawn examples.
-
-// This line starts waybar, a commonly used bar for Wayland compositors.
-// spawn-at-startup "waybar"
+// Backup terminal incase hotkey does not work
 spawn-at-startup "ghostty"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
@@ -246,7 +240,7 @@ prefer-no-csd
 // You can change the path where screenshots are saved.
 // A ~ at the front will be expanded to the home directory.
 // The path is formatted with strftime(3) to give you the screenshot date and time.
-screenshot-path "~/pictures/Screenshots/Screenshot from %Y-%m-%d %H-%M-%S.png"
+screenshot-path "~/pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
 
 // You can also set this to null to disable saving screenshots to disk.
 // screenshot-path null
@@ -557,7 +551,7 @@ binds {
     // Mod+Shift+Space { switch-layout "prev"; }
 
     Print { screenshot; }
-    Ctrl+Print { screenshot-screen; }
+    Ctrl+Print { screenshot-screen write-to-disk=false; }
     Alt+Print { screenshot-window write-to-disk=false; }
     Mod+Ctrl+Print { spawn-sh "wl-paste --type image/png | satty -f -"; }
 
@@ -579,27 +573,27 @@ binds {
     Mod+Shift+P { power-off-monitors; }
 
     // 1password
-    Mod+Backslash { spawn "1password" "--toggle"; }
-    Mod+Shift+Space { spawn "1password" "--quick-access"; }
+    Mod+Backslash { spawn-sh "1password --toggle"; }
+    Mod+Shift+Space { spawn-sh "1password --quick-access"; }
 
     Mod+Return { spawn "ghostty"; }
-    Mod+Shift+D { spawn "noctalia-shell" "ipc" "call" "notifications" "toggleHistory"; }
+    Mod+Shift+D { spawn-sh "noctalia-shell ipc call notifications toggleHistory"; }
 
     Mod+Ctrl+Q { spawn-sh "cthulock"; }
-    Mod+Shift+Q { spawn "noctalia-shell" "ipc" "call" "sessionMenu" "toggle"; }
+    Mod+Shift+Q { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
 
     // Core Noctalia binds
-    Mod+Space hotkey-overlay-title="Open Launcher" { spawn "vicinae" "toggle"; }
-    Mod+S { spawn "noctalia-shell" "ipc" "call" "controlCenter" "toggle"; }
+    Mod+Space hotkey-overlay-title="Open Launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
+    Mod+S { spawn-sh "noctalia-shell ipc call controlCenter toggle"; }
 
     // Audio controls
-    XF86AudioRaiseVolume { spawn "noctalia-shell" "ipc" "call" "volume" "increase"; }
-    XF86AudioLowerVolume { spawn "noctalia-shell" "ipc" "call" "volume" "decrease"; }
-    XF86AudioMute { spawn "noctalia-shell" "ipc" "call" "volume" "muteOutput"; }
+    XF86AudioRaiseVolume { spawn-sh "noctalia-shell ipc call volume increase"; }
+    XF86AudioLowerVolume { spawn-sh "noctalia-shell ipc call volume decrease"; }
+    XF86AudioMute { spawn-sh "noctalia-shell ipc call volume muteOutput"; }
 
     // Brightness controls
-    XF86MonBrightnessUp { spawn "noctalia-shell" "ipc" "call" "brightness" "increase"; }
-    XF86MonBrightnessDown { spawn "noctalia-shell" "ipc" "call" "brightness" "decrease"; }
+    XF86MonBrightnessUp { spawn-sh "noctalia-shell ipc call brightness increase"; }
+    XF86MonBrightnessDown { spawn-sh "noctalia-shell ipc call brightness decrease"; }
 
     // Backup to recover a locked Wayland crashed lockscreen
     Mod+Ctrl+Alt+Q allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill cthulock || exec cthulock"; }

@@ -154,7 +154,7 @@
     },
     "flake-utils": {
       "inputs": {
-        "systems": "systems_2"
+        "systems": "systems"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -544,15 +544,14 @@
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
-        ],
-        "systems": "systems"
+        ]
       },
       "locked": {
-        "lastModified": 1763641037,
-        "narHash": "sha256-Dd3Cl00mAfStn3He4pkzzKHcBg4ukz9Mifl9ljBne5s=",
+        "lastModified": 1764206318,
+        "narHash": "sha256-f+bjY/SX2peMu8lVsobRvzhsbexRdfr3TZuP9nFV3A8=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "fbfdf787deed1aabe385e388d2bd6bf1ac60636c",
+        "rev": "ba1e783c8f5067a81a4f55eabf79cf89e9359b16",
         "type": "github"
       },
       "original": {
@@ -670,21 +669,6 @@
       }
     },
     "systems": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_2": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
