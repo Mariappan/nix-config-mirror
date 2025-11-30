@@ -39,9 +39,9 @@
         "widgets": {
             "center": [
                 {
-                    "customFont": "Roboto",
+                    "customFont": "Script12 BT",
                     "formatHorizontal": "HH:mm ddd, MMM dd",
-                    "formatVertical": "hh mm AP ---- MMM dd ----- ddd",
+                    "formatVertical": "hh mm AP --- MMM dd --- ddd",
                     "id": "Clock",
                     "useCustomFont": true,
                     "usePrimaryColor": true
@@ -416,9 +416,19 @@
         "fillMode": "stretch",
         "hideWallpaperFilenames": false,
         "monitorDirectories": [
+            {
+                "directory": "/home/maari/pictures/Wallpapers",
+                "name": "eDP-1",
+                "wallpaper": ""
+            },
+            {
+                "directory": "/home/maari/pictures/Wallpapers",
+                "name": "DP-1",
+                "wallpaper": ""
+            }
         ],
         "overviewEnabled": false,
-        "panelPosition": "follow_bar",
+        "panelPosition": "center",
         "randomEnabled": true,
         "randomIntervalSec": 3600,
         "recursiveSearch": true,

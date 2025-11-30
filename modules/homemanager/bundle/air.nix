@@ -33,5 +33,6 @@
     pkgs.aws-sso-cli
     pkgs.nixma.treewalker
     pkgs.ookla-speedtest
+    pkgs.zed-editor
   ];
 }
