@@ -6,11 +6,11 @@
         "enableClipboardHistory": false,
         "pinnedExecs": [
         ],
-        "position": "bottom_center",
+        "position": "center",
         "sortByMostUsed": true,
         "terminalCommand": "ghostty -e",
         "useApp2Unit": true,
-        "viewMode": "list"
+        "viewMode": "grid"
     },
     "audio": {
         "cavaFrameRate": 60,
@@ -56,6 +56,7 @@
                     "useDistroLogo": true
                 },
                 {
+                    "deviceNativePath": "",
                     "displayMode": "alwaysShow",
                     "id": "Battery",
                     "warningThreshold": 30
@@ -268,7 +269,7 @@
         "weatherShowEffects": true
     },
     "network": {
-        "wifiEnabled": true
+        "wifiEnabled": false
     },
     "nightLight": {
         "autoSchedule": true,
@@ -297,6 +298,10 @@
         "backgroundOpacity": 1,
         "enabled": true,
         "enabledTypes": [
+            0,
+            1,
+            2,
+            3
         ],
         "location": "bottom",
         "monitors": [
@@ -355,13 +360,18 @@
     "settingsVersion": 25,
     "systemMonitor": {
         "cpuCriticalThreshold": 90,
+        "cpuPollingInterval": 3000,
         "cpuWarningThreshold": 80,
         "criticalColor": "",
         "diskCriticalThreshold": 90,
+        "diskPollingInterval": 3000,
         "diskWarningThreshold": 80,
         "memCriticalThreshold": 90,
+        "memPollingInterval": 250,
         "memWarningThreshold": 80,
+        "networkPollingInterval": 3000,
         "tempCriticalThreshold": 90,
+        "tempPollingInterval": 3000,
         "tempWarningThreshold": 80,
         "useCustomColors": false,
         "warningColor": ""
@@ -371,6 +381,7 @@
         "cava": false,
         "code": false,
         "discord": false,
+        "emacs": false,
         "enableUserTemplates": false,
         "foot": false,
         "fuzzel": false,
@@ -378,6 +389,7 @@
         "gtk": false,
         "kcolorscheme": false,
         "kitty": false,
+        "niri": false,
         "pywalfox": false,
         "qt": false,
         "spicetify": false,
@@ -387,7 +399,7 @@
         "wezterm": false
     },
     "ui": {
-        "fontDefault": "Roboto",
+        "fontDefault": "FreeSans",
         "fontDefaultScale": 1,
         "fontFixed": "Maple Mono ExtraLight",
         "fontFixedScale": 1,
@@ -397,39 +409,13 @@
         "tooltipsEnabled": true
     },
     "wallpaper": {
-        "defaultWallpaper": "/nix/store/lm24v5sh31pbjqxmc9rcc1v9rvqj35cd-noctalia-shell-bc7c821d33acdc5fd301364b483d590544e64df9/share/noctalia-shell/Assets/Wallpaper/noctalia.png",
         "directory": "/home/maari/pictures/Wallpapers",
-        "enableMultiMonitorDirectories": false,
+        "enableMultiMonitorDirectories": true,
         "enabled": true,
         "fillColor": "#000000",
         "fillMode": "stretch",
         "hideWallpaperFilenames": false,
-        "monitors": [
-            {
-                "directory": "/home/maari/pictures/Wallpapers",
-                "name": "DP-3",
-                "wallpaper": "/home/maari/pictures/Wallpapers/353018.jpg"
-            },
-            {
-                "directory": "/home/maari/pictures/Wallpapers",
-                "name": "eDP-1",
-                "wallpaper": "/home/maari/pictures/Wallpapers/wallhaven_72dy7v.jpg"
-            },
-            {
-                "directory": "/home/maari/pictures/Wallpapers",
-                "name": "DP-4",
-                "wallpaper": "/home/maari/pictures/Wallpapers/baby-groot-superheroes-abstract-digital-art-wallpaper-f482e9e1a11a5d11b9a74a8bcfb3e96a.jpg"
-            },
-            {
-                "directory": "/home/maari/pictures/Wallpapers",
-                "name": "DP-5",
-                "wallpaper": "/home/maari/pictures/Wallpapers/minimalism-minimalist-hd-4k-wallpaper-a846adf88040dcd890cca10e680294ea.jpg"
-            },
-            {
-                "directory": "/home/maari/pictures/Wallpapers",
-                "name": "DP-1",
-                "wallpaper": "/home/maari/pictures/Wallpapers/star-wars-battlefront-2-2017-uhd-4k-wallpa-23F4E.jpg"
-            }
+        "monitorDirectories": [
         ],
         "overviewEnabled": false,
         "panelPosition": "follow_bar",
@@ -440,7 +426,7 @@
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,
         "transitionType": "random",
-        "useWallhaven": true,
+        "useWallhaven": false,
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
         "wallhavenPurity": "100",
