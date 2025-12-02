@@ -2,13 +2,66 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }:
 let
   cfg = config.nixma.nixos.boot;
+
+  # Map kernel package names to actual packages
+  kernelPackageMap = {
+    "default" = pkgs.linuxPackages;
+    "latest" = pkgs.linuxPackages_latest;
+    "hardened" = pkgs.linuxPackages_hardened;
+    "zen" = pkgs.linuxPackages_zen;
+    "lts" = pkgs.linuxPackages;
+    "xanmod" = pkgs.linuxPackages_xanmod_latest;
+    "xanmod_stable" = pkgs.linuxPackages_xanmod_stable;
+  };
+
+  # Determine which kernel package to use
+  selectedKernelPackage =
+    if cfg.kernelVersion != null then
+      # Use specific kernel version if provided (e.g., "6.1" -> linux_6_1)
+      let
+        versionUnderscore = lib.replaceStrings ["."] ["_"] cfg.kernelVersion;
+        kernelAttr = "linux_${versionUnderscore}";
+      in
+        pkgs.linuxKernel.packages.${kernelAttr} or (throw "Kernel version ${cfg.kernelVersion} not available in pkgs.linuxKernel.packages.${kernelAttr}")
+    else
+      # Use predefined kernel package
+      kernelPackageMap.${cfg.kernelPackage};
 in
 {
   options.nixma.nixos.boot = {
+    kernelPackage = lib.mkOption {
+      type = lib.types.enum (builtins.attrNames kernelPackageMap);
+      default = "default";
+      description = ''
+        Kernel package to use. Options:
+        - default: Standard NixOS kernel
+        - latest: Latest stable kernel
+        - hardened: Security-hardened kernel
+        - zen: Zen kernel (optimized for desktop)
+        - lts: Long-term support kernel
+        - xanmod: Xanmod latest kernel
+        - xanmod_stable: Xanmod stable kernel
+
+        This option is ignored if kernelVersion is set.
+      '';
+    };
+
+    kernelVersion = lib.mkOption {
+      type = lib.types.nullOr lib.types.str;
+      default = null;
+      example = "6.12";
+      description = ''
+        Specific kernel version to use (e.g., "6.1", "6.6", "6.12").
+        When set, this overrides the kernelPackage option.
+        The version should match available packages in pkgs.linuxKernel.packages.
+      '';
+    };
+
     kernelParams = lib.mkOption {
       type = lib.types.listOf lib.types.str;
       default = [
@@ -92,6 +145,7 @@ in
     boot.loader.systemd-boot.configurationLimit = cfg.systemdBoot.configurationLimit;
 
     # Kernel configuration
+    boot.kernelPackages = selectedKernelPackage;
     boot.kernelParams = cfg.kernelParams;
     boot.kernelModules = cfg.kernelModules;
     boot.blacklistedKernelModules = cfg.blacklistedKernelModules;
