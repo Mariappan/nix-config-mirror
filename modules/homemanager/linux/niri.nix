@@ -10,8 +10,6 @@
 
   programs.niri.enable = true;
 
-  services.vicinae.enable = true;
-
   # Polkit for auth
   services.polkit-gnome.enable = true;
 
