@@ -273,7 +273,7 @@
         "weatherShowEffects": true
     },
     "network": {
-        "wifiEnabled": false
+        "wifiEnabled": true
     },
     "nightLight": {
         "autoSchedule": true,
@@ -439,7 +439,7 @@
         "overviewEnabled": false,
         "panelPosition": "center",
         "randomEnabled": true,
-        "randomIntervalSec": 3600,
+        "randomIntervalSec": 14400,
         "recursiveSearch": true,
         "setWallpaperOnAllMonitors": true,
         "transitionDuration": 1500,
@@ -449,9 +449,9 @@
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
         "wallhavenPurity": "100",
-        "wallhavenQuery": "material",
+        "wallhavenQuery": "iron man",
         "wallhavenResolutionHeight": "",
-        "wallhavenResolutionMode": "atleast",
+        "wallhavenResolutionMode": "exact",
         "wallhavenResolutionWidth": "",
         "wallhavenSorting": "relevance"
     }
