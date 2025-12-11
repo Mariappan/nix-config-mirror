@@ -24,10 +24,11 @@ let
     if cfg.kernelVersion != null then
       # Use specific kernel version if provided (e.g., "6.1" -> linux_6_1)
       let
-        versionUnderscore = lib.replaceStrings ["."] ["_"] cfg.kernelVersion;
+        versionUnderscore = lib.replaceStrings [ "." ] [ "_" ] cfg.kernelVersion;
         kernelAttr = "linux_${versionUnderscore}";
       in
-        pkgs.linuxKernel.packages.${kernelAttr} or (throw "Kernel version ${cfg.kernelVersion} not available in pkgs.linuxKernel.packages.${kernelAttr}")
+      pkgs.linuxKernel.packages.${kernelAttr}
+        or (throw "Kernel version ${cfg.kernelVersion} not available in pkgs.linuxKernel.packages.${kernelAttr}")
     else
       # Use predefined kernel package
       kernelPackageMap.${cfg.kernelPackage};
