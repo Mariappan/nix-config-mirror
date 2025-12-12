@@ -34,6 +34,7 @@
   # Boot configuration
   nixma.nixos.boot = {
     kernelPackage = "default";
+    kernelVersion = "6.17";
     blacklistedKernelModules = [ "kvm-intel" ];
     tmpfs = {
       enable = true;
@@ -74,6 +75,8 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  services.fwupd.enable = true;
 
   programs.yubikey-touch-detector.enable = true;
   programs.vscode.enable = true;
