@@ -20,6 +20,9 @@
     pkgs.xan
     pkgs.yazi
     pkgs.yasm
+    # Database management tool
+    # https://sq.io/
+    pkgs.sq
   ];
 
 }

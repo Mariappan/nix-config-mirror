@@ -7,6 +7,7 @@
         "pinnedExecs": [
         ],
         "position": "center",
+        "showCategories": true,
         "sortByMostUsed": true,
         "terminalCommand": "ghostty -e",
         "useApp2Unit": true,
@@ -61,6 +62,8 @@
                     "deviceNativePath": "",
                     "displayMode": "alwaysShow",
                     "id": "Battery",
+                    "showNoctaliaPerformance": true,
+                    "showPowerProfiles": true,
                     "warningThreshold": 30
                 },
                 {
@@ -155,9 +158,6 @@
             }
         ]
     },
-    "changelog": {
-        "lastSeenVersion": "v3.1.1-dev"
-    },
     "colorSchemes": {
         "darkMode": true,
         "generateTemplatesForPredefined": true,
@@ -223,14 +223,17 @@
     "dock": {
         "backgroundOpacity": 1,
         "colorizeIcons": false,
+        "deadOpacity": 0.6,
         "displayMode": "always_visible",
         "enabled": false,
         "floatingRatio": 1,
+        "inactiveIndicators": false,
         "monitors": [
         ],
         "onlySameOutput": true,
         "pinnedApps": [
         ],
+        "pinnedStatic": false,
         "size": 1
     },
     "general": {
@@ -253,7 +256,8 @@
         "shadowOffsetX": 2,
         "shadowOffsetY": 3,
         "showHibernateOnLockScreen": false,
-        "showScreenCorners": true
+        "showScreenCorners": true,
+        "showSessionButtonsOnLockScreen": true
     },
     "hooks": {
         "darkModeChange": "",
@@ -273,7 +277,7 @@
         "weatherShowEffects": true
     },
     "network": {
-        "wifiEnabled": true
+        "wifiEnabled": false
     },
     "nightLight": {
         "autoSchedule": true,
@@ -295,7 +299,16 @@
         ],
         "normalUrgencyDuration": 8,
         "overlayLayer": true,
-        "respectExpireTimeout": true
+        "respectExpireTimeout": true,
+        "sounds": {
+            "criticalSoundFile": "",
+            "enabled": false,
+            "excludedApps": "discord,firefox,chrome,chromium,edge",
+            "lowSoundFile": "",
+            "normalSoundFile": "",
+            "separateSounds": false,
+            "volume": 0.5
+        }
     },
     "osd": {
         "autoHideMs": 3000,
