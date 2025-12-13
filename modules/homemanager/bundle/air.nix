@@ -1,4 +1,5 @@
 {
+  inputs,
   pkgs,
   lib,
   ...
@@ -34,5 +35,6 @@
     pkgs.nixma.treewalker
     pkgs.ookla-speedtest
     pkgs.zed-editor
+    inputs.zen-browser.packages."${pkgs.stdenv.hostPlatform.system}".twilight
   ];
 }

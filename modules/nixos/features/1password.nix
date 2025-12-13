@@ -10,6 +10,8 @@
     "1password/custom_allowed_browsers" = {
       text = ''
         .zen-wrapped
+        zen-twilight
+        zen
         vivaldi-bin
       '';
       mode = "0755";
