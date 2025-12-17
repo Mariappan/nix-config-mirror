@@ -22,17 +22,6 @@
   xdg.mime.enable = true;
   xdg.mimeApps.enable = true;
   xdg.mimeApps.defaultApplications = {
-    "default-web-browser" = "vivaldi-stable.desktop";
-    "application/pdf" = "vivaldi-stable.desktop";
-    "application/rdf+xml" = "vivaldi-stable.desktop";
-    "application/rss+xml" = "vivaldi-stable.desktop";
-    "application/xhtml+xml" = "vivaldi-stable.desktop";
-    "application/xhtml_xml" = "vivaldi-stable.desktop";
-    "application/xml" = "vivaldi-stable.desktop";
-    "x-scheme-handler/http" = "vivaldi-stable.desktop";
-    "x-scheme-handler/https" = "vivaldi-stable.desktop";
-    "x-scheme-handler/about" = "vivaldi-stable.desktop";
-    "x-scheme-handler/unknown" = "vivaldi-stable.desktop";
     "text/html" = "neovide.desktop";
   };
 
