@@ -1,20 +1,26 @@
-{ config, ... }:
+{ config, lib, ... }:
+let
+  cfg = config.nixma.nixos."1password";
+in
 {
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    polkitPolicyOwners = [ config.nixma.nixos.params.primaryUser ];
+  options.nixma.nixos."1password".allowedBrowsers = lib.mkOption {
+    type = lib.types.listOf lib.types.str;
+    default = [ ];
+    description = "List of allowed browsers for 1Password browser integration";
   };
 
-  environment.etc = {
-    "1password/custom_allowed_browsers" = {
-      text = ''
-        .zen-wrapped
-        zen-twilight
-        zen
-        vivaldi-bin
-      '';
-      mode = "0755";
+  config = {
+    programs._1password.enable = true;
+    programs._1password-gui = {
+      enable = true;
+      polkitPolicyOwners = [ config.nixma.nixos.params.primaryUser ];
+    };
+
+    environment.etc = {
+      "1password/custom_allowed_browsers" = {
+        text = lib.concatStringsSep "\n" cfg.allowedBrowsers;
+        mode = "0755";
+      };
     };
   };
 }

@@ -55,6 +55,8 @@
   # Enable nixos features
   nixma.nixos = {
     "1password".enable = true;
+    zen-browser.enable = true;
+    vivaldi.enable = true;
     bluetooth.enable = true;
     docker.enable = true;
     fprint.enable = true;

@@ -40,6 +40,7 @@
   # Enable nixos features
   nixma.nixos = {
     "1password".enable = true;
+    vivaldi.enable = true;
     docker.enable = true;
     headless.enable = true;
     lanzaboote.enable = true;
