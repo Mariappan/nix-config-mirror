@@ -47,6 +47,7 @@
     niri.enable = true;
     screenrecorder.enable = true;
     sound.enable = true;
+    nvidia.enable = true;
     virtualbox.enable = true;
   };
 
