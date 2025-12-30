@@ -52,9 +52,13 @@
   };
 
   # When applied, the stable nixpkgs set (declared in the flake inputs) will
-  # be accessible through 'pkgs.stable'
+  # be accessible through 'pkgs._2511'
   stable-packages = final: _prev: {
-    stable = import inputs.nixpkgs-stable {
+    _2511 = import inputs.nixpkgs-2511 {
+      system = final.stdenv.hostPlatform.system;
+      config.allowUnfree = true;
+    };
+    _2505 = import inputs.nixpkgs-2505 {
       system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
@@ -63,6 +67,5 @@
   default = inputs.nixpkgs.lib.composeManyExtensions [
     inputs.nix-alien.overlays.default
     inputs.niri.overlays.niri
-    # inputs.nixpkgs-wayland.overlay
   ];
 }
