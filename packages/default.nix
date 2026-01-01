@@ -6,6 +6,7 @@ rec {
   # Packages with an actual source
   cthulock = pkgs.callPackage ./cthulock { };
   ddlm = pkgs.callPackage ./ddlm { };
+  oyo = pkgs.callPackage ./oyo { };
   treewalker = pkgs.callPackage ./treewalker { };
   sagecipher = pkgs.callPackage ./sagecipher { };
   script12bt-font = pkgs.callPackage ./script12bt-font { };
