@@ -35,3 +35,7 @@ build flake='.':
 eval-air param:
     nix eval .#nixosConfigurations.air.config.{{param}} --json | jq .
 
+# List available Linux kernels
+lskernels:
+    @nix eval --raw nixpkgs#linuxKernel.packages --apply 'x: builtins.concatStringsSep "\n" (builtins.attrNames x)' 2>/dev/null | grep -v recurse
+
