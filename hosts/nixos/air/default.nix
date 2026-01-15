@@ -60,6 +60,7 @@
     bluetooth.enable = true;
     docker.enable = true;
     fprint.enable = true;
+    hidraw.enable = true;
     laptop.enable = true;
     manpages.enable = true;
     niri.enable = true;
