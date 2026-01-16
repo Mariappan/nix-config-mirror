@@ -34,7 +34,7 @@
   # Boot configuration
   nixma.nixos.boot = {
     kernelPackage = "default";
-    kernelVersion = "6.12";
+    kernelVersion = "6.17";
     blacklistedKernelModules = [ "kvm-intel" ];
     tmpfs = {
       enable = true;

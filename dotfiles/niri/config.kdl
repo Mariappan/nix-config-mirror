@@ -294,7 +294,6 @@ window-rule {
     match app-id="^spotify"
     match title="^Vicinae Launcher"
     match title="^Select what to share$"
-    match app-id="^usbimager$"
 
     open-floating true
 }
