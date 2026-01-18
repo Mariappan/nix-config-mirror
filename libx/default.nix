@@ -224,6 +224,7 @@ rec {
       };
       modules = [
         config
+        inputs.agenix.nixosModules.default
         inputs.noctalia.nixosModules.default
         outputs.nixosModules.default
       ];

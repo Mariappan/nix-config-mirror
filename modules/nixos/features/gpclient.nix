@@ -55,18 +55,27 @@ let
           fi
         done
 
-        # Add specific routes for the networks that should go through VPN
-        ${lib.concatMapStringsSep "\n" (network: ''
-        if ! ${pkgs.iproute2}/bin/ip route show ${network} dev "$INTERFACE" 2>/dev/null | ${pkgs.gnugrep}/bin/grep -q .; then
-          log "Adding route for ${network} through VPN"
-          if [[ -n "$VPN_GW" ]]; then
-            ${pkgs.iproute2}/bin/ip route add ${network} via "$VPN_GW" dev "$INTERFACE" 2>/dev/null || \
-            ${pkgs.iproute2}/bin/ip route add ${network} dev "$INTERFACE" 2>/dev/null || true
-          else
-            ${pkgs.iproute2}/bin/ip route add ${network} dev "$INTERFACE" 2>/dev/null || true
-          fi
+        # Read networks from secret file if it exists
+        NETWORKS_FILE="${cfg.splitTunnelNetworksFile}"
+        if [[ -n "$NETWORKS_FILE" && -r "$NETWORKS_FILE" ]]; then
+          log "Reading networks from $NETWORKS_FILE"
+          while IFS= read -r network || [[ -n "$network" ]]; do
+            # Skip empty lines and comments
+            [[ -z "$network" || "$network" == \#* ]] && continue
+
+            if ! ${pkgs.iproute2}/bin/ip route show "$network" dev "$INTERFACE" 2>/dev/null | ${pkgs.gnugrep}/bin/grep -q .; then
+              log "Adding route for $network through VPN"
+              if [[ -n "$VPN_GW" ]]; then
+                ${pkgs.iproute2}/bin/ip route add "$network" via "$VPN_GW" dev "$INTERFACE" 2>/dev/null || \
+                ${pkgs.iproute2}/bin/ip route add "$network" dev "$INTERFACE" 2>/dev/null || true
+              else
+                ${pkgs.iproute2}/bin/ip route add "$network" dev "$INTERFACE" 2>/dev/null || true
+              fi
+            fi
+          done < "$NETWORKS_FILE"
+        else
+          log "Networks file not found or not readable: $NETWORKS_FILE"
         fi
-        '') cfg.splitTunnelNetworks}
 
         # Configure DNS: disable all name resolution on VPN interface
         log "Disabling DNS, LLMNR, and mDNS on VPN interface"
@@ -95,18 +104,18 @@ in
       '';
     };
 
-    splitTunnelNetworks = lib.mkOption {
-      type = lib.types.listOf lib.types.str;
-      default = [ ];
-      example = [ "10.4.0.0/16" "192.168.100.0/24" ];
+    splitTunnelNetworksFile = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      example = "/run/agenix/gpclient-networks";
       description = ''
-        Networks that should be routed through the GlobalProtect VPN.
-        All other traffic will use the default route (not through VPN).
+        Path to a file containing networks (one per line) to route through VPN.
+        Use this with agenix to keep IPs private.
       '';
     };
   };
 
-  config = lib.mkIf (cfg.splitTunnelNetworks != [ ]) {
+  config = lib.mkIf (cfg.splitTunnelNetworksFile != "") {
     # NetworkManager dispatcher script for split tunneling
     networking.networkmanager.dispatcherScripts = [
       {
