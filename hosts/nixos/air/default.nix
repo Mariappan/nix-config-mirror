@@ -81,6 +81,11 @@
     virtualbox.enable = true;
   };
 
+  # FIXME: Kernel 6.18 breaks hibernation
+  # Sleep after first hibernation was failing.
+  # Temp disable hibernation and enable, after finding the solution
+  nixma.nixos.laptop.supportHibernate = false;
+
   # System configs
   networking.hostName = "air";
 
