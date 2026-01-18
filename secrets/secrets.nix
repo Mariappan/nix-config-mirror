@@ -9,7 +9,9 @@ let
   allKeys = [ air homelab xv-maari ];
 in
 {
-  # VPN split tunnel configs for gpclient
+  # GlobalProtect VPN config
+  "gpclient-config-air.age".publicKeys = allKeys;
+  # Split network config
   "gpclient-networks-air.age".publicKeys = allKeys;
   "gpclient-domains-air.age".publicKeys = allKeys;
 }

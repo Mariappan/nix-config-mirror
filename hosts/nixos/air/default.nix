@@ -56,6 +56,13 @@
   # GlobalProtect VPN split tunneling
   age.secrets.gpclient-networks.file = ../../../secrets/gpclient-networks-air.age;
   age.secrets.gpclient-domains.file = ../../../secrets/gpclient-domains-air.age;
+
+  # GlobalProtect portal config for noctalia plugin
+  age.secrets.gpclient-config = {
+    file = ../../../secrets/gpclient-config-air.age;
+    owner = "maari";
+    mode = "0400";
+  };
   nixma.nixos.gpclient = {
     enable = true;
     interface = "gpd0";

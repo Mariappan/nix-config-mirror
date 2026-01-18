@@ -126,6 +126,11 @@
                     "id": "KeepAwake"
                 },
                 {
+                    "defaultSettings": {
+                    },
+                    "id": "plugin:f7ded3:globalprotect-vpn"
+                },
+                {
                     "blacklist": [
                     ],
                     "colorizeIcons": true,
@@ -312,7 +317,7 @@
         "bluetoothRssiPollIntervalMs": 10000,
         "bluetoothRssiPollingEnabled": false,
         "wifiDetailsViewMode": "grid",
-        "wifiEnabled": false
+        "wifiEnabled": true
     },
     "nightLight": {
         "autoSchedule": true,

@@ -4,6 +4,11 @@
   ...
 }:
 {
+  # GlobalProtect config for noctalia plugin (env vars from agenix secret)
+  systemd.user.tmpfiles.rules = lib.mkIf pkgs.stdenv.isLinux [
+    "L %h/.config/environment.d/500-gpconfig.conf - - - - /run/agenix/gpclient-config"
+  ];
+
   nixma.hm.desktop.enable = true;
   nixma.hm.moderntools.enable = true;
   nixma.hm.git.enable = true;

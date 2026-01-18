@@ -1,0 +1,21 @@
+{
+    "sources": [
+        {
+            "enabled": false,
+            "name": "Official Noctalia Plugins",
+            "url": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        {
+            "enabled": true,
+            "name": "Maari's plugins",
+            "url": "https://github.com/nappairam/noctalia-plugins"
+        }
+    ],
+    "states": {
+        "f7ded3:globalprotect-vpn": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/nappairam/noctalia-plugins"
+        }
+    },
+    "version": 1
+}
