@@ -10,4 +10,6 @@ in
 {
   # VPN split tunnel networks for gpclient
   "gpclient-networks-air.age".publicKeys = [ air ];
+  # VPN split tunnel domains for gpclient (resolved dynamically)
+  "gpclient-domains-air.age".publicKeys = [ air ];
 }

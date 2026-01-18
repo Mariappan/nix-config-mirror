@@ -53,12 +53,14 @@
     ];
   };
 
-  # GlobalProtect VPN split tunneling - networks read from encrypted secret
+  # GlobalProtect VPN split tunneling
   age.secrets.gpclient-networks.file = ../../../secrets/gpclient-networks-air.age;
+  age.secrets.gpclient-domains.file = ../../../secrets/gpclient-domains-air.age;
   nixma.nixos.gpclient = {
     enable = true;
     interface = "gpd0";
     splitTunnelNetworksFile = config.age.secrets.gpclient-networks.path;
+    splitTunnelDomainsFile = config.age.secrets.gpclient-domains.path;
   };
 
   # Enable nixos features

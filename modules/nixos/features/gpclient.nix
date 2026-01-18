@@ -77,6 +77,29 @@ let
           log "Networks file not found or not readable: $NETWORKS_FILE"
         fi
 
+        # Resolve domains and add routes for their IPs
+        DOMAINS_FILE="${cfg.splitTunnelDomainsFile}"
+        if [[ -n "$DOMAINS_FILE" && -r "$DOMAINS_FILE" ]]; then
+          log "Reading domains from $DOMAINS_FILE"
+          while IFS= read -r domain || [[ -n "$domain" ]]; do
+            # Skip empty lines and comments
+            [[ -z "$domain" || "$domain" == \#* ]] && continue
+
+            log "Resolving $domain"
+            for ip in $(${pkgs.dig}/bin/dig +short "$domain" 2>/dev/null | ${pkgs.gnugrep}/bin/grep -E '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$'); do
+              if ! ${pkgs.iproute2}/bin/ip route show "$ip/32" dev "$INTERFACE" 2>/dev/null | ${pkgs.gnugrep}/bin/grep -q .; then
+                log "Adding route for $ip ($domain) through VPN"
+                if [[ -n "$VPN_GW" ]]; then
+                  ${pkgs.iproute2}/bin/ip route add "$ip/32" via "$VPN_GW" dev "$INTERFACE" 2>/dev/null || \
+                  ${pkgs.iproute2}/bin/ip route add "$ip/32" dev "$INTERFACE" 2>/dev/null || true
+                else
+                  ${pkgs.iproute2}/bin/ip route add "$ip/32" dev "$INTERFACE" 2>/dev/null || true
+                fi
+              fi
+            done
+          done < "$DOMAINS_FILE"
+        fi
+
         # Configure DNS: disable all name resolution on VPN interface
         log "Disabling DNS, LLMNR, and mDNS on VPN interface"
         ${pkgs.systemd}/bin/resolvectl dns "$INTERFACE" ""
@@ -113,9 +136,19 @@ in
         Use this with agenix to keep IPs private.
       '';
     };
+
+    splitTunnelDomainsFile = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      example = "/run/agenix/gpclient-domains";
+      description = ''
+        Path to a file containing domains (one per line) to resolve and route through VPN.
+        IPs are resolved dynamically when VPN connects.
+      '';
+    };
   };
 
-  config = lib.mkIf (cfg.splitTunnelNetworksFile != "") {
+  config = lib.mkIf (cfg.splitTunnelNetworksFile != "" || cfg.splitTunnelDomainsFile != "") {
     # NetworkManager dispatcher script for split tunneling
     networking.networkmanager.dispatcherScripts = [
       {
