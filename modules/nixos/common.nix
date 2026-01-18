@@ -19,6 +19,7 @@
   nixma.nixos.i18n.enable = true;
 
   environment.systemPackages = [
+    pkgs.ragenix
     pkgs.curl
     pkgs.file
     pkgs.iputils
