@@ -245,8 +245,29 @@ just eval-air hardware.graphics.enable
 just eval-air system.stateVersion
 ```
 
+## Secrets Management (ragenix)
+
+Secrets are managed using [ragenix](https://github.com/yaxitech/ragenix). Secret files are stored in `secrets/` and configured in `secrets/secrets.nix`.
+
+### Re-encrypt all secrets (using 1Password)
+
+```bash
+./scripts/rekey
+```
+
+### Re-encrypt using host SSH key
+
+```bash
+sudo ragenix --rules ./secrets/secrets.nix -i /etc/ssh/ssh_host_ed25519_key -r
+```
+
+### Edit a secret
+
+```bash
+sudo ragenix --rules ./secrets/secrets.nix -i /etc/ssh/ssh_host_ed25519_key -e secrets/<file>.age
+```
+
 ## ToDo
-- Integrate sops-nix
 
 ## Authors and acknowledgment
 Show your appreciation to those who have contributed to the project.

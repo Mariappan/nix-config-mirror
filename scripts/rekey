@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(dirname "$SCRIPT_DIR")"
+
+# Create temporary file for the private key
+TEMP_KEY=$(mktemp)
+trap "rm -f $TEMP_KEY" EXIT
+
+# Extract SSH private key from 1Password
+echo "Fetching SSH key from 1Password..."
+op read "op://Private/homelab/private key" > "$TEMP_KEY"
+chmod 600 "$TEMP_KEY"
+
+# Re-encrypt secrets
+echo "Re-encrypting secrets..."
+ragenix --rules "$REPO_DIR/secrets/secrets.nix" -i "$TEMP_KEY" -r "$@"
+
+echo "Done."
