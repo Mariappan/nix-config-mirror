@@ -52,6 +52,15 @@
     ];
   };
 
+  # GlobalProtect VPN split tunneling - only route these networks through VPN
+  nixma.nixos.gpclient = {
+    enable = true;
+    interface = "gpd0";
+    splitTunnelNetworks = [
+      "10.0.0.0/16"
+    ];
+  };
+
   # Enable nixos features
   nixma.nixos = {
     "1password".enable = true;
