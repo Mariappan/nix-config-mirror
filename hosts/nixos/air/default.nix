@@ -34,7 +34,7 @@
   # Boot configuration
   nixma.nixos.boot = {
     kernelPackage = "default";
-    kernelVersion = "6.17";
+    kernelVersion = "6.18";
     blacklistedKernelModules = [ "kvm-intel" ];
     tmpfs = {
       enable = true;
@@ -80,6 +80,9 @@
   services.printing.enable = true;
 
   services.fwupd.enable = true;
+
+  # Workaround for nixpkgs regression: https://github.com/NixOS/nixpkgs/issues/480964
+  services.resolved.enable = true;
 
   programs.yubikey-touch-detector.enable = true;
   programs.vscode.enable = true;
