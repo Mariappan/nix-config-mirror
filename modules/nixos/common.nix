@@ -4,6 +4,8 @@
   ...
 }:
 {
+  age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+
   imports = [
     home-manager.nixosModules.home-manager
     ../shared/nixpkgs.nix
