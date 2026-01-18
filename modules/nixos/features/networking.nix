@@ -64,6 +64,9 @@ in
     # NetworkManager handles DHCP, so useDHCP is not needed
     # networking.useDHCP = true;
 
+    # Enable mDNS for NetworkManager connections (used by systemd-resolved)
+    networking.networkmanager.connectionConfig."connection.mdns" = 2;
+
     # NetworkManager dispatcher script to disable WiFi when wired connection is active
     networking.networkmanager.dispatcherScripts = [
       {
@@ -85,11 +88,13 @@ in
     services.ntp.enable = true;
 
     # DNS resolution (using new settings interface from nixpkgs)
+    # mDNS resolution handled by systemd-resolved; Avahi handles service discovery/publishing
     services.resolved = lib.mkIf cfg.resolved.enable {
       enable = true;
       settings.Resolve = {
         DNSSEC = cfg.resolved.dnssec;
         DNSOverTLS = cfg.resolved.dnsovertls;
+        MulticastDNS = "true";
       } // lib.optionalAttrs (cfg.resolved.fallbackDns != [ ]) {
         FallbackDNS = cfg.resolved.fallbackDns;
       };
@@ -105,10 +110,15 @@ in
     # Enable Mosh daemon (UDP SSH)
     programs.mosh.enable = true;
 
-    # Avahi (mDNS/Bonjour) configuration for service discovery
-    services.avahi.enable = true;
-    services.avahi.nssmdns4 = true;
-    services.avahi.publish.enable = true;
-    services.avahi.publish.addresses = true;
+    # Avahi for service discovery/publishing only (mDNS resolution via systemd-resolved)
+    services.avahi = {
+      enable = true;
+      nssmdns = false;
+      openFirewall = true;
+      publish = {
+        enable = true;
+        addresses = true;
+      };
+    };
   };
 }
