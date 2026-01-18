@@ -81,9 +81,6 @@
 
   services.fwupd.enable = true;
 
-  # Workaround for nixpkgs regression: https://github.com/NixOS/nixpkgs/issues/480964
-  services.resolved.enable = true;
-
   programs.yubikey-touch-detector.enable = true;
   programs.vscode.enable = true;
   programs.vscode.extensions = with pkgs.vscode-extensions; [
