@@ -28,6 +28,7 @@
 
   # Hardware configuration
   nixma.nixos.hardware = {
+    swap.enable = true;
     cpu.vendor = "intel";
   };
 
@@ -53,7 +54,6 @@
     laptop.enable = true;
     manpages.enable = true;
     niri.enable = true;
-    nvidia.enable = true;
     plymouth.enable = true;
     screenrecorder.enable = true;
     sound.enable = true;
@@ -70,6 +70,4 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  services.fwupd.enable = true;
 }

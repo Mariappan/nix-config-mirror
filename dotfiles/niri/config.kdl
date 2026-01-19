@@ -53,7 +53,7 @@ input {
     // focus-follows-mouse max-scroll-amount="0%"
 }
 
-output "BOE 0x074F Unknown" {
+output "InfoVision Optoelectronics (Kunshan) Co.,Ltd China 0x057D Unknown" {
     // off
     mode "1920x1080"
     scale 1.0
