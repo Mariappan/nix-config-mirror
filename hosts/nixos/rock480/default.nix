@@ -34,6 +34,7 @@
 
   # Boot configuration
   nixma.nixos.boot = {
+    bootloader = "grub";
     kernelPackage = "latest";
     initrd.availableKernelModules = [
       "xhci_pci"
