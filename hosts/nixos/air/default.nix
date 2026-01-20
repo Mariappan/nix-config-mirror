@@ -76,6 +76,7 @@
     zen-browser.enable = true;
     vivaldi.enable = true;
     bluetooth.enable = true;
+    bluetooth.reloadDriverAfterHibernate = true;
     docker.enable = true;
     fprint.enable = true;
     hidraw.enable = true;
@@ -87,11 +88,6 @@
     sound.enable = true;
     virtualbox.enable = true;
   };
-
-  # FIXME: Kernel 6.18 breaks hibernation
-  # Sleep after first hibernation was failing.
-  # Temp disable hibernation and enable, after finding the solution
-  nixma.nixos.laptop.supportHibernate = false;
 
   # System configs
   networking.hostName = "air";
