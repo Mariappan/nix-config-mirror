@@ -113,7 +113,7 @@ in
     # Avahi for service discovery/publishing only (mDNS resolution via systemd-resolved)
     services.avahi = {
       enable = true;
-      nssmdns = false;
+      nssmdns4 = false;
       openFirewall = true;
       publish = {
         enable = true;
