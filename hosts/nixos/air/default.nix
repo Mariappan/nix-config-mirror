@@ -37,6 +37,14 @@
     kernelPackage = "default";
     kernelVersion = "6.18";
     blacklistedKernelModules = [ "kvm-intel" ];
+    # Backport S4 hibernate support from bluetooth-next to fix hibernate resume
+    # See: https://github.com/torvalds/linux/commit/1fb0d830dab89d0dc99bb84a7087b0ceca63d2d8
+    kernelPatches = [
+      {
+        name = "btintel-pcie-s4-hibernate-support";
+        patch = ../../../patches/kernel/btintel-pcie-s4-hibernate-support.patch;
+      }
+    ];
     tmpfs = {
       enable = true;
       size = "8G";
@@ -76,7 +84,8 @@
     zen-browser.enable = true;
     vivaldi.enable = true;
     bluetooth.enable = true;
-    bluetooth.reloadDriverAfterHibernate = true;
+    # Disabled to test S4 hibernate kernel patch
+    # bluetooth.reloadDriverAfterHibernate = true;
     docker.enable = true;
     fprint.enable = true;
     hidraw.enable = true;
