@@ -35,6 +35,16 @@ let
 in
 {
   options.nixma.nixos.boot = {
+    bootloader = lib.mkOption {
+      type = lib.types.enum [ "systemd-boot" "grub" ];
+      default = "systemd-boot";
+      description = ''
+        Bootloader to use. Options:
+        - systemd-boot: Simple UEFI boot manager (default)
+        - grub: GNU GRUB, supports both UEFI and BIOS
+      '';
+    };
+
     kernelPackage = lib.mkOption {
       type = lib.types.enum (builtins.attrNames kernelPackageMap);
       default = "default";
@@ -154,13 +164,53 @@ in
         description = "Number of configurations to keep in systemd-boot menu";
       };
     };
+
+    grub = {
+      device = lib.mkOption {
+        type = lib.types.str;
+        default = "nodev";
+        description = ''
+          Device to install GRUB to. Use "nodev" for UEFI systems.
+          For BIOS systems, specify the disk (e.g., "/dev/sda").
+        '';
+      };
+
+      efiSupport = lib.mkOption {
+        type = lib.types.bool;
+        default = true;
+        description = "Whether GRUB should be built with EFI support";
+      };
+
+      useOSProber = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Whether to run os-prober to detect other operating systems";
+      };
+
+      configurationLimit = lib.mkOption {
+        type = lib.types.int;
+        default = 10;
+        description = "Number of configurations to keep in GRUB menu";
+      };
+    };
   };
 
   config = {
     # Bootloader
     boot.loader.efi.canTouchEfiVariables = true;
-    boot.loader.systemd-boot.enable = true;
-    boot.loader.systemd-boot.configurationLimit = cfg.systemdBoot.configurationLimit;
+
+    # systemd-boot configuration
+    boot.loader.systemd-boot.enable = cfg.bootloader == "systemd-boot";
+    boot.loader.systemd-boot.configurationLimit = lib.mkIf (cfg.bootloader == "systemd-boot") cfg.systemdBoot.configurationLimit;
+
+    # GRUB configuration
+    boot.loader.grub = lib.mkIf (cfg.bootloader == "grub") {
+      enable = true;
+      device = cfg.grub.device;
+      efiSupport = cfg.grub.efiSupport;
+      useOSProber = cfg.grub.useOSProber;
+      configurationLimit = cfg.grub.configurationLimit;
+    };
 
     # Kernel configuration
     boot.kernelPackages = selectedKernelPackage;
