@@ -10,27 +10,27 @@
     email = "1221719+nappairam@users.noreply.github.com";
     sshKeys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3bwlIYLqj7YgfDNhFoAWgP5hg9+TOXmhnRZM9R8Bfi"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ/gQaDONy7ryuW8R7tsnUxxpEoqQ1erZuM4KOb3VLAc maari@tetra"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINB3JnJ0u7pwetXhzAmskHUmxfQjcCtoyModO+IRKL89 homelab@1password"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P xv@1password"
     ];
     extraGroups = [ "incus-admin" ]; # Added to default groups
-    bundle = "sun1";
+    bundle = "dull5080";
     gitSignByDefault = false;
   };
 
   # Hardware configuration
   nixma.nixos.hardware = {
-    luks.enable = true;
-    work.enable = true;
-    swap.enable = true;
-    cpu.vendor = "amd";
+    cpu.vendor = "intel";
   };
 
   # Boot configuration
   nixma.nixos.boot = {
-    kernelModules = [ "kvm-amd" ];
+    kernelModules = [ "kvm-intel" ];
     initrd.availableKernelModules = [
+      "ahci"
       "nvme"
       "xhci_pci"
-      "thunderbolt"
       "usbhid"
       "usb_storage"
       "sd_mod"
@@ -39,21 +39,12 @@
 
   # Enable nixos features
   nixma.nixos = {
-    "1password".enable = true;
-    vivaldi.enable = true;
     docker.enable = true;
     headless.enable = true;
-    lanzaboote.enable = true;
-    manpages.enable = true;
-    niri.enable = true;
-    screenrecorder.enable = true;
-    sound.enable = true;
-    incus.enable = true;
-    virtualbox.enable = true;
   };
 
   # System configs
-  networking.hostName = "sun1";
+  networking.hostName = "dull5080";
 
   # Host-specific networking configuration
   time.timeZone = "Asia/Singapore";
