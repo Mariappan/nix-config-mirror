@@ -66,8 +66,6 @@
   # Timezone
   time.timeZone = "Asia/Singapore";
 
-  programs.mosh.enable = true;
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
 }
