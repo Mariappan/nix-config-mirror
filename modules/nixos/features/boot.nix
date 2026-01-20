@@ -84,6 +84,23 @@ in
       description = "List of kernel modules to blacklist";
     };
 
+    kernelPatches = lib.mkOption {
+      type = lib.types.listOf (lib.types.submodule {
+        options = {
+          name = lib.mkOption {
+            type = lib.types.str;
+            description = "Name of the kernel patch";
+          };
+          patch = lib.mkOption {
+            type = lib.types.path;
+            description = "Path to the patch file";
+          };
+        };
+      });
+      default = [ ];
+      description = "List of kernel patches to apply";
+    };
+
     tmpfs = {
       enable = lib.mkEnableOption "tmpfs for /tmp";
 
@@ -150,6 +167,7 @@ in
     boot.kernelParams = cfg.kernelParams;
     boot.kernelModules = cfg.kernelModules;
     boot.blacklistedKernelModules = cfg.blacklistedKernelModules;
+    boot.kernelPatches = cfg.kernelPatches;
 
     # Tmpfs configuration
     boot.tmp.useTmpfs = cfg.tmpfs.enable;
