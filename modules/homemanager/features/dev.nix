@@ -16,6 +16,7 @@
     pkgs.lsof
     pkgs.universal-ctags
     pkgs.uv # Python package manager
+    pkgs.jwt-cli
     # pkgs.netcat-openbsd
   ]
   ++ lib.optionals pkgs.stdenv.isLinux [
