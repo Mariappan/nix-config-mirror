@@ -56,9 +56,41 @@ in
         description = "Fallback DNS servers when no other DNS servers are available.";
       };
     };
+
+    strictArp = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = ''
+        Enable strict ARP behavior to prevent ARP flux issues when multiple
+        interfaces are on the same subnet.
+
+        When enabled, sets:
+        - arp_ignore=1: Only respond to ARP if target IP is on receiving interface
+        - arp_announce=2: Always use address from outgoing interface's subnet
+
+        Problem: When WiFi and Ethernet connect to the same network, Linux's
+        default "weak host model" responds to ARP for any local IP on any
+        interface. The gateway may cache WiFi's MAC for Ethernet's IP, causing
+        reply packets to arrive on the wrong interface (asymmetric routing).
+
+        While Linux's weak host model would accept these packets, NixOS firewall
+        has an iptables rpfilter in the mangle table that drops packets failing
+        reverse path validation (packet arrived on WiFi but route back to source
+        prefers Ethernet).
+
+        This option prevents the issue at the source by ensuring each interface
+        only responds to ARP requests for its own IP addresses.
+      '';
+    };
   };
 
   config = {
+    # Strict ARP to prevent ARP flux with multiple interfaces on same subnet
+    boot.kernel.sysctl = lib.mkIf cfg.strictArp {
+      "net.ipv4.conf.all.arp_ignore" = 1;
+      "net.ipv4.conf.all.arp_announce" = 2;
+    };
+
     # NetworkManager handles network connections
     networking.networkmanager.enable = true;
     # NetworkManager handles DHCP, so useDHCP is not needed
