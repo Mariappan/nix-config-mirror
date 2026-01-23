@@ -82,6 +82,18 @@ in
         only responds to ARP requests for its own IP addresses.
       '';
     };
+
+    wiredWifiToggle = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = ''
+        Enable NetworkManager dispatcher script to automatically disable WiFi
+        when Ethernet is connected, and re-enable WiFi when Ethernet disconnects.
+
+        This is an alternative approach to strictArp for handling dual-interface
+        scenarios. With strictArp enabled (default), this is typically not needed.
+      '';
+    };
   };
 
   config = {
@@ -100,7 +112,7 @@ in
     networking.networkmanager.connectionConfig."connection.mdns" = 2;
 
     # NetworkManager dispatcher script to disable WiFi when wired connection is active
-    networking.networkmanager.dispatcherScripts = [
+    networking.networkmanager.dispatcherScripts = lib.mkIf cfg.wiredWifiToggle [
       {
         source = "${pkgs.nixma.wired_wifi_toggle}/bin/wired_wifi_toggle";
         type = "basic";
