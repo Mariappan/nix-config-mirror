@@ -59,7 +59,7 @@ in
 
     strictArp = lib.mkOption {
       type = lib.types.bool;
-      default = true;
+      default = false;
       description = ''
         Enable strict ARP behavior to prevent ARP flux issues when multiple
         interfaces are on the same subnet.

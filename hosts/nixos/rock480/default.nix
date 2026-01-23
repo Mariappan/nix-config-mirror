@@ -46,6 +46,9 @@
     ];
   };
 
+  # Enable strict ARP to fix dual-interface routing (WiFi + Ethernet)
+  nixma.nixos.networking.strictArp = true;
+
   # Enable nixos features
   nixma.nixos = {
     "1password".enable = true;
