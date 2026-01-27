@@ -8,6 +8,7 @@ rec {
   ddlm = pkgs.callPackage ./ddlm { };
   oyo = pkgs.callPackage ./oyo { };
   treewalker = pkgs.callPackage ./treewalker { };
+  try-rs = pkgs.callPackage ./try-rs { };
   sagecipher = pkgs.callPackage ./sagecipher { };
   script12bt-font = pkgs.callPackage ./script12bt-font { };
   meslolgsnf-font = pkgs.callPackage ./meslolgsnf-font { };
