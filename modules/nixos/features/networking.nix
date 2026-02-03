@@ -94,6 +94,11 @@ in
         scenarios. With strictArp enabled (default), this is typically not needed.
       '';
     };
+
+    tailscale = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+    };
   };
 
   config = {
@@ -153,6 +158,8 @@ in
 
     # Enable Mosh daemon (UDP SSH)
     programs.mosh.enable = true;
+
+    services.tailscale.enable = cfg.tailscale;
 
     # Avahi for service discovery/publishing only (mDNS resolution via systemd-resolved)
     services.avahi = {

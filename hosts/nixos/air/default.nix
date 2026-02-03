@@ -78,6 +78,7 @@
     splitTunnelDomainsFile = config.age.secrets.gpclient-domains.path;
   };
 
+  nixma.nixos.networking.tailscale = true;
   # Enable strict ARP to fix dual-interface routing (WiFi + Ethernet)
   nixma.nixos.networking.strictArp = true;
 
