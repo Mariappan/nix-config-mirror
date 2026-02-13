@@ -35,14 +35,7 @@
   # Boot configuration
   nixma.nixos.boot = {
     kernelPackage = "default";
-    kernelVersion = "6.18";
     blacklistedKernelModules = [ "kvm-intel" ];
-    # Backport S4 hibernate support from bluetooth-next to fix hibernate resume
-    # Built as out-of-tree module to avoid full kernel recompilation
-    # See: https://github.com/torvalds/linux/commit/1fb0d830dab89d0dc99bb84a7087b0ceca63d2d8
-    extraModulePackages = [
-      (config.boot.kernelPackages.callPackage ../../../packages/btintel-pcie-s4 { })
-    ];
     tmpfs = {
       enable = true;
       size = "8G";
