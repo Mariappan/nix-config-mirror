@@ -94,6 +94,12 @@ in
       description = "List of kernel modules to blacklist";
     };
 
+    extraModulePackages = lib.mkOption {
+      type = lib.types.listOf lib.types.package;
+      default = [ ];
+      description = "List of extra kernel module packages to install";
+    };
+
     kernelPatches = lib.mkOption {
       type = lib.types.listOf (lib.types.submodule {
         options = {
@@ -218,6 +224,7 @@ in
     boot.kernelModules = cfg.kernelModules;
     boot.blacklistedKernelModules = cfg.blacklistedKernelModules;
     boot.kernelPatches = cfg.kernelPatches;
+    boot.extraModulePackages = cfg.extraModulePackages;
 
     # Tmpfs configuration
     boot.tmp.useTmpfs = cfg.tmpfs.enable;
