@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   imports = [
     ../../shared/fonts.nix
@@ -13,6 +13,21 @@
   security.polkit.enable = true;
 
   services.udisks2.enable = true;
+
+  # polkit 127's socket-activated helper runs with strict sandboxing that
+  # blocks pam_u2f.so (ProtectHome=yes hides u2f_keys, PrivateDevices=yes
+  # hides /dev/hidraw*). Relax just enough for YubiKey auth to work.
+  # Ref: https://github.com/NixOS/nixpkgs/pull/486044
+  systemd.services."polkit-agent-helper@".serviceConfig = {
+    ProtectHome = lib.mkForce "read-only";
+    PrivateDevices = lib.mkForce false;
+    DeviceAllow = lib.mkForce [
+      "/dev/null rw"
+      "/dev/urandom r"
+      "char-hidraw rw"
+    ];
+    StandardError = "journal";
+  };
 
   security.pam.services = {
     # GreetD - regreet uses separate `greetd` PAM context
