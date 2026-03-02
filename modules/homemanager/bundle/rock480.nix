@@ -14,7 +14,8 @@
   nixma.hm.zen-browser.enable = true;
 
   # Linux-specific configuration
-  nixma.hm.linux.niri.enable = lib.mkIf pkgs.stdenv.isLinux true;
+  nixma.hm.linux.hyprland.enable = lib.mkIf pkgs.stdenv.isLinux true;
+  nixma.hm.linux.caelestia.enable = true;
 
   home.packages = lib.mkIf pkgs.stdenv.isLinux [
     pkgs.pavucontrol

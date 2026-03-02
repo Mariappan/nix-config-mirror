@@ -58,7 +58,7 @@
     hidraw.enable = true;
     laptop.enable = true;
     manpages.enable = true;
-    niri.enable = true;
+    hyprland.enable = true;
     plymouth.enable = true;
     screenrecorder.enable = true;
     sound.enable = true;
