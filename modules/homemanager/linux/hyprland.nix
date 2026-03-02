@@ -19,7 +19,7 @@
     #   debug = true;
     # };
     xwayland.enable = true;
-    plugins = [ pkgs.hyprlandPlugins.hy3 ];
+    plugins = [ ];
 
     extraConfig = ''
       ${builtins.readFile (dotfilesPath + "/hypr/hyprland.conf")}
@@ -59,7 +59,6 @@
   };
 
   home.packages = [
-    pkgs.hyprlandPlugins.hy3
     pkgs.hyprpicker
     pkgs.hyprlockfix
   ];
