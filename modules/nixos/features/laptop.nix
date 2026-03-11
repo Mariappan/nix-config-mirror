@@ -21,9 +21,7 @@ in
     services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
     services.logind.settings.Login.HandleLidSwitchDocked = "ignore";
 
-    systemd.sleep.extraConfig = lib.mkIf cfg.supportHibernate ''
-      HibernateDelaySec=30min
-    '';
+    systemd.sleep.settings.Sleep.HibernateDelaySec = lib.mkIf cfg.supportHibernate "30min";
 
     services.upower.enable = true;
     # services.power-profiles-daemon.enable = true;
