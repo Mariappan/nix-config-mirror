@@ -32,7 +32,7 @@
     pkgs.remmina
     pkgs.nushell
     pkgs.claude-code
-    pkgs.gpclient
+    pkgs._2511.gpclient
     pkgs.pavucontrol
     pkgs.awscli2
     pkgs.aws-sso-cli
