@@ -35,5 +35,10 @@
     pkgs.zip
   ];
 
+  security.pki.certificateFiles = [
+    "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt"
+    ../../dotfiles/certs/ca_homeolab.crt
+  ];
+
   system.stateVersion = "25.11";
 }
