@@ -53,6 +53,9 @@
     virtualbox.enable = true;
   };
 
+  # Enable strict ARP to fix dual-interface routing (WiFi + Ethernet)
+  nixma.nixos.networking.strictArp = true;
+
   # System configs
   networking.hostName = "tetra";
 
