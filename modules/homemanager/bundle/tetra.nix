@@ -15,7 +15,6 @@
   nixma.hm.gpgagent.enable = true;
   nixma.hm.earthly.enable = true;
   nixma.hm.zen-browser.enable = true;
-  nixma.hm.vivaldi.enable = true;
 
   # Linux-specific configuration
   nixma.hm.linux.niri.enable = lib.mkIf pkgs.stdenv.isLinux true;
@@ -27,7 +26,7 @@
     pkgs.obsidian
     pkgs.nushell
     pkgs.claude-code
-    pkgs.gpclient
+    pkgs._2511.gpclient
     pkgs.pavucontrol
     pkgs.nixma.treewalker
     pkgs.ookla-speedtest

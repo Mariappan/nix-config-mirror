@@ -28,7 +28,6 @@
   # Boot configuration
   nixma.nixos.boot = {
     kernelModules = [ "kvm-intel" ];
-    kernelPackage = "latest";
     initrd.availableKernelModules = [
       "nvme"
       "xhci_pci"
