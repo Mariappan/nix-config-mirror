@@ -28,7 +28,11 @@ in
       };
 
       dnssec = lib.mkOption {
-        type = lib.types.enum [ "true" "false" "allow-downgrade" ];
+        type = lib.types.enum [
+          "true"
+          "false"
+          "allow-downgrade"
+        ];
         default = "allow-downgrade";
         description = ''
           DNSSEC validation mode:
@@ -39,7 +43,11 @@ in
       };
 
       dnsovertls = lib.mkOption {
-        type = lib.types.enum [ "true" "false" "opportunistic" ];
+        type = lib.types.enum [
+          "true"
+          "false"
+          "opportunistic"
+        ];
         default = "false";
         description = ''
           DNS-over-TLS mode:
@@ -52,7 +60,10 @@ in
       fallbackDns = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [ ];
-        example = [ "1.1.1.1" "8.8.8.8" ];
+        example = [
+          "1.1.1.1"
+          "8.8.8.8"
+        ];
         description = "Fallback DNS servers when no other DNS servers are available.";
       };
     };
@@ -144,7 +155,8 @@ in
         DNSSEC = cfg.resolved.dnssec;
         DNSOverTLS = cfg.resolved.dnsovertls;
         MulticastDNS = "true";
-      } // lib.optionalAttrs (cfg.resolved.fallbackDns != [ ]) {
+      }
+      // lib.optionalAttrs (cfg.resolved.fallbackDns != [ ]) {
         FallbackDNS = cfg.resolved.fallbackDns;
       };
     };

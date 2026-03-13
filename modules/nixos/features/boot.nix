@@ -36,7 +36,10 @@ in
 {
   options.nixma.nixos.boot = {
     bootloader = lib.mkOption {
-      type = lib.types.enum [ "systemd-boot" "grub" ];
+      type = lib.types.enum [
+        "systemd-boot"
+        "grub"
+      ];
       default = "systemd-boot";
       description = ''
         Bootloader to use. Options:
@@ -101,18 +104,20 @@ in
     };
 
     kernelPatches = lib.mkOption {
-      type = lib.types.listOf (lib.types.submodule {
-        options = {
-          name = lib.mkOption {
-            type = lib.types.str;
-            description = "Name of the kernel patch";
+      type = lib.types.listOf (
+        lib.types.submodule {
+          options = {
+            name = lib.mkOption {
+              type = lib.types.str;
+              description = "Name of the kernel patch";
+            };
+            patch = lib.mkOption {
+              type = lib.types.path;
+              description = "Path to the patch file";
+            };
           };
-          patch = lib.mkOption {
-            type = lib.types.path;
-            description = "Path to the patch file";
-          };
-        };
-      });
+        }
+      );
       default = [ ];
       description = "List of kernel patches to apply";
     };
@@ -207,7 +212,9 @@ in
 
     # systemd-boot configuration
     boot.loader.systemd-boot.enable = cfg.bootloader == "systemd-boot";
-    boot.loader.systemd-boot.configurationLimit = lib.mkIf (cfg.bootloader == "systemd-boot") cfg.systemdBoot.configurationLimit;
+    boot.loader.systemd-boot.configurationLimit = lib.mkIf (
+      cfg.bootloader == "systemd-boot"
+    ) cfg.systemdBoot.configurationLimit;
 
     # GRUB configuration
     boot.loader.grub = lib.mkIf (cfg.bootloader == "grub") {

@@ -64,6 +64,8 @@ in
     };
 
     # Configure 1Password polkit policy for this user
-    programs._1password-gui.polkitPolicyOwners = lib.mkIf config.nixma.nixos."1password".enable [ cfg.username ];
+    programs._1password-gui.polkitPolicyOwners = lib.mkIf config.nixma.nixos."1password".enable [
+      cfg.username
+    ];
   };
 }
