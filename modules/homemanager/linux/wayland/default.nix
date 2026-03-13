@@ -64,8 +64,6 @@
     pkgs.waycheck
 
     pkgs.brightnessctl
-    pkgs.nixma.cthulock
-
     pkgs.app2unit
 
     # UI Tools

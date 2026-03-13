@@ -588,7 +588,7 @@ binds {
     Mod+Return { spawn "ghostty"; }
     Mod+Shift+D { spawn-sh "noctalia-shell ipc call notifications toggleHistory"; }
 
-    Mod+Ctrl+Q { spawn-sh "cthulock"; }
+    Mod+Ctrl+Q { spawn-sh "hyprlock"; }
     Mod+Shift+Q { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
 
     // Core Noctalia binds
@@ -605,6 +605,6 @@ binds {
     XF86MonBrightnessDown { spawn-sh "noctalia-shell ipc call brightness decrease"; }
 
     // Backup to recover a locked Wayland crashed lockscreen
-    Mod+Ctrl+Alt+Q allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill cthulock || exec cthulock"; }
+    Mod+Ctrl+Alt+Q allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill hyprlock || exec hyprlock"; }
 
 }
