@@ -28,6 +28,7 @@ in
       shell = "${pkgs.fish}/bin/fish";
       extraGroups = [
         "wheel"
+        "dialout"
         "docker"
         "networkmanager"
         "vboxusers"

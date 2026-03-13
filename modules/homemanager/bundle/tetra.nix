@@ -30,5 +30,6 @@
     pkgs.pavucontrol
     pkgs.nixma.treewalker
     pkgs.ookla-speedtest
+    pkgs.nrfutil
   ];
 }
