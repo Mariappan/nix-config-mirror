@@ -18,7 +18,7 @@
     enable = true;
     email = "142216110+kp-mariappan-ramasamy@users.noreply.github.com";
     sshKeys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P 1passwordxvpn"
     ];
     bundle = "air";
     gitSigningKey = "3B7DA4A8AF8C211443B571A2AD921C91A406F32D";
