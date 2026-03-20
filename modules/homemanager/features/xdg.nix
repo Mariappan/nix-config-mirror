@@ -6,6 +6,7 @@
   xdg.enable = true;
   xdg.userDirs.enable = true;
   xdg.userDirs.createDirectories = true;
+  xdg.userDirs.setSessionVariables = true;
 
   xdg.userDirs.desktop = "${config.home.homeDirectory}/desktop";
   xdg.userDirs.documents = "${config.home.homeDirectory}/documents";
