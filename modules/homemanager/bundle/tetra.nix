@@ -28,7 +28,6 @@
     pkgs.claude-code
     pkgs._2511.gpclient
     pkgs.pavucontrol
-    pkgs.nixma.treewalker
     pkgs.ookla-speedtest
     pkgs.nrfutil
   ];

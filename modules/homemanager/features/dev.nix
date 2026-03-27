@@ -18,6 +18,7 @@
     pkgs.uv # Python package manager
     pkgs.jwt-cli
     pkgs.nixma.try-rs
+    pkgs.nftables
     # pkgs.netcat-openbsd
   ]
   ++ lib.optionals pkgs.stdenv.isLinux [

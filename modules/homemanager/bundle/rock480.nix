@@ -19,6 +19,5 @@
 
   home.packages = lib.mkIf pkgs.stdenv.isLinux [
     pkgs.pavucontrol
-    pkgs.nixma.treewalker
   ];
 }
