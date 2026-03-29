@@ -30,5 +30,6 @@
     pkgs.pavucontrol
     pkgs.ookla-speedtest
     pkgs.nrfutil
+    pkgs.lmstudio
   ];
 }

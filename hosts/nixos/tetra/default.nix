@@ -42,12 +42,14 @@
   # Enable nixos features
   nixma.nixos = {
     "1password".enable = true;
+    zen-browser.enable = true;
     docker.enable = true;
     headless.enable = true;
     # lanzaboote.enable = true;
     manpages.enable = true;
     niri.enable = true;
     nvidia.enable = true;
+    plymouth.enable = true;
     screenrecorder.enable = true;
     sound.enable = true;
     virtualbox.enable = true;

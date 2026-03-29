@@ -77,7 +77,6 @@
   nixma.nixos = {
     "1password".enable = true;
     zen-browser.enable = true;
-    vivaldi.enable = true;
     bluetooth.enable = true;
     # Disabled to test S4 hibernate kernel patch
     # bluetooth.reloadDriverAfterHibernate = true;
