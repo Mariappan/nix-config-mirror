@@ -12,10 +12,19 @@
         "$left"
         "$right"
       ];
+      show-cryptographic-signatures = true;
     };
     signing = {
       behavior = "drop";
       backend = "gpg";
+    };
+    aliases = {
+      "l" = ["log" "--limit" "30"];
+      "lm" = ["log" "-r" "mutable()"];
+      "lb" = ["log" "-r" "descendants(main..@)"];
+      # This is better
+      "mine" = ["log" "-r" "reachable(@, mutable())"];
+      "rebase-all" = ["rebase" "-s" "all:mutable() & ~trunk()" "-d" "trunk()"];
     };
     git = {
       private-commits = "private()";

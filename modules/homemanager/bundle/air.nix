@@ -31,7 +31,7 @@
     pkgs.obsidian
     pkgs.remmina
     pkgs.nushell
-    pkgs.claude-code
+    pkgs.claude-code-bin
     pkgs._2511.gpclient
     pkgs.pavucontrol
     pkgs.awscli2
