@@ -5,7 +5,6 @@
   programs.tmux.historyLimit = 20000;
   programs.tmux.keyMode = "vi";
   programs.tmux.mouse = true;
-  programs.tmux.shortcut = "a";
   programs.tmux.baseIndex = 1;
   programs.tmux.shell = "${pkgs.fish}/bin/fish";
   programs.tmux.extraConfig = ''
