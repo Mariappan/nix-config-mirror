@@ -27,12 +27,9 @@
 
   gtk = {
     enable = true;
+    colorScheme = "dark";
     cursorTheme.name = "Adwaita";
     cursorTheme.package = pkgs.adwaita-icon-theme;
-    gtk4.theme = {
-      package = pkgs.arc-theme;
-      name = "Arc-Dark";
-    };
   };
 
 
