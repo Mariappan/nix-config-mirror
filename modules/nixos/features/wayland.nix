@@ -5,6 +5,7 @@
   ];
 
   nixma.nixos.wayland-dm.enable = true;
+  nixma.nixos.nautilus.enable = true;
 
   programs.dconf.enable = true;
 
