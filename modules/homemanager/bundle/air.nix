@@ -38,5 +38,6 @@
     pkgs.aws-sso-cli
     pkgs.ookla-speedtest
     pkgs.zed-editor
+    pkgs.karere
   ];
 }

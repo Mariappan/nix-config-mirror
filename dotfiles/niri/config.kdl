@@ -292,6 +292,7 @@ window-rule {
     match app-id="^imv"
     match app-id="^mpv"
     match app-id="^spotify"
+    match app-id="^io.github.tobagin.karere"
     match title="^Vicinae Launcher"
     match title="^Select what to share$"
 
