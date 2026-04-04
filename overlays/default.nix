@@ -15,7 +15,18 @@
   # This one contains whatever you want to overlay
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
-  modifications = _final: prev: {
+  modifications = final: prev: {
+    claude-code-bin = builtins.trace "WARNING: claude-code-bin is pinned to 2.1.92 via overlay. Remove this override once nixpkgs-unstable has a working version." (
+      prev.claude-code-bin.overrideAttrs (oldAttrs: rec {
+        version = "2.1.92";
+        src = prev.fetchurl {
+          url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/${version}/${prev.stdenv.hostPlatform.parsed.kernel.name}-${
+            if prev.stdenv.hostPlatform.isx86_64 then "x64" else "arm64"
+          }/claude";
+          hash = "sha256-4iMkUUln/y1en5Hw7jfkZ1v4tt/sJ/r7GcslzFsj/K8=";
+        };
+      })
+    );
     vivaldi-wayland = prev.vivaldi.override {
       commandLineArgs = ''
         --enable-features=UseOzonePlatform
