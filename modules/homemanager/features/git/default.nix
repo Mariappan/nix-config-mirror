@@ -1,14 +1,9 @@
-{ pkgs, ... }:
-let
-  gituiPackage = if pkgs.stdenv.isDarwin then pkgs._2505.gitui else pkgs.gitui;
-in
-{
+{ pkgs, ... }: {
   home.packages = [
     pkgs.git-absorb
   ];
 
   programs.gitui.enable = true;
-  programs.gitui.package = gituiPackage;
 
   programs.git.enable = true;
   programs.git.lfs.enable = true;
