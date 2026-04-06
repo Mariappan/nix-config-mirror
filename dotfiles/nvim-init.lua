@@ -5,4 +5,4 @@ vim.loader.enable()
 vim.pack.add({ 'https://github.com/nappairam/nvim12-config' })
 
 -- Loads config from above fake plugin
-require('config')
+require('nvim12')

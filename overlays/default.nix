@@ -16,7 +16,15 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = final: prev: {
-    claude-code-bin = builtins.trace "WARNING: claude-code-bin is pinned to 2.1.92 via overlay. Remove this override once nixpkgs-unstable has a working version." (
+  };
+
+  unused = _final: prev: {
+    hyprlandPlugins.hy3 = prev.hyprlandPlugins.hy3.overrideAttrs (
+      finalAttrs: prevAttrs: {
+        patches = [ ./hy3_fix.patch ];
+      }
+    );
+    claude-code-bin = builtins.trace "WARNING: claude-code-bin is pinned to 2.1.92 via overlay. Remove this override" (
       prev.claude-code-bin.overrideAttrs (oldAttrs: rec {
         version = "2.1.92";
         src = prev.fetchurl {
@@ -42,14 +50,6 @@
           --replace-fail 'bin/slack -s' 'bin/slack --ozone-platform=wayland -s'
       '';
     });
-  };
-
-  unused = _final: prev: {
-    hyprlandPlugins.hy3 = prev.hyprlandPlugins.hy3.overrideAttrs (
-      finalAttrs: prevAttrs: {
-        patches = [ ./hy3_fix.patch ];
-      }
-    );
     wayprompt = prev.wayprompt.overrideAttrs (oldAttrs: {
       version = "66fe87408d3cfba8c8cc6ff65c1868e5db6ad3bb";
       src = prev.fetchFromSourcehut {
