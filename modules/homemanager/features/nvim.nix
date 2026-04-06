@@ -46,11 +46,6 @@ in
   # Symlink treesitter parsers for nvim12 (NVIM_APPNAME=nvim12)
   home.file.".local/share/nvim12/site/parser".source = "${treesitter-parser-dir}/parser";
 
-  xdg.configFile = {
-    "nvim" = {
-      enable = true;
-      source = dotfilesPath + "/nvim";
-      target = "nvim";
-    };
-  };
+  # Minimal init.lua that loads nvim12-config as a plugin
+  xdg.configFile."nvim/init.lua".source = dotfilesPath + "/nvim-init.lua";
 }
