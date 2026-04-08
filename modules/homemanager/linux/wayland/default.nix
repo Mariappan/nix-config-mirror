@@ -10,14 +10,6 @@
   nixma.hm.linux.wayland.udiskie.enable = true;
   nixma.hm.linux.wayland.satty.enable = true;
 
-  xdg.configFile.wayland_env = {
-    enable = true;
-    target = "environment.d/999-wayland.conf";
-    text = ''
-      WLR_NO_HARDWARE_CURSORS = '1'
-    '';
-  };
-
   xdg.configFile.app2unit_env = {
     enable = true;
     target = "environment.d/999-app2unit.conf";
