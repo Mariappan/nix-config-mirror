@@ -14,8 +14,6 @@
     ];
   };
 
-  services.noctalia-shell.enable = true;
-
   # Add session variables manually.
   # Will be set by uwsm in Hyprland
   environment.sessionVariables = {
