@@ -3,7 +3,7 @@
   programs.ghostty.enable = true;
   programs.ghostty.enableFishIntegration = true;
   programs.ghostty.settings = {
-    theme = "Gruvbox Dark";
+    theme = "Kanagawabones";
 
     font-family = [
       "Maple Mono"
@@ -29,7 +29,7 @@
     clipboard-trim-trailing-spaces = true;
 
     background-blur = true;
-    background-opacity = 0.9;
+    background-opacity = 1.0;
 
     app-notifications = "clipboard-copy";
     window-padding-x = "5,5";

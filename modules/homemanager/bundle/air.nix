@@ -19,6 +19,7 @@
   nixma.hm.gpgagent.enable = true;
   nixma.hm.earthly.enable = true;
   nixma.hm.zen-browser.enable = true;
+  nixma.hm.neovide.enable = true;
 
   # Linux-specific configuration
   nixma.hm.linux.niri.enable = lib.mkIf pkgs.stdenv.isLinux true;
