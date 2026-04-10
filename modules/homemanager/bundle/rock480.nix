@@ -19,5 +19,11 @@
 
   home.packages = lib.mkIf pkgs.stdenv.isLinux [
     pkgs.pavucontrol
+    pkgs.ookla-speedtest
+    pkgs.ethtool
+    pkgs.pciutils
+    pkgs.usbutils
+    pkgs.lm_sensors
+    pkgs.mtr
   ];
 }
