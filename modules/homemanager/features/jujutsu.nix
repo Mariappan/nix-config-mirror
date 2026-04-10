@@ -47,6 +47,9 @@
         bold = true;
       };
     };
+    preview = {
+      revision_command = ["show" "--git" "--stat" "--color" "always" "-r" "$change_id"];
+    };
   };
 
   home.packages = [
