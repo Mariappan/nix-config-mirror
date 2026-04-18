@@ -62,60 +62,9 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    import-tree.url = "github:vic/import-tree";
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs =
-    inputs@{
-      flake-parts,
-      ...
-    }:
-    let
-      libx = import ./libx { inherit inputs; };
-    in
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      flake = {
-        inherit libx;
-
-        overlays = import ./overlays { inherit inputs; };
-
-        # darwin-rebuild build --flake .#water
-        darwinConfigurations = libx.mkNixDarwinConfs ./hosts/darwin;
-
-        # sudo nixos-rebuild switch --flake .#air
-        nixosConfigurations = libx.mkNixOsConfs ./hosts/nixos;
-
-        homeManagerModules.default = ./modules/homemanager;
-        homeManagerModules.linux = ./modules/homemanager/linux.nix;
-        nixosModules.default = ./modules/nixos;
-        nixDarwinModules.default = ./modules/darwin;
-      };
-
-      systems = [
-        "x86_64-linux"
-        "x86_64-darwin"
-        "aarch64-linux"
-        "aarch64-darwin"
-      ];
-
-      perSystem =
-        {
-          pkgs,
-          system,
-          ...
-        }:
-        {
-          _module.args.pkgs = import inputs.nixpkgs {
-            inherit system;
-            overlays = [ ];
-          };
-
-          packages = import ./packages { inherit pkgs; };
-          formatter = pkgs.nixfmt-tree;
-          devShells.default = pkgs.mkShell {
-            packages = with pkgs; [
-              nixd
-            ];
-          };
-        };
-    };
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

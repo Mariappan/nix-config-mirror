@@ -1,0 +1,38 @@
+{ self, ... }:
+{
+  flake.modules.homeManager.desktop = { pkgs, lib, ... }: {
+    imports = [
+      self.modules.homeManager.tmux
+      self.modules.homeManager.nvim
+      self.modules.homeManager.xdg
+    ];
+    home.packages = [
+      pkgs.python3
+      pkgs.rsync
+      pkgs.wget
+    ];
+
+    programs.atuin = {
+      enable = true;
+      enableFishIntegration = true;
+      flags = [ "--disable-ctrl-r" ];
+    };
+
+    programs.command-not-found.enable = false;
+    # nix-index-database will automatically be installed
+    # https://github.com/nix-community/nix-index-database/blob/469ef53571ea80890c9497952787920c79c1ee6e/home-manager-module.nix#L23
+    programs.nix-index = {
+      enable = true;
+      enableFishIntegration = true;
+    };
+
+    programs.direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+      silent = true;
+      config = {
+        global.hide_env_diff = true;
+      };
+    };
+  };
+}
