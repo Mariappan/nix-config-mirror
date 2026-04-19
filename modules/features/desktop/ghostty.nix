@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager.ghostty =
-    { ... }:
+    { config, ... }:
     {
       programs.ghostty.enable = true;
       programs.ghostty.enableFishIntegration = true;
@@ -46,7 +46,7 @@
           "global:ctrl+grave_accent=toggle_quick_terminal"
         ];
 
-        config-file = "config-local";
+        config-file = "${config.xdg.configHome}/ghostty/config-local";
       };
     };
 }
