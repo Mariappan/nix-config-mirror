@@ -5,9 +5,6 @@
     {
       imports = [ self.modules.nixos.wayland ];
 
-      # niri HM module is imported via user's hmModules, not sharedModules,
-      # to avoid leaking desktop config to root user
-
       programs.niri.enable = true;
 
       xdg.terminal-exec.settings = {

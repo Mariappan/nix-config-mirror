@@ -9,9 +9,6 @@
         self.modules.nixos.shared-fonts
       ];
 
-      # NOTE: wayland HM module is imported by compositor HM modules (niri, hyprland)
-      # rather than via sharedModules, to avoid double-import conflicts.
-
       programs.dconf.enable = true;
 
       # Ref: https://www.reddit.com/r/NixOS/comments/171mexa/polkit_on_hyprland/

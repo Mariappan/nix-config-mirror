@@ -5,9 +5,6 @@
     {
       imports = [ self.modules.nixos.wayland ];
 
-      # hyprland HM module is imported via user's hmModules, not sharedModules,
-      # to avoid leaking desktop config to root user
-
       programs.hyprland.enable = true;
       programs.hyprland.withUWSM = true;
       # Enable it for debug package
