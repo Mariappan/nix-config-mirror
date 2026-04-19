@@ -88,6 +88,7 @@
           home-manager.sharedModules = [
             {
               home.packages = lib.mkIf pkgs.stdenv.isLinux [
+                pkgs.claude-code-bin
                 pkgs.pavucontrol
                 pkgs.ookla-speedtest
                 pkgs.ethtool
@@ -98,6 +99,9 @@
               ];
             }
           ];
+
+          # Enable GPU acceleration (Intel iGPU) — required for Hyprland performance
+          hardware.graphics.enable = true;
 
           networking.hostName = "rock480";
           time.timeZone = "Asia/Singapore";
