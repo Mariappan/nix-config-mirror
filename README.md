@@ -2,7 +2,7 @@
 Maari's system nix flake
 
 ## Description
-Collection of nixos and nix-darwin flakes supporting multiple hosts.
+Unified NixOS and nix-darwin system flake managing multiple hosts using flake-parts.
 
 ## Features
 - Flake as default
@@ -165,12 +165,11 @@ sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 \
     --wipe-slot=tpm2 /dev/disk/by-partlabel/WORK
 ```
 
->>> [!note] PCRs
-- PCR 0: Core system firmware executable code
-- PCR 2: Extended or pluggable executable code
-- PCR 7: SecureBoot state
-- PCR 12: Kernel command line, system credentials and system configuration images
->>>
+> **Note:** PCRs
+> - PCR 0: Core system firmware executable code
+> - PCR 2: Extended or pluggable executable code
+> - PCR 7: SecureBoot state
+> - PCR 12: Kernel command line, system credentials and system configuration images
 
 ## Tips
 
