@@ -12,7 +12,7 @@
         {
           nixma.users.maari = {
             name = "Mariappan Ramasamy";
-            email = "2441529-Mariappan@users.noreply.gitlab.com";
+            email = "1221719+nappairam@users.noreply.github.com";
 
             # HM features (replaces bundle-water)
             hmModules = with self.modules.homeManager; [
@@ -23,6 +23,11 @@
               moderntools
             ];
           };
+
+          homebrew.brews = [
+            "harfbuzz"
+            "freetype"
+          ];
 
           home-manager.sharedModules = [
             {
