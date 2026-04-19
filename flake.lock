@@ -655,6 +655,7 @@
         "nixpkgs-2505": "nixpkgs-2505",
         "nixpkgs-2511": "nixpkgs-2511",
         "noctalia": "noctalia",
+        "veila": "veila",
         "zen-browser": "zen-browser"
       }
     },
@@ -728,6 +729,26 @@
       "original": {
         "owner": "numtide",
         "repo": "treefmt-nix",
+        "type": "github"
+      }
+    },
+    "veila": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1776522211,
+        "narHash": "sha256-vOg+rxQYwKiAMfBWSIPntX3Vq5eeux9dBTGy4TsND0Q=",
+        "owner": "naurissteins",
+        "repo": "Veila",
+        "rev": "1240c5842a7191257a17c18871e9d46d530e0f6e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "naurissteins",
+        "repo": "Veila",
         "type": "github"
       }
     },

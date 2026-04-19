@@ -29,6 +29,7 @@
       self.modules.nixos.plymouth
       self.modules.nixos.screenrecorder
       self.modules.nixos.sound
+      self.modules.nixos.veila
       self.modules.nixos.virtualbox
       self.modules.nixos.gpclient
 
@@ -65,6 +66,29 @@
               earthly
               neovide
               niri
+              veila
+              {
+                nixma.veila.settings = {
+                  theme = "boracay";
+                  background = {
+                    mode = "file";
+                    path = builtins.path {
+                      path = self + /wallpapers/outbreak-wallpaper-2880x1800.jpg;
+                      name = "veila-wallpaper.jpg";
+                    };
+                  };
+                  visuals = {
+                    clock.color = "#B22A2A";
+                    date.color = "#B22A2A";
+                    input = {
+                      border_color = "#ffffff";
+                      mask_color = "#ffffff";
+                    };
+                    placeholder.color = "#ffffff";
+                    username.color = "#ffffff";
+                  };
+                };
+              }
             ];
           };
 
@@ -77,6 +101,7 @@
 
           # Boot configuration
           nixma.nixos.boot = {
+            bootloader = "limine";
             kernelPackage = "default";
             blacklistedKernelModules = [ "kvm-intel" ];
             tmpfs = {
@@ -109,6 +134,8 @@
             splitTunnelNetworksFile = config.age.secrets.gpclient-networks.path;
             splitTunnelDomainsFile = config.age.secrets.gpclient-domains.path;
           };
+
+          boot.loader.timeout = 3;
 
           nixma.nixos.networking.tailscale = true;
           nixma.nixos.networking.strictArp = true;
