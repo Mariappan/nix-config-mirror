@@ -11,7 +11,7 @@ stdenv.mkDerivation {
   inherit (kernel) src version;
 
   patches = [
-    ../../patches/kernel/btintel-pcie-s4-hibernate-support.patch
+    ./btintel-pcie-s4-hibernate-support.patch
   ];
 
   nativeBuildInputs = kernel.moduleBuildDependencies;

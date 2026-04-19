@@ -12,7 +12,6 @@
       self.modules.nixos.boot
       self.modules.nixos.networking
       self.modules.nixos.i18n
-      self.modules.nixos.nix
       self.modules.nixos.shared-fonts
 
       # Features

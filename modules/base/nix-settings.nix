@@ -1,5 +1,5 @@
 {
-  flake.modules.nixos.nix = { pkgs, ... }: {
+  flake.modules.nixos.nix-settings = { pkgs, ... }: {
     # Necessary for using flakes on this system
     nix.settings.experimental-features = [
       "nix-command"
