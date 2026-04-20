@@ -7,7 +7,6 @@
 
       programs.noctalia-shell = {
         enable = true;
-        systemd.enable = true;
       };
 
       home.activation.noctalia-symlinks =

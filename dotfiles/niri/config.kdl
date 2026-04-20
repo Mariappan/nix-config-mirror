@@ -231,6 +231,7 @@ layout {
 
 // Backup terminal incase hotkey does not work
 spawn-at-startup "ghostty"
+spawn-at-startup "noctalia-shell"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -589,7 +590,7 @@ binds {
     Mod+Return { spawn "ghostty"; }
     Mod+Shift+D { spawn-sh "noctalia-shell ipc call notifications toggleHistory"; }
 
-    Mod+Ctrl+Q { spawn-sh "veilad --lock-now"; }
+    Mod+Ctrl+Q { spawn "veila" "lock"; }
     Mod+Shift+Q { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
 
     // Core Noctalia binds
@@ -606,6 +607,6 @@ binds {
     XF86MonBrightnessDown { spawn-sh "noctalia-shell ipc call brightness decrease"; }
 
     // Backup to recover a locked Wayland crashed lockscreen
-    Mod+Ctrl+Alt+Q allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill veila-curtain; exec veilad --lock-now"; }
+    Mod+Ctrl+Alt+Q allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill veila-curtain; exec veila lock"; }
 
 }
