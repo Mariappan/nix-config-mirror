@@ -23,7 +23,7 @@
       self.modules.nixos.hidraw
       self.modules.nixos.laptop
       self.modules.nixos.manpages
-      self.modules.nixos.hyprland
+      self.modules.nixos.niri
       self.modules.nixos.plymouth
       self.modules.nixos.screenrecorder
       self.modules.nixos.sound
@@ -58,8 +58,7 @@
               jujutsu
               dev
               debug
-              caelestia
-              hyprland
+              niri
             ];
           };
 
