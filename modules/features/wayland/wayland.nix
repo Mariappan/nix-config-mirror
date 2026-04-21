@@ -45,10 +45,6 @@
         login = {
           enableGnomeKeyring = true;
         };
-        cthulock = {
-          unixAuth = true;
-          u2fAuth = true;
-        };
         hyprlock.u2fAuth = true;
         polkit-1.u2fAuth = true;
       };

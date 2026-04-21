@@ -4,7 +4,6 @@
 }:
 rec {
   # Packages with an actual source
-  cthulock = pkgs.callPackage ./cthulock { };
   ddlm = pkgs.callPackage ./ddlm { };
   oyo = pkgs.callPackage ./oyo { };
   treewalker = pkgs.callPackage ./treewalker { };
