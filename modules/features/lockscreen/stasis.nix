@@ -1,3 +1,4 @@
+{ self, ... }:
 {
   flake.modules.homeManager.stasis =
     { pkgs, ... }:
@@ -24,6 +25,8 @@
           WantedBy = [ systemdTarget ];
         };
       };
+
+      xdg.configFile."stasis".source = self + /dotfiles/stasis;
 
       home.packages = [
         pkgs.stasis
