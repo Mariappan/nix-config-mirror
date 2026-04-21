@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 {
   flake.modules.nixos.veila =
     { pkgs, ... }:
@@ -35,7 +35,26 @@
     {
       options.nixma.veila.settings = lib.mkOption {
         type = tomlFormat.type;
-        default = { };
+        default = {
+          theme = "boracay";
+          background = {
+            mode = "file";
+            path = builtins.path {
+              path = self + /wallpapers/outbreak-wallpaper-2880x1800.jpg;
+              name = "veila-wallpaper.jpg";
+            };
+          };
+          visuals = {
+            clock.color = "#B22A2A";
+            date.color = "#B22A2A";
+            input = {
+              border_color = "#ffffff";
+              mask_color = "#ffffff";
+            };
+            placeholder.color = "#ffffff";
+            username.color = "#ffffff";
+          };
+        };
         description = "Veila config.toml settings";
       };
 

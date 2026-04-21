@@ -3,7 +3,10 @@
   flake.modules.nixos.niri =
     { ... }:
     {
-      imports = [ self.modules.nixos.wayland ];
+      imports = [
+        self.modules.nixos.wayland
+        self.modules.nixos.veila
+      ];
 
       programs.niri.enable = true;
 
@@ -37,6 +40,7 @@
         self.modules.homeManager.ghostty
         self.modules.homeManager.dconf
         self.modules.homeManager.noctalia
+        self.modules.homeManager.veila
       ];
 
       programs.niri.enable = true;
