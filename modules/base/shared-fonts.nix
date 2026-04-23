@@ -6,6 +6,9 @@
       victor-mono
       nixma.meslolgsnf-font
       nixma.script12bt-font
+      (google-fonts.override {
+        fonts = [ "Stardos Stencil" "Oswald" ];
+      })
     ];
   };
 
@@ -16,6 +19,9 @@
       victor-mono
       nixma.meslolgsnf-font
       nixma.script12bt-font
+      (google-fonts.override {
+        fonts = [ "Stardos Stencil" "Oswald" ];
+      })
     ];
   };
 }

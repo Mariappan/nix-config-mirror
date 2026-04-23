@@ -31,35 +31,30 @@
     let
       cfg = config.nixma.veila;
       tomlFormat = pkgs.formats.toml { };
+      themeNames =
+        lib.mapAttrsToList (n: _: lib.removeSuffix ".toml" n)
+          (lib.filterAttrs (n: _: lib.hasSuffix ".toml" n)
+            (builtins.readDir (self + /dotfiles/veila/themes)));
     in
     {
-      options.nixma.veila.settings = lib.mkOption {
-        type = tomlFormat.type;
-        default = {
-          theme = "boracay";
-          background = {
-            mode = "file";
-            path = builtins.path {
-              path = self + /wallpapers/outbreak-wallpaper-2880x1800.jpg;
-              name = "veila-wallpaper.jpg";
-            };
-          };
-          visuals = {
-            clock.color = "#B22A2A";
-            date.color = "#B22A2A";
-            input = {
-              border_color = "#ffffff";
-              mask_color = "#ffffff";
-            };
-            placeholder.color = "#ffffff";
-            username.color = "#ffffff";
-          };
+      options.nixma.veila = {
+        theme = lib.mkOption {
+          type = lib.types.enum themeNames;
+          default = "goku";
+          description = "Active veila theme (matches a file in dotfiles/veila/themes/).";
         };
-        description = "Veila config.toml settings";
+        settings = lib.mkOption {
+          type = tomlFormat.type;
+          default = { };
+          description = "Extra overrides merged into config.toml.";
+        };
       };
 
-      config = lib.mkIf (cfg.settings != { }) {
-        xdg.configFile."veila/config.toml".source = tomlFormat.generate "veila-config" cfg.settings;
+      config = {
+        xdg.configFile."veila/config.toml".source =
+          tomlFormat.generate "veila-config" ({ theme = cfg.theme; } // cfg.settings);
+        xdg.configFile."veila/themes".source = self + /dotfiles/veila/themes;
+        xdg.configFile."veila/wallpaper".source = self + /wallpapers;
       };
     };
 }

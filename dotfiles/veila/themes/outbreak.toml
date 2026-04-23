@@ -1,0 +1,137 @@
+# outbreak — hazard-sign / barbed-wire vibe
+# Palette sampled from wallpaper: pale slate, dark navy, blood-red accents.
+
+[background]
+mode = "file"
+path = "/home/maari/.config/veila/wallpaper/outbreak-wallpaper-2880x1800.jpg"
+color = "#0a0a10"
+blur_radius = 3
+dim_strength = 12
+
+[lock]
+user_hint = "maari"
+show_username = false
+avatar_path = "/home/maari/.face.jpg"
+
+[battery]
+enabled = true
+
+[weather]
+enabled = false
+
+[visuals.clock]
+alignment = "top-left"
+format = "24h"
+meridiem_size = 3
+meridiem_offset_x = 6
+meridiem_offset_y = 7
+font_family = "Stardos Stencil"
+font_weight = 700
+color = "#7A2E39"
+opacity = 95
+size = 22
+gap = 16
+
+[visuals.date]
+font_family = "Stardos Stencil"
+font_weight = 700
+color = "#D5E1E8"
+opacity = 70
+size = 5
+
+[visuals.input]
+alignment = "bottom-left"
+background_color = "#354352"
+background_opacity = 45
+border_color = "#161927"
+border_width = 2
+border_opacity = 80
+width = 320
+height = 52
+radius = 26
+mask_color = "#D5E1E8"
+font_family = "Google Sans Flex"
+font_weight = 400
+font_size = 2
+
+[visuals.placeholder]
+color = "#D5E1E8"
+opacity = 55
+
+[visuals.avatar]
+enabled = false
+size = 128
+gap = 20
+background_color = "#354352"
+background_opacity = 40
+placeholder_padding = 24
+icon_color = "#D5E1E8"
+
+[visuals.username]
+font_family = "DejaVu Serif"
+font_weight = 700
+color = "#D5E1E8"
+opacity = 90
+size = 4
+gap = 22
+
+[visuals.keyboard]
+background_size = 42
+background_color = "rgba(22, 25, 39, 0.55)"
+color = "#D5E1E8"
+opacity = 75
+size = 2
+top_offset = -24
+right_offset = 10
+
+[visuals.battery]
+background_color = "rgba(22, 25, 39, 0.55)"
+background_size = 42
+color = "#D5E1E8"
+opacity = 75
+size = 18
+top_offset = -24
+right_offset = 10
+gap = 8
+
+[visuals.weather]
+alignment = "left"
+size = 2
+temperature_color = "#D5E1E8"
+location_color = "#D5E1E8"
+temperature_size = 6
+location_size = 3
+icon_size = 38
+temperature_font_family = "DejaVu Serif"
+temperature_font_style = "italic"
+temperature_font_weight = 700
+temperature_letter_spacing = 0
+location_font_family = "Google Sans Flex"
+location_font_weight = 400
+icon_gap = 6
+location_gap = 1
+opacity = 82
+left_padding = 30
+bottom_padding = 30
+
+[visuals.now_playing]
+enabled = true
+content_gap = 18
+fade_duration_ms = 320
+title_color = "#D5E1E8"
+artist_color = "#D5E1E8"
+title_size = 2
+artist_size = 2
+artwork_size = 44
+artwork_radius = 6
+right_padding = 44
+bottom_padding = 44
+opacity = 82
+title_opacity = 90
+artist_opacity = 65
+artwork_opacity = 95
+title_font_family = "Oswald"
+title_font_weight = 600
+artist_font_family = "Oswald"
+artist_font_weight = 400
+width = 380

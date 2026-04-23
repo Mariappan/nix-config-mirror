@@ -1,0 +1,136 @@
+# goku — dusk-desert vibe
+# Palette sampled from wallpaper: warm peach accents, deep teal darks.
+
+[background]
+mode = "file"
+path = "/home/maari/.config/veila/wallpaper/goku.jpg"
+color = "#1a1414"
+blur_radius = 0
+dim_strength = 0
+
+[lock]
+user_hint = "maari"
+show_username = false
+avatar_path = "/home/maari/.face.jpg"
+
+[battery]
+enabled = true
+
+[weather]
+enabled = false
+
+[visuals.clock]
+format = "24h"
+meridiem_size = 3
+meridiem_offset_x = 6
+meridiem_offset_y = 7
+font_family = "Oswald"
+font_weight = 700
+color = "#F2A578"
+opacity = 95
+size = 22
+gap = 16
+
+[visuals.date]
+font_family = "DejaVu Serif"
+font_weight = 400
+color = "#EA9D77"
+opacity = 70
+size = 5
+
+[visuals.input]
+alignment = "bottom-left"
+background_color = "#253535"
+background_opacity = 45
+border_color = "#1A5670"
+border_width = 2
+border_opacity = 80
+width = 320
+height = 52
+radius = 26
+mask_color = "#EA9D77"
+font_family = "Google Sans Flex"
+font_weight = 400
+font_size = 2
+
+[visuals.placeholder]
+color = "#EA9D77"
+opacity = 55
+
+[visuals.avatar]
+enabled = false
+size = 128
+gap = 20
+background_color = "#253535"
+background_opacity = 40
+placeholder_padding = 24
+icon_color = "#EA9D77"
+
+[visuals.username]
+font_family = "DejaVu Serif"
+font_weight = 700
+color = "#EA9D77"
+opacity = 90
+size = 4
+gap = 22
+
+[visuals.keyboard]
+background_size = 42
+background_color = "rgba(37, 53, 53, 0.55)"
+color = "#EA9D77"
+opacity = 75
+size = 2
+top_offset = -24
+right_offset = 10
+
+[visuals.battery]
+background_color = "rgba(37, 53, 53, 0.55)"
+background_size = 42
+color = "#EA9D77"
+opacity = 75
+size = 18
+top_offset = -24
+right_offset = 10
+gap = 8
+
+[visuals.weather]
+alignment = "left"
+size = 2
+temperature_color = "#EA9D77"
+location_color = "#EA9D77"
+temperature_size = 6
+location_size = 3
+icon_size = 38
+temperature_font_family = "DejaVu Serif"
+temperature_font_style = "italic"
+temperature_font_weight = 700
+temperature_letter_spacing = 0
+location_font_family = "Google Sans Flex"
+location_font_weight = 400
+icon_gap = 6
+location_gap = 1
+opacity = 82
+left_padding = 30
+bottom_padding = 30
+
+[visuals.now_playing]
+enabled = true
+content_gap = 18
+fade_duration_ms = 320
+title_color = "#EA9D77"
+artist_color = "#EA9D77"
+title_size = 2
+artist_size = 2
+artwork_size = 44
+artwork_radius = 6
+right_padding = 44
+bottom_padding = 44
+opacity = 82
+title_opacity = 90
+artist_opacity = 65
+artwork_opacity = 95
+title_font_family = "DejaVu Serif"
+title_font_weight = 700
+artist_font_family = "Google Sans Flex"
+artist_font_weight = 400
+width = 380
