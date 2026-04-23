@@ -30,6 +30,7 @@
       self.modules.nixos.sound
       self.modules.nixos.virtualbox
       self.modules.nixos.gpclient
+      self.modules.nixos.kmscon
 
       # Users
       self.modules.nixos.user-maari
