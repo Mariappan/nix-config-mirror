@@ -1,6 +1,7 @@
 let
   # Host SSH keys
-  air = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIISR+/DYDRepHHCPKztgBsU56DNliMVdbh9pc6APKeT8";
+  air = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIISR+/DYDRepHHCPKztgBsU56DNliMVdbh9pc6APKeT8 root@air";
+  tetra = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIBg8WtUgEzR5VqtytDZVGlhojYbAHbz7LX7w9CPk+th root@tetra";
 
   # User keys
   homelab = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINB3JnJ0u7pwetXhzAmskHUmxfQjcCtoyModO+IRKL89";
@@ -8,6 +9,7 @@ let
 
   allKeys = [
     air
+    tetra
     homelab
     xv-maari
   ];
