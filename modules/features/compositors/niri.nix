@@ -47,7 +47,7 @@
 
       home.activation.niri-symlink =
         let
-          dotfiles = "${config.home.homeDirectory}/nix-config/dotfiles/niri";
+          dotfiles = "${config.dotfilesNonSandboxPath}/niri";
           target = "${config.xdg.configHome}/niri";
         in
         lib.hm.dag.entryAfter [ "writeBoundary" ] ''

@@ -8,6 +8,7 @@
         htop
         helix
         vim
+        dotfiles
       ];
 
       # Let Home Manager install and manage itself.

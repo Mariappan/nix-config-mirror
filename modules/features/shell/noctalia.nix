@@ -11,7 +11,7 @@
 
       home.activation.noctalia-symlink =
         let
-          dotfiles = "${config.home.homeDirectory}/nix-config/dotfiles/noctalia";
+          dotfiles = "${config.dotfilesNonSandboxPath}/noctalia";
           target = "${config.xdg.configHome}/noctalia";
         in
         lib.hm.dag.entryAfter [ "writeBoundary" ] ''
