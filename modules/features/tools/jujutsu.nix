@@ -62,13 +62,13 @@
               if [ -z "''${2:-}" ]; then
                 echo "usage: jj stash drop <revset>" >&2; exit 1
               fi
-              rewrite_descs "$2" '1 s|^stash(\([^)]*\))?:[[:space:]]*||' ''
+              rewrite_descs "$2" '1 s|^stash(\([^)]*\))?:[[:space:]]*||' '''
               ;;
             rewrite)
               if [ -z "''${2:-}" ] || [ -z "''${3:-}" ]; then
                 echo "usage: jj stash rewrite <revset> <scope>" >&2; exit 1
               fi
-              rewrite_descs "$2" "1 s|^stash(\\([^)]*\\))?:[[:space:]]*|stash($3): |" ''
+              rewrite_descs "$2" "1 s|^stash(\\([^)]*\\))?:[[:space:]]*|stash($3): |" '''
               ;;
             *)
               g="description(glob:\"stash($1):*\")"
