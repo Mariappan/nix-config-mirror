@@ -29,7 +29,7 @@
     };
 
   flake.modules.homeManager.niri =
-    { ... }:
+    { config, lib, ... }:
     {
       imports = [
         inputs.niri.homeModules.niri
@@ -44,6 +44,18 @@
       ];
 
       programs.niri.enable = true;
+
+      home.activation.niri-symlink =
+        let
+          dotfiles = "${config.home.homeDirectory}/nix-config/dotfiles/niri";
+          target = "${config.xdg.configHome}/niri";
+        in
+        lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+          if [[ -d ${target} && ! -L ${target} ]]; then
+            run mv ${target} ${target}.pre-symlink
+          fi
+          run ln -sfn ${dotfiles} ${target}
+        '';
 
       # Polkit for auth
       services.polkit-gnome.enable = true;
