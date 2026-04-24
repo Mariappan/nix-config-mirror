@@ -26,6 +26,7 @@
         "mine" = ["log" "-r" "reachable(@, mutable())"];
         "rebase-all" = ["rebase" "-s" "all:mutable() & ~trunk()" "-d" "trunk()"];
         "stash" = ["log" "-r" "stash() | parents(stash()) ~ stash()"];
+        "diffr" = ["util" "exec" "--" "bash" "-c" ''jj diff --from "$1@origin" --to "$1" --git'' ""];
       };
       revsets = {
         log = "(present(@) | ancestors(immutable_heads().. ~ stash(), 2) | trunk()) ~ stash()";
