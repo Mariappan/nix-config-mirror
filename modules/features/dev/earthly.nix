@@ -9,12 +9,14 @@
       EARTHLY_SSH_AUTH_SOCK = "$HOME/.ssh/agent/1password.sock";
     };
 
-    home.file = {
-      "earthly" = {
-        enable = true;
-        source = self + /dotfiles/earthly_config.yml;
-        target = ".earthly/config.yml";
-      };
+
+    home.file.".earthly/config.yml" = {
+      text = ''
+        global:
+            cache_size_mb: 40000
+            disable_analytics: true
+            disable_log_sharing: true
+      '';
     };
   };
 }
