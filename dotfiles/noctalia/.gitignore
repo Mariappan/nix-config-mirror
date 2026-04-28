@@ -1,0 +1,7 @@
+# Allowlist: only track config noctalia doesn't regenerate.
+# Plugins, colorschemes, colors.json, etc. are managed by the app at runtime.
+*
+!.gitignore
+!settings.json
+!plugins.json
+!user-templates.toml

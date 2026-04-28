@@ -1,7 +1,7 @@
-{ self, inputs, ... }:
+{ inputs, ... }:
 {
   flake.modules.homeManager.noctalia =
-    { lib, ... }:
+    { config, lib, ... }:
     {
       imports = [ inputs.noctalia.homeModules.default ];
 
@@ -9,13 +9,16 @@
         enable = true;
       };
 
-      home.activation.noctalia-symlinks =
+      home.activation.noctalia-symlink =
         let
-          dotfiles = builtins.toString (self + /dotfiles/noctalia);
+          dotfiles = "${config.home.homeDirectory}/nix-config/dotfiles/noctalia";
+          target = "${config.xdg.configHome}/noctalia";
         in
         lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          run ln -sfn ${dotfiles}/settings.json ~/.config/noctalia/settings.json
-          run ln -sfn ${dotfiles}/plugins.json ~/.config/noctalia/plugins.json
+          if [[ -d ${target} && ! -L ${target} ]]; then
+            run mv ${target} ${target}.pre-symlink
+          fi
+          run ln -sfn ${dotfiles} ${target}
         '';
     };
 }
