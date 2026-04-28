@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ self, ... }:
 {
   flake.modules.nixos.niri =
     { ... }:
@@ -32,7 +32,6 @@
     { config, lib, ... }:
     {
       imports = [
-        inputs.niri.homeModules.niri
         self.modules.homeManager.wayland
         self.modules.homeManager.stasis
         self.modules.homeManager.kanshi
@@ -42,8 +41,6 @@
         self.modules.homeManager.noctalia
         self.modules.homeManager.veila
       ];
-
-      programs.niri.enable = true;
 
       home.activation.niri-symlink =
         let

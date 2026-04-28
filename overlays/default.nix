@@ -77,6 +77,5 @@
 
   default = inputs.nixpkgs.lib.composeManyExtensions [
     inputs.nix-alien.overlays.default
-    inputs.niri.overlays.niri
   ];
 }
