@@ -154,7 +154,7 @@ layout {
     border {
         // The settings are the same as for the focus ring.
         // If you enable the border, you probably want to disable the focus ring.
-        // off
+        off
 
         width 2
         active-color "#FFA066"
@@ -336,6 +336,39 @@ layer-rule {
     match namespace="notification"
     match namespace="^noctalia-notifications$"
     block-out-from "screen-capture"
+}
+
+// Keep the noctalia overview layer in niri's backdrop. Wallpaper is left in
+// its normal background position so it stays visible during regular workspace
+// view — `place-within-backdrop` would move it out of normal rendering and
+// only show it in overview/between workspaces.
+layer-rule {
+    match namespace="^noctalia-overview"
+    place-within-backdrop true
+}
+
+// Apps: blur translucent windows. Real blur (xray false) so behind-window
+// content is reflected, not just a static wallpaper snapshot.
+window-rule {
+    background-effect {
+        blur true
+        xray false
+    }
+}
+
+// Noctalia panels (background overlay, launcher, dock): real blur as well.
+layer-rule {
+    match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+    background-effect {
+        xray false
+    }
+}
+
+blur {
+  passes 2        // more passes = stronger blur (default: 3)
+  offset 3.0      // sample distance per pass (default: 3.0)
+  noise 0.03      // grain overlay (default: 0.02)
+  saturation 1.0  // color saturation boost (default: 1.5)
 }
 
 binds {

@@ -31,7 +31,7 @@
         clipboard-trim-trailing-spaces = true;
 
         background-blur = true;
-        background-opacity = 1.0;
+        background-opacity = 0.85;
 
         app-notifications = "clipboard-copy";
         window-padding-x = "5,5";

@@ -16,7 +16,7 @@
         "enableWindowsSearch": true,
         "iconMode": "tabler",
         "ignoreMouseInput": false,
-        "overviewLayer": false,
+        "overviewLayer": true,
         "pinnedApps": [
         ],
         "position": "center",
@@ -42,10 +42,10 @@
     "bar": {
         "autoHideDelay": 500,
         "autoShowDelay": 150,
-        "backgroundOpacity": 0.93,
+        "backgroundOpacity": 0.8,
         "barType": "simple",
         "capsuleColorKey": "none",
-        "capsuleOpacity": 0.71,
+        "capsuleOpacity": 0.75,
         "contentPadding": 2,
         "density": "comfortable",
         "displayMode": "always_visible",
@@ -74,7 +74,7 @@
         "showCapsule": true,
         "showOnWorkspaceSwitch": true,
         "showOutline": false,
-        "useSeparateOpacity": false,
+        "useSeparateOpacity": true,
         "widgetSpacing": 6,
         "widgets": {
             "center": [
@@ -343,8 +343,8 @@
         }
     },
     "desktopWidgets": {
-        "enabled": false,
-        "gridSnap": true,
+        "enabled": true,
+        "gridSnap": false,
         "gridSnapScale": false,
         "monitorWidgets": [
             {
@@ -397,7 +397,7 @@
         "allowPanelsOnScreenWithoutBar": true,
         "allowPasswordWithFprintd": false,
         "animationDisabled": false,
-        "animationSpeed": 1,
+        "animationSpeed": 1.74,
         "autoStartAuth": false,
         "avatarImage": "/home/maari/.face",
         "boxRadiusRatio": 1,
@@ -437,12 +437,12 @@
         },
         "language": "",
         "lockOnSuspend": true,
-        "lockScreenAnimations": false,
-        "lockScreenBlur": 0,
+        "lockScreenAnimations": true,
+        "lockScreenBlur": 0.27,
         "lockScreenCountdownDuration": 10000,
         "lockScreenMonitors": [
         ],
-        "lockScreenTint": 0,
+        "lockScreenTint": 0.14,
         "passwordChars": false,
         "radiusRatio": 0.75,
         "reverseScroll": false,
@@ -524,7 +524,7 @@
         "disableWallpaper": true
     },
     "notifications": {
-        "backgroundOpacity": 1,
+        "backgroundOpacity": 0.66,
         "clearDismissed": true,
         "criticalUrgencyDuration": 15,
         "density": "default",
@@ -557,7 +557,7 @@
     },
     "osd": {
         "autoHideMs": 3000,
-        "backgroundOpacity": 1,
+        "backgroundOpacity": 0.71,
         "enabled": true,
         "enabledTypes": [
             0,
@@ -627,7 +627,14 @@
                 "command": "",
                 "countdownEnabled": true,
                 "enabled": true,
-                "keybind": ""
+                "keybind": "7"
+            },
+            {
+                "action": "userspaceReboot",
+                "command": "",
+                "countdownEnabled": true,
+                "enabled": true,
+                "keybind": "8"
             }
         ],
         "showHeader": true,
@@ -705,7 +712,7 @@
             }
         ],
         "overviewBlur": 0.4,
-        "overviewEnabled": false,
+        "overviewEnabled": true,
         "overviewTint": 0.6,
         "panelPosition": "center",
         "randomIntervalSec": 14400,
@@ -713,7 +720,7 @@
         "showHiddenFiles": false,
         "skipStartupTransition": false,
         "solidColor": "#1a1a2e",
-        "sortOrder": "date_desc",
+        "sortOrder": "date_asc",
         "transitionDuration": 1500,
         "transitionEdgeSmoothness": 0.05,
         "transitionType": [
@@ -727,7 +734,7 @@
         "useOriginalImages": false,
         "useSolidColor": false,
         "useWallhaven": false,
-        "viewMode": "single",
+        "viewMode": "recursive",
         "wallhavenApiKey": "",
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
