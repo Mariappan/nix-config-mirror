@@ -25,7 +25,26 @@
         # This is better
         "mine" = ["log" "-r" "reachable(@, mutable())"];
         "rebase-all" = ["rebase" "-s" "all:mutable() & ~trunk()" "-d" "trunk()"];
-        "stash" = ["log" "-r" "stash() | parents(stash()) ~ stash()"];
+        "stash" = ["util" "exec" "--" "bash" "-c" ''
+          case "''${1:-}" in
+            "")
+              u='description(glob:"stash:*")'
+              jj log -r "$u | parents($u) ~ stash()"
+              ;;
+            --all|-a)
+              jj log -r 'stash() | parents(stash()) ~ stash()'
+              ;;
+            --groups)
+              jj log -r 'description(glob:"stash(*):*")' --no-graph \
+                -T 'description.first_line() ++ "\n"' \
+                | sed -nE 's/^stash\(([^)]+)\):.*/\1/p' | sort -u
+              ;;
+            *)
+              g="description(glob:\"stash($1):*\")"
+              jj log -r "$g | parents($g) ~ stash()"
+              ;;
+          esac
+        '' ""];
         "diffr" = ["util" "exec" "--" "bash" "-c" ''jj diff --from "$1@origin" --to "$1" --git'' ""];
       };
       revsets = {
@@ -35,7 +54,7 @@
         private-commits = "private()";
       };
       revset-aliases = {
-        "stash()" = "description(glob:\"stash:*\")";
+        "stash()" = "description(glob:\"stash:*\") | description(glob:\"stash(*):*\")";
         "private()" = "mutable() & (description(glob:\"private:*\") | stash() | (empty() & ~merges()))";
       };
     };
