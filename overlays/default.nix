@@ -16,8 +16,11 @@
   # You can change versions, add patches, set compilation flags, anything really.
   # https://nixos.wiki/wiki/Overlays
   modifications = _final: prev: {
-    claude-code-bin = builtins.trace "WARNING: claude-code-bin is pinned to 2.1.116 via overlay. Remove this override" (
-      prev.claude-code-bin.overrideAttrs (oldAttrs: rec {
+  };
+
+  unused = _final: prev: {
+    claude-code = builtins.trace "WARNING: claude-code is pinned to 2.1.116 via overlay. Remove this override" (
+      prev.claude-code.overrideAttrs (oldAttrs: rec {
         version = "2.1.116";
         src = prev.fetchurl {
           url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/${version}/${prev.stdenv.hostPlatform.parsed.kernel.name}-${
@@ -27,9 +30,6 @@
         };
       })
     );
-  };
-
-  unused = _final: prev: {
     hyprlandPlugins.hy3 = prev.hyprlandPlugins.hy3.overrideAttrs (
       finalAttrs: prevAttrs: {
         patches = [ ./hy3_fix.patch ];

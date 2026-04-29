@@ -103,7 +103,7 @@
                 pkgs.spotify-player
                 pkgs.obsidian
                 pkgs.nushell
-                pkgs.claude-code-bin
+                pkgs.claude-code
                 pkgs._2511.gpclient
                 pkgs.pavucontrol
                 pkgs.ookla-speedtest

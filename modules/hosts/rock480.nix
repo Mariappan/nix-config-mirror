@@ -87,7 +87,7 @@
           home-manager.sharedModules = [
             {
               home.packages = lib.mkIf pkgs.stdenv.isLinux [
-                pkgs.claude-code-bin
+                pkgs.claude-code
                 pkgs.pavucontrol
                 pkgs.ookla-speedtest
                 pkgs.ethtool
