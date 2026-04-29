@@ -26,6 +26,18 @@
         "mine" = ["log" "-r" "reachable(@, mutable())"];
         "rebase-all" = ["rebase" "-s" "all:mutable() & ~trunk()" "-d" "trunk()"];
         "stash" = ["util" "exec" "--" "bash" "-c" ''
+          rewrite_descs() {
+            local revset="$1" sed_expr="$2" filter="$3"
+            jj log -r "$revset" --no-graph -T 'change_id.short() ++ "\n"' \
+              | while read -r id; do
+                  desc=$(jj log -r "$id" --no-graph -T description)
+                  if [ -n "$filter" ] && ! eval "$filter"; then continue; fi
+                  new_desc=$(printf '%s' "$desc" | sed -E "$sed_expr")
+                  if [ "$desc" != "$new_desc" ]; then
+                    jj describe -r "$id" -m "$new_desc" --quiet
+                  fi
+                done
+          }
           case "''${1:-}" in
             "")
               u='description(glob:"stash:*")'
@@ -38,6 +50,25 @@
               jj log -r 'description(glob:"stash(*):*")' --no-graph \
                 -T 'description.first_line() ++ "\n"' \
                 | sed -nE 's/^stash\(([^)]+)\):.*/\1/p' | sort -u
+              ;;
+            add)
+              if [ -z "''${2:-}" ] || [ -z "''${3:-}" ]; then
+                echo "usage: jj stash add <revset> <scope>" >&2; exit 1
+              fi
+              rewrite_descs "$2" "1 s|^|stash($3): |" \
+                'case "$desc" in stash:*|"stash("*"):"*|"") false ;; *) true ;; esac'
+              ;;
+            drop)
+              if [ -z "''${2:-}" ]; then
+                echo "usage: jj stash drop <revset>" >&2; exit 1
+              fi
+              rewrite_descs "$2" '1 s|^stash(\([^)]*\))?:[[:space:]]*||' ''
+              ;;
+            rewrite)
+              if [ -z "''${2:-}" ] || [ -z "''${3:-}" ]; then
+                echo "usage: jj stash rewrite <revset> <scope>" >&2; exit 1
+              fi
+              rewrite_descs "$2" "1 s|^stash(\\([^)]*\\))?:[[:space:]]*|stash($3): |" ''
               ;;
             *)
               g="description(glob:\"stash($1):*\")"
