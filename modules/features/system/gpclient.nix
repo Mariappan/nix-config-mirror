@@ -1,5 +1,5 @@
 # GlobalProtect VPN client with split tunneling support
-{ self, ... }: {
+{
   flake.modules.nixos.gpclient = { config, lib, pkgs, ... }:
     let
       cfg = config.nixma.nixos.gpclient;
@@ -53,7 +53,7 @@
             done
 
             # Read networks from secret file if it exists
-            NETWORKS_FILE="${cfg.splitTunnelNetworksFile}"
+            NETWORKS_FILE="${config.age.secrets.gpclient-networks.path}"
             if [[ -n "$NETWORKS_FILE" && -r "$NETWORKS_FILE" ]]; then
               log "Reading networks from $NETWORKS_FILE"
               while IFS= read -r network || [[ -n "$network" ]]; do
@@ -75,7 +75,7 @@
             fi
 
             # Resolve domains and add routes for their IPs
-            DOMAINS_FILE="${cfg.splitTunnelDomainsFile}"
+            DOMAINS_FILE="${config.age.secrets.gpclient-domains.path}"
             if [[ -n "$DOMAINS_FILE" && -r "$DOMAINS_FILE" ]]; then
               log "Reading domains from $DOMAINS_FILE"
               while IFS= read -r domain || [[ -n "$domain" ]]; do
@@ -114,6 +114,8 @@
       '';
     in {
       options.nixma.nixos.gpclient = {
+        enable = lib.mkEnableOption "GlobalProtect VPN client with split tunneling";
+
         interface = lib.mkOption {
           type = lib.types.str;
           default = "tun0";
@@ -123,33 +125,61 @@
           '';
         };
 
-        splitTunnelNetworksFile = lib.mkOption {
-          type = lib.types.str;
-          default = "";
-          example = "/run/agenix/gpclient-networks";
-          description = ''
-            Path to a file containing networks (one per line) to route through VPN.
-            Use this with agenix to keep IPs private.
-          '';
-        };
+        secrets = {
+          networksFile = lib.mkOption {
+            type = lib.types.path;
+            description = ''
+              Path to the agenix-encrypted file containing networks (one per line)
+              to route through VPN.
+            '';
+          };
 
-        splitTunnelDomainsFile = lib.mkOption {
-          type = lib.types.str;
-          default = "";
-          example = "/run/agenix/gpclient-domains";
-          description = ''
-            Path to a file containing domains (one per line) to resolve and route through VPN.
-            IPs are resolved dynamically when VPN connects.
-          '';
+          domainsFile = lib.mkOption {
+            type = lib.types.path;
+            description = ''
+              Path to the agenix-encrypted file containing domains (one per line)
+              to resolve and route through VPN.
+            '';
+          };
+
+          configFile = lib.mkOption {
+            type = lib.types.path;
+            description = ''
+              Path to the agenix-encrypted environment-vars config file
+              consumed by the gpclient/noctalia integration.
+            '';
+          };
         };
       };
 
-      config = lib.mkIf (cfg.splitTunnelNetworksFile != "" || cfg.splitTunnelDomainsFile != "") {
+      config = lib.mkIf cfg.enable {
+        age.secrets = {
+          gpclient-networks.file = cfg.secrets.networksFile;
+          gpclient-domains.file = cfg.secrets.domainsFile;
+          gpclient-config = {
+            file = cfg.secrets.configFile;
+            group = "users";
+            mode = "0440";
+          };
+        };
+
         # NetworkManager dispatcher script for split tunneling
         networking.networkmanager.dispatcherScripts = [
           {
             source = gpSplitTunnelScript;
             type = "basic";
+          }
+        ];
+
+        home-manager.sharedModules = [
+          {
+            systemd.user.tmpfiles.rules = lib.mkIf pkgs.stdenv.isLinux [
+              "L %h/.config/environment.d/500-gpconfig.conf - - - - ${config.age.secrets.gpclient-config.path}"
+            ];
+
+            home.packages = lib.mkIf pkgs.stdenv.isLinux [
+              pkgs._2511.gpclient
+            ];
           }
         ];
       };

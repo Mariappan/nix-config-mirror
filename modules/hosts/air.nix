@@ -38,7 +38,6 @@
 
       (
         {
-          config,
           pkgs,
           lib,
           ...
@@ -98,18 +97,14 @@
           };
 
           # GlobalProtect VPN split tunneling
-          age.secrets.gpclient-networks.file = self + /secrets/gpclient-networks-air.age;
-          age.secrets.gpclient-domains.file = self + /secrets/gpclient-domains-air.age;
-
-          age.secrets.gpclient-config = {
-            file = self + /secrets/gpclient-config-air.age;
-            owner = "maari";
-            mode = "0400";
-          };
           nixma.nixos.gpclient = {
+            enable = true;
             interface = "gpd0";
-            splitTunnelNetworksFile = config.age.secrets.gpclient-networks.path;
-            splitTunnelDomainsFile = config.age.secrets.gpclient-domains.path;
+            secrets = {
+              networksFile = self + /secrets/gpclient-networks-air.age;
+              domainsFile = self + /secrets/gpclient-domains-air.age;
+              configFile = self + /secrets/gpclient-config-air.age;
+            };
           };
 
           boot.loader.timeout = 3;
@@ -117,13 +112,8 @@
           nixma.nixos.networking.tailscale = true;
           nixma.nixos.networking.strictArp = true;
 
-          # GlobalProtect config for noctalia plugin (env vars from agenix secret)
           home-manager.sharedModules = [
             {
-              systemd.user.tmpfiles.rules = lib.mkIf pkgs.stdenv.isLinux [
-                "L %h/.config/environment.d/500-gpconfig.conf - - - - /run/agenix/gpclient-config"
-              ];
-
               home.packages = lib.mkIf pkgs.stdenv.isLinux [
                 pkgs.google-chrome
                 pkgs.slack
@@ -132,7 +122,6 @@
                 pkgs.obsidian
                 pkgs.remmina
                 pkgs.nushell
-                pkgs._2511.gpclient
                 pkgs.pavucontrol
                 pkgs.awscli2
                 pkgs.aws-sso-cli
