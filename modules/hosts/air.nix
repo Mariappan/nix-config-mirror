@@ -65,6 +65,7 @@
               earthly
               neovide
               niri
+              claude
             ];
           };
 
@@ -131,7 +132,6 @@
                 pkgs.obsidian
                 pkgs.remmina
                 pkgs.nushell
-                pkgs.claude-code
                 pkgs._2511.gpclient
                 pkgs.pavucontrol
                 pkgs.awscli2

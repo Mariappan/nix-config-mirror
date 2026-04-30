@@ -61,6 +61,7 @@
               gpgagent
               earthly
               niri
+              claude
             ];
           };
 
@@ -103,7 +104,6 @@
                 pkgs.spotify-player
                 pkgs.obsidian
                 pkgs.nushell
-                pkgs.claude-code
                 pkgs._2511.gpclient
                 pkgs.pavucontrol
                 pkgs.ookla-speedtest
