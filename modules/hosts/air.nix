@@ -128,6 +128,7 @@
                 pkgs.ookla-speedtest
                 pkgs.zed-editor
                 pkgs.karere
+                pkgs.telegram-desktop
               ];
             }
           ];
