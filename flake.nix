@@ -19,7 +19,15 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs-2505.url = "github:NixOS/nixpkgs/nixos-25.05";
+    # Scoped to rock3c host: carries ubootRock3C until upstream merges it.
+    nixpkgs-rock3c.url = "github:nappairam/fork-nixpkgs/rock3cuboot";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    # Scoped to rock3c host: carries radxa/rock-3c module until upstream merges it.
+    nixos-hardware-rock3c.url = "github:nappairam/fork-nixos-hardware/rock3c";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs-rock3c";
+    };
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
