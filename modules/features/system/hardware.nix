@@ -57,11 +57,26 @@
 
         cpu = {
           vendor = lib.mkOption {
-            type = lib.types.enum [
+            type = lib.types.nullOr (lib.types.enum [
               "intel"
               "amd"
-            ];
-            description = "CPU vendor for microcode updates";
+            ]);
+            default = null;
+            description = ''
+              CPU vendor for microcode updates.
+              Set to null on platforms without x86 microcode (e.g. aarch64 SBCs).
+            '';
+          };
+        };
+
+        filesystems = {
+          manage = lib.mkOption {
+            type = lib.types.bool;
+            default = true;
+            description = ''
+              Whether this module should declare /, /boot, /work and swap.
+              Disable when filesystems are managed elsewhere (e.g. disko, sd-image).
+            '';
           };
         };
 
@@ -74,7 +89,7 @@
 
       config = {
         # LUKS configuration (only if enabled)
-        boot.initrd.luks.devices = lib.mkIf cfg.luks.enable {
+        boot.initrd.luks.devices = lib.mkIf (cfg.filesystems.manage && cfg.luks.enable) {
           cryptroot = {
             device = "/dev/disk/by-partlabel/${cfg.partitions.root}";
             bypassWorkqueues = cfg.luks.bypassWorkqueues;
@@ -86,7 +101,7 @@
         };
 
         # Root filesystem - depends on LUKS setting
-        fileSystems."/" = {
+        fileSystems."/" = lib.mkIf cfg.filesystems.manage {
           device =
             if cfg.luks.enable then
               "/dev/mapper/cryptroot"
@@ -96,7 +111,7 @@
         };
 
         # Boot filesystem
-        fileSystems."/boot" = {
+        fileSystems."/boot" = lib.mkIf cfg.filesystems.manage {
           device = "/dev/disk/by-partlabel/${cfg.partitions.boot}";
           fsType = "vfat";
           options = [
@@ -106,7 +121,7 @@
         };
 
         # Work filesystem - optional
-        fileSystems."/work" = lib.mkIf cfg.work.enable {
+        fileSystems."/work" = lib.mkIf (cfg.filesystems.manage && cfg.work.enable) {
           device =
             if cfg.luks.enable then
               "/dev/mapper/cryptwork"
@@ -116,7 +131,7 @@
         };
 
         # Swap device - optional
-        swapDevices = lib.optionals cfg.swap.enable [
+        swapDevices = lib.optionals (cfg.filesystems.manage && cfg.swap.enable) [
           (
             {
               device = "/dev/disk/by-partlabel/${cfg.swap.partitionLabel}";
