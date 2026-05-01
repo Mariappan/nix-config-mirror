@@ -35,6 +35,15 @@ build flake='.':
 eval-air param:
     nix eval .#nixosConfigurations.air.config.{{param}} --json | jq .
 
+# Build on indiarpi (aarch64 native), deploy to rock3c over SSH.
+# Use `just deploy-rock3c -vv` to forward extra flags through to nh.
+[linux]
+deploy-rock3c *args='':
+    nh os switch . -H rock3c \
+      --target-host maari@hl-rock3c \
+      --build-host maari@indiarpi \
+      {{args}}
+
 # List available Linux kernels
 lskernels:
     @nix eval --raw nixpkgs#linuxKernel.packages --apply 'x: builtins.concatStringsSep "\n" (builtins.attrNames x)' 2>/dev/null | grep -v recurse
