@@ -35,6 +35,7 @@
             "systemd-boot"
             "grub"
             "limine"
+            "none"
           ];
           default = "systemd-boot";
           description = ''
@@ -42,6 +43,9 @@
             - systemd-boot: Simple UEFI boot manager (default)
             - grub: GNU GRUB, supports both UEFI and BIOS
             - limine: Modern, minimal bootloader for UEFI and BIOS
+            - none: Skip bootloader configuration entirely.
+              Use when an upstream module (e.g. nixos-hardware) wires it,
+              or when the platform uses u-boot/extlinux without NixOS-managed loader.
           '';
         };
 
@@ -236,10 +240,12 @@
 
       config = {
         # Bootloader
-        boot.loader.efi.canTouchEfiVariables = true;
+        boot.loader.efi.canTouchEfiVariables = lib.mkIf (cfg.bootloader != "none") true;
 
         # systemd-boot configuration
-        boot.loader.systemd-boot.enable = cfg.bootloader == "systemd-boot";
+        boot.loader.systemd-boot.enable = lib.mkIf (cfg.bootloader != "none") (
+          cfg.bootloader == "systemd-boot"
+        );
         boot.loader.systemd-boot.configurationLimit = lib.mkIf (
           cfg.bootloader == "systemd-boot"
         ) cfg.systemdBoot.configurationLimit;
