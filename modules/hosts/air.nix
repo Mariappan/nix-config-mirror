@@ -31,6 +31,7 @@
       self.modules.nixos.virtualbox
       self.modules.nixos.gpclient
       self.modules.nixos.kmscon
+      self.modules.nixos.remoteBuilders
 
       # Users
       self.modules.nixos.user-maari
@@ -135,6 +136,18 @@
 
           networking.hostName = "air";
           time.timeZone = "Asia/Singapore";
+
+          nixma.nixos.remoteBuilders = {
+            enable = true;
+            machines.indiarpi = {
+              hostName = "indiarpi.bittern-pirate.ts.net";
+              sshUser = "maari";
+              systems = [ "aarch64-linux" ];
+              maxJobs = 4;
+              # Pi5 with /dev/kvm available — supports kvm-accelerated builds.
+              supportedFeatures = [ "kvm" "big-parallel" "benchmark" ];
+            };
+          };
 
           services.printing.enable = true;
           services.fwupd.enable = true;
