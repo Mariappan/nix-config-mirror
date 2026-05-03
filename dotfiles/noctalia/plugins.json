@@ -12,13 +12,13 @@
         }
     ],
     "states": {
-        "f7ded3:globalprotect-vpn": {
-            "enabled": true,
-            "sourceUrl": "https://github.com/nappairam/noctalia-plugins"
-        },
         "claude-code-panel": {
             "enabled": true,
             "sourceUrl": "https://github.com/noctalia-dev/noctalia-plugins"
+        },
+        "f7ded3:globalprotect-vpn": {
+            "enabled": true,
+            "sourceUrl": "https://github.com/nappairam/noctalia-plugins"
         },
         "latency-monitor": {
             "enabled": true,

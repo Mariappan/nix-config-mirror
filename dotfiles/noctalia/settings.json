@@ -167,6 +167,11 @@
             "right": [
                 {
                     "defaultSettings": {
+                    },
+                    "id": "plugin:f7ded3:globalprotect-vpn"
+                },
+                {
+                    "defaultSettings": {
                         "barCycleIntervalSec": 5,
                         "barDisplayMode": "active",
                         "barMetric": "prompts",
@@ -233,11 +238,6 @@
                     "id": "Volume",
                     "middleClickCommand": "pwvucontrol || pavucontrol",
                     "textColor": "none"
-                },
-                {
-                    "defaultSettings": {
-                    },
-                    "id": "plugin:f7ded3:globalprotect-vpn"
                 },
                 {
                     "blacklist": [
@@ -570,7 +570,7 @@
         "overlayLayer": true
     },
     "plugins": {
-        "autoUpdate": true,
+        "autoUpdate": false,
         "notifyUpdates": true
     },
     "sessionMenu": {
@@ -734,7 +734,7 @@
         "useOriginalImages": false,
         "useSolidColor": false,
         "useWallhaven": false,
-        "viewMode": "recursive",
+        "viewMode": "browse",
         "wallhavenApiKey": "",
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",
