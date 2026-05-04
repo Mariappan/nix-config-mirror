@@ -5,6 +5,7 @@
 mode = "file"
 path = "/home/maari/.config/veila/wallpaper/outbreak-wallpaper-2880x1800.jpg"
 color = "#0a0a10"
+scaling = "fill"
 blur_radius = 3
 dim_strength = 12
 
@@ -27,25 +28,21 @@ meridiem_offset_x = 6
 meridiem_offset_y = 7
 font_family = "Stardos Stencil"
 font_weight = 700
-color = "#7A2E39"
-opacity = 95
+color = "rgba(122, 46, 57, 0.95)"
 size = 22
 gap = 16
 
 [visuals.date]
 font_family = "Stardos Stencil"
 font_weight = 700
-color = "#D5E1E8"
-opacity = 70
+color = "rgba(213, 225, 232, 0.70)"
 size = 5
 
 [visuals.input]
 alignment = "bottom-left"
-background_color = "#354352"
-background_opacity = 45
-border_color = "#161927"
+background_color = "rgba(53, 67, 82, 0.45)"
+border_color = "rgba(22, 25, 39, 0.80)"
 border_width = 2
-border_opacity = 80
 width = 320
 height = 52
 radius = 26
@@ -53,33 +50,40 @@ mask_color = "#D5E1E8"
 font_family = "Google Sans Flex"
 font_weight = 400
 font_size = 2
+reveal_on_interaction = true
+reveal_mode = "input"
+reveal_hint = "press any key"
+
+[visuals.reveal]
+enabled = true
+text = "press any key"
+color = "rgba(213, 225, 232, 0.55)"
+font_family = "Stardos Stencil"
+font_weight = 700
+font_size = 2
 
 [visuals.placeholder]
-color = "#D5E1E8"
-opacity = 55
+color = "rgba(213, 225, 232, 0.55)"
 
 [visuals.avatar]
 enabled = false
 size = 128
 gap = 20
-background_color = "#354352"
-background_opacity = 40
+background_color = "rgba(53, 67, 82, 0.40)"
 placeholder_padding = 24
 icon_color = "#D5E1E8"
 
 [visuals.username]
 font_family = "DejaVu Serif"
 font_weight = 700
-color = "#D5E1E8"
-opacity = 90
+color = "rgba(213, 225, 232, 0.90)"
 size = 4
 gap = 22
 
 [visuals.keyboard]
 background_size = 42
 background_color = "rgba(22, 25, 39, 0.55)"
-color = "#D5E1E8"
-opacity = 75
+color = "rgba(213, 225, 232, 0.75)"
 size = 2
 top_offset = -24
 right_offset = 10
@@ -87,8 +91,7 @@ right_offset = 10
 [visuals.battery]
 background_color = "rgba(22, 25, 39, 0.55)"
 background_size = 42
-color = "#D5E1E8"
-opacity = 75
+color = "rgba(213, 225, 232, 0.75)"
 size = 18
 top_offset = -24
 right_offset = 10
@@ -97,8 +100,8 @@ gap = 8
 [visuals.weather]
 alignment = "left"
 size = 2
-temperature_color = "#D5E1E8"
-location_color = "#D5E1E8"
+temperature_color = "rgba(213, 225, 232, 0.90)"
+location_color = "rgba(213, 225, 232, 0.65)"
 temperature_size = 6
 location_size = 3
 icon_size = 38
@@ -110,28 +113,58 @@ location_font_family = "Google Sans Flex"
 location_font_weight = 400
 icon_gap = 6
 location_gap = 1
-opacity = 82
+icon_opacity = 82
 left_padding = 30
 bottom_padding = 30
+
+[visuals.status]
+rejected_color = "rgba(122, 46, 57, 0.95)"
+pending_color = "rgba(213, 225, 232, 0.70)"
+gap = 18
+
+[visuals.caps_lock]
+color = "rgba(213, 225, 232, 0.65)"
+
+[visuals.eye]
+color = "rgba(213, 225, 232, 0.72)"
 
 [visuals.now_playing]
 enabled = true
 content_gap = 18
 fade_duration_ms = 320
-title_color = "#D5E1E8"
-artist_color = "#D5E1E8"
+title_color = "rgba(213, 225, 232, 0.90)"
+artist_color = "rgba(213, 225, 232, 0.65)"
 title_size = 2
 artist_size = 2
 artwork_size = 44
 artwork_radius = 6
 right_padding = 44
 bottom_padding = 44
-opacity = 82
-title_opacity = 90
-artist_opacity = 65
 artwork_opacity = 95
 title_font_family = "Oswald"
 title_font_weight = 600
 artist_font_family = "Oswald"
 artist_font_weight = 400
 width = 380
+text_gap = 10
+
+[visuals.now_playing.background]
+enabled = true
+mode = "solid"
+color = "rgba(22, 25, 39, 0.65)"
+radius = 4
+padding_x = 14
+padding_y = 10
+border_color = "rgba(122, 46, 57, 0.50)"
+border_width = 1
+
+[visuals.palette]
+foreground = "rgba(213, 225, 232, 0.92)"
+muted = "rgba(213, 225, 232, 0.55)"
+pending = "rgba(213, 225, 232, 0.70)"
+rejected = "rgba(122, 46, 57, 0.95)"
+
+[visuals.layout]
+header_top_offset = -12
+auth_stack_offset = 0
+identity_gap = 18
