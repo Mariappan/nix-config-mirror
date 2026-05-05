@@ -28,7 +28,8 @@ in
       # Base
       self.modules.nixos.common
 
-      # Features
+      # Bundles
+      self.modules.nixos.server
 
       # Users
       self.modules.nixos.user-maari

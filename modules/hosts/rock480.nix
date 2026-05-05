@@ -7,6 +7,14 @@
       # Base
       self.modules.nixos.common
 
+      # Bundles + features
+      self.modules.nixos.workstation
+      self.modules.nixos.laptop
+      self.modules.nixos.bluetooth
+      self.modules.nixos.fprint
+      self.modules.nixos.niri
+      self.modules.nixos.docker
+
       # Users
       self.modules.nixos.user-maari
       self.modules.nixos.user-root
@@ -42,11 +50,6 @@
           # Profile
           nixma.nixos.formFactor = "laptop";
           nixma.nixos.roles = [ "workstation" ];
-
-          nixma.nixos.bluetooth.enable = true;
-          nixma.nixos.fprint.enable = true;
-          nixma.nixos.niri.enable = true;
-          nixma.nixos.docker.enable = true;
 
           # Hardware configuration
           nixma.nixos.hardware = {

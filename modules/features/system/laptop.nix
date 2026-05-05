@@ -10,12 +10,6 @@
     in
     {
       options.nixma.nixos.laptop = {
-        enable = lib.mkOption {
-          type = lib.types.bool;
-          default = config.nixma.nixos.formFactor == "laptop";
-          description = "Laptop power-management stack (lid switch, upower, fwupd, auto-cpufreq).";
-        };
-
         supportHibernate = lib.mkOption {
           type = lib.types.bool;
           default = true;
@@ -23,7 +17,7 @@
         };
       };
 
-      config = lib.mkIf cfg.enable {
+      config = {
         services.logind.settings.Login.HandleLidSwitch =
           if cfg.supportHibernate then "suspend-then-hibernate" else "suspend";
         services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
@@ -42,7 +36,6 @@
           battery = {
             governor = "powersave";
             turbo = "always";
-            # default performance balance_performance balance_power power
             energy_performance_preference = "balance_power";
           };
           charger = {

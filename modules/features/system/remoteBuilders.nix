@@ -7,8 +7,6 @@
     in
     {
       options.nixma.nixos.remoteBuilders = {
-        enable = lib.mkEnableOption "distributed nix builds via configured remote machines";
-
         sshKey = lib.mkOption {
           type = lib.types.path;
           default = "/root/.ssh/id_ed25519_nixbuilder";
@@ -66,7 +64,7 @@
         };
       };
 
-      config = lib.mkIf cfg.enable {
+      config = lib.mkIf (cfg.machines != { }) {
         nix.distributedBuilds = true;
 
         nix.buildMachines = lib.mapAttrsToList (_: m: {

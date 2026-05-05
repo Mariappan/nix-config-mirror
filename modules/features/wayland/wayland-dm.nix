@@ -11,8 +11,6 @@
     in
     {
       options.nixma.nixos.wayland-dm = {
-        enable = lib.mkEnableOption "Wayland display manager (gdm/regreet/cosmic-greeter)";
-
         displayManager = lib.mkOption {
           type = lib.types.enum [
             "gdm"
@@ -24,7 +22,7 @@
         };
       };
 
-      config = lib.mkIf cfg.enable {
+      config = {
         services.displayManager.gdm.enable = lib.mkIf (cfg.displayManager == "gdm") true;
 
         programs.regreet = lib.mkIf (cfg.displayManager == "regreet") {

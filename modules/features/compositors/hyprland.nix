@@ -1,27 +1,19 @@
 { self, ... }:
 {
   flake.modules.nixos.hyprland =
-    { config, lib, ... }:
-    let
-      cfg = config.nixma.nixos.hyprland;
-    in
+    { ... }:
     {
-      options.nixma.nixos.hyprland.enable = lib.mkEnableOption "Hyprland Wayland compositor";
+      imports = [ self.modules.nixos.wayland ];
 
-      config = lib.mkIf cfg.enable {
-        programs.hyprland.enable = true;
-        programs.hyprland.withUWSM = true;
-        # Enable it for debug package
-        # programs.hyprland.package = pkgs.hyprland.override {
-        #   debug = true;
-        # };
-        programs.wshowkeys.enable = true;
+      programs.hyprland.enable = true;
+      programs.hyprland.withUWSM = true;
+      # programs.hyprland.package = pkgs.hyprland.override { debug = true; };
+      programs.wshowkeys.enable = true;
 
-        xdg.terminal-exec.settings = {
-          Hyprland = [
-            "com.mitchellh.ghostty"
-          ];
-        };
+      xdg.terminal-exec.settings = {
+        Hyprland = [
+          "com.mitchellh.ghostty"
+        ];
       };
     };
 
@@ -42,22 +34,12 @@
 
       wayland.windowManager.hyprland = {
         enable = true;
-        # Enable it for debug
-        # package = pkgs.hyprland.override {
-        #   debug = true;
-        # };
         xwayland.enable = true;
         plugins = [ ];
 
         extraConfig = ''
           ${builtins.readFile (self + /dotfiles/hypr/hyprland.conf)}
         '';
-
-        # Not needed since we have `programs.hyprland.withUWSM = true`
-        # enable hyprland-session.target on hyprland startup
-        # systemd.enable = true;
-        # systemd.enableXdgAutostart = true;
-        # systemd.variables = [ "XDG_SESSION_DESKTOP" ];
       };
       xdg.configFile.hyprland_configs = {
         source = self + /dotfiles/hypr/hyprland;

@@ -7,6 +7,18 @@
       # Base
       self.modules.nixos.common
 
+      # Bundles + features
+      self.modules.nixos.workstation
+      self.modules.nixos.laptop
+      self.modules.nixos.bluetooth
+      self.modules.nixos.fprint
+      self.modules.nixos.niri
+      self.modules.nixos.docker
+      self.modules.nixos.virtualbox
+      self.modules.nixos.yubikey
+      self.modules.nixos.gpclient
+      self.modules.nixos.remoteBuilders
+
       # Users
       self.modules.nixos.user-maari
       self.modules.nixos.user-root
@@ -76,7 +88,6 @@
 
           # GlobalProtect VPN split tunneling
           nixma.nixos.gpclient = {
-            enable = true;
             interface = "gpd0";
             secrets = {
               networksFile = self + /secrets/gpclient-networks-air.age;
@@ -89,13 +100,6 @@
 
           nixma.nixos.networking.tailscale = true;
           nixma.nixos.networking.strictArp = true;
-
-          nixma.nixos.bluetooth.enable = true;
-          nixma.nixos.fprint.enable = true;
-          nixma.nixos.niri.enable = true;
-          nixma.nixos.docker.enable = true;
-          nixma.nixos.virtualbox.enable = true;
-          nixma.nixos.yubikey.enable = true;
 
           home-manager.sharedModules = [
             {
@@ -122,7 +126,6 @@
           time.timeZone = "Asia/Singapore";
 
           nixma.nixos.remoteBuilders = {
-            enable = true;
             machines.indiarpi = {
               hostName = "indiarpi.bittern-pirate.ts.net";
               sshUser = "maari";

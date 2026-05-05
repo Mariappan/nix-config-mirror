@@ -11,8 +11,6 @@
     in
     {
       options.nixma.nixos.bluetooth = {
-        enable = lib.mkEnableOption "Bluetooth stack (BlueZ + experimental battery, auto-enable)";
-
         reloadDriverAfterHibernate = lib.mkOption {
           type = lib.types.bool;
           default = false;
@@ -20,7 +18,7 @@
         };
       };
 
-      config = lib.mkIf cfg.enable {
+      config = {
         hardware.bluetooth = {
           enable = true;
           powerOnBoot = true;
@@ -37,7 +35,6 @@
         };
 
         # Workaround for btintel_pcie failing to suspend after hibernation (kernel 6.18+)
-        # The Intel Bluetooth PCIe driver gets stuck after hibernation and blocks suspend.
         systemd.services.bluetooth-post-hibernate = lib.mkIf cfg.reloadDriverAfterHibernate {
           description = "Reload Bluetooth driver after hibernation";
           after = [

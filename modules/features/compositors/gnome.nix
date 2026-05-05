@@ -1,28 +1,19 @@
 { self, ... }:
 {
   flake.modules.nixos.gnome =
+    { pkgs, ... }:
     {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
-    let
-      cfg = config.nixma.nixos.gnome;
-    in
-    {
-      imports = [ self.modules.nixos.nautilus ];
+      imports = [
+        self.modules.nixos.nautilus
+        self.modules.nixos.gui
+      ];
 
-      options.nixma.nixos.gnome.enable = lib.mkEnableOption "GNOME desktop environment with GDM";
+      services.displayManager.gdm.enable = true;
+      services.desktopManager.gnome.enable = true;
 
-      config = lib.mkIf cfg.enable {
-        services.displayManager.gdm.enable = true;
-        services.desktopManager.gnome.enable = true;
-
-        environment.systemPackages = [
-          pkgs.wl-clipboard
-          pkgs.gnomeExtensions.appindicator
-        ];
-      };
+      environment.systemPackages = [
+        pkgs.wl-clipboard
+        pkgs.gnomeExtensions.appindicator
+      ];
     };
 }

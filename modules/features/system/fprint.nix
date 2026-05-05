@@ -1,21 +1,12 @@
 {
   flake.modules.nixos.fprint =
-    { config, lib, ... }:
-    let
-      cfg = config.nixma.nixos.fprint;
-    in
+    { ... }:
     {
-      options.nixma.nixos.fprint = {
-        enable = lib.mkEnableOption "fprintd fingerprint daemon";
-      };
+      services.fprintd.enable = true;
 
-      config = lib.mkIf cfg.enable {
-        services.fprintd.enable = true;
-
-        systemd.services.fprintd = {
-          wantedBy = [ "multi-user.target" ];
-          serviceConfig.Type = "simple";
-        };
+      systemd.services.fprintd = {
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig.Type = "simple";
       };
     };
 }

@@ -1,31 +1,21 @@
+{ self, ... }:
 {
   flake.modules.nixos.xserver =
+    { pkgs, ... }:
     {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
-    let
-      cfg = config.nixma.nixos.xserver;
-    in
-    {
-      options.nixma.nixos.xserver.enable = lib.mkEnableOption "X11 windowing system with US keymap";
+      imports = [ self.modules.nixos.gui ];
 
-      config = lib.mkIf cfg.enable {
-        services.xserver = {
-          enable = true;
+      services.xserver = {
+        enable = true;
 
-          # Configure keymap in X11
-          xkb = {
-            layout = "us";
-            variant = "";
-          };
+        xkb = {
+          layout = "us";
+          variant = "";
         };
-
-        environment.systemPackages = [
-          pkgs.libnotify
-        ];
       };
+
+      environment.systemPackages = [
+        pkgs.libnotify
+      ];
     };
 }

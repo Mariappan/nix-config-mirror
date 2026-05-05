@@ -121,8 +121,6 @@
     in
     {
       options.nixma.nixos.gpclient = {
-        enable = lib.mkEnableOption "GlobalProtect VPN client with split tunneling";
-
         interface = lib.mkOption {
           type = lib.types.str;
           default = "tun0";
@@ -159,7 +157,7 @@
         };
       };
 
-      config = lib.mkIf cfg.enable {
+      config = {
         age.secrets = {
           gpclient-networks.file = cfg.secrets.networksFile;
           gpclient-domains.file = cfg.secrets.domainsFile;

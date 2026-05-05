@@ -1,36 +1,31 @@
 { self, inputs, ... }:
 {
   flake.modules.nixos.niri =
-    { config, lib, ... }:
-    let
-      cfg = config.nixma.nixos.niri;
-    in
+    { ... }:
     {
       imports = [
+        self.modules.nixos.wayland
+        self.modules.nixos.veila
         inputs.noctalia.nixosModules.default
       ];
 
-      options.nixma.nixos.niri.enable = lib.mkEnableOption "Niri Wayland compositor";
+      programs.niri.enable = true;
 
-      config = lib.mkIf cfg.enable {
-        programs.niri.enable = true;
+      xdg.terminal-exec.settings = {
+        niri = [
+          "com.mitchellh.ghostty"
+        ];
+        niri-session = [
+          "com.mitchellh.ghostty"
+        ];
+      };
 
-        xdg.terminal-exec.settings = {
-          niri = [
-            "com.mitchellh.ghostty"
-          ];
-          niri-session = [
-            "com.mitchellh.ghostty"
-          ];
-        };
-
-        # Add session variables manually.
-        # Will be set by uwsm in Hyprland
-        environment.sessionVariables = {
-          XDG_SESSION_TYPE = "wayland";
-          XDG_SESSION_DESKTOP = "niri";
-          XDG_CURRENT_DESKTOP = "niri";
-        };
+      # Add session variables manually.
+      # Will be set by uwsm in Hyprland
+      environment.sessionVariables = {
+        XDG_SESSION_TYPE = "wayland";
+        XDG_SESSION_DESKTOP = "niri";
+        XDG_CURRENT_DESKTOP = "niri";
       };
     };
 

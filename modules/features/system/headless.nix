@@ -1,72 +1,60 @@
 {
   flake.modules.nixos.headless =
-    { config, lib, ... }:
-    let
-      cfg = config.nixma.nixos.headless;
-    in
+    { lib, ... }:
     {
-      options.nixma.nixos.headless.enable = lib.mkOption {
-        type = lib.types.bool;
-        default = lib.elem "server" config.nixma.nixos.roles;
-        description = "Headless server tweaks: panic-on-fail, disable sleep/suspend/hibernate, polkit blocks.";
+      boot.kernelParams = [
+        # when there's an issue, we want the server to reboot, not hang
+        "panic=10"
+        "boot.panic_on_fail"
+        "oops=panic"
+      ];
+
+      powerManagement.enable = lib.mkForce false;
+
+      # Without this, systemd-logind will eat 1 full CPU
+      services.logind.settings.Login.HandleLidSwitch = lib.mkDefault "ignore";
+
+      services.displayManager.gdm.autoSuspend = false;
+      security.polkit.extraConfig = ''
+        polkit.addRule(function(action, subject) {
+        if (action.id == "org.freedesktop.login1.suspend" ||
+            action.id == "org.freedesktop.login1.suspend-multiple-sessions" ||
+            action.id == "org.freedesktop.login1.hibernate" ||
+            action.id == "org.freedesktop.login1.hibernate-multiple-sessions") {
+              return polkit.Result.NO;
+          }
+        })
+      '';
+
+      services.desktopManager.gnome = {
+        extraGSettingsOverrides = ''
+          [org.gnome.settings-daemon.plugins.power]
+          power-button-action='nothing'
+          idle-dim=true
+          sleep-inactive-battery-type='nothing'
+          sleep-inactive-battery-type=1800
+          sleep-inactive-ac-type='nothing'
+          sleep-inactive-ac-timeout=0
+        '';
       };
 
-      config = lib.mkIf cfg.enable {
-        boot.kernelParams = [
-          # when there's an issue, we want the server to reboot, not hang
-          "panic=10"
-          "boot.panic_on_fail"
-          "oops=panic"
-        ];
-
-        powerManagement.enable = lib.mkForce false;
-
-        # Without this, systemd-logind will eat 1 full CPU
-        # https://discussion.fedoraproject.org/t/systemd-logind-eats-cpu-when-closing-laptop-lid/67805/3
-        services.logind.settings.Login.HandleLidSwitch = lib.mkDefault "ignore";
-
-        services.displayManager.gdm.autoSuspend = false;
-        security.polkit.extraConfig = ''
-          polkit.addRule(function(action, subject) {
-          if (action.id == "org.freedesktop.login1.suspend" ||
-              action.id == "org.freedesktop.login1.suspend-multiple-sessions" ||
-              action.id == "org.freedesktop.login1.hibernate" ||
-              action.id == "org.freedesktop.login1.hibernate-multiple-sessions") {
-                return polkit.Result.NO;
-            }
-          })
-        '';
-
-        services.desktopManager.gnome = {
-          extraGSettingsOverrides = ''
-            [org.gnome.settings-daemon.plugins.power]
-            power-button-action='nothing'
-            idle-dim=true
-            sleep-inactive-battery-type='nothing'
-            sleep-inactive-battery-type=1800
-            sleep-inactive-ac-type='nothing'
-            sleep-inactive-ac-timeout=0
-          '';
-        };
-
-        systemd = {
-          targets = {
-            sleep = {
-              enable = false;
-              unitConfig.DefaultDependencies = "no";
-            };
-            suspend = {
-              enable = false;
-              unitConfig.DefaultDependencies = "no";
-            };
-            hibernate = {
-              enable = false;
-              unitConfig.DefaultDependencies = "no";
-            };
-            "hybrid-sleep" = {
-              enable = false;
-              unitConfig.DefaultDependencies = "no";
-            };
+      systemd = {
+        targets = {
+          sleep = {
+            enable = false;
+            unitConfig.DefaultDependencies = "no";
+          };
+          suspend = {
+            enable = false;
+            unitConfig.DefaultDependencies = "no";
+          };
+          hibernate = {
+            enable = false;
+            unitConfig.DefaultDependencies = "no";
+          };
+          "hybrid-sleep" = {
+            enable = false;
+            unitConfig.DefaultDependencies = "no";
           };
         };
       };

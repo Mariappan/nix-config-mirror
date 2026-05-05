@@ -3,47 +3,17 @@
   flake.modules.nixos.common =
     { pkgs, ... }:
     {
-      imports = with self.modules.nixos; [
-        shared-nixpkgs
-        shared-homemanager
-        shared-shells
-        nix-settings
-        profile
-        documentation
-        agenix
-        hardware
-        boot
-        networking
-        laptop
-        headless
-        desktop
-        kmscon
-        remoteBuilders
-        bluetooth
-        fprint
-        gui
-        sound
-        plymouth
-        screenrecorder
-        zen-browser
-        _1password
-        wayland
-        niri
-        hyprland
-        veila
-        gnome
-        xserver
-        xfce_rdp
-        wayland-dm
-        nautilus
-        docker
-        virtualbox
-        incus
-        nvidia
-        yubikey
-        lanzaboote
-        vivaldi
-        gpclient
+      imports = [
+        self.modules.nixos.shared-nixpkgs
+        self.modules.nixos.shared-homemanager
+        self.modules.nixos.shared-shells
+        self.modules.nixos.nix-settings
+        self.modules.nixos.profile
+        self.modules.nixos.agenix
+        self.modules.nixos.hardware
+        self.modules.nixos.boot
+        self.modules.nixos.networking
+        self.modules.nixos.kmscon
       ];
 
       environment.systemPackages = [

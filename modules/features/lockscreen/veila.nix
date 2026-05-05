@@ -1,41 +1,27 @@
 { self, inputs, ... }:
 {
   flake.modules.nixos.veila =
-    {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
+    { pkgs, ... }:
     let
-      cfg = config.nixma.nixos.veila;
       veila = inputs.veila.packages.${pkgs.stdenv.system}.veila;
     in
     {
-      options.nixma.nixos.veila.enable = lib.mkOption {
-        type = lib.types.bool;
-        default = lib.elem "workstation" config.nixma.nixos.roles;
-        description = "Veila lockscreen daemon (PAM + systemd user service).";
+      security.pam.services.veila = {
+        unixAuth = true;
+        u2fAuth = true;
       };
 
-      config = lib.mkIf cfg.enable {
-        security.pam.services.veila = {
-          unixAuth = true;
-          u2fAuth = true;
-        };
+      environment.systemPackages = [ veila ];
 
-        environment.systemPackages = [ veila ];
-
-        systemd.user.services.veilad = {
-          description = "Veila lockscreen daemon";
-          wantedBy = [ "graphical-session.target" ];
-          partOf = [ "graphical-session.target" ];
-          after = [ "graphical-session.target" ];
-          serviceConfig = {
-            ExecStart = "${veila}/bin/veilad";
-            Restart = "on-failure";
-            RestartSec = 3;
-          };
+      systemd.user.services.veilad = {
+        description = "Veila lockscreen daemon";
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        serviceConfig = {
+          ExecStart = "${veila}/bin/veilad";
+          Restart = "on-failure";
+          RestartSec = 3;
         };
       };
     };
