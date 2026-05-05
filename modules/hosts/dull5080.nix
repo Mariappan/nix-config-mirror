@@ -43,6 +43,10 @@
             ];
           };
 
+          # Profile
+          nixma.nixos.formFactor = "desktop";
+          nixma.nixos.roles = [ "server" ];
+
           # Hardware configuration
           nixma.nixos.hardware = {
             cpu.vendor = "intel";

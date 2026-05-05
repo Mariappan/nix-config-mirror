@@ -65,6 +65,10 @@
             ];
           };
 
+          # Profile
+          nixma.nixos.formFactor = "desktop";
+          nixma.nixos.roles = [ "workstation" ];
+
           # Hardware configuration
           nixma.nixos.hardware = {
             work.enable = false;

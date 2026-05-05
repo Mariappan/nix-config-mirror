@@ -62,6 +62,10 @@
             ];
           };
 
+          # Profile
+          nixma.nixos.formFactor = "laptop";
+          nixma.nixos.roles = [ "workstation" ];
+
           # Hardware configuration
           nixma.nixos.hardware = {
             swap.enable = true;

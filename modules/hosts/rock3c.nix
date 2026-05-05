@@ -57,6 +57,12 @@ in
             gitSignByDefault = false;
           };
 
+          # Profile: SBC form factor + headless server role.
+          nixma.nixos = {
+            formFactor = "sbc";
+            roles = [ "server" ];
+          };
+
           # Hardware: aarch64 SBC, no x86 microcode, disko manages filesystems
           nixma.nixos.hardware = {
             hostPlatform = "aarch64-linux";
