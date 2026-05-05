@@ -9,6 +9,9 @@
       (
         { pkgs, ... }:
         {
+          nixma.darwin.formFactor = "laptop";
+          nixma.darwin.roles = [ "workstation" ];
+
           nixma.users.maari = {
             name = "Mariappan Ramasamy";
             email = "1221719+nappairam@users.noreply.github.com";

@@ -47,4 +47,39 @@
 
       config.nixma.nixos.imported.profile = true;
     };
+
+  flake.modules.darwin.profile =
+    { lib, ... }:
+    {
+      options.nixma.darwin = {
+        imported = lib.mkOption {
+          type = lib.types.attrsOf lib.types.bool;
+          default = { };
+          internal = true;
+          description = "Sentinel set by each darwin module when imported.";
+        };
+
+        formFactor = lib.mkOption {
+          type = lib.types.enum [
+            "laptop"
+            "desktop"
+          ];
+          description = "Physical form factor of the darwin host.";
+        };
+
+        roles = lib.mkOption {
+          type = lib.types.listOf (
+            lib.types.enum [
+              "workstation"
+              "builder"
+              "server"
+            ]
+          );
+          default = [ ];
+          description = "Functional roles this darwin host fills.";
+        };
+      };
+
+      config.nixma.darwin.imported.profile = true;
+    };
 }

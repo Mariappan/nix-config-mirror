@@ -1,64 +1,53 @@
 { self, ... }:
 {
   flake.modules.darwin.common =
-    { lib, pkgs, ... }:
+    { pkgs, ... }:
     {
       imports = [
         self.modules.darwin.shared-nixpkgs
         self.modules.darwin.shared-homemanager
         self.modules.darwin.shared-shells
         self.modules.darwin.shared-fonts
+        self.modules.darwin.profile
       ];
 
-      options.nixma.darwin.imported = lib.mkOption {
-        type = lib.types.attrsOf lib.types.bool;
-        default = { };
-        internal = true;
-        description = ''
-          Sentinel set by each darwin module when imported, for
-          introspection (e.g. `just enabled <host>`).
-        '';
-      };
+      nixma.darwin.imported.common = true;
 
-      config = {
-        nixma.darwin.imported.common = true;
+      # Should not be hardcoded. But I am not gonna buy x64 macbook anytime
+      # So this is fine for now
+      nixpkgs.hostPlatform = "aarch64-darwin";
 
-        # Should not be hardcoded. But I am not gonna buy x64 macbook anytime
-        # So this is fine for now
-        nixpkgs.hostPlatform = "aarch64-darwin";
+      # Determindated nixd will take care of it
+      nix.enable = false;
 
-        # Determindated nixd will take care of it
-        nix.enable = false;
+      environment.systemPackages = [
+        pkgs.curl
+        pkgs.pinentry_mac
+        pkgs.terminal-notifier
+      ];
 
-        environment.systemPackages = [
-          pkgs.curl
-          pkgs.pinentry_mac
-          pkgs.terminal-notifier
-        ];
-
-        homebrew = {
-          enable = true;
-          onActivation = {
-            autoUpdate = true;
-            upgrade = true;
-            cleanup = "zap";
-          };
-          brews = [ ];
-          casks = [
-            "boop"
-            "obsidian"
-            "vlc"
-            "visual-studio-code"
-            "wireshark-app"
-          ];
+      homebrew = {
+        enable = true;
+        onActivation = {
+          autoUpdate = true;
+          upgrade = true;
+          cleanup = "zap";
         };
-
-        # Enable TouchId for sudo
-        security.pam.services.sudo_local.touchIdAuth = true;
-
-        # Used for backwards compatibility, please read the changelog before changing.
-        # $ darwin-rebuild changelog
-        system.stateVersion = 6;
+        brews = [ ];
+        casks = [
+          "boop"
+          "obsidian"
+          "vlc"
+          "visual-studio-code"
+          "wireshark-app"
+        ];
       };
+
+      # Enable TouchId for sudo
+      security.pam.services.sudo_local.touchIdAuth = true;
+
+      # Used for backwards compatibility, please read the changelog before changing.
+      # $ darwin-rebuild changelog
+      system.stateVersion = 6;
     };
 }
