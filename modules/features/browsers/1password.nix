@@ -5,13 +5,17 @@
       cfg = config.nixma.nixos._1password;
     in
     {
-      options.nixma.nixos._1password.allowedBrowsers = lib.mkOption {
-        type = lib.types.listOf lib.types.str;
-        default = [ ];
-        description = "List of allowed browsers for 1Password browser integration";
+      options.nixma.nixos._1password = {
+        enable = lib.mkEnableOption "1Password GUI + CLI with browser integration";
+
+        allowedBrowsers = lib.mkOption {
+          type = lib.types.listOf lib.types.str;
+          default = [ ];
+          description = "List of allowed browsers for 1Password browser integration";
+        };
       };
 
-      config = {
+      config = lib.mkIf cfg.enable {
         programs._1password.enable = true;
         programs._1password-gui.enable = true;
 

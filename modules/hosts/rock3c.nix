@@ -93,9 +93,15 @@ in
           #   rockchip: DisplayPort TX (dptx.bin) blob loaded by rk3568 DRM.
           hardware.firmware = [
             (pkgs.runCommand "rock3c-firmware" { } ''
+              set -eu
               mkdir -p $out/lib/firmware
               for d in brcm cypress rockchip; do
-                cp -r ${pkgs.linux-firmware}/lib/firmware/$d $out/lib/firmware/
+                src="${pkgs.linux-firmware}/lib/firmware/$d"
+                if [ -d "$src" ]; then
+                  cp -r "$src" "$out/lib/firmware/"
+                else
+                  echo "rock3c-firmware: skipping missing subdir $d" >&2
+                fi
               done
             '')
           ];

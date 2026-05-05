@@ -8,18 +8,25 @@
       ...
     }:
     let
-      hasRole = role: lib.elem role config.nixma.nixos.roles;
+      cfg = config.nixma.nixos.documentation;
     in
     {
-      # Servers and SBCs typically don't need on-host docs (man pages, NixOS
-      # manual, nix manual). Disable to drop ~50 MiB from the closure plus
-      # man-db indexing on every rebuild.
-      documentation.enable = lib.mkIf (hasRole "server") (lib.mkDefault false);
+      options.nixma.nixos.documentation.enable = lib.mkOption {
+        type = lib.types.bool;
+        default = !lib.elem "server" config.nixma.nixos.roles;
+        description = "On-host docs (NixOS manual, nix manual, man-db). Default off on server hosts.";
+      };
 
-      # Workstations get the standard man-page corpora.
-      environment.systemPackages = lib.mkIf (hasRole "workstation") [
-        pkgs.man-pages
-        pkgs.man-pages-posix
-      ];
+      config = {
+        documentation.enable = cfg.enable;
+
+        # Workstations get the standard man-page corpora.
+        environment.systemPackages =
+          lib.mkIf (cfg.enable && lib.elem "workstation" config.nixma.nixos.roles)
+            [
+              pkgs.man-pages
+              pkgs.man-pages-posix
+            ];
+      };
     };
 }

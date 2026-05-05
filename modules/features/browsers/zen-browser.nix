@@ -1,15 +1,23 @@
 { self, inputs, ... }:
 {
   flake.modules.nixos.zen-browser =
-    { ... }:
+    { config, lib, ... }:
+    let
+      cfg = config.nixma.nixos.zen-browser;
+    in
     {
-      nixma.nixos._1password.allowedBrowsers = [
-        ".zen-wrapped"
-        "zen-twilight"
-        "zen"
-      ];
+      options.nixma.nixos.zen-browser.enable =
+        lib.mkEnableOption "Zen Browser (Twilight) as default web browser";
 
-      home-manager.sharedModules = [ self.modules.homeManager.zen-browser ];
+      config = lib.mkIf cfg.enable {
+        nixma.nixos._1password.allowedBrowsers = [
+          ".zen-wrapped"
+          "zen-twilight"
+          "zen"
+        ];
+
+        home-manager.sharedModules = [ self.modules.homeManager.zen-browser ];
+      };
     };
 
   flake.modules.homeManager.zen-browser =

@@ -7,10 +7,6 @@
       # Base
       self.modules.nixos.common
 
-      # Features
-      self.modules.nixos.docker
-      self.modules.nixos.niri
-
       # Users
       self.modules.nixos.user-maari
       self.modules.nixos.user-root
@@ -49,6 +45,8 @@
 
           nixma.nixos.bluetooth.enable = true;
           nixma.nixos.fprint.enable = true;
+          nixma.nixos.niri.enable = true;
+          nixma.nixos.docker.enable = true;
 
           # Hardware configuration
           nixma.nixos.hardware = {

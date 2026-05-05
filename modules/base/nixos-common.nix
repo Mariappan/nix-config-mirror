@@ -21,6 +21,29 @@
         remoteBuilders
         bluetooth
         fprint
+        gui
+        sound
+        plymouth
+        screenrecorder
+        zen-browser
+        _1password
+        wayland
+        niri
+        hyprland
+        veila
+        gnome
+        xserver
+        xfce_rdp
+        wayland-dm
+        nautilus
+        docker
+        virtualbox
+        incus
+        nvidia
+        yubikey
+        lanzaboote
+        vivaldi
+        gpclient
       ];
 
       environment.systemPackages = [

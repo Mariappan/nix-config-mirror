@@ -7,13 +7,6 @@
       # Base
       self.modules.nixos.common
 
-      # Features
-      self.modules.nixos.docker
-      self.modules.nixos.niri
-      self.modules.nixos.virtualbox
-      self.modules.nixos.gpclient
-      self.modules.nixos.yubikey
-
       # Users
       self.modules.nixos.user-maari
       self.modules.nixos.user-root
@@ -99,6 +92,10 @@
 
           nixma.nixos.bluetooth.enable = true;
           nixma.nixos.fprint.enable = true;
+          nixma.nixos.niri.enable = true;
+          nixma.nixos.docker.enable = true;
+          nixma.nixos.virtualbox.enable = true;
+          nixma.nixos.yubikey.enable = true;
 
           home-manager.sharedModules = [
             {

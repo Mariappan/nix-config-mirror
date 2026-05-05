@@ -3,10 +3,16 @@
   flake.modules.nixos.desktop =
     { config, lib, ... }:
     let
-      isWorkstation = lib.elem "workstation" config.nixma.nixos.roles;
+      cfg = config.nixma.nixos.desktop;
     in
     {
-      config = lib.mkIf isWorkstation {
+      options.nixma.nixos.desktop.enable = lib.mkOption {
+        type = lib.types.bool;
+        default = lib.elem "workstation" config.nixma.nixos.roles;
+        description = "Workstation desktop bundle (hidraw rules; pulls 1password/zen-browser via gui).";
+      };
+
+      config = lib.mkIf cfg.enable {
         # Grant input group access to hidraw devices (gaming peripherals,
         # programmable keyboards, controllers).
         services.udev.extraRules = ''
@@ -23,16 +29,19 @@
       ...
     }:
     let
-      isWorkstation = lib.elem "workstation" (osConfig.nixma.nixos.roles or [ "workstation" ]);
+      # Mirror the NixOS-side `desktop.enable`. On darwin the namespace
+      # doesn't exist; default to true so the workstation HM bundle still
+      # applies there.
+      isEnabled = osConfig.nixma.nixos.desktop.enable or true;
     in
     {
-      imports = lib.optionals isWorkstation [
+      imports = lib.optionals isEnabled [
         self.modules.homeManager.tmux
         self.modules.homeManager.nvim
         self.modules.homeManager.xdg
       ];
 
-      config = lib.mkIf isWorkstation {
+      config = lib.mkIf isEnabled {
         home.packages = [
           pkgs.python3
           pkgs.rsync

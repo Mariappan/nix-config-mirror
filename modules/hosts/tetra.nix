@@ -6,12 +6,6 @@
       # Base
       self.modules.nixos.common
 
-      # Features
-      self.modules.nixos.docker
-      self.modules.nixos.niri
-      self.modules.nixos.nvidia
-      self.modules.nixos.virtualbox
-
       # Users
       self.modules.nixos.user-maari
       self.modules.nixos.user-root
@@ -51,6 +45,11 @@
           # Profile
           nixma.nixos.formFactor = "desktop";
           nixma.nixos.roles = [ "workstation" ];
+
+          nixma.nixos.niri.enable = true;
+          nixma.nixos.docker.enable = true;
+          nixma.nixos.virtualbox.enable = true;
+          nixma.nixos.nvidia.enable = true;
 
           # Hardware configuration
           nixma.nixos.hardware = {

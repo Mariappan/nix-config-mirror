@@ -6,9 +6,6 @@
       # Base
       self.modules.nixos.common
 
-      # Features
-      self.modules.nixos.docker
-
       # Users
       self.modules.nixos.user-maari
       self.modules.nixos.user-root
@@ -38,6 +35,8 @@
           # Profile
           nixma.nixos.formFactor = "desktop";
           nixma.nixos.roles = [ "server" ];
+
+          nixma.nixos.docker.enable = true;
 
           # Hardware configuration
           nixma.nixos.hardware = {

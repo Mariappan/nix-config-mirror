@@ -1,13 +1,21 @@
 { self, ... }:
 {
   flake.modules.nixos.vivaldi =
-    { ... }:
+    { config, lib, ... }:
+    let
+      cfg = config.nixma.nixos.vivaldi;
+    in
     {
-      nixma.nixos._1password.allowedBrowsers = [
-        "vivaldi-bin"
-      ];
+      options.nixma.nixos.vivaldi.enable =
+        lib.mkEnableOption "Vivaldi browser (Wayland) with 1Password integration";
 
-      home-manager.sharedModules = [ self.modules.homeManager.vivaldi ];
+      config = lib.mkIf cfg.enable {
+        nixma.nixos._1password.allowedBrowsers = [
+          "vivaldi-bin"
+        ];
+
+        home-manager.sharedModules = [ self.modules.homeManager.vivaldi ];
+      };
     };
 
   flake.modules.homeManager.vivaldi =

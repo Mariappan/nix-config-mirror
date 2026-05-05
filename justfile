@@ -35,6 +35,13 @@ build flake='.':
 eval-air param:
     nix eval .#nixosConfigurations.air.config.{{param}} --json | jq .
 
+# Show every nixma.nixos.<x>.enable for a host. Ex: just enabled rock3c
+[linux]
+enabled host:
+    @nix eval --json .#nixosConfigurations.{{host}}.config.nixma.nixos \
+      --apply 'cfg: builtins.mapAttrs (_: v: if builtins.isAttrs v && v ? enable then v.enable else null) cfg' \
+      | jq -r 'to_entries | map(select(.value != null)) | sort_by(.key) | .[] | "  \(.key) = \(.value)"'
+
 # Build on indiarpi (aarch64 native), deploy to rock3c over SSH.
 # Use `just deploy-rock3c -vv` to forward extra flags through to nh.
 [linux]

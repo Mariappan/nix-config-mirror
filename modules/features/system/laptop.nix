@@ -7,10 +7,15 @@
     }:
     let
       cfg = config.nixma.nixos.laptop;
-      isLaptop = config.nixma.nixos.formFactor == "laptop";
     in
     {
       options.nixma.nixos.laptop = {
+        enable = lib.mkOption {
+          type = lib.types.bool;
+          default = config.nixma.nixos.formFactor == "laptop";
+          description = "Laptop power-management stack (lid switch, upower, fwupd, auto-cpufreq).";
+        };
+
         supportHibernate = lib.mkOption {
           type = lib.types.bool;
           default = true;
@@ -18,7 +23,7 @@
         };
       };
 
-      config = lib.mkIf isLaptop {
+      config = lib.mkIf cfg.enable {
         services.logind.settings.Login.HandleLidSwitch =
           if cfg.supportHibernate then "suspend-then-hibernate" else "suspend";
         services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";

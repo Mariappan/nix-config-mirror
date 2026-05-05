@@ -2,10 +2,16 @@
   flake.modules.nixos.headless =
     { config, lib, ... }:
     let
-      isServer = lib.elem "server" config.nixma.nixos.roles;
+      cfg = config.nixma.nixos.headless;
     in
     {
-      config = lib.mkIf isServer {
+      options.nixma.nixos.headless.enable = lib.mkOption {
+        type = lib.types.bool;
+        default = lib.elem "server" config.nixma.nixos.roles;
+        description = "Headless server tweaks: panic-on-fail, disable sleep/suspend/hibernate, polkit blocks.";
+      };
+
+      config = lib.mkIf cfg.enable {
         boot.kernelParams = [
           # when there's an issue, we want the server to reboot, not hang
           "panic=10"

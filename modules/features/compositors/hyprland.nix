@@ -1,22 +1,27 @@
 { self, ... }:
 {
   flake.modules.nixos.hyprland =
-    { ... }:
+    { config, lib, ... }:
+    let
+      cfg = config.nixma.nixos.hyprland;
+    in
     {
-      imports = [ self.modules.nixos.wayland ];
+      options.nixma.nixos.hyprland.enable = lib.mkEnableOption "Hyprland Wayland compositor";
 
-      programs.hyprland.enable = true;
-      programs.hyprland.withUWSM = true;
-      # Enable it for debug package
-      # programs.hyprland.package = pkgs.hyprland.override {
-      #   debug = true;
-      # };
-      programs.wshowkeys.enable = true;
+      config = lib.mkIf cfg.enable {
+        programs.hyprland.enable = true;
+        programs.hyprland.withUWSM = true;
+        # Enable it for debug package
+        # programs.hyprland.package = pkgs.hyprland.override {
+        #   debug = true;
+        # };
+        programs.wshowkeys.enable = true;
 
-      xdg.terminal-exec.settings = {
-        Hyprland = [
-          "com.mitchellh.ghostty"
-        ];
+        xdg.terminal-exec.settings = {
+          Hyprland = [
+            "com.mitchellh.ghostty"
+          ];
+        };
       };
     };
 

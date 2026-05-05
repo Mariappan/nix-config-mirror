@@ -1,52 +1,70 @@
 { self, ... }:
 {
   flake.modules.nixos.wayland =
-    { pkgs, lib, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
+    let
+      cfg = config.nixma.nixos.wayland;
+    in
     {
       imports = [
         self.modules.nixos.wayland-dm
         self.modules.nixos.nautilus
         self.modules.nixos.shared-fonts
-        self.modules.nixos.gui
       ];
 
-      programs.dconf.enable = true;
-
-      # Ref: https://www.reddit.com/r/NixOS/comments/171mexa/polkit_on_hyprland/
-      services.gnome.gnome-keyring.enable = true;
-      security.polkit.enable = true;
-
-      services.udisks2.enable = true;
-
-      security.pam.services = {
-        # GreetD - regreet uses separate `greetd` PAM context
-        # Disable Fingerprint/Yubikey for allowing to unlock Keyring
-        greetd = {
-          enableGnomeKeyring = true;
-          u2fAuth = false;
-          fprintAuth = false;
-        };
-        # noctalia-shell uses login pam context
-        # for system-lock
-        login = {
-          enableGnomeKeyring = true;
-        };
-        hyprlock.u2fAuth = true;
-        polkit-1.u2fAuth = true;
+      options.nixma.nixos.wayland.enable = lib.mkOption {
+        type = lib.types.bool;
+        default = lib.elem "workstation" config.nixma.nixos.roles;
+        description = "Wayland session base (PAM, polkit, udisks2, fonts, terminal-exec).";
       };
 
-      xdg.terminal-exec.enable = true;
-      xdg.terminal-exec.settings = {
-        default = [
-          "com.mitchellh.ghostty"
-          "org.wezfurlong.wezterm.desktop"
-          "foot"
+      config = lib.mkIf cfg.enable {
+        nixma.nixos.wayland-dm.enable = lib.mkDefault true;
+        nixma.nixos.nautilus.enable = lib.mkDefault true;
+
+        programs.dconf.enable = true;
+
+        # Ref: https://www.reddit.com/r/NixOS/comments/171mexa/polkit_on_hyprland/
+        services.gnome.gnome-keyring.enable = true;
+        security.polkit.enable = true;
+
+        services.udisks2.enable = true;
+
+        security.pam.services = {
+          # GreetD - regreet uses separate `greetd` PAM context
+          # Disable Fingerprint/Yubikey for allowing to unlock Keyring
+          greetd = {
+            enableGnomeKeyring = true;
+            u2fAuth = false;
+            fprintAuth = false;
+          };
+          # noctalia-shell uses login pam context
+          # for system-lock
+          login = {
+            enableGnomeKeyring = true;
+          };
+          hyprlock.u2fAuth = true;
+          polkit-1.u2fAuth = true;
+        };
+
+        xdg.terminal-exec.enable = true;
+        xdg.terminal-exec.settings = {
+          default = [
+            "com.mitchellh.ghostty"
+            "org.wezfurlong.wezterm.desktop"
+            "foot"
+          ];
+        };
+
+        environment.systemPackages = [
+          pkgs.libnotify
         ];
       };
-
-      environment.systemPackages = [
-        pkgs.libnotify
-      ];
     };
 
   flake.modules.homeManager.wayland =
