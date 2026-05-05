@@ -23,6 +23,8 @@
       };
 
       config = {
+        nixma.nixos.imported.wayland-dm = true;
+
         services.displayManager.gdm.enable = lib.mkIf (cfg.displayManager == "gdm") true;
 
         programs.regreet = lib.mkIf (cfg.displayManager == "regreet") {

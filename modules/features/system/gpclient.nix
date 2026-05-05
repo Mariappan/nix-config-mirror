@@ -158,6 +158,8 @@
       };
 
       config = {
+        nixma.nixos.imported.gpclient = true;
+
         age.secrets = {
           gpclient-networks.file = cfg.secrets.networksFile;
           gpclient-domains.file = cfg.secrets.domainsFile;

@@ -3,6 +3,8 @@
   flake.modules.nixos.shared-homemanager =
     { ... }:
     {
+      nixma.nixos.imported.shared-homemanager = true;
+
       imports = [ inputs.home-manager.nixosModules.home-manager ];
 
       home-manager.useGlobalPkgs = true;
@@ -15,6 +17,8 @@
   flake.modules.darwin.shared-homemanager =
     { ... }:
     {
+      nixma.darwin.imported.shared-homemanager = true;
+
       imports = [ inputs.home-manager.darwinModules.home-manager ];
 
       home-manager.useGlobalPkgs = true;

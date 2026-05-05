@@ -3,6 +3,8 @@
   flake.modules.nixos.wayland =
     { pkgs, ... }:
     {
+      nixma.nixos.imported.wayland = true;
+
       imports = [
         self.modules.nixos.wayland-dm
         self.modules.nixos.nautilus
@@ -52,6 +54,8 @@
   flake.modules.homeManager.wayland =
     { pkgs, ... }:
     {
+      nixma.imported.wayland = true;
+
       imports = [
         self.modules.homeManager.ghostty
         self.modules.homeManager.foot

@@ -2,6 +2,8 @@
   flake.modules.homeManager.neovide =
     { ... }:
     {
+      nixma.imported.neovide = true;
+
       programs.neovide = {
         enable = true;
         settings = {

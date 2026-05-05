@@ -5,6 +5,8 @@
     {
       imports = [ inputs.agenix.nixosModules.default ];
 
+      nixma.nixos.imported.agenix = true;
+
       # Decrypt secrets with each host's SSH host key.
       age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 

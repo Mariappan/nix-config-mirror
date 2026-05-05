@@ -2,6 +2,8 @@
   flake.modules.homeManager.helix =
     { ... }:
     {
+      nixma.imported.helix = true;
+
       home.sessionVariables = {
         EDITOR = "hx";
       };

@@ -2,6 +2,8 @@
   flake.modules.homeManager.hypridle =
     { ... }:
     {
+      nixma.imported.hypridle = true;
+
       services.hypridle.enable = true;
       services.hypridle.settings = {
         general = {

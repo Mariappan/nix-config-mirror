@@ -2,6 +2,8 @@
   flake.modules.homeManager.media-viewer =
     { ... }:
     {
+      nixma.imported.media-viewer = true;
+
       programs.mpv.enable = true;
       programs.imv.enable = true;
 

@@ -2,6 +2,8 @@
   flake.modules.homeManager.others =
     { pkgs, ... }:
     {
+      nixma.imported.others = true;
+
       home.packages = with pkgs; [
         # networking tools
         mtr # A network diagnostic tool

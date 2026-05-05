@@ -2,6 +2,8 @@
   flake.modules.nixos.kmscon =
     { ... }:
     {
+      nixma.nixos.imported.kmscon = true;
+
       services.kmscon = {
         enable = true;
         hwRender = true;

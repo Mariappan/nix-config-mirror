@@ -2,6 +2,8 @@
   flake.modules.homeManager.htop =
     { ... }:
     {
+      nixma.imported.htop = true;
+
       programs.htop.enable = true;
 
       programs.htop.settings = {

@@ -65,6 +65,8 @@
       };
 
       config = lib.mkIf (cfg.machines != { }) {
+        nixma.nixos.imported.remoteBuilders = true;
+
         nix.distributedBuilds = true;
 
         nix.buildMachines = lib.mapAttrsToList (_: m: {

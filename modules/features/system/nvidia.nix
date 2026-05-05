@@ -19,6 +19,8 @@
       };
 
       config = lib.mkMerge [
+        { nixma.nixos.imported.nvidia = true; }
+
         (lib.mkIf (cfg.mode == "enable") {
           services.xserver.videoDrivers = [ "nvidia" ];
 

@@ -3,6 +3,8 @@
   flake.modules.nixos.vivaldi =
     { ... }:
     {
+      nixma.nixos.imported.vivaldi = true;
+
       imports = [ self.modules.nixos._1password ];
 
       nixma.nixos._1password.allowedBrowsers = [
@@ -15,6 +17,8 @@
   flake.modules.homeManager.vivaldi =
     { pkgs, ... }:
     {
+      nixma.imported.vivaldi = true;
+
       home.packages = [
         pkgs.vivaldi-wayland
       ];

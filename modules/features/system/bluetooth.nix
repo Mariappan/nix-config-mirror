@@ -19,6 +19,8 @@
       };
 
       config = {
+        nixma.nixos.imported.bluetooth = true;
+
         hardware.bluetooth = {
           enable = true;
           powerOnBoot = true;

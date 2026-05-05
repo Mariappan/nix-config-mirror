@@ -2,6 +2,8 @@
   flake.modules.nixos.shared-fonts =
     { pkgs, ... }:
     {
+      nixma.nixos.imported.shared-fonts = true;
+
       fonts.packages = with pkgs; [
         maple-mono.truetype
         maple-mono.NF-unhinted
@@ -20,6 +22,8 @@
   flake.modules.darwin.shared-fonts =
     { pkgs, ... }:
     {
+      nixma.darwin.imported.shared-fonts = true;
+
       fonts.packages = with pkgs; [
         maple-mono.truetype
         maple-mono.NF-unhinted

@@ -3,6 +3,8 @@
   flake.modules.nixos.common =
     { pkgs, ... }:
     {
+      nixma.nixos.imported.common = true;
+
       imports = [
         self.modules.nixos.shared-nixpkgs
         self.modules.nixos.shared-homemanager

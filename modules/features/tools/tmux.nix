@@ -2,6 +2,8 @@
   flake.modules.homeManager.tmux =
     { pkgs, ... }:
     {
+      nixma.imported.tmux = true;
+
       programs.tmux.enable = true;
       programs.tmux.terminal = "tmux-256color";
       programs.tmux.historyLimit = 20000;

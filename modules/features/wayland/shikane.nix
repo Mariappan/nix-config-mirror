@@ -2,6 +2,8 @@
   flake.modules.homeManager.shikane =
     { pkgs, ... }:
     {
+      nixma.imported.shikane = true;
+
       home.packages = [
         pkgs.shikane
       ];

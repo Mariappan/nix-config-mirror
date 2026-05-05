@@ -35,28 +35,39 @@ build flake='.':
 eval-air param:
     nix eval .#nixosConfigurations.air.config.{{param}} --json | jq .
 
-# Show every nixos module reachable from a host (direct + transitive bundle imports).
-# Ex: just enabled rock3c
-[linux]
-enabled host:
-    @bash -c ' \
-      seen=""; \
-      expand() { \
-        local m=$1; \
-        case " $seen " in *" $m "*) return ;; esac; \
-        seen="$seen $m"; \
-        echo "  $m"; \
-        local f; \
-        f=$(grep -lE "flake\\.modules\\.nixos\\.$m[ =]" -r modules/ 2>/dev/null | head -1); \
-        [ -z "$f" ] && return; \
-        grep -oE "self\\.modules\\.nixos\\.[a-zA-Z0-9_-]+" "$f" \
-          | sed "s|self\\.modules\\.nixos\\.||" | sort -u \
-          | while read c; do expand "$c"; done; \
-      }; \
-      grep -oE "self\\.modules\\.nixos\\.[a-zA-Z0-9_-]+" "modules/hosts/{{host}}.nix" \
-        | sed "s|self\\.modules\\.nixos\\.||" | sort -u \
-        | while read m; do expand "$m"; done | sort -u \
-    '
+# List all NixOS and darwin hosts with their formFactor and roles.
+hosts:
+    @nix eval --json --impure --expr ' \
+      let \
+        f = builtins.getFlake (toString ./.); \
+        info = ns: cfgs: builtins.mapAttrs (_: c: { \
+          formFactor = c.config.nixma.${ns}.formFactor or "?"; \
+          roles = c.config.nixma.${ns}.roles or []; \
+        }) cfgs; \
+      in { \
+        nixos = info "nixos" (f.nixosConfigurations or {}); \
+        darwin = info "darwin" (f.darwinConfigurations or {}); \
+      } \
+    ' \
+      | jq -r '"NixOS:", (.nixos | to_entries | sort_by(.key) | .[] | "  \(.key) (\(.value.formFactor)) [\(.value.roles | join(" "))]"), "", "darwin:", (.darwin | to_entries | sort_by(.key) | .[] | "  \(.key) (\(.value.formFactor)) [\(.value.roles | join(" "))]")'
+
+# Show every nixma module imported by a host (NixOS or darwin) plus per-user
+# home-manager modules. Auto-detects the platform. Ex: just enabled rock3c | fire
+enabled host=`hostname`:
+    @nix eval --json --impure --expr ' \
+      let \
+        f = builtins.getFlake (toString ./.); \
+        n = f.nixosConfigurations.{{host}} or null; \
+        d = f.darwinConfigurations.{{host}} or null; \
+        cfg = if n != null then n.config else d.config; \
+        platform = if n != null then "NixOS" else "darwin"; \
+        os = cfg.nixma.nixos.imported or (cfg.nixma.darwin.imported or {}); \
+      in { \
+        inherit platform os; \
+        hm = builtins.mapAttrs (_: u: u.nixma.imported or {}) (cfg.home-manager.users or {}); \
+      } \
+    ' \
+      | jq -r '"\(.platform):", (.os | to_entries | sort_by(.key) | .[] | "  \(.key)"), "", (.hm | to_entries | sort_by(.key) | .[] | "HM (\(.key)):", (.value | to_entries | sort_by(.key) | .[] | "  \(.key)"), "")'
 
 # Build on indiarpi (aarch64 native), deploy to rock3c over SSH.
 # Use `just deploy-rock3c -vv` to forward extra flags through to nh.

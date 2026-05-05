@@ -18,6 +18,8 @@
       };
 
       config = {
+        nixma.nixos.imported.laptop = true;
+
         services.logind.settings.Login.HandleLidSwitch =
           if cfg.supportHibernate then "suspend-then-hibernate" else "suspend";
         services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";

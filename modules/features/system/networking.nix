@@ -132,6 +132,8 @@
       };
 
       config = {
+        nixma.nixos.imported.networking = true;
+
         # Strict ARP to prevent ARP flux with multiple interfaces on same subnet
         boot.kernel.sysctl = lib.mkIf cfg.strictArp {
           "net.ipv4.conf.all.arp_ignore" = 1;

@@ -2,6 +2,8 @@
   flake.modules.homeManager.gpgagent =
     { pkgs, ... }:
     {
+      nixma.imported.gpgagent = true;
+
       home.packages = [
         pkgs.gnupg
       ];

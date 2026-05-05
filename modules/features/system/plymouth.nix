@@ -2,6 +2,8 @@
   flake.modules.nixos.plymouth =
     { pkgs, ... }:
     {
+      nixma.nixos.imported.plymouth = true;
+
       boot.plymouth = {
         enable = true;
         theme = "rings";

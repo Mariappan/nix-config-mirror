@@ -1,6 +1,8 @@
 { self, ... }:
 {
   flake.modules.nixos.gui = {
+    nixma.nixos.imported.gui = true;
+
     imports = [
       self.modules.nixos.sound
       self.modules.nixos.plymouth

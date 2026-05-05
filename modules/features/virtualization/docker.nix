@@ -2,6 +2,8 @@
   flake.modules.nixos.docker =
     { ... }:
     {
+      nixma.nixos.imported.docker = true;
+
       virtualisation.docker.enable = true;
       virtualisation.docker.autoPrune.enable = true;
       virtualisation.docker.daemon.settings = {

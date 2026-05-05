@@ -4,6 +4,17 @@
     { lib, ... }:
     {
       options.nixma.nixos = {
+        imported = lib.mkOption {
+          type = lib.types.attrsOf lib.types.bool;
+          default = { };
+          internal = true;
+          description = ''
+            Sentinel set by each nixma module/bundle when imported, for
+            introspection (e.g. `just enabled <host>`). Each module adds
+            `config.nixma.nixos.imported.<name> = true;`.
+          '';
+        };
+
         formFactor = lib.mkOption {
           type = lib.types.enum [
             "sbc"
@@ -33,5 +44,7 @@
           '';
         };
       };
+
+      config.nixma.nixos.imported.profile = true;
     };
 }

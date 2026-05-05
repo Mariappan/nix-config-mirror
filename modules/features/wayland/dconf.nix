@@ -4,6 +4,8 @@
     { ... }:
     with inputs.home-manager.lib.hm.gvariant;
     {
+      nixma.imported.dconf = true;
+
       dconf.settings = {
         "org/gnome/Console" = {
           custom-font = "Victor Mono 10";

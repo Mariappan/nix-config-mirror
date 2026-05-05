@@ -3,6 +3,8 @@
   flake.modules.homeManager.noctalia =
     { config, lib, ... }:
     {
+      nixma.imported.noctalia = true;
+
       imports = [ inputs.noctalia.homeModules.default ];
 
       programs.noctalia-shell = {

@@ -7,6 +7,8 @@
       ...
     }:
     lib.mkIf pkgs.stdenv.isLinux {
+      nixma.imported.xdg = true;
+
       xdg.enable = true;
       xdg.userDirs.enable = true;
       xdg.userDirs.createDirectories = true;

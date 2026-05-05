@@ -2,6 +2,8 @@
   flake.modules.homeManager.kanshi =
     { ... }:
     {
+      nixma.imported.kanshi = true;
+
       services.kanshi = {
         enable = true;
         systemdTarget = "graphical-session.target";

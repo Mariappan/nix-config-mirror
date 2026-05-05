@@ -3,6 +3,8 @@
   flake.modules.nixos.zen-browser =
     { ... }:
     {
+      nixma.nixos.imported.zen-browser = true;
+
       imports = [ self.modules.nixos._1password ];
 
       nixma.nixos._1password.allowedBrowsers = [
@@ -17,6 +19,8 @@
   flake.modules.homeManager.zen-browser =
     { ... }:
     {
+      nixma.imported.zen-browser = true;
+
       imports = [
         inputs.zen-browser.homeModules.twilight
       ];

@@ -3,6 +3,8 @@
   flake.modules.homeManager.caelestia =
     { ... }:
     {
+      nixma.imported.caelestia = true;
+
       imports = [ inputs.caelestia-shell.homeManagerModules.default ];
 
       programs.caelestia = {

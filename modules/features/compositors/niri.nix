@@ -3,6 +3,8 @@
   flake.modules.nixos.niri =
     { ... }:
     {
+      nixma.nixos.imported.niri = true;
+
       imports = [
         self.modules.nixos.wayland
         self.modules.nixos.veila
@@ -32,6 +34,8 @@
   flake.modules.homeManager.niri =
     { config, lib, ... }:
     {
+      nixma.imported.niri = true;
+
       imports = [
         self.modules.homeManager.wayland
         self.modules.homeManager.stasis

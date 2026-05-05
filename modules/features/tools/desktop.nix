@@ -3,6 +3,8 @@
   flake.modules.nixos.desktop =
     { ... }:
     {
+      nixma.nixos.imported.desktop = true;
+
       # Grant input group access to hidraw devices (gaming peripherals,
       # programmable keyboards, controllers).
       services.udev.extraRules = ''
@@ -13,6 +15,8 @@
   flake.modules.homeManager.desktop =
     { pkgs, ... }:
     {
+      nixma.imported.desktop = true;
+
       imports = [
         self.modules.homeManager.tmux
         self.modules.homeManager.nvim

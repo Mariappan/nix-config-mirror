@@ -6,6 +6,8 @@
       swwwSystemdService = "swww.service";
     in
     {
+      nixma.imported.swww = true;
+
       systemd.user.services.swww = {
         Unit = {
           Description = "Wallpaper manager";

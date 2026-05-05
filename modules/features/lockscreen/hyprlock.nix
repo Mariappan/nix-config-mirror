@@ -3,6 +3,8 @@
   flake.modules.homeManager.hyprlock =
     { ... }:
     {
+      nixma.imported.hyprlock = true;
+
       programs.hyprlock = {
         enable = true;
         extraConfig = ''

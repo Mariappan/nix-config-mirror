@@ -100,6 +100,8 @@
       };
 
       config = {
+        nixma.nixos.imported.hardware = true;
+
         # LUKS configuration (only if enabled)
         boot.initrd.luks.devices = lib.mkIf (cfg.filesystems.manage && cfg.luks.enable) {
           cryptroot = {

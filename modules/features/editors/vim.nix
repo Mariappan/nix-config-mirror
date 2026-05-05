@@ -3,6 +3,8 @@
   flake.modules.homeManager.vim =
     { ... }:
     {
+      nixma.imported.vim = true;
+
       home.file = {
         "vim" = {
           enable = true;

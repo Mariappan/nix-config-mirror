@@ -3,6 +3,8 @@
   flake.modules.nixos.server =
     { lib, ... }:
     {
+      nixma.nixos.imported.server = true;
+
       imports = [
         self.modules.nixos.headless
       ];

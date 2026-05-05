@@ -2,6 +2,8 @@
   flake.modules.homeManager.ghostty =
     { config, ... }:
     {
+      nixma.imported.ghostty = true;
+
       programs.ghostty.enable = true;
       programs.ghostty.enableFishIntegration = true;
       programs.ghostty.settings = {

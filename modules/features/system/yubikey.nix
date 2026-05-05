@@ -2,6 +2,8 @@
   flake.modules.nixos.yubikey =
     { pkgs, ... }:
     {
+      nixma.nixos.imported.yubikey = true;
+
       # Smart card daemon for PIV / PKCS#11 access.
       services.pcscd.enable = true;
 

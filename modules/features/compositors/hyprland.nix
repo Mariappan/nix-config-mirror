@@ -3,6 +3,8 @@
   flake.modules.nixos.hyprland =
     { ... }:
     {
+      nixma.nixos.imported.hyprland = true;
+
       imports = [ self.modules.nixos.wayland ];
 
       programs.hyprland.enable = true;
@@ -24,6 +26,8 @@
       ...
     }:
     {
+      nixma.imported.hyprland = true;
+
       imports = [
         self.modules.homeManager.wayland
         self.modules.homeManager.kanshi

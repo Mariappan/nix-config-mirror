@@ -3,6 +3,8 @@
   flake.modules.homeManager.earthly =
     { pkgs, ... }:
     {
+      nixma.imported.earthly = true;
+
       home.packages = [
         pkgs.earthly
       ];

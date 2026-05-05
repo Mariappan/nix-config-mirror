@@ -2,6 +2,8 @@
   flake.modules.homeManager.git =
     { pkgs, ... }:
     {
+      nixma.imported.git = true;
+
       home.packages = [
         pkgs.git-absorb
       ];

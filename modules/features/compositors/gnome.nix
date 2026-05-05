@@ -3,6 +3,8 @@
   flake.modules.nixos.gnome =
     { pkgs, ... }:
     {
+      nixma.nixos.imported.gnome = true;
+
       imports = [
         self.modules.nixos.nautilus
         self.modules.nixos.gui

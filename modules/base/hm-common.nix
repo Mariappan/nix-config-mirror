@@ -9,19 +9,32 @@
       hasRole = role: lib.elem role roles;
     in
     {
-      imports =
-        (with self.modules.homeManager; [
-          fish
-          htop
-          vim
-          dotfiles
-          desktop
-        ])
-        ++ lib.optional (hasRole "workstation") self.modules.homeManager.helix;
+      imports = [
+        self.modules.homeManager.fish
+        self.modules.homeManager.htop
+        self.modules.homeManager.vim
+        self.modules.homeManager.dotfiles
+        self.modules.homeManager.desktop
+      ]
+      ++ lib.optional (hasRole "workstation") self.modules.homeManager.helix;
 
-      # Let Home Manager install and manage itself.
-      programs.home-manager.enable = true;
+      options.nixma.imported = lib.mkOption {
+        type = lib.types.attrsOf lib.types.bool;
+        default = { };
+        internal = true;
+        description = ''
+          Sentinel set by each homeManager module when imported, for
+          introspection (e.g. `just enabled-hm <host>`).
+        '';
+      };
 
-      home.stateVersion = "26.05";
+      config = {
+        nixma.imported.hm-common = true;
+
+        # Let Home Manager install and manage itself.
+        programs.home-manager.enable = true;
+
+        home.stateVersion = "26.05";
+      };
     };
 }

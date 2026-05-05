@@ -2,6 +2,8 @@
   flake.modules.homeManager.satty =
     { ... }:
     {
+      nixma.imported.satty = true;
+
       programs.satty = {
         enable = true;
 

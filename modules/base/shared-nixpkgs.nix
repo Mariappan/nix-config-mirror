@@ -3,6 +3,8 @@
   flake.modules.nixos.shared-nixpkgs =
     { ... }:
     {
+      nixma.nixos.imported.shared-nixpkgs = true;
+
       nixpkgs = {
         overlays = [
           self.overlays.default
@@ -20,6 +22,8 @@
   flake.modules.darwin.shared-nixpkgs =
     { ... }:
     {
+      nixma.darwin.imported.shared-nixpkgs = true;
+
       nixpkgs = {
         overlays = [
           self.overlays.default

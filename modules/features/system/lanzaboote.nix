@@ -7,6 +7,8 @@
       ...
     }:
     {
+      nixma.nixos.imported.lanzaboote = true;
+
       imports = [
         inputs.lanzaboote.nixosModules.lanzaboote
       ];

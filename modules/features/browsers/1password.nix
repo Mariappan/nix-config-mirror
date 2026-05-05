@@ -12,6 +12,8 @@
       };
 
       config = {
+        nixma.nixos.imported._1password = true;
+
         programs._1password.enable = true;
         programs._1password-gui.enable = true;
 

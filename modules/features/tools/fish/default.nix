@@ -2,6 +2,8 @@
   flake.modules.homeManager.fish =
     args@{ pkgs, lib, ... }:
     {
+      nixma.imported.fish = true;
+
       xdg.configFile = {
         "gitalias" = {
           enable = true;

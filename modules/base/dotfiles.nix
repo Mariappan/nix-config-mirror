@@ -13,5 +13,7 @@
           without rebuilds. Override per-host if dotfiles live elsewhere.
         '';
       };
+
+      config.nixma.imported.dotfiles = true;
     };
 }

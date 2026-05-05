@@ -2,6 +2,8 @@
   flake.modules.homeManager.dev =
     { pkgs, lib, ... }:
     {
+      nixma.imported.dev = true;
+
       home.packages = [
         pkgs.atuin
         pkgs.devenv

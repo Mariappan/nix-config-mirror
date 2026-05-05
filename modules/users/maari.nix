@@ -101,6 +101,8 @@ in
       };
 
       config = {
+        nixma.nixos.imported.user-maari = true;
+
         users.users.maari = {
           name = "maari";
           home = "/home/maari";
@@ -161,6 +163,8 @@ in
       };
 
       config = {
+        nixma.darwin.imported.user-maari = true;
+
         users.users.${cfg.username} = {
           name = cfg.username;
           home = "/Users/${cfg.username}";

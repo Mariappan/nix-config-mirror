@@ -3,6 +3,8 @@
   flake.modules.homeManager.rust =
     { ... }:
     {
+      nixma.imported.rust = true;
+
       home.file = {
         "cargo" = {
           enable = true;

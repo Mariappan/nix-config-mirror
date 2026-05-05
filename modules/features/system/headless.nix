@@ -2,6 +2,8 @@
   flake.modules.nixos.headless =
     { lib, ... }:
     {
+      nixma.nixos.imported.headless = true;
+
       boot.kernelParams = [
         # when there's an issue, we want the server to reboot, not hang
         "panic=10"

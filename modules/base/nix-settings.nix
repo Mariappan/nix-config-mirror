@@ -7,6 +7,8 @@
       ...
     }:
     {
+      nixma.nixos.imported.nix-settings = true;
+
       # Necessary for using flakes on this system
       nix.settings.experimental-features = [
         "nix-command"

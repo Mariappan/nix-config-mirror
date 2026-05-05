@@ -6,6 +6,8 @@
       veila = inputs.veila.packages.${pkgs.stdenv.system}.veila;
     in
     {
+      nixma.nixos.imported.veila = true;
+
       security.pam.services.veila = {
         unixAuth = true;
         u2fAuth = true;
@@ -55,6 +57,8 @@
       };
 
       config = {
+        nixma.imported.veila = true;
+
         xdg.configFile."veila/config.toml".source = tomlFormat.generate "veila-config" (
           { theme = cfg.theme; } // cfg.settings
         );

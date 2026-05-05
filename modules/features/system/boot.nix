@@ -257,6 +257,8 @@
       };
 
       config = {
+        nixma.nixos.imported.boot = true;
+
         # Bootloader
         boot.loader.efi.canTouchEfiVariables = lib.mkIf (cfg.bootloader != "none") true;
 

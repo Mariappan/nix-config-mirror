@@ -2,6 +2,8 @@
   flake.modules.homeManager.debug =
     { pkgs, ... }:
     {
+      nixma.imported.debug = true;
+
       home.packages = [
         pkgs.tcpdump
         pkgs.dnsutils

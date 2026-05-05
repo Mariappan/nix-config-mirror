@@ -2,6 +2,8 @@
   flake.modules.homeManager.jujutsu =
     { pkgs, lib, ... }:
     {
+      nixma.imported.jujutsu = true;
+
       programs.jujutsu.enable = true;
       programs.jujutsu.settings = {
         ui = {

@@ -6,6 +6,8 @@
       systemdTarget = "graphical-session.target";
     in
     {
+      nixma.imported.stasis = true;
+
       systemd.user.services.stasis = {
         Unit = {
           Description = "Stasis Wayland Idle Manager";

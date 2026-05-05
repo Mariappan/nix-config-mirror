@@ -2,6 +2,8 @@
   flake.modules.nixos.nautilus =
     { pkgs, ... }:
     {
+      nixma.nixos.imported.nautilus = true;
+
       # GVFS enables virtual filesystem support in nautilus (network drives, trash, etc.)
       services.gvfs.enable = true;
 
