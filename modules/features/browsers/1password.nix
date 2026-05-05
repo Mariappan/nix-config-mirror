@@ -1,5 +1,6 @@
 {
-  flake.modules.nixos."1password" = { config, lib, ... }:
+  flake.modules.nixos."1password" =
+    { config, lib, ... }:
     let
       cfg = config.nixma.nixos."1password";
     in

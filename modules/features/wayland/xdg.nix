@@ -1,6 +1,11 @@
 {
   flake.modules.homeManager.xdg =
-    { config, pkgs, lib, ... }:
+    {
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     lib.mkIf pkgs.stdenv.isLinux {
       xdg.enable = true;
       xdg.userDirs.enable = true;

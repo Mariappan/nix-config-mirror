@@ -1,17 +1,77 @@
 { self, ... }:
 {
-  flake.modules.homeManager.nvim = { pkgs, ... }:
+  flake.modules.homeManager.nvim =
+    { pkgs, ... }:
     let
       treesitter-parsers = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
-        p.asm p.bash p.c p.c_sharp p.cpp p.cmake p.comment p.csv p.css
-        p.devicetree p.diff p.disassembly p.dockerfile p.doxygen p.fish
-        p.git_rebase p.gitattributes p.git_config p.gitignore p.go p.gomod
-        p.gosum p.gotmpl p.gowork p.hcl p.helm p.html p.http p.hurl
-        p.java p.javascript p.jq p.json p.llvm p.lua p.luau p.markdown
-        p.meson p.nasm p.ninja p.nix p.nu p.objdump p.passwd p.pem p.perl
-        p.printf p.python p.readline p.regex p.rust p.sql p.ssh_config
-        p.strace p.svelte p.terraform p.tmux p.toml p.tsv p.typescript
-        p.udev p.vim p.vimdoc p.query p.xml p.yaml p.yang p.zig
+        p.asm
+        p.bash
+        p.c
+        p.c_sharp
+        p.cpp
+        p.cmake
+        p.comment
+        p.csv
+        p.css
+        p.devicetree
+        p.diff
+        p.disassembly
+        p.dockerfile
+        p.doxygen
+        p.fish
+        p.git_rebase
+        p.gitattributes
+        p.git_config
+        p.gitignore
+        p.go
+        p.gomod
+        p.gosum
+        p.gotmpl
+        p.gowork
+        p.hcl
+        p.helm
+        p.html
+        p.http
+        p.hurl
+        p.java
+        p.javascript
+        p.jq
+        p.json
+        p.llvm
+        p.lua
+        p.luau
+        p.markdown
+        p.meson
+        p.nasm
+        p.ninja
+        p.nix
+        p.nu
+        p.objdump
+        p.passwd
+        p.pem
+        p.perl
+        p.printf
+        p.python
+        p.readline
+        p.regex
+        p.rust
+        p.sql
+        p.ssh_config
+        p.strace
+        p.svelte
+        p.terraform
+        p.tmux
+        p.toml
+        p.tsv
+        p.typescript
+        p.udev
+        p.vim
+        p.vimdoc
+        p.query
+        p.xml
+        p.yaml
+        p.yang
+        p.zig
       ]);
 
       # Build a combined parser directory from all grammar plugins

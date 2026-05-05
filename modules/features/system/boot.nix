@@ -1,6 +1,13 @@
 # Configurable boot module for NixOS systems
-{ self, ... }: {
-  flake.modules.nixos.boot = { config, lib, pkgs, ... }:
+{ self, ... }:
+{
+  flake.modules.nixos.boot =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       cfg = config.nixma.nixos.boot;
 
@@ -28,7 +35,8 @@
         else
           # Use predefined kernel package
           kernelPackageMap.${cfg.kernelPackage};
-    in {
+    in
+    {
       options.nixma.nixos.boot = {
         bootloader = lib.mkOption {
           type = lib.types.enum [

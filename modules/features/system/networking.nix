@@ -1,7 +1,17 @@
 # Configurable networking module for NixOS systems
-{ self, ... }: {
-  flake.modules.nixos.networking = { config, lib, pkgs, ... }:
-    let cfg = config.nixma.nixos.networking; in {
+{ self, ... }:
+{
+  flake.modules.nixos.networking =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
+    let
+      cfg = config.nixma.nixos.networking;
+    in
+    {
       options.nixma.nixos.networking = {
         resolved = {
           enable = lib.mkOption {

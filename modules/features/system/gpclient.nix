@@ -1,6 +1,12 @@
 # GlobalProtect VPN client with split tunneling support
 {
-  flake.modules.nixos.gpclient = { config, lib, pkgs, ... }:
+  flake.modules.nixos.gpclient =
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       cfg = config.nixma.nixos.gpclient;
 
@@ -112,7 +118,8 @@
             ;;
         esac
       '';
-    in {
+    in
+    {
       options.nixma.nixos.gpclient = {
         enable = lib.mkEnableOption "GlobalProtect VPN client with split tunneling";
 

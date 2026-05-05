@@ -19,17 +19,19 @@
   };
 
   unused = _final: prev: {
-    claude-code = builtins.trace "WARNING: claude-code is pinned to 2.1.116 via overlay. Remove this override" (
-      prev.claude-code.overrideAttrs (oldAttrs: rec {
-        version = "2.1.116";
-        src = prev.fetchurl {
-          url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/${version}/${prev.stdenv.hostPlatform.parsed.kernel.name}-${
-            if prev.stdenv.hostPlatform.isx86_64 then "x64" else "arm64"
-          }/claude";
-          hash = "sha256-DRrqXOBWpc5JHafpu+Y/mSWF5cJIUvAjoHyPGM8pLMU=";
-        };
-      })
-    );
+    claude-code =
+      builtins.trace "WARNING: claude-code is pinned to 2.1.116 via overlay. Remove this override"
+        (
+          prev.claude-code.overrideAttrs (oldAttrs: rec {
+            version = "2.1.116";
+            src = prev.fetchurl {
+              url = "https://storage.googleapis.com/claude-code-dist-86c565f3-f756-42ad-8dfa-d59b1c096819/claude-code-releases/${version}/${prev.stdenv.hostPlatform.parsed.kernel.name}-${
+                if prev.stdenv.hostPlatform.isx86_64 then "x64" else "arm64"
+              }/claude";
+              hash = "sha256-DRrqXOBWpc5JHafpu+Y/mSWF5cJIUvAjoHyPGM8pLMU=";
+            };
+          })
+        );
     hyprlandPlugins.hy3 = prev.hyprlandPlugins.hy3.overrideAttrs (
       finalAttrs: prevAttrs: {
         patches = [ ./hy3_fix.patch ];

@@ -2,7 +2,6 @@
 {
   flake.darwinConfigurations.water = inputs.nix-darwin.lib.darwinSystem {
     modules = [
-      inputs.home-manager.darwinModules.home-manager
 
       self.modules.darwin.common
       self.modules.darwin.user-maari

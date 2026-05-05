@@ -4,7 +4,6 @@
     modules = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
       inputs.agenix.nixosModules.default
-      inputs.home-manager.nixosModules.home-manager
 
       # Base
       self.modules.nixos.common

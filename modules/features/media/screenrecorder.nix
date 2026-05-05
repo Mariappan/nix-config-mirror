@@ -1,5 +1,7 @@
 {
-  flake.modules.nixos.screenrecorder = { ... }: {
-    programs.gpu-screen-recorder.enable = true;
-  };
+  flake.modules.nixos.screenrecorder =
+    { ... }:
+    {
+      programs.gpu-screen-recorder.enable = true;
+    };
 }

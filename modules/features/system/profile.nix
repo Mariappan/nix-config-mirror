@@ -19,11 +19,13 @@
         };
 
         roles = lib.mkOption {
-          type = lib.types.listOf (lib.types.enum [
-            "workstation"
-            "builder"
-            "server"
-          ]);
+          type = lib.types.listOf (
+            lib.types.enum [
+              "workstation"
+              "builder"
+              "server"
+            ]
+          );
           default = [ ];
           description = ''
             Functional roles this host fills. Consumed by feature modules to

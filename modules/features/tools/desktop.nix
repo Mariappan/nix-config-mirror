@@ -1,7 +1,12 @@
 { self, ... }:
 {
   flake.modules.homeManager.desktop =
-    { osConfig, pkgs, lib, ... }:
+    {
+      osConfig,
+      pkgs,
+      lib,
+      ...
+    }:
     let
       isWorkstation = lib.elem "workstation" (osConfig.nixma.nixos.roles or [ "workstation" ]);
     in

@@ -4,7 +4,6 @@
     modules = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-13th-gen
       inputs.agenix.nixosModules.default
-      inputs.home-manager.nixosModules.home-manager
 
       # Base
       self.modules.nixos.common
@@ -147,7 +146,11 @@
               systems = [ "aarch64-linux" ];
               maxJobs = 4;
               # Pi5 with /dev/kvm available — supports kvm-accelerated builds.
-              supportedFeatures = [ "kvm" "big-parallel" "benchmark" ];
+              supportedFeatures = [
+                "kvm"
+                "big-parallel"
+                "benchmark"
+              ];
             };
           };
 

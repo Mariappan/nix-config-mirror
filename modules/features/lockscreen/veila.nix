@@ -27,14 +27,18 @@
     };
 
   flake.modules.homeManager.veila =
-    { config, lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       cfg = config.nixma.veila;
       tomlFormat = pkgs.formats.toml { };
-      themeNames =
-        lib.mapAttrsToList (n: _: lib.removeSuffix ".toml" n)
-          (lib.filterAttrs (n: _: lib.hasSuffix ".toml" n)
-            (builtins.readDir (self + /dotfiles/veila/themes)));
+      themeNames = lib.mapAttrsToList (n: _: lib.removeSuffix ".toml" n) (
+        lib.filterAttrs (n: _: lib.hasSuffix ".toml" n) (builtins.readDir (self + /dotfiles/veila/themes))
+      );
     in
     {
       options.nixma.veila = {
@@ -51,8 +55,9 @@
       };
 
       config = {
-        xdg.configFile."veila/config.toml".source =
-          tomlFormat.generate "veila-config" ({ theme = cfg.theme; } // cfg.settings);
+        xdg.configFile."veila/config.toml".source = tomlFormat.generate "veila-config" (
+          { theme = cfg.theme; } // cfg.settings
+        );
         xdg.configFile."veila/themes".source = self + /dotfiles/veila/themes;
         xdg.configFile."veila/wallpaper".source = self + /wallpapers;
       };

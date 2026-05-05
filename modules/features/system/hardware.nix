@@ -1,7 +1,17 @@
 # Configurable hardware module for NixOS systems
-{ self, ... }: {
-  flake.modules.nixos.hardware = { config, lib, modulesPath, ... }:
-    let cfg = config.nixma.nixos.hardware; in {
+{ self, ... }:
+{
+  flake.modules.nixos.hardware =
+    {
+      config,
+      lib,
+      modulesPath,
+      ...
+    }:
+    let
+      cfg = config.nixma.nixos.hardware;
+    in
+    {
       imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
       options.nixma.nixos.hardware = {
@@ -57,10 +67,12 @@
 
         cpu = {
           vendor = lib.mkOption {
-            type = lib.types.nullOr (lib.types.enum [
-              "intel"
-              "amd"
-            ]);
+            type = lib.types.nullOr (
+              lib.types.enum [
+                "intel"
+                "amd"
+              ]
+            );
             default = null;
             description = ''
               CPU vendor for microcode updates.
@@ -162,10 +174,10 @@
         # SBC has known hardware — skip the installer-scan firmware bundle
         # (linux-firmware + 8 misc blobs) that not-detected.nix imports above.
         # Plain `false` overrides not-detected.nix's mkDefault true.
-        hardware.enableRedistributableFirmware =
-          lib.mkIf (config.nixma.nixos.formFactor == "sbc") false;
-        hardware.wirelessRegulatoryDatabase =
-          lib.mkIf (config.nixma.nixos.formFactor == "sbc") (lib.mkDefault false);
+        hardware.enableRedistributableFirmware = lib.mkIf (config.nixma.nixos.formFactor == "sbc") false;
+        hardware.wirelessRegulatoryDatabase = lib.mkIf (config.nixma.nixos.formFactor == "sbc") (
+          lib.mkDefault false
+        );
       };
     };
 }

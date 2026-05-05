@@ -16,13 +16,15 @@ let
 in
 {
   flake.nixosConfigurations.rock3c = inputs.nixpkgs-rock3c.lib.nixosSystem {
-    specialArgs = { inherit self; inputs = rock3cInputs; };
+    specialArgs = {
+      inherit self;
+      inputs = rock3cInputs;
+    };
     modules = [
       inputs.nixos-hardware-rock3c.nixosModules.rock-3c
       inputs.disko.nixosModules.disko
       "${inputs.nixos-hardware-rock3c}/rockchip/disko.nix"
       inputs.agenix.nixosModules.default
-      inputs.home-manager.nixosModules.home-manager
 
       # Base
       self.modules.nixos.common

@@ -1,7 +1,12 @@
 { self, ... }:
 {
   flake.modules.nixos.documentation =
-    { config, lib, pkgs, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     let
       hasRole = role: lib.elem role config.nixma.nixos.roles;
     in

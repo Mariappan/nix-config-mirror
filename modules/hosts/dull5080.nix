@@ -3,7 +3,6 @@
   flake.nixosConfigurations.dull5080 = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       inputs.agenix.nixosModules.default
-      inputs.home-manager.nixosModules.home-manager
 
       # Base
       self.modules.nixos.common

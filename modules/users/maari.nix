@@ -44,11 +44,13 @@ let
     { lib, osConfig, ... }:
     {
       # nix-index-database carries an 80+ MiB index plus binary.
-      imports =
-        [ self.modules.homeManager.hm-common ]
-        ++ lib.optional ((osConfig.nixma.nixos.formFactor or null) != "sbc")
-          inputs.nix-index-database.homeModules.nix-index
-        ++ cfg.hmModules;
+      imports = [
+        self.modules.homeManager.hm-common
+      ]
+      ++ lib.optional (
+        (osConfig.nixma.nixos.formFactor or null) != "sbc"
+      ) inputs.nix-index-database.homeModules.nix-index
+      ++ cfg.hmModules;
 
       config = {
         programs.git = {
@@ -110,7 +112,8 @@ in
             "networkmanager"
             "vboxusers"
             "input"
-          ] ++ cfg.extraGroups;
+          ]
+          ++ cfg.extraGroups;
           isNormalUser = true;
           openssh.authorizedKeys.keys = cfg.sshKeys;
         };

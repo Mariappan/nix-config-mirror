@@ -1,10 +1,12 @@
 {
-  flake.modules.nixos.fprint = { ... }: {
-    services.fprintd.enable = true;
+  flake.modules.nixos.fprint =
+    { ... }:
+    {
+      services.fprintd.enable = true;
 
-    systemd.services.fprintd = {
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig.Type = "simple";
+      systemd.services.fprintd = {
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig.Type = "simple";
+      };
     };
-  };
 }
