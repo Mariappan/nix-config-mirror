@@ -5,6 +5,8 @@
       sound
       screenrecorder
       plymouth
+      zen-browser
+      _1password
     ];
   };
 }

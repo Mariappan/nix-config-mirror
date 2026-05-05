@@ -8,10 +8,8 @@
       self.modules.nixos.common
 
       # Features
-      self.modules.nixos."1password"
       self.modules.nixos.docker
       self.modules.nixos.niri
-      self.modules.nixos.zen-browser
 
       # Users
       self.modules.nixos.user-maari

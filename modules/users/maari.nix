@@ -135,7 +135,7 @@ in
         home-manager.users.maari = hmConfig cfg;
 
         # Configure 1Password polkit policy for this user
-        programs._1password-gui.polkitPolicyOwners = lib.mkIf (config ? nixma.nixos."1password") [
+        programs._1password-gui.polkitPolicyOwners = lib.mkIf (config ? nixma.nixos._1password) [
           "maari"
         ];
       };

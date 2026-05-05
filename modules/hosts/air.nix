@@ -8,8 +8,6 @@
       self.modules.nixos.common
 
       # Features
-      self.modules.nixos."1password"
-      self.modules.nixos.zen-browser
       self.modules.nixos.docker
       self.modules.nixos.niri
       self.modules.nixos.virtualbox
@@ -94,7 +92,7 @@
             };
           };
 
-          boot.loader.timeout = 3;
+          nixma.nixos.boot.loaderTimeout = 3;
 
           nixma.nixos.networking.tailscale = true;
           nixma.nixos.networking.strictArp = true;

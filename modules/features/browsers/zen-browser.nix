@@ -3,7 +3,7 @@
   flake.modules.nixos.zen-browser =
     { ... }:
     {
-      nixma.nixos."1password".allowedBrowsers = [
+      nixma.nixos._1password.allowedBrowsers = [
         ".zen-wrapped"
         "zen-twilight"
         "zen"

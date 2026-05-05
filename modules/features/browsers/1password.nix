@@ -1,11 +1,11 @@
 {
-  flake.modules.nixos."1password" =
+  flake.modules.nixos._1password =
     { config, lib, ... }:
     let
-      cfg = config.nixma.nixos."1password";
+      cfg = config.nixma.nixos._1password;
     in
     {
-      options.nixma.nixos."1password".allowedBrowsers = lib.mkOption {
+      options.nixma.nixos._1password.allowedBrowsers = lib.mkOption {
         type = lib.types.listOf lib.types.str;
         default = [ ];
         description = "List of allowed browsers for 1Password browser integration";

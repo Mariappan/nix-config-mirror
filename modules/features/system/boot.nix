@@ -38,6 +38,16 @@
     in
     {
       options.nixma.nixos.boot = {
+        loaderTimeout = lib.mkOption {
+          type = lib.types.nullOr lib.types.int;
+          default = null;
+          example = 3;
+          description = ''
+            Bootloader menu timeout in seconds. `null` falls back to the
+            bootloader-specific default (e.g. 10s for Limine).
+          '';
+        };
+
         bootloader = lib.mkOption {
           type = lib.types.enum [
             "systemd-boot"
@@ -276,7 +286,10 @@
           extraEntries = cfg.limine.extraEntries;
         };
 
-        boot.loader.timeout = lib.mkIf (cfg.bootloader == "limine") (lib.mkDefault 10);
+        boot.loader.timeout = lib.mkMerge [
+          (lib.mkIf (cfg.bootloader == "limine") (lib.mkDefault 10))
+          (lib.mkIf (cfg.loaderTimeout != null) cfg.loaderTimeout)
+        ];
 
         # Kernel configuration
         boot.kernelPackages = selectedKernelPackage;
