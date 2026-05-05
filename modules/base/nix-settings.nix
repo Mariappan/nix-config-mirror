@@ -1,10 +1,15 @@
 {
-  flake.modules.nixos.nix-settings = { pkgs, ... }: {
+  flake.modules.nixos.nix-settings = { config, lib, pkgs, ... }: {
     # Necessary for using flakes on this system
     nix.settings.experimental-features = [
       "nix-command"
       "flakes"
     ];
+
+    # Disable default nix registry in SBC hosts
+    # Use: nix shell github:NixOS/nixpkgs#htop
+    nix.registry = lib.mkIf (config.nixma.nixos.formFactor == "sbc") (lib.mkForce { });
+    nix.channel.enable = lib.mkIf (config.nixma.nixos.formFactor == "sbc") false;
 
     # Automatic store optimization
     nix.optimise.automatic = true;
