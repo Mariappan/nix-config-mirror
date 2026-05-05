@@ -86,8 +86,11 @@ in
           services.resolved.settings.Resolve.DNSSEC = lib.mkForce "false";
 
           # NixOS-native partition grow on first boot (initrd-level growpart).
-          # Preserves the disk-main-root partlabel disko set up.
+          # Preserves the disk-main-root partlabel disko set up. Pair with
+          # autoResize on the ext4 root so resize2fs extends the filesystem
+          # to fill the grown partition before mount.
           boot.growPartition = true;
+          fileSystems."/".autoResize = true;
 
           # Firmware needed for rock3c:
           #   brcm + cypress: AP6256 (BCM43455) wifi + bluetooth.
