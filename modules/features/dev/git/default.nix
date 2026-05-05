@@ -1,6 +1,13 @@
 {
   flake.modules.homeManager.git =
-    { pkgs, ... }:
+    {
+      pkgs,
+      osConfig,
+      ...
+    }:
+    let
+      isWorkstation = builtins.elem "workstation" (osConfig.nixma.nixos.roles or [ ]);
+    in
     {
       nixma.imported.git = true;
 
@@ -8,10 +15,10 @@
         pkgs.git-absorb
       ];
 
-      programs.gitui.enable = true;
+      programs.gitui.enable = isWorkstation;
 
       programs.git.enable = true;
-      programs.git.lfs.enable = true;
+      programs.git.lfs.enable = isWorkstation;
       programs.git.ignores = import ./_ignores.nix;
 
       programs.git.settings = {
@@ -52,16 +59,18 @@
         };
       };
 
-      programs.delta.enable = true;
-      programs.delta.enableGitIntegration = true;
-      programs.delta.options = {
-        decorations = {
-          commit-decoration-style = "bold yellow box ul";
-          file-decoration-style = "none";
-          file-style = "bold yellow ul";
+      programs.delta = {
+        enable = isWorkstation;
+        enableGitIntegration = isWorkstation;
+        options = {
+          decorations = {
+            commit-decoration-style = "bold yellow box ul";
+            file-decoration-style = "none";
+            file-style = "bold yellow ul";
+          };
+          features = "line-numbers decorations";
+          whitespace-error-style = "22 reverse";
         };
-        features = "line-numbers decorations";
-        whitespace-error-style = "22 reverse";
       };
     };
 }

@@ -1,4 +1,4 @@
-{ self, ... }:
+{ self, inputs, ... }:
 {
   flake.modules.darwin.common =
     { pkgs, ... }:
@@ -12,6 +12,13 @@
       ];
 
       nixma.darwin.imported.common = true;
+
+      # Darwin hosts are always workstations — load workstation HM modules.
+      home-manager.sharedModules = [
+        self.modules.homeManager.desktop
+        self.modules.homeManager.helix
+        inputs.nix-index-database.homeModules.nix-index
+      ];
 
       # Should not be hardcoded. But I am not gonna buy x64 macbook anytime
       # So this is fine for now

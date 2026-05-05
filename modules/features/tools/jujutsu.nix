@@ -1,6 +1,11 @@
 {
   flake.modules.homeManager.jujutsu =
-    { pkgs, lib, ... }:
+    {
+      pkgs,
+      lib,
+      osConfig,
+      ...
+    }:
     {
       nixma.imported.jujutsu = true;
 
@@ -153,10 +158,9 @@
         };
       };
 
-      home.packages = [
-      ]
-      ++ lib.optionals pkgs.stdenv.isLinux [
-        pkgs.meld
-      ];
+      # meld gtk closure (~150 MiB) — workstation HM only.
+      home.packages = lib.optional (builtins.elem "workstation" (
+        osConfig.nixma.nixos.roles or [ ]
+      )) pkgs.meld;
     };
 }

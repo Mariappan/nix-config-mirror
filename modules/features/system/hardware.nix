@@ -159,8 +159,9 @@
         # Enable fstrim for SSD
         services.fstrim.enable = true;
 
-        # Thunderbolt manager daemon boltctl
-        services.hardware.bolt.enable = true;
+        # Thunderbolt manager daemon boltctl — desktop/laptop only.
+        # SBC has no thunderbolt; bolt also pulls polkit + glib (~30 MiB closure).
+        services.hardware.bolt.enable = config.nixma.nixos.formFactor != "sbc";
 
         # Platform
         nixpkgs.hostPlatform = lib.mkDefault cfg.hostPlatform;

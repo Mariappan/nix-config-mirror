@@ -15,7 +15,6 @@
         self.modules.nixos.hardware
         self.modules.nixos.boot
         self.modules.nixos.networking
-        self.modules.nixos.kmscon
       ];
 
       environment.systemPackages = [
