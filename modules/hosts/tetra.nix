@@ -50,7 +50,6 @@
 
             # HM features (replaces bundle-tetra)
             hmModules = with self.modules.homeManager; [
-              desktop
               moderntools
               git
               jujutsu

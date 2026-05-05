@@ -15,6 +15,7 @@
           htop
           vim
           dotfiles
+          desktop
         ])
         ++ lib.optional (hasRole "workstation") self.modules.homeManager.helix;
 

@@ -16,7 +16,6 @@
 
             # HM features (replaces bundle-water)
             hmModules = with self.modules.homeManager; [
-              desktop
               dev
               git
               jujutsu

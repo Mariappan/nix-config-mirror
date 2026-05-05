@@ -53,7 +53,6 @@
 
             # HM features (replaces bundle-air)
             hmModules = with self.modules.homeManager; [
-              desktop
               moderntools
               git
               jujutsu

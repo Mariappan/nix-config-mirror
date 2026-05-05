@@ -51,7 +51,6 @@
 
             # HM features (replaces bundle-rock480)
             hmModules = with self.modules.homeManager; [
-              desktop
               moderntools
               git
               jujutsu

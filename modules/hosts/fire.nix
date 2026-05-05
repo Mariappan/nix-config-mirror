@@ -19,7 +19,6 @@
 
             # HM features (replaces bundle-fire)
             hmModules = with self.modules.homeManager; [
-              desktop
               dev
               earthly
               git
