@@ -3,14 +3,12 @@
   flake.nixosConfigurations.air = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-13th-gen
-      inputs.agenix.nixosModules.default
 
       # Base
       self.modules.nixos.common
       self.modules.nixos.hardware
       self.modules.nixos.boot
       self.modules.nixos.networking
-      self.modules.nixos.i18n
       self.modules.nixos.shared-fonts
 
       # Features

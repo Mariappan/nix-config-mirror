@@ -24,14 +24,12 @@ in
       inputs.nixos-hardware-rock3c.nixosModules.rock-3c
       inputs.disko.nixosModules.disko
       "${inputs.nixos-hardware-rock3c}/rockchip/disko.nix"
-      inputs.agenix.nixosModules.default
 
       # Base
       self.modules.nixos.common
       self.modules.nixos.hardware
       self.modules.nixos.boot
       self.modules.nixos.networking
-      self.modules.nixos.i18n
 
       # Features
       self.modules.nixos.headless

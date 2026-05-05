@@ -3,14 +3,12 @@
   flake.nixosConfigurations.rock480 = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
-      inputs.agenix.nixosModules.default
 
       # Base
       self.modules.nixos.common
       self.modules.nixos.hardware
       self.modules.nixos.boot
       self.modules.nixos.networking
-      self.modules.nixos.i18n
       self.modules.nixos.shared-fonts
 
       # Features

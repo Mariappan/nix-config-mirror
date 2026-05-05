@@ -2,14 +2,12 @@
 {
   flake.nixosConfigurations.dull5080 = inputs.nixpkgs.lib.nixosSystem {
     modules = [
-      inputs.agenix.nixosModules.default
 
       # Base
       self.modules.nixos.common
       self.modules.nixos.hardware
       self.modules.nixos.boot
       self.modules.nixos.networking
-      self.modules.nixos.i18n
 
       # Features
       self.modules.nixos.docker
