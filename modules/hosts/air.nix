@@ -31,6 +31,7 @@
       self.modules.nixos.gpclient
       self.modules.nixos.kmscon
       self.modules.nixos.remoteBuilders
+      self.modules.nixos.yubikey
 
       # Users
       self.modules.nixos.user-maari
@@ -154,7 +155,6 @@
           services.printing.enable = true;
           services.fwupd.enable = true;
 
-          programs.yubikey-touch-detector.enable = true;
           programs.vscode.enable = true;
           programs.vscode.extensions = with pkgs.vscode-extensions; [
             ms-vsliveshare.vsliveshare
@@ -162,15 +162,6 @@
           ];
 
           services.logind.settings.Login.HandlePowerKey = "ignore";
-
-          services.udev.extraRules = ''
-            ACTION=="remove",\
-             ENV{ID_BUS}=="usb",\
-             ENV{ID_MODEL_ID}=="0407",\
-             ENV{ID_VENDOR_ID}=="1050",\
-             ENV{ID_VENDOR}=="Yubico",\
-             RUN+="${pkgs.systemd}/bin/loginctl lock-sessions"
-          '';
         }
       )
     ];
