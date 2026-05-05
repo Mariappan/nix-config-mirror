@@ -11,6 +11,11 @@
         profile
         documentation
         agenix
+        hardware
+        boot
+        networking
+        laptop
+        headless
       ];
 
       environment.systemPackages = [

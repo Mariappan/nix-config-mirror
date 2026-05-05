@@ -6,9 +6,6 @@
 
       # Base
       self.modules.nixos.common
-      self.modules.nixos.hardware
-      self.modules.nixos.boot
-      self.modules.nixos.networking
       self.modules.nixos.shared-fonts
 
       # Features
@@ -17,7 +14,6 @@
       self.modules.nixos.docker
       self.modules.nixos.fprint
       self.modules.nixos.hidraw
-      self.modules.nixos.laptop
       self.modules.nixos.niri
       self.modules.nixos.plymouth
       self.modules.nixos.screenrecorder

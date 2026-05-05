@@ -5,16 +5,12 @@
 
       # Base
       self.modules.nixos.common
-      self.modules.nixos.hardware
-      self.modules.nixos.boot
-      self.modules.nixos.networking
       self.modules.nixos.shared-fonts
 
       # Features
       self.modules.nixos."1password"
       self.modules.nixos.zen-browser
       self.modules.nixos.docker
-      self.modules.nixos.headless
       self.modules.nixos.hidraw
       self.modules.nixos.niri
       self.modules.nixos.nvidia

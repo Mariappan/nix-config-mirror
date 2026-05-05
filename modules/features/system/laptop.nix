@@ -7,6 +7,7 @@
     }:
     let
       cfg = config.nixma.nixos.laptop;
+      isLaptop = config.nixma.nixos.formFactor == "laptop";
     in
     {
       options.nixma.nixos.laptop = {
@@ -17,7 +18,7 @@
         };
       };
 
-      config = {
+      config = lib.mkIf isLaptop {
         services.logind.settings.Login.HandleLidSwitch =
           if cfg.supportHibernate then "suspend-then-hibernate" else "suspend";
         services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
@@ -41,9 +42,6 @@
             turbo = "auto";
           };
         };
-
-        # powerManagement.enable = true;
-        # powerManagement.powertop.enable = true;
       };
     };
 }

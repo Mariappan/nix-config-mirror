@@ -27,12 +27,8 @@ in
 
       # Base
       self.modules.nixos.common
-      self.modules.nixos.hardware
-      self.modules.nixos.boot
-      self.modules.nixos.networking
 
       # Features
-      self.modules.nixos.headless
 
       # Users
       self.modules.nixos.user-maari
