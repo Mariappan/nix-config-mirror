@@ -19,8 +19,6 @@
       self.modules.nixos.sound
       self.modules.nixos.virtualbox
       self.modules.nixos.gpclient
-      self.modules.nixos.kmscon
-      self.modules.nixos.remoteBuilders
       self.modules.nixos.yubikey
 
       # Users

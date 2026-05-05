@@ -17,6 +17,8 @@
         laptop
         headless
         desktop
+        kmscon
+        remoteBuilders
       ];
 
       environment.systemPackages = [
