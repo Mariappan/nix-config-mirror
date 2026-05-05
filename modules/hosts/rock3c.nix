@@ -88,6 +88,22 @@ in
           # NixOS-native partition grow on first boot (initrd-level growpart).
           # Preserves the disk-main-root partlabel disko set up.
           boot.growPartition = true;
+
+          # Firmware needed for rock3c:
+          #   brcm + cypress: AP6256 (BCM43455) wifi + bluetooth.
+          #   rockchip: DisplayPort TX (dptx.bin) blob loaded by rk3568 DRM.
+          hardware.firmware = [
+            (pkgs.runCommand "rock3c-firmware" { } ''
+              mkdir -p $out/lib/firmware
+              for d in brcm cypress rockchip; do
+                cp -r ${pkgs.linux-firmware}/lib/firmware/$d $out/lib/firmware/
+              done
+            '')
+          ];
+
+          # Re-enable wireless regulatory database (default-disabled by SBC
+          # profile in modules/features/system/hardware.nix).
+          hardware.wirelessRegulatoryDatabase = lib.mkForce true;
         }
       )
     ];

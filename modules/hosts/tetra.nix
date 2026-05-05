@@ -20,7 +20,6 @@
       self.modules.nixos.docker
       self.modules.nixos.headless
       self.modules.nixos.hidraw
-      self.modules.nixos.manpages
       self.modules.nixos.niri
       self.modules.nixos.nvidia
       self.modules.nixos.plymouth

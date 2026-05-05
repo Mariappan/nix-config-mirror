@@ -158,6 +158,14 @@
         hardware.cpu.amd.updateMicrocode = lib.mkIf (cfg.cpu.vendor == "amd") (
           lib.mkDefault config.hardware.enableRedistributableFirmware
         );
+
+        # SBC has known hardware — skip the installer-scan firmware bundle
+        # (linux-firmware + 8 misc blobs) that not-detected.nix imports above.
+        # Plain `false` overrides not-detected.nix's mkDefault true.
+        hardware.enableRedistributableFirmware =
+          lib.mkIf (config.nixma.nixos.formFactor == "sbc") false;
+        hardware.wirelessRegulatoryDatabase =
+          lib.mkIf (config.nixma.nixos.formFactor == "sbc") (lib.mkDefault false);
       };
     };
 }
