@@ -12,9 +12,6 @@
       self.modules.nixos.docker
       self.modules.nixos.niri
       self.modules.nixos.nvidia
-      self.modules.nixos.plymouth
-      self.modules.nixos.screenrecorder
-      self.modules.nixos.sound
       self.modules.nixos.virtualbox
 
       # Users

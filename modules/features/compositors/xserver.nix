@@ -1,7 +1,10 @@
+{ self, ... }:
 {
   flake.modules.nixos.xserver =
     { pkgs, ... }:
     {
+      imports = [ self.modules.nixos.gui ];
+
       services.xserver = {
         # Enable the X11 windowing system.
         enable = true;

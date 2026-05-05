@@ -14,9 +14,6 @@
       self.modules.nixos.docker
       self.modules.nixos.fprint
       self.modules.nixos.niri
-      self.modules.nixos.plymouth
-      self.modules.nixos.screenrecorder
-      self.modules.nixos.sound
       self.modules.nixos.virtualbox
       self.modules.nixos.gpclient
       self.modules.nixos.yubikey

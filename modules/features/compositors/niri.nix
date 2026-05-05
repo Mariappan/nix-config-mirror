@@ -4,9 +4,9 @@
     { ... }:
     {
       imports = [
+        inputs.noctalia.nixosModules.default
         self.modules.nixos.wayland
         self.modules.nixos.veila
-        inputs.noctalia.nixosModules.default
       ];
 
       programs.niri.enable = true;

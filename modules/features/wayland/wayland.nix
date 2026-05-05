@@ -7,6 +7,7 @@
         self.modules.nixos.wayland-dm
         self.modules.nixos.nautilus
         self.modules.nixos.shared-fonts
+        self.modules.nixos.gui
       ];
 
       programs.dconf.enable = true;

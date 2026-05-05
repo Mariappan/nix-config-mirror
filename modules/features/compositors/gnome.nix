@@ -3,7 +3,10 @@
   flake.modules.nixos.gnome =
     { pkgs, ... }:
     {
-      imports = [ self.modules.nixos.nautilus ];
+      imports = [
+        self.modules.nixos.nautilus
+        self.modules.nixos.gui
+      ];
 
       # Enable the GNOME Desktop Environment.
       services.displayManager.gdm.enable = true;
