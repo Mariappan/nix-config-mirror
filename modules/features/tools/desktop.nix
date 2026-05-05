@@ -1,5 +1,20 @@
 { self, ... }:
 {
+  flake.modules.nixos.desktop =
+    { config, lib, ... }:
+    let
+      isWorkstation = lib.elem "workstation" config.nixma.nixos.roles;
+    in
+    {
+      config = lib.mkIf isWorkstation {
+        # Grant input group access to hidraw devices (gaming peripherals,
+        # programmable keyboards, controllers).
+        services.udev.extraRules = ''
+          KERNEL=="hidraw*", GROUP="input", TAG+="uaccess"
+        '';
+      };
+    };
+
   flake.modules.homeManager.desktop =
     {
       osConfig,

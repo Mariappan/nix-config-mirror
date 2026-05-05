@@ -16,6 +16,7 @@
         networking
         laptop
         headless
+        desktop
       ];
 
       environment.systemPackages = [

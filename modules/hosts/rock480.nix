@@ -12,7 +12,6 @@
       self.modules.nixos.bluetooth
       self.modules.nixos.docker
       self.modules.nixos.fprint
-      self.modules.nixos.hidraw
       self.modules.nixos.niri
       self.modules.nixos.plymouth
       self.modules.nixos.screenrecorder

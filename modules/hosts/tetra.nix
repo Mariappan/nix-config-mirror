@@ -10,7 +10,6 @@
       self.modules.nixos."1password"
       self.modules.nixos.zen-browser
       self.modules.nixos.docker
-      self.modules.nixos.hidraw
       self.modules.nixos.niri
       self.modules.nixos.nvidia
       self.modules.nixos.plymouth
