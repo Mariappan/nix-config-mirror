@@ -6,7 +6,6 @@
 
       # Base
       self.modules.nixos.common
-      self.modules.nixos.shared-fonts
 
       # Features
       self.modules.nixos."1password"
