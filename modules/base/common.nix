@@ -19,7 +19,6 @@
         pkgs.curl
         pkgs.file
         pkgs.iputils
-        pkgs.helix
         pkgs.opensc
         pkgs.openssh
         pkgs.procps
