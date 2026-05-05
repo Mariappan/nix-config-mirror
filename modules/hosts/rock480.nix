@@ -9,9 +9,7 @@
 
       # Features
       self.modules.nixos."1password"
-      self.modules.nixos.bluetooth
       self.modules.nixos.docker
-      self.modules.nixos.fprint
       self.modules.nixos.niri
       self.modules.nixos.zen-browser
 
@@ -50,6 +48,9 @@
           # Profile
           nixma.nixos.formFactor = "laptop";
           nixma.nixos.roles = [ "workstation" ];
+
+          nixma.nixos.bluetooth.enable = true;
+          nixma.nixos.fprint.enable = true;
 
           # Hardware configuration
           nixma.nixos.hardware = {

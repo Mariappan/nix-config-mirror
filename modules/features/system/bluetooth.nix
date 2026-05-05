@@ -11,6 +11,8 @@
     in
     {
       options.nixma.nixos.bluetooth = {
+        enable = lib.mkEnableOption "Bluetooth stack (BlueZ + experimental battery, auto-enable)";
+
         reloadDriverAfterHibernate = lib.mkOption {
           type = lib.types.bool;
           default = false;
@@ -18,7 +20,7 @@
         };
       };
 
-      config = {
+      config = lib.mkIf cfg.enable {
         hardware.bluetooth = {
           enable = true;
           powerOnBoot = true;

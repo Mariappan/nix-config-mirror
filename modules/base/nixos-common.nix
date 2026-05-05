@@ -19,6 +19,8 @@
         desktop
         kmscon
         remoteBuilders
+        bluetooth
+        fprint
       ];
 
       environment.systemPackages = [

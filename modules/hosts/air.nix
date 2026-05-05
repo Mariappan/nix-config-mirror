@@ -10,9 +10,7 @@
       # Features
       self.modules.nixos."1password"
       self.modules.nixos.zen-browser
-      self.modules.nixos.bluetooth
       self.modules.nixos.docker
-      self.modules.nixos.fprint
       self.modules.nixos.niri
       self.modules.nixos.virtualbox
       self.modules.nixos.gpclient
@@ -100,6 +98,9 @@
 
           nixma.nixos.networking.tailscale = true;
           nixma.nixos.networking.strictArp = true;
+
+          nixma.nixos.bluetooth.enable = true;
+          nixma.nixos.fprint.enable = true;
 
           home-manager.sharedModules = [
             {
