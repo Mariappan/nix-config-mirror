@@ -148,7 +148,6 @@
           };
 
           services.printing.enable = true;
-          services.fwupd.enable = true;
 
           programs.vscode.enable = true;
           programs.vscode.extensions = with pkgs.vscode-extensions; [

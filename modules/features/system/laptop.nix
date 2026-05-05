@@ -29,6 +29,9 @@
         services.upower.enable = true;
         # services.power-profiles-daemon.enable = true;
 
+        # Firmware updates via LVFS (BIOS, EC, dock firmware).
+        services.fwupd.enable = true;
+
         services.auto-cpufreq.enable = true;
         services.auto-cpufreq.settings = {
           battery = {
