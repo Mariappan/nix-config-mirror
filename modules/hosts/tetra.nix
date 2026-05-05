@@ -3,7 +3,6 @@
   flake.nixosConfigurations.tetra = inputs.nixpkgs.lib.nixosSystem {
     modules = [
       inputs.agenix.nixosModules.default
-      inputs.noctalia.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
 
       # Base

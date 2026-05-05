@@ -4,7 +4,6 @@
     modules = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-13th-gen
       inputs.agenix.nixosModules.default
-      inputs.noctalia.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
 
       # Base
