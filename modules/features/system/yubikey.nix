@@ -5,6 +5,11 @@
       # Smart card daemon for PIV / PKCS#11 access.
       services.pcscd.enable = true;
 
+      # Enable U2F PAM module — also triggers the upstream polkit-agent-helper@
+      # sandbox relaxation needed for pam_u2f.so to read /dev/hidraw* and
+      # ~/.config/Yubico/u2f_keys.
+      security.pam.u2f.enable = true;
+
       # OpenSC: drivers + utilities (opensc-tool, pkcs11-tool).
       environment.systemPackages = [ pkgs.opensc ];
 
