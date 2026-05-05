@@ -104,6 +104,21 @@
           type = lib.types.bool;
           default = false;
         };
+
+        backend = lib.mkOption {
+          type = lib.types.enum [
+            "networkmanager"
+            "networkd"
+          ];
+          default = "networkmanager";
+          description = ''
+            Network management backend:
+            - "networkmanager": full-featured stack with profile/modem support
+              (default; suits laptops and workstations).
+            - "networkd": lean systemd-networkd with a match-all DHCP ethernet
+              profile (suits headless SBC servers; drops libqmi ~70 MiB).
+          '';
+        };
       };
 
       config = {
@@ -113,21 +128,27 @@
           "net.ipv4.conf.all.arp_announce" = 2;
         };
 
-        # NetworkManager handles network connections
-        networking.networkmanager.enable = true;
-        # NetworkManager handles DHCP, so useDHCP is not needed
-        # networking.useDHCP = true;
+        # NetworkManager backend
+        networking.networkmanager = lib.mkIf (cfg.backend == "networkmanager") {
+          enable = true;
+          # mDNS for NM connections (used by systemd-resolved).
+          connectionConfig."connection.mdns" = 2;
+          # Dispatcher script to disable WiFi when wired link is up.
+          dispatcherScripts = lib.mkIf cfg.wiredWifiToggle [
+            {
+              source = "${pkgs.nixma.wired_wifi_toggle}/bin/wired_wifi_toggle";
+              type = "basic";
+            }
+          ];
+        };
 
-        # Enable mDNS for NetworkManager connections (used by systemd-resolved)
-        networking.networkmanager.connectionConfig."connection.mdns" = 2;
-
-        # NetworkManager dispatcher script to disable WiFi when wired connection is active
-        networking.networkmanager.dispatcherScripts = lib.mkIf cfg.wiredWifiToggle [
-          {
-            source = "${pkgs.nixma.wired_wifi_toggle}/bin/wired_wifi_toggle";
-            type = "basic";
-          }
-        ];
+        # systemd-networkd backend
+        networking.useNetworkd = cfg.backend == "networkd";
+        networking.useDHCP = lib.mkDefault (cfg.backend == "networkd");
+        systemd.network.networks."10-wired" = lib.mkIf (cfg.backend == "networkd") {
+          matchConfig.Type = "ether";
+          networkConfig.DHCP = "yes";
+        };
 
         # Enable firewall
         networking.firewall.enable = true;
@@ -158,7 +179,7 @@
         # Enable the OpenSSH daemon.
         services.openssh.enable = true;
         users.users.root.openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P"
+          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFHYrhaeqkEaPmFxqfm8U26nBYU81cqPDTfd2PX96m0P 1password@xvpn"
           "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3bwlIYLqj7YgfDNhFoAWgP5hg9+TOXmhnRZM9R8Bfi"
         ];
 

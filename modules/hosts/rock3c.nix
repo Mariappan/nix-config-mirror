@@ -42,9 +42,9 @@ in
         { lib, pkgs, ... }:
         {
           # Default 2 GiB is too small for the rock3c closure (kernel +
-          # linux-firmware alone is ~700 MiB). Bump to 8 GiB so the disko
+          # linux-firmware alone is ~700 MiB). Bump to 4 GiB so the disko
           # imageBuilder VM has room for the full system store copy.
-          disko.devices.disk.main.imageSize = lib.mkForce "5G";
+          disko.devices.disk.main.imageSize = lib.mkForce "4G";
 
           nixma.users.maari = {
             email = "1221719+nappairam@users.noreply.github.com";
@@ -78,6 +78,9 @@ in
 
           networking.hostName = "rock3c";
           time.timeZone = "Asia/Singapore";
+
+          # Lean network stack — drops NetworkManager + libqmi (~70 MiB).
+          nixma.nixos.networking.backend = "networkd";
 
           # Rock3C has no RTC battery → clock resets to epoch on power loss.
           # systemd-resolved DNSSEC then rejects "future" signatures, blocking
