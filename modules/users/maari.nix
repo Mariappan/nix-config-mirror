@@ -41,12 +41,14 @@ let
 
   hmConfig =
     cfg:
-    { lib, ... }:
+    { lib, osConfig, ... }:
     {
-      imports = [
-        self.modules.homeManager.hm-common
-        inputs.nix-index-database.homeModules.nix-index
-      ] ++ cfg.hmModules;
+      # nix-index-database carries an 80+ MiB index plus binary.
+      imports =
+        [ self.modules.homeManager.hm-common ]
+        ++ lib.optional ((osConfig.nixma.nixos.formFactor or null) != "sbc")
+          inputs.nix-index-database.homeModules.nix-index
+        ++ cfg.hmModules;
 
       config = {
         programs.git = {
