@@ -266,13 +266,14 @@ window-rule {
     match app-id="^1Password$"
     match app-id="^1password$"
     match app-id="^org.telegram.desktop$"
-    match title="^VirtualBox "
     match app-id="^imv"
     match app-id="^mpv"
     match app-id="^spotify"
     match app-id="^io.github.tobagin.karere"
     match title="^Vicinae Launcher"
     match title="^Select what to share$"
+    match app-id="^VirtualBox "
+    match title="^VirtualBox "
 
     open-floating true
 }
@@ -607,6 +608,7 @@ binds {
     // Core Noctalia binds
     Mod+Space hotkey-overlay-title="Open Launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
     Mod+S { spawn-sh "noctalia-shell ipc call settings toggle"; }
+    Mod+Shift+S hotkey-overlay-title="Restart Noctalia Shell" { spawn-sh "pkill -x .quickshell-wra; sleep 0.2; noctalia-shell"; }
 
     // Audio controls
     XF86AudioRaiseVolume { spawn-sh "noctalia-shell ipc call volume increase"; }

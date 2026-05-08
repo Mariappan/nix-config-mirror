@@ -68,7 +68,7 @@
           # Boot configuration
           nixma.nixos.boot = {
             bootloader = "limine";
-            kernelPackage = "default";
+            kernelPackage = "latest";
             blacklistedKernelModules = [ "kvm-intel" ];
             tmpfs = {
               enable = true;

@@ -37,21 +37,6 @@
         patches = [ ./hy3_fix.patch ];
       }
     );
-    vivaldi-wayland = prev.vivaldi.override {
-      commandLineArgs = ''
-        --enable-features=UseOzonePlatform
-        --ozone-platform=wayland
-        --ozone-platform-hint=auto
-        --enable-features=WaylandWindowDecorations
-      '';
-    };
-
-    slack = prev.slack.overrideAttrs (oldAttrs: {
-      postInstall = (oldAttrs.postInstall or "") + ''
-        substituteInPlace $out/share/applications/slack.desktop \
-          --replace-fail 'bin/slack -s' 'bin/slack --ozone-platform=wayland -s'
-      '';
-    });
     wayprompt = prev.wayprompt.overrideAttrs (oldAttrs: {
       version = "66fe87408d3cfba8c8cc6ff65c1868e5db6ad3bb";
       src = prev.fetchFromSourcehut {
