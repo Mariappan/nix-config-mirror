@@ -126,12 +126,26 @@
           time.timeZone = "Asia/Singapore";
 
           nixma.nixos.remoteBuilders = {
-            machines.indiarpi = {
-              hostName = "indiarpi.bittern-pirate.ts.net";
+            # machines.indiarpi = {
+            #   hostName = "indiarpi.bittern-pirate.ts.net";
+            #   sshUser = "maari";
+            #   systems = [ "aarch64-linux" ];
+            #   maxJobs = 4;
+            #   # Pi5 with /dev/kvm available — supports kvm-accelerated builds.
+            #   supportedFeatures = [
+            #     "kvm"
+            #     "big-parallel"
+            #     "benchmark"
+            #   ];
+            # };
+            machines.vim3 = {
+              hostName = "10.89.20.101";
               sshUser = "maari";
               systems = [ "aarch64-linux" ];
-              maxJobs = 4;
-              # Pi5 with /dev/kvm available — supports kvm-accelerated builds.
+              # 6 cores (4×A53 + 2×A73) but only 3.7 GiB RAM — keep parallel
+              # builds modest to avoid OOM on heavy aarch64 closures.
+              maxJobs = 2;
+              speedFactor = 1;
               supportedFeatures = [
                 "kvm"
                 "big-parallel"
