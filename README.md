@@ -273,6 +273,10 @@ Show your appreciation to those who have contributed to the project.
 
 - QuickShell config - https://github.com/TLSingh1/dotfiles/tree/main/modules/wm/quickshell
 
+## Per-host docs
+
+- [Khadas VIM3 (A311D)](docs/vim3.md) — boot chain, u-boot variants, eMMC layout, OOWOW, WOL, builder setup
+
 ## License
 [WTFPL](https://spdx.org/licenses/WTFPL.html)
 
