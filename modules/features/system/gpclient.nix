@@ -163,11 +163,6 @@
         age.secrets = {
           gpclient-networks.file = cfg.secrets.networksFile;
           gpclient-domains.file = cfg.secrets.domainsFile;
-          gpclient-config = {
-            file = cfg.secrets.configFile;
-            group = "users";
-            mode = "0440";
-          };
         };
 
         # NetworkManager dispatcher script for split tunneling
@@ -180,10 +175,6 @@
 
         home-manager.sharedModules = [
           {
-            systemd.user.tmpfiles.rules = lib.mkIf pkgs.stdenv.isLinux [
-              "L %h/.config/environment.d/500-gpconfig.conf - - - - ${config.age.secrets.gpclient-config.path}"
-            ];
-
             home.packages = lib.mkIf pkgs.stdenv.isLinux [
               pkgs._2511.gpclient
             ];
