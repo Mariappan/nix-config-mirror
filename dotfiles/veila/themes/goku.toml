@@ -1,4 +1,4 @@
-# goku — dusk-desert vibe
+# goku — dusk-desert vibe (veila 0.3.0)
 # Palette sampled from wallpaper: warm peach accents, deep teal darks.
 
 [background]
@@ -6,13 +6,8 @@ mode = "file"
 path = "/home/maari/.config/veila/wallpaper/goku.jpg"
 color = "#1a1414"
 scaling = "fill"
-blur_radius = 0
+blur_strength = 0
 dim_strength = 0
-
-[lock]
-user_hint = "maari"
-show_username = false
-avatar_path = "/home/maari/.face.jpg"
 
 [battery]
 enabled = true
@@ -21,26 +16,35 @@ enabled = true
 enabled = false
 
 [visuals.clock]
+enabled = true
 format = "24h"
-meridiem_size = 3
-meridiem_offset_x = 6
-meridiem_offset_y = 7
 font_family = "Oswald"
 font_weight = 700
 color = "rgba(242, 165, 120, 0.95)"
-size = 22
-gap = 16
+font_size = 110
+meridiem_font_size = 16
+meridiem_x = 6
+meridiem_y = 7
+halign = "center"
+valign = "top"
+x = 0
+y = 60
 
 [visuals.date]
+enabled = true
 font_family = "DejaVu Serif"
 font_weight = 400
 color = "rgba(234, 157, 119, 0.70)"
-size = 5
+font_size = 28
+halign = "center"
+valign = "top"
+x = 0
+y = 180
 
 [visuals.input]
-alignment = "bottom-left"
-background_color = "rgba(37, 53, 53, 0.45)"
-border_color = "rgba(26, 86, 112, 0.80)"
+placeholder = "Password"
+background_color = "rgba(37, 53, 53, 0.35)"
+border_color = "rgba(26, 86, 112, 0.70)"
 border_width = 2
 width = 320
 height = 52
@@ -48,123 +52,195 @@ radius = 26
 mask_color = "#EA9D77"
 font_family = "Google Sans Flex"
 font_weight = 400
-font_size = 2
+font_size = 16
 reveal_on_interaction = true
 reveal_mode = "input"
-reveal_hint = "press any key                              ."
+reveal_hint = ""
+halign = "left"
+valign = "bottom"
+x = 40
+y = -60
 
 [visuals.reveal]
-enabled = true
-text = "press any key                              ."
+mode = "hidden"
+text = ""
+
+[[visuals.layer]]
+name = "press_any_key"
+enabled = false
+kind = "text"
+text = "press any key"
 color = "rgba(255, 224, 196, 0.90)"
 font_family = "DejaVu Serif"
 font_weight = 400
 font_style = "italic"
-font_size = 2
+font_size = 16
+halign = "left"
+valign = "bottom"
+x = 60
+y = -78
+z = -1
 
 [visuals.placeholder]
-color = "rgba(234, 157, 119, 0.55)"
-
-[visuals.avatar]
-enabled = false
-size = 128
-gap = 20
-background_color = "rgba(37, 53, 53, 0.40)"
-placeholder_padding = 24
-icon_color = "#EA9D77"
-
-[visuals.username]
-font_family = "DejaVu Serif"
-font_weight = 700
-color = "rgba(234, 157, 119, 0.90)"
-size = 4
-gap = 22
-
-[visuals.keyboard]
-background_size = 42
-background_color = "rgba(37, 53, 53, 0.55)"
-color = "rgba(234, 157, 119, 0.75)"
-size = 2
-top_offset = -24
-right_offset = 10
-
-[visuals.battery]
-background_color = "rgba(37, 53, 53, 0.55)"
-background_size = 42
-color = "rgba(234, 157, 119, 0.75)"
-size = 18
-top_offset = -24
-right_offset = 10
-gap = 8
-
-[visuals.weather]
-alignment = "left"
-size = 2
-temperature_color = "rgba(234, 157, 119, 0.90)"
-location_color = "rgba(234, 157, 119, 0.65)"
-temperature_size = 6
-location_size = 3
-icon_size = 38
-temperature_font_family = "DejaVu Serif"
-temperature_font_style = "italic"
-temperature_font_weight = 700
-temperature_letter_spacing = 0
-location_font_family = "Google Sans Flex"
-location_font_weight = 400
-icon_gap = 6
-location_gap = 1
-icon_opacity = 82
-left_padding = 30
-bottom_padding = 30
+enabled = true
+color = "rgba(255, 224, 196, 0.90)"
 
 [visuals.status]
-rejected_color = "rgba(234, 157, 119, 0.92)"
+enabled = true
+mode = "inline"
 pending_color = "rgba(242, 165, 120, 0.66)"
-gap = 18
+rejected_color = "rgba(234, 157, 119, 0.92)"
 
 [visuals.caps_lock]
+enabled = true
 color = "rgba(234, 157, 119, 0.70)"
 
 [visuals.eye]
+enabled = true
 color = "rgba(234, 157, 119, 0.72)"
+
+[visuals.avatar]
+enabled = false
+image_path = "/home/maari/.face.jpg"
+size = 128
+background_color = "rgba(37, 53, 53, 0.40)"
+placeholder_padding = 24
+icon_color = "#EA9D77"
+halign = "center"
+valign = "center"
+x = 0
+y = -140
+
+[visuals.username]
+enabled = false
+font_family = "DejaVu Serif"
+font_weight = 700
+color = "rgba(234, 157, 119, 0.90)"
+font_size = 22
+halign = "center"
+valign = "center"
+x = 0
+y = 0
+
+[visuals.keyboard]
+enabled = true
+background_size = 42
+background_color = "rgba(37, 53, 53, 0.55)"
+color = "rgba(234, 157, 119, 0.75)"
+size = 2
+halign = "right"
+valign = "top"
+x = -24
+y = 24
+
+[visuals.battery]
+enabled = true
+background_color = "rgba(37, 53, 53, 0.55)"
+background_size = 42
+color = "rgba(234, 157, 119, 0.75)"
+size = 20
+halign = "right"
+valign = "top"
+x = -78
+y = 24
+
+[visuals.weather.icon]
+enabled = false
+size = 38
+opacity = 82
+halign = "left"
+valign = "bottom"
+x = 40
+y = -120
+
+[visuals.weather.temperature]
+enabled = false
+font_size = 36
+font_family = "DejaVu Serif"
+font_weight = 700
+font_style = "italic"
+color = "rgba(234, 157, 119, 0.90)"
+letter_spacing = 0
+halign = "left"
+valign = "bottom"
+x = 40
+y = -70
+
+[visuals.weather.location]
+enabled = false
+font_size = 18
+font_family = "Google Sans Flex"
+font_weight = 400
+color = "rgba(234, 157, 119, 0.65)"
+halign = "left"
+valign = "bottom"
+x = 40
+y = -40
 
 [visuals.now_playing]
 enabled = true
-content_gap = 18
 fade_duration_ms = 320
-title_color = "rgba(234, 157, 119, 0.90)"
-artist_color = "rgba(234, 157, 119, 0.65)"
-title_size = 2
-artist_size = 2
-artwork_size = 44
-artwork_radius = 6
-right_padding = 44
-bottom_padding = 44
-artwork_opacity = 95
-title_font_family = "DejaVu Serif"
-title_font_weight = 700
-artist_font_family = "Google Sans Flex"
-artist_font_weight = 400
-width = 380
-text_gap = 10
 
-[visuals.now_playing.background]
+[visuals.now_playing.artwork]
 enabled = true
+size = 44
+radius = 6
+opacity = 95
+halign = "left"
+valign = "center"
+x = 12
+y = 0
+relative_to = "now_playing"
+
+[visuals.now_playing.title]
+enabled = true
+width = 300
+color = "rgba(234, 157, 119, 0.90)"
+font_family = "DejaVu Serif"
+font_weight = 700
+font_size = 16
+halign = "left"
+valign = "top"
+x = 70
+y = 8
+relative_to = "now_playing"
+
+[visuals.now_playing.artist]
+enabled = true
+width = 300
+color = "rgba(234, 157, 119, 0.65)"
+font_family = "Google Sans Flex"
+font_weight = 400
+font_size = 14
+halign = "left"
+valign = "bottom"
+x = 70
+y = -8
+relative_to = "now_playing"
+
+[[visuals.backdrop]]
+enabled = true
+name = "now_playing"
+show_when = "now_playing"
 mode = "solid"
 color = "rgba(26, 20, 20, 0.55)"
 radius = 12
-padding_x = 14
-padding_y = 10
 border_color = "rgba(234, 157, 119, 0.18)"
 border_width = 1
+width = 400
+height = 64
+halign = "right"
+valign = "bottom"
+x = -40
+y = -40
+z = 0
+
+[visuals.outputs]
+ui_mode = "single"
+ui_output = "DP-1"
 
 [visuals.palette]
 foreground = "rgba(234, 157, 119, 0.92)"
 muted = "rgba(234, 157, 119, 0.55)"
 pending = "rgba(242, 165, 120, 0.66)"
 rejected = "rgba(234, 157, 119, 0.92)"
-
-[visuals.layout]
-header_top_offset = -12
-auth_stack_offset = 0
-identity_gap = 18

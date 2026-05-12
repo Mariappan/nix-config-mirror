@@ -1,0 +1,251 @@
+# mandalorian — frozen dusk on Mandalore (veila 0.3.0)
+# Palette sampled from wallpaper: amber sunset, deep teal ice, cold slate armor.
+
+[background]
+mode = "file"
+path = "/home/maari/pictures/Wallpapers/wallhaven_wqyg5q.jpg"
+color = "#050810"
+scaling = "fill"
+blur_strength = 2
+dim_strength = 25
+
+[lock]
+screen_off_seconds = 120
+
+[battery]
+enabled = true
+
+[weather]
+enabled = true
+location = "Singapore"
+unit = "celsius"
+
+[visuals.clock]
+enabled = true
+format = "24h"
+font_family = "Maple Mono NF"
+font_weight = 500
+color = "rgba(184, 197, 208, 0.65)"
+font_size = 110
+meridiem_font_size = 16
+meridiem_x = 6
+meridiem_y = 7
+halign = "right"
+valign = "top"
+x = -40
+y = 40
+
+[visuals.date]
+enabled = true
+font_family = "Maple Mono NF"
+font_weight = 400
+color = "rgba(184, 197, 208, 0.70)"
+font_size = 28
+halign = "right"
+valign = "top"
+x = -40
+y = 160
+
+[visuals.input]
+placeholder = "Password"
+background_color = "rgba(26, 59, 77, 0.35)"
+border_color = "rgba(74, 143, 168, 0.70)"
+border_width = 1
+width = 320
+height = 52
+radius = 8
+mask_color = "#B8C5D0"
+font_family = "Stardos Stencil"
+font_weight = 400
+font_size = 16
+reveal_on_interaction = true
+reveal_mode = "input"
+reveal_hint = ""
+halign = "left"
+valign = "bottom"
+x = 40
+y = -60
+
+[visuals.reveal]
+mode = "hidden"
+text = ""
+
+[visuals.placeholder]
+enabled = true
+color = "rgba(184, 197, 208, 0.70)"
+
+[visuals.status]
+enabled = true
+mode = "inline"
+pending_color = "rgba(184, 197, 208, 0.75)"
+rejected_color = "rgba(212, 130, 90, 0.80)"
+
+[visuals.caps_lock]
+enabled = true
+color = "rgba(184, 197, 208, 0.70)"
+
+[visuals.eye]
+enabled = true
+color = "rgba(184, 197, 208, 0.72)"
+
+[visuals.avatar]
+enabled = true
+image_path = "/home/maari/.face.jpg"
+size = 80
+background_color = "rgba(26, 59, 77, 0.40)"
+placeholder_padding = 18
+icon_color = "#B8C5D0"
+ring_color = "rgba(242, 160, 61, 0.55)"
+ring_width = 1
+halign = "left"
+valign = "bottom"
+x = 40
+y = -200
+
+[visuals.username]
+enabled = true
+font_family = "Maple Mono NF"
+font_weight = 500
+color = "rgba(184, 197, 208, 0.85)"
+font_size = 18
+halign = "left"
+valign = "bottom"
+x = 140
+y = -240
+
+[visuals.keyboard]
+enabled = true
+background_size = 42
+background_color = "rgba(15, 34, 48, 0.55)"
+color = "rgba(184, 197, 208, 0.75)"
+size = 2
+halign = "right"
+valign = "bottom"
+x = -24
+y = -30
+
+[visuals.battery]
+enabled = true
+background_color = "rgba(15, 34, 48, 0.55)"
+background_size = 42
+color = "rgba(184, 197, 208, 0.75)"
+size = 20
+halign = "right"
+valign = "bottom"
+x = -78
+y = -30
+
+[visuals.weather.icon]
+enabled = true
+size = 38
+opacity = 82
+halign = "left"
+valign = "top"
+x = 40
+y = 40
+
+[visuals.weather.temperature]
+enabled = true
+font_size = 36
+font_family = "Maple Mono NF"
+font_weight = 500
+color = "rgba(184, 197, 208, 0.85)"
+letter_spacing = 0
+halign = "left"
+valign = "top"
+x = 90
+y = 44
+
+[visuals.weather.location]
+enabled = true
+font_size = 16
+font_family = "Maple Mono NF"
+font_weight = 400
+color = "rgba(184, 197, 208, 0.60)"
+halign = "left"
+valign = "top"
+x = 40
+y = 90
+
+[visuals.now_playing]
+enabled = true
+fade_duration_ms = 320
+
+[visuals.now_playing.artwork]
+enabled = true
+size = 44
+radius = 4
+opacity = 95
+halign = "left"
+valign = "center"
+x = 12
+y = 0
+relative_to = "now_playing"
+
+[visuals.now_playing.title]
+enabled = true
+width = 300
+color = "rgba(242, 160, 61, 0.90)"
+font_family = "Stardos Stencil"
+font_weight = 700
+font_size = 16
+halign = "left"
+valign = "top"
+x = 70
+y = 8
+relative_to = "now_playing"
+
+[visuals.now_playing.artist]
+enabled = true
+width = 300
+color = "rgba(184, 197, 208, 0.65)"
+font_family = "Google Sans Flex"
+font_weight = 400
+font_size = 14
+halign = "left"
+valign = "bottom"
+x = 70
+y = -8
+relative_to = "now_playing"
+
+[[visuals.layer]]
+name = "creed"
+enabled = true
+kind = "text"
+text = "this is the way"
+font_family = "Maple Mono NF"
+font_weight = 400
+font_size = 14
+color = "rgba(184, 197, 208, 0.45)"
+halign = "center"
+valign = "bottom"
+x = 0
+y = -20
+
+[[visuals.backdrop]]
+enabled = true
+name = "now_playing"
+show_when = "now_playing"
+mode = "blur"
+color = "rgba(15, 34, 48, 0.55)"
+blur_strength = 12
+radius = 8
+border_color = "rgba(242, 160, 61, 0.35)"
+border_width = 1
+width = 400
+height = 64
+halign = "right"
+valign = "bottom"
+x = -40
+y = -40
+z = 0
+
+[visuals.outputs]
+ui_mode = "single"
+ui_output = "DP-1"
+
+[visuals.palette]
+foreground = "rgba(184, 197, 208, 0.92)"
+muted = "rgba(184, 197, 208, 0.55)"
+pending = "rgba(184, 197, 208, 0.75)"
+rejected = "rgba(212, 130, 90, 0.80)"
