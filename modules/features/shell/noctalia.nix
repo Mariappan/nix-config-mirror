@@ -1,15 +1,16 @@
 { inputs, ... }:
 {
   flake.modules.homeManager.noctalia =
-    { config, lib, ... }:
+    {
+      config,
+      lib,
+      pkgs,
+      ...
+    }:
     {
       nixma.imported.noctalia = true;
 
-      imports = [ inputs.noctalia.homeModules.default ];
-
-      programs.noctalia-shell = {
-        enable = true;
-      };
+      home.packages = [ inputs.noctalia.packages.${pkgs.system}.default ];
 
       home.activation.noctalia-symlink =
         let

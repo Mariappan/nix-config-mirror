@@ -1,4 +1,4 @@
-{ self, inputs, ... }:
+{ self, ... }:
 {
   flake.modules.nixos.niri =
     { ... }:
@@ -8,7 +8,6 @@
       imports = [
         self.modules.nixos.wayland
         self.modules.nixos.veila
-        inputs.noctalia.nixosModules.default
       ];
 
       programs.niri.enable = true;

@@ -1,0 +1,59 @@
+[bar.default]
+attach_panels = false
+background_opacity = 0.64999997615814209
+capsule = true
+capsule_opacity = 0.79999995231628418
+end = [ "media", "notifications", "clipboard", "network", "volume", "battery", "control-center", "tray" ]
+margin_edge = 0
+margin_ends = 0
+position = "left"
+radius = 0
+start = [ "session", "launcher", "wallpaper", "workspaces" ]
+
+[notification]
+layer = "overlay"
+
+[shell]
+avatar_path = "/home/maari/.face.jpg"
+font_family = "Liberation Sans"
+settings_show_advanced = true
+
+    [shell.panel]
+    attach_control_center = false
+    transparency_mode = "glass"
+
+[theme]
+builtin = "Kanagawa"
+
+    [theme.templates]
+    enable_builtin_templates = false
+    enable_community_templates = false
+
+[wallpaper]
+directory = "/home/maari/pictures/Wallpapers"
+
+    [wallpaper.automation]
+    enabled = true
+    interval_minutes = 10
+
+    [wallpaper.default]
+    path = "/home/maari/pictures/Wallpapers/baby-groot-superheroes-abstract-digital-art-wallpaper-f482e9e1a11a5d11b9a74a8bcfb3e96a.jpg"
+
+    [wallpaper.last]
+    path = "/home/maari/pictures/Wallpapers/baby-groot-superheroes-abstract-digital-art-wallpaper-f482e9e1a11a5d11b9a74a8bcfb3e96a.jpg"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/maari/pictures/Wallpapers/baby-groot-superheroes-abstract-digital-art-wallpaper-f482e9e1a11a5d11b9a74a8bcfb3e96a.jpg"
+
+[widget.network]
+show_label = false
+
+[widget.tray]
+drawer = true
+
+[widget.volume]
+show_label = true
+
+[widget.workspaces]
+display = "none"
+empty_color = "tertiary"

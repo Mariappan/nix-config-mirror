@@ -263,19 +263,6 @@
                     "pinned": [
                         "udiskie"
                     ]
-                },
-                {
-                    "defaultSettings": {
-                        "apiKey": "YOUR_API_KEY_HERE",
-                        "category": "general",
-                        "country": "us",
-                        "language": "en",
-                        "maxHeadlines": 10,
-                        "refreshInterval": 30,
-                        "rollingSpeed": 50,
-                        "widgetWidth": 300
-                    },
-                    "id": "plugin:news"
                 }
             ]
         }
@@ -760,7 +747,7 @@
         "useOriginalImages": false,
         "useSolidColor": false,
         "useWallhaven": false,
-        "viewMode": "recursive",
+        "viewMode": "browse",
         "wallhavenApiKey": "",
         "wallhavenCategories": "111",
         "wallhavenOrder": "desc",

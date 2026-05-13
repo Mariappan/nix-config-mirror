@@ -212,7 +212,7 @@ layout {
 
 // Backup terminal incase hotkey does not work
 spawn-at-startup "ghostty"
-spawn-at-startup "noctalia-shell"
+spawn-at-startup "noctalia"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -274,6 +274,7 @@ window-rule {
     match title="^Select what to share$"
     match app-id="^VirtualBox "
     match title="^VirtualBox "
+    // match app-id="^dev.noctalia.Noctalia"
 
     open-floating true
 }
@@ -312,14 +313,11 @@ window-rule {
 
 layer-rule {
     match namespace="notification"
-    match namespace="^noctalia-notifications$"
+    match namespace="^noctalia-notification(-icons)?$"
     block-out-from "screen-capture"
 }
 
-// Keep the noctalia overview layer in niri's backdrop. Wallpaper is left in
-// its normal background position so it stays visible during regular workspace
-// view — `place-within-backdrop` would move it out of normal rendering and
-// only show it in overview/between workspaces.
+// Overview layer not present in noctalia v5 - kept for future re-add.
 layer-rule {
     match namespace="^noctalia-overview"
     place-within-backdrop true
@@ -335,9 +333,10 @@ window-rule {
     }
 }
 
-// Noctalia panels (background overlay, launcher, dock): real blur as well.
+// Noctalia popup panels (launcher, settings, session, control-center, etc.)
+// all share the single `noctalia-panel` namespace in v5.
 layer-rule {
-    match namespace="^noctalia-(background|launcher-overlay|dock)-.*$"
+    match namespace="^noctalia-panel$"
     background-effect {
         xray false
     }
@@ -367,7 +366,7 @@ binds {
 
     // Suggested binds for running programs: terminal, app launcher, screen locker.
     Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+D hotkey-overlay-title="Open Calendar" { spawn-sh "noctalia-shell ipc call calendar toggle"; }
+    Mod+D hotkey-overlay-title="Open Calendar" { spawn-sh "noctalia msg panel-toggle control-center"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     Mod+O repeat=false { toggle-overview; }
@@ -600,24 +599,24 @@ binds {
     Mod+Shift+Space { spawn-sh "1password --quick-access"; }
 
     Mod+Return { spawn "ghostty"; }
-    Mod+Shift+D { spawn-sh "noctalia-shell ipc call notifications toggleHistory"; }
+    Mod+Shift+D { spawn-sh "noctalia msg notification-dnd-toggle"; }
 
     Mod+Ctrl+Q { spawn "veila" "lock"; }
-    Mod+Shift+Q { spawn-sh "noctalia-shell ipc call sessionMenu toggle"; }
+    Mod+Shift+Q { spawn-sh "noctalia msg panel-toggle session"; }
 
     // Core Noctalia binds
-    Mod+Space hotkey-overlay-title="Open Launcher" { spawn-sh "noctalia-shell ipc call launcher toggle"; }
-    Mod+S { spawn-sh "noctalia-shell ipc call settings toggle"; }
-    Mod+Shift+S hotkey-overlay-title="Restart Noctalia Shell" { spawn-sh "pkill -x .quickshell-wra; sleep 0.2; noctalia-shell"; }
+    Mod+Space hotkey-overlay-title="Open Launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
+    Mod+S { spawn-sh "noctalia msg settings-toggle"; }
+    Mod+Shift+S hotkey-overlay-title="Restart Noctalia Shell" { spawn-sh "pkill -x noctalia; sleep 0.2; noctalia"; }
 
     // Audio controls
-    XF86AudioRaiseVolume { spawn-sh "noctalia-shell ipc call volume increase"; }
-    XF86AudioLowerVolume { spawn-sh "noctalia-shell ipc call volume decrease"; }
-    XF86AudioMute { spawn-sh "noctalia-shell ipc call volume muteOutput"; }
+    XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
+    XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
+    XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
 
     // Brightness controls
-    XF86MonBrightnessUp { spawn-sh "noctalia-shell ipc call brightness increase"; }
-    XF86MonBrightnessDown { spawn-sh "noctalia-shell ipc call brightness decrease"; }
+    XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
+    XF86MonBrightnessDown { spawn-sh "noctalia msg brightness-down"; }
 
     // Backup to recover a locked Wayland crashed lockscreen
     Mod+Ctrl+Alt+Q allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill veila-curtain; exec veila lock"; }
