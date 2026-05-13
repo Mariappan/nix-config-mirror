@@ -70,6 +70,10 @@
       url = "github:naurissteins/Veila";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    expressvpn = {
+      url = "github:nappairam/expressvpn-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     import-tree.url = "github:vic/import-tree";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };

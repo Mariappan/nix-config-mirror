@@ -126,6 +126,26 @@
         "type": "github"
       }
     },
+    "expressvpn": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779325208,
+        "narHash": "sha256-m4U8JLsx4tuNdqZ6n4CykgNUe92t8DALekKs1NZsDPs=",
+        "owner": "nappairam",
+        "repo": "expressvpn-flake",
+        "rev": "f0635ebd16fe90e342fd154c445ee1b03c46dd87",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nappairam",
+        "repo": "expressvpn-flake",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -614,6 +634,7 @@
         "agenix": "agenix",
         "caelestia-shell": "caelestia-shell",
         "disko": "disko",
+        "expressvpn": "expressvpn",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager_2",
         "import-tree": "import-tree",

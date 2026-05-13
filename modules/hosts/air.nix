@@ -17,6 +17,7 @@
       self.modules.nixos.virtualbox
       self.modules.nixos.yubikey
       self.modules.nixos.gpclient
+      inputs.expressvpn.nixosModules.default
       self.modules.nixos.remoteBuilders
 
       # Users
@@ -84,6 +85,12 @@
               "r8152"
               "rtsx_pci_sdmmc"
             ];
+          };
+
+          services.expressvpn = {
+            enable = true;
+            users = [ "maari" ];
+            tailscaleBypass.enable = true;
           };
 
           # GlobalProtect VPN split tunneling

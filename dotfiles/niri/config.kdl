@@ -413,6 +413,7 @@ binds {
     Mod+Shift+Space { spawn-sh "1password --quick-access"; }
 
     Mod+Return { spawn "ghostty"; }
+    Mod+E { spawn "expressvpn-client"; }
 
     // Core Noctalia binds
     Mod+Space hotkey-overlay-title="Open Launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
