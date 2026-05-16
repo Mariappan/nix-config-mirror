@@ -176,8 +176,10 @@
 
         # SBC has known hardware — skip the installer-scan firmware bundle
         # (linux-firmware + 8 misc blobs) that not-detected.nix imports above.
-        # Plain `false` overrides not-detected.nix's mkDefault true.
-        hardware.enableRedistributableFirmware = lib.mkIf (config.nixma.nixos.formFactor == "sbc") false;
+        # sd-image / all-hardware.nix sets it true (plain), so force here.
+        hardware.enableRedistributableFirmware = lib.mkIf (config.nixma.nixos.formFactor == "sbc") (
+          lib.mkForce false
+        );
         hardware.wirelessRegulatoryDatabase = lib.mkIf (config.nixma.nixos.formFactor == "sbc") (
           lib.mkDefault false
         );

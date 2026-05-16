@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Pin every drv and store path needed to build the chip sdImage, so a daily
+# nh-clean run doesn't purge cross-compile inputs (nixpkgs source tarball,
+# armv7l-cross gcc, intermediate artefacts).
+#
+# Re-run after every chip rebuild to refresh the anchor set.
+# Unpin via: rm -rf /home/maari/gcroots/chip-deps
+#
+# Usage: just chip-pin-deps
+#        bash scripts/chip-pin-deps
+
+set -euo pipefail
+
+FLAKE=${1:-/home/maari/nix-config}
+ROOT=/home/maari/gcroots/chip-deps
+
+DRV=$(nix eval --raw "${FLAKE}#nixosConfigurations.chip.config.system.build.sdImage.drvPath")
+echo "pinning closure of: $DRV"
+
+mkdir -p "$ROOT"
+
+# Anchor the build recipe itself + its full transitive drv tree. --indirect
+# makes a user-side symlink that nix-gc treats as a gcroot.
+nix-store --add-root "$ROOT/sdImage.drv" --indirect --realise "$DRV" >/dev/null
+
+# Anchor every store path the drv references (sources, gcc-cross, etc.).
+nix-store --query --requisites "$DRV" | nl -ba | while read -r i p; do
+  ln -sfn "$p" "$ROOT/$(printf '%05d' "$i")"
+done
+
+echo "pinned $(ls -1 "$ROOT" | wc -l) entries under $ROOT"

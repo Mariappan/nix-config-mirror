@@ -24,6 +24,8 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # Scoped to rock3c host: carries radxa/rock-3c module until upstream merges it.
     nixos-hardware-rock3c.url = "github:nappairam/fork-nixos-hardware/rock3c";
+    # Scoped to chip host: carries nextthing/chip module until upstream merges PR #1807.
+    nixos-hardware-chip.url = "github:nappairam/fork-nixos-hardware/chip";
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs-rock3c";

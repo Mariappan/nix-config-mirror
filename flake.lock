@@ -397,6 +397,22 @@
         "type": "github"
       }
     },
+    "nixos-hardware-chip": {
+      "locked": {
+        "lastModified": 1778928507,
+        "narHash": "sha256-Z4ZO0VuVSgre9UhKf3mBNnlajVQvzHOYQxfZxCDSDLo=",
+        "owner": "nappairam",
+        "repo": "fork-nixos-hardware",
+        "rev": "69b7fb8fe1267a7eb4997c8849122658d16b47db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nappairam",
+        "ref": "chip",
+        "repo": "fork-nixos-hardware",
+        "type": "github"
+      }
+    },
     "nixos-hardware-rock3c": {
       "locked": {
         "lastModified": 1778142955,
@@ -606,6 +622,7 @@
         "nix-darwin": "nix-darwin",
         "nix-index-database": "nix-index-database_2",
         "nixos-hardware": "nixos-hardware",
+        "nixos-hardware-chip": "nixos-hardware-chip",
         "nixos-hardware-rock3c": "nixos-hardware-rock3c",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-2505": "nixpkgs-2505",

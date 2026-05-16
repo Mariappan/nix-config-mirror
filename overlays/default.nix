@@ -52,17 +52,22 @@
   # When applied, the stable nixpkgs set (declared in the flake inputs) will
   # be accessible through 'pkgs._2511'
   stable-packages = final: _prev: {
-    _2511 = import inputs.nixpkgs-2511 {
+    _2505 = import inputs.nixpkgs-2505 {
       system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
-    _2505 = import inputs.nixpkgs-2505 {
+    _2511 = import inputs.nixpkgs-2511 {
       system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
   };
 
-  default = inputs.nixpkgs.lib.composeManyExtensions [
-    inputs.nix-alien.overlays.default
-  ];
+  # nix-alien only ships packages for x86_64-linux + aarch64-linux + darwin
+  # variants. Skip the overlay on systems it doesn't support (e.g. armv7l-linux
+  # for the CHIP host) so eval doesn't fall over on the missing attribute.
+  default = final: prev:
+    let
+      supported = builtins.hasAttr prev.stdenv.hostPlatform.system inputs.nix-alien.packages;
+    in
+    if supported then inputs.nix-alien.overlays.default final prev else { };
 }

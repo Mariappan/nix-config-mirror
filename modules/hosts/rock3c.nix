@@ -21,7 +21,7 @@ in
       inputs = rock3cInputs;
     };
     modules = [
-      inputs.nixos-hardware-rock3c.nixosModules.rock-3c
+      inputs.nixos-hardware-rock3c.nixosModules.radxa-rock-3c
       inputs.disko.nixosModules.disko
       "${inputs.nixos-hardware-rock3c}/rockchip/disko.nix"
 

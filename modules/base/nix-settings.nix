@@ -6,6 +6,14 @@
       pkgs,
       ...
     }:
+    let
+      isSbc = config.nixma.nixos.formFactor == "sbc";
+      # Workstation helpers (nh, nix-alien, nix-ld) only make sense on
+      # interactive hosts. Skip on SBC / headless servers to keep the
+      # closure lean and avoid cross-compiling things like nix-ld on
+      # armv7l where upstream doesn't build.
+      enableWorkstationTools = !isSbc;
+    in
     {
       nixma.nixos.imported.nix-settings = true;
 
@@ -15,30 +23,29 @@
         "flakes"
       ];
 
-      # Disable default nix registry in SBC hosts
+      # Disable default nix registry on SBC hosts.
       # Use: nix shell github:NixOS/nixpkgs#htop
-      nix.registry = lib.mkIf (config.nixma.nixos.formFactor == "sbc") (lib.mkForce { });
-      nix.channel.enable = lib.mkIf (config.nixma.nixos.formFactor == "sbc") false;
+      nix.registry = lib.mkIf isSbc (lib.mkForce { });
+      nix.channel.enable = lib.mkIf isSbc false;
 
       # Automatic store optimization
       nix.optimise.automatic = true;
       nix.optimise.dates = [ "03:45" ];
-      # Following optimize on every build but may result in slow build time
-      # nix.settings.auto-optimise-store = true;
 
-      # For running native binaries without patchelf
-      programs.nix-ld.enable = true;
-
-      # Nix helper tool for system management
-      programs.nh = {
+      # Workstation-only tooling:
+      #   nix-ld     — let foreign binaries find their dynamic linker
+      #   nh         — nix helper, drives system + cleanup
+      #   nix-alien  — run upstream binaries against patchelf'd libs
+      programs.nix-ld.enable = enableWorkstationTools;
+      programs.nh = lib.mkIf enableWorkstationTools {
         enable = true;
         clean.enable = true;
-        clean.extraArgs = "--keep-since 4d --keep 3";
+        # Keep 30 days of generations / store paths so cross-compiled SBC
+        # closures (e.g. chip) aren't GC'd between builds. Bump higher per
+        # host if you cross-compile for multiple SBCs and want all retained.
+        clean.extraArgs = "--keep-since 30d --keep 10";
         flake = "/home/maari/nix-config";
       };
-
-      environment.systemPackages = [
-        pkgs.nix-alien
-      ];
+      environment.systemPackages = lib.optional enableWorkstationTools pkgs.nix-alien;
     };
 }

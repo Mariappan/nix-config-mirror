@@ -78,6 +78,12 @@ deploy-rock3c *args='':
       --build-host maari@indiarpi \
       {{args}}
 
+# Pin chip cross-compile inputs as gcroots so nh-clean doesn't purge them.
+# Run after every chip rebuild; safe to re-run.
+[linux]
+chip-pin-deps:
+    bash scripts/chip-pin-deps {{justfile_directory()}}
+
 # List available Linux kernels
 lskernels:
     @nix eval --raw nixpkgs#linuxKernel.packages --apply 'x: builtins.concatStringsSep "\n" (builtins.attrNames x)' 2>/dev/null | grep -v recurse
