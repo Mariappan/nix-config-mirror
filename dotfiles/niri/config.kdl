@@ -1,61 +1,43 @@
 input {
+    workspace-auto-back-and-forth
     keyboard {
         xkb {
             layout "us"
-            // options "grp:win_space_toggle,compose:ralt,ctrl:nocaps"
+            options "ctrl:nocaps"
         }
-
-        // Enable numlock on startup, omitting this setting disables it.
-        numlock
     }
 
-    // Next sections include libinput settings.
-    // Omitting settings disables them, or leaves them at their default values.
-    // All commented-out settings here are examples, not defaults.
     touchpad {
-        // off
         tap
-        // dwt
-        // dwtp
-        // drag false
-        // drag-lock
+        dwt
+        dwtp
+        drag true
+        drag-lock
         natural-scroll
-        // accel-speed 0.2
-        // accel-profile "flat"
-        // scroll-method "two-finger"
-        // disabled-on-external-mouse
+        scroll-method "two-finger"
     }
 
-    mouse 
+    mod-key "Super"
+    mod-key-nested "Alt"
 
+    mouse
 
-    trackpoint 
-
-
-    // Uncomment this to make the mouse warp to the center of newly focused windows.
-    // warp-mouse-to-focus
-
-    // Focus windows and outputs automatically when moving the mouse into them.
-    // Setting max-scroll-amount="0%" makes it work only on windows already fully on screen.
-    // focus-follows-mouse max-scroll-amount="0%"
+    trackpoint
 }
 
-output "InfoVision Optoelectronics (Kunshan) Co.,Ltd China 0x057D Unknown" {
-    // off
-    mode "1920x1080"
-    scale 1.0
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+output "Samsung Display Corp. ATNA40HQ02-0  Unknown" {
+    mode "2880x1800"
+    variable-refresh-rate
+    scale 1.5
     transform "normal"
-    position x=0 y=0
+    position x=3840 y=0
 }
 
 output "eDP-1" {
-    // off
-    mode "2880x1800"
-    scale 1.5
-    // normal, 90, 180, 270, flipped, flipped-90, flipped-180 and flipped-270.
+    mode "1920x1080"
+    scale 1.0
     transform "normal"
-    position x=3840 y=0
+    position x=0 y=0
 }
 
 output "Dell Inc. DELL U2724DE 1LRK7P3" {
@@ -70,136 +52,44 @@ output "Beihai Century Joint Innovation Technology Co.,Ltd X340 PRO 165 Unknown"
     scale 1
     transform "normal"
     position x=0 y=0
+
+    layout {
+        default-column-width { proportion 0.33333; }
+        center-focused-column "always"
+    }
 }
 
 // Settings that influence how windows are positioned and sized.
 layout {
     gaps 8
+    always-center-single-column
     center-focused-column "never"
 
     preset-column-widths {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
+        proportion 1.0
     }
 
-    // preset-window-heights { }
+    preset-window-heights { 
+        proportion 0.33333
+        proportion 0.5
+        proportion 0.66667
+        proportion 1.0
+    }
     default-column-width { proportion 0.5; }
-    // If you leave the brackets empty, the windows themselves will decide their initial width.
-    // default-column-width {}
 
-    // By default focus ring and border are rendered as a solid background rectangle
-    // behind windows. That is, they will show up through semitransparent windows.
-    // This is because windows using client-side decorations can have an arbitrary shape.
-    //
- // If you don't like that, you should uncomment `prefer-no-csd` below.
-    // Niri will draw focus ring and border *around* windows that agree to omit their
-    // client-side decorations.
-    //
-    // Alternatively, you can override it with a window rule called
-    // `draw-border-with-background`.
-
-    // You can change how the focus ring looks.
     focus-ring {
-        // Uncomment this line to disable the focus ring.
-        off
-
-        // How many logical pixels the ring extends out from the windows.
         width 2
-
-        // Colors can be set in a variety of ways:
-        // - CSS named colors: "red"
-        // - RGB hex: "#rgb", "#rgba", "#rrggbb", "#rrggbbaa"
-        // - CSS-like notation: "rgb(255, 127, 0)", rgba(), hsl() and a few others.
-
-        // Color of the ring on the active monitor.
-        active-color "#7E9CD8"
-
-        // Color of the ring on inactive monitors.
-        //
-        // The focus ring only draws around the active window, so the only place
-        // where you can see its inactive-color is on other monitors.
-        inactive-color "#505050"
-
-        // You can also use gradients. They take precedence over solid colors.
-        // Gradients are rendered the same as CSS linear-gradient(angle, from, to).
-        // The angle is the same as in linear-gradient, and is optional,
-        // defaulting to 180 (top-to-bottom gradient).
-        // You can use any CSS linear-gradient tool on the web to set these up.
-        // Changing the color space is also supported, check the wiki for more info.
-        //
-        // active-gradient from="#80c8ff" to="#c7ff7f" angle=45
-
-        // You can also color the gradient relative to the entire view
-        // of the workspace, rather than relative to just the window itself.
-        // To do that, set relative-to="workspace-view".
-        //
-        // inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
+        active-color "rgba(118, 148, 106, 0.8)"
+        urgent-color "rgba(228, 104, 118, 0.8)"
     }
 
-    // You can also add a border. It's similar to the focus ring, but always visible.
-    border {
-        off
+    shadow
 
-        width 2
-        active-color "#00000077"
-        inactive-color "#505050"
-
-        // Color of the border around windows that request your attention.
-        urgent-color "#9b0000"
-
-        // Gradients can use a few different interpolation color spaces.
-        // For example, this is a pastel rainbow gradient via in="oklch longer hue".
-        //
-        // active-gradient from="#e5989b" to="#ffb4a2" angle=45 relative-to="workspace-view" in="oklch longer hue"
-
-        inactive-gradient from="#505050" to="#808080" angle=45 relative-to="workspace-view"
-    }
-
-    // You can enable drop shadows for windows.
-    shadow {
-        // Uncomment the next line to enable shadows.
-        // on
-
-        // By default, the shadow draws only around its window, and not behind it.
-        // Uncomment this setting to make the shadow draw behind its window.
-        //
-        // Note that niri has no way of knowing about the CSD window corner
-        // radius. It has to assume that windows have square corners, leading to
-        // shadow artifacts inside the CSD rounded corners. This setting fixes
-        // those artifacts.
-        //
-        // However, instead you may want to set prefer-no-csd and/or
-        // geometry-corner-radius. Then, niri will know the corner radius and
-        // draw the shadow correctly, without having to draw it behind the
-        // window. These will also remove client-side shadows if the window
-        // draws any.
-        //
-        // draw-behind-window true
-
-        // You can change how shadows look. The values below are in logical
-        // pixels and match the CSS box-shadow properties.
-
-        // Softness controls the shadow blur radius.
-        softness 30
-
-        // Spread expands the shadow.
-        spread 5
-
-        // Offset moves the shadow relative to the window.
-        offset x=0 y=5
-
-        // You can also change the shadow color and opacity.
-        color "#0007"
-    }
-
-    // Struts shrink the area occupied by windows, similarly to layer-shell panels.
-    // You can think of them as a kind of outer gaps. They are set in logical pixels.
-    // Left and right struts will cause the next window to the side to always be visible.
-    // Top and bottom struts will simply add outer gaps in addition to the area occupied by
-    // layer-shell panels and regular gaps.
-    struts 
-
+    // Struts (Outer Gaps)shrink the area occupied by windows, like layer-shell panels.
+    struts
 
     tab-indicator {
         width 8
@@ -221,46 +111,23 @@ hotkey-overlay {
     skip-at-startup
 }
 
-// Uncomment this line to ask the clients to omit their client-side decorations if possible.
-// If the client will specifically ask for CSD, the request will be honored.
-// Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.
-// This option will also fix border/focus ring drawing behind some semitransparent windows.
-// After enabling or disabling this, you need to restart the apps for this to take effect.
 prefer-no-csd
 
-// You can change the path where screenshots are saved.
-// A ~ at the front will be expanded to the home directory.
-// The path is formatted with strftime(3) to give you the screenshot date and time.
 screenshot-path "~/pictures/Screenshots/%Y-%m-%d %H-%M-%S.png"
 
-// You can also set this to null to disable saving screenshots to disk.
-// screenshot-path null
+animations
 
-// Animation settings.
-// The wiki explains how to configure individual animations:
-// https://yalter.github.io/niri/Configuration:-Animations
-animations 
+// Window rules
 
-
-// Window rules let you adjust behavior for individual windows.
-// Find more information on the wiki:
-// https://yalter.github.io/niri/Configuration:-Window-Rules
-
-// Work around WezTerm's initial configure bug
-// by setting an empty default-column-width.
+// Work around WezTerm's initial configure bug by setting an empty default-column-width.
 window-rule {
-    // This regular expression is intentionally made as specific as possible,
-    // since this is the default config, and we want no false positives.
-    // You can get away with just app-id="wezterm" if you want.
     match app-id=r"^org\.wezfurlong\.wezterm$"
-    default-column-width 
+    match app-id="^com.gabm.satty$"
+    default-column-width
 }
 
-// Open the Firefox picture-in-picture player as floating by default.
+// Windows as floating by default.
 window-rule {
-    // This app-id regular expression will work for both:
-    // - host Firefox (app-id is "firefox")
-    // - Flatpak Firefox (app-id is "org.mozilla.firefox")
     match app-id="^xdg-desktop-portal-gtk" title="^All Files$"
     match app-id=r"firefox$" title="^Picture-in-Picture$"
     match app-id="^1Password$"
@@ -272,13 +139,15 @@ window-rule {
     match app-id="^io.github.tobagin.karere"
     match title="^Vicinae Launcher"
     match title="^Select what to share$"
+    match app-id="^com.gabm.satty$"
     match app-id="^VirtualBox "
     match title="^VirtualBox "
+    match app-id="^dev.noctalia.Noctalia"
 
     open-floating true
 }
 
-// Example: block out two password managers from screen capture.
+// block out windows from screen capture.
 window-rule {
     match app-id=r"^org\.keepassxc\.KeePassXC$"
     match app-id=r"^org\.gnome\.World\.Secrets$"
@@ -289,27 +158,32 @@ window-rule {
 }
 
 window-rule {
-    match app-id="^com.gabm.satty$"
-    open-floating true
-}
-
-window-rule {
-    match app-id="^com.gabm.satty$"
-    default-column-width 
-}
-
-window-rule {
     match app-id="firefox$" title="^Picture-in-Picture$"
 
     default-floating-position x=32 y=32 relative-to="bottom-left"
 }
 
-// Example: enable rounded corners for all windows.
 window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
+    match app-id="^dev.noctalia.Noctalia"
+    match app-id="^1Password$"
+    match app-id="^1password$"
+    default-column-width { fixed 950; }
+    default-window-height { fixed 1050; }
 }
 
+// Global: blur translucent windows.
+window-rule {
+    background-effect {
+        blur true
+        xray true
+    }
+    opacity 0.82
+    geometry-corner-radius 12
+    clip-to-geometry true
+    draw-border-with-background false
+}
+
+// SKip in screen capture tool
 layer-rule {
     match namespace="notification"
     match namespace="^noctalia-notification(-icons)?$"
@@ -317,33 +191,20 @@ layer-rule {
 }
 
 // Overview layer not present in noctalia v5 - kept for future re-add.
-layer-rule {
-    match namespace="^noctalia-overview"
-    place-within-backdrop true
-}
+// layer-rule {
+//     match namespace="^noctalia-overview"
+//     place-within-backdrop true
+// }
 
-// Apps: blur translucent windows. Real blur (xray false) so behind-window
-// content is reflected, not just a static wallpaper snapshot.
-window-rule {
-    opacity 0.8
-    background-effect {
-        blur true
-        xray true
-    }
-}
-
+// Make the following windows/layers more clearly visible
 window-rule {
     match app-id="^dev.noctalia.Noctalia"
     match app-id="^1password$"
-    opacity 0.85
     background-effect {
         xray false
     }
-    open-floating true
 }
 
-// Noctalia popup panels (launcher, settings, session, control-center, etc.)
-// all share the single `noctalia-panel` namespace in v5.
 layer-rule {
     match namespace="^noctalia-panel$"
     background-effect {
@@ -351,6 +212,7 @@ layer-rule {
     }
 }
 
+// Global blur settings
 blur {
   passes 2        // more passes = stronger blur (default: 3)
   offset 3.0      // sample distance per pass (default: 3.0)
@@ -361,12 +223,7 @@ blur {
 binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
-    Mod+T hotkey-overlay-title="Open a Terminal: ghostty" { spawn "ghostty"; }
-    Mod+D hotkey-overlay-title="Open Calendar" { spawn-sh "noctalia msg panel-toggle control-center"; }
-
     Mod+O repeat=false { toggle-overview; }
-
-    Mod+Q repeat=false { close-window; }
 
     Mod+Left  { focus-column-left; }
     Mod+Down  { focus-window-down; }
@@ -385,13 +242,6 @@ binds {
     Mod+Ctrl+J     { move-window-down; }
     Mod+Ctrl+K     { move-window-up; }
     Mod+Ctrl+L     { move-column-right; }
-
-    // Alternative commands that move across workspaces when reaching
-    // the first or last window in a column.
-    // Mod+J     { focus-window-or-workspace-down; }
-    // Mod+K     { focus-window-or-workspace-up; }
-    // Mod+Ctrl+J     { move-window-down-or-to-workspace-down; }
-    // Mod+Ctrl+K     { move-window-up-or-to-workspace-up; }
 
     Mod+Home { focus-column-first; }
     Mod+End  { focus-column-last; }
@@ -415,14 +265,6 @@ binds {
     Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
     Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
-
-    // Alternatively, there are commands to move just a single window:
-    // Mod+Shift+Ctrl+Left  { move-window-to-monitor-left; }
-    // ...
-
-    // And you can also move a whole workspace to another monitor:
-    // Mod+Shift+Ctrl+Left  { move-workspace-to-monitor-left; }
-    // ...
 
     Mod+Page_Down      { focus-workspace-down; }
     Mod+Page_Up        { focus-workspace-up; }
@@ -450,20 +292,9 @@ binds {
     // You can set a cooldown on any bind, but it's most useful for the wheel.
     Mod+WheelScrollDown cooldown-ms=150 { focus-workspace-down; }
     Mod+WheelScrollUp cooldown-ms=150 { focus-workspace-up; }
-    Mod+Ctrl+WheelScrollDown cooldown-ms=150 { move-column-to-workspace-down; }
-    Mod+Ctrl+WheelScrollUp cooldown-ms=150 { move-column-to-workspace-up; }
 
     Mod+WheelScrollRight      { focus-column-right; }
     Mod+WheelScrollLeft       { focus-column-left; }
-    Mod+Ctrl+WheelScrollRight { move-column-right; }
-    Mod+Ctrl+WheelScrollLeft  { move-column-left; }
-
-    // Usually scrolling up and down with Shift in applications results in
-    // horizontal scrolling; these binds replicate that.
-    Mod+Shift+WheelScrollDown      { focus-column-right; }
-    Mod+Shift+WheelScrollUp        { focus-column-left; }
-    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
-    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
 
     // Similarly, you can bind touchpad scroll "ticks".
     // Touchpad scrolling is continuous, so for these binds it is split into
@@ -474,14 +305,6 @@ binds {
     // Mod+TouchpadScrollDown { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02+"; }
     // Mod+TouchpadScrollUp   { spawn-sh "wpctl set-volume @DEFAULT_AUDIO_SINK@ 0.02-"; }
 
-    // You can refer to workspaces by index. However, keep in mind that
-    // niri is a dynamic workspace system, so these commands are kind of
-    // "best effort". Trying to refer to a workspace index bigger than
-    // the current workspace count will instead refer to the bottommost
-    // (empty) workspace.
-    //
-    // For example, with 2 workspaces + 1 empty, indices 3, 4, 5 and so on
-    // will all refer to the 3rd workspace.
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
@@ -500,9 +323,6 @@ binds {
     Mod+Ctrl+7 { move-column-to-workspace 7; }
     Mod+Ctrl+8 { move-column-to-workspace 8; }
     Mod+Ctrl+9 { move-column-to-workspace 9; }
-
-    // Alternatively, there are commands to move just a single window:
-    // Mod+Ctrl+1 { move-window-to-workspace 1; }
 
     // Switches focus between the current and the previous workspace.
     Mod+Tab { focus-workspace-previous; }
@@ -523,6 +343,7 @@ binds {
     // Mod+R { switch-preset-column-width-back; }
     Mod+Shift+R { switch-preset-window-height; }
     Mod+Ctrl+R { reset-window-height; }
+
     Mod+F { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
 
@@ -555,9 +376,7 @@ binds {
     Mod+Shift+V { switch-focus-between-floating-and-tiling; }
 
     // Toggle tabbed column display mode.
-    // Windows in this column will appear as vertical tabs,
-    // rather than stacked on top of each other.
-    Mod+W { toggle-column-tabbed-display; }
+    Mod+T { toggle-column-tabbed-display; }
 
     // Actions to switch layouts.
     // Note: if you uncomment these, make sure you do NOT have
@@ -594,13 +413,21 @@ binds {
     Mod+Shift+Space { spawn-sh "1password --quick-access"; }
 
     Mod+Return { spawn "ghostty"; }
-    Mod+Shift+D { spawn-sh "noctalia msg notification-dnd-toggle"; }
-
-    Mod+Ctrl+Q { spawn "veila" "lock"; }
-    Mod+Shift+Q { spawn-sh "noctalia msg panel-toggle session"; }
 
     // Core Noctalia binds
     Mod+Space hotkey-overlay-title="Open Launcher" { spawn-sh "noctalia msg panel-toggle launcher"; }
+
+    // Toggle Wallpaper
+    Mod+Ctrl+W hotkey-overlay-title="Wallpaper" { spawn-sh "noctalia msg panel-toggle wallpaper"; }
+    Mod+Shift+W hotkey-overlay-title="Wallpaper" { spawn-sh "noctalia msg wallpaper-random"; }
+
+    Mod+Q repeat=false { close-window; }
+    Mod+Ctrl+Q repeat=false { spawn-sh "veila lock"; }
+    Mod+Shift+Q { spawn-sh "noctalia msg panel-toggle session"; }
+
+    Mod+D hotkey-overlay-title="Open Calendar" { spawn-sh "noctalia msg panel-toggle control-center calendar"; }
+    Mod+N hotkey-overlay-title="Open Notification" { spawn-sh "noctalia msg panel-toggle control-center notifications"; }
+
     Mod+S { spawn-sh "noctalia msg settings-toggle"; }
     Mod+Shift+S hotkey-overlay-title="Restart Noctalia Shell" { spawn-sh "pkill -x noctalia; sleep 0.2; noctalia"; }
 
@@ -608,6 +435,7 @@ binds {
     XF86AudioRaiseVolume { spawn-sh "noctalia msg volume-up"; }
     XF86AudioLowerVolume { spawn-sh "noctalia msg volume-down"; }
     XF86AudioMute { spawn-sh "noctalia msg volume-mute"; }
+    XF86AudioMicMute { spawn-sh "noctalia msg mic-mute"; }
 
     // Brightness controls
     XF86MonBrightnessUp { spawn-sh "noctalia msg brightness-up"; }
@@ -625,9 +453,10 @@ gestures {
     }
 }
 
+// Static workspace
+workspace "browser"
 window-rule {
-    match is-focused=true
-    background-effect {
-        blur true
-    }
+    match at-startup=true app-id=r#"^zen-twilight$"#
+    match at-startup=true app-id=r#"^Slack$"#
+    open-on-workspace "browser"
 }
