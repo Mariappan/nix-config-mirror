@@ -10,7 +10,7 @@
     {
       nixma.imported.noctalia = true;
 
-      home.packages = [ inputs.noctalia.packages.${pkgs.system}.default ];
+      home.packages = [ inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default ];
 
       home.activation.noctalia-symlink =
         let
