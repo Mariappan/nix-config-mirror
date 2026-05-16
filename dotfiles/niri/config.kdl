@@ -102,7 +102,6 @@ layout {
 
 // Backup terminal incase hotkey does not work
 spawn-at-startup "ghostty"
-spawn-at-startup "noctalia"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
@@ -143,6 +142,7 @@ window-rule {
     match app-id="^VirtualBox "
     match title="^VirtualBox "
     match app-id="^dev.noctalia.Noctalia"
+    match title="^About Zen Twilight$"
 
     open-floating true
 }

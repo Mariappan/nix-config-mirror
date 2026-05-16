@@ -26,6 +26,19 @@
           RestartSec = 3;
         };
       };
+
+      systemd.user.services.veila-idle = {
+        description = "Veila idle auto-lock + lock-before-sleep";
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
+        after = [ "veilad.service" "graphical-session.target" ];
+        requires = [ "veilad.service" ];
+        serviceConfig = {
+          ExecStart = "${veila}/bin/veila idle --lock-after=86400 --lock-before-sleep";
+          Restart = "on-failure";
+          RestartSec = 5;
+        };
+      };
     };
 
   flake.modules.homeManager.veila =

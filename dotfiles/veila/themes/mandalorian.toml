@@ -11,6 +11,12 @@ dim_strength = 25
 
 [lock]
 screen_off_seconds = 120
+hide_cursor = true
+power_off_secondary_outputs = true
+allow_empty_password = true
+
+[fingerprint]
+enabled = true
 
 [battery]
 enabled = true
@@ -37,6 +43,7 @@ y = 40
 
 [visuals.date]
 enabled = true
+format = "short"
 font_family = "Maple Mono NF"
 font_weight = 400
 color = "rgba(184, 197, 208, 0.70)"
@@ -243,6 +250,45 @@ z = 0
 [visuals.outputs]
 ui_mode = "single"
 ui_output = "DP-1"
+
+[visuals.power.suspend]
+enabled = true
+background_color = "rgba(15, 34, 48, 0.55)"
+background_size = 46
+radius = 23
+color = "rgba(184, 197, 208, 0.78)"
+size = 20
+confirm = false
+halign = "right"
+valign = "top"
+x = -132
+y = 24
+
+[visuals.power.reboot]
+enabled = true
+background_color = "rgba(15, 34, 48, 0.55)"
+background_size = 46
+radius = 23
+color = "rgba(184, 197, 208, 0.78)"
+size = 20
+confirm = true
+halign = "right"
+valign = "top"
+x = -186
+y = 24
+
+[visuals.power.poweroff]
+enabled = true
+background_color = "rgba(15, 34, 48, 0.55)"
+background_size = 46
+radius = 23
+color = "rgba(212, 130, 90, 0.85)"
+size = 20
+confirm = true
+halign = "right"
+valign = "top"
+x = -240
+y = 24
 
 [visuals.palette]
 foreground = "rgba(184, 197, 208, 0.92)"

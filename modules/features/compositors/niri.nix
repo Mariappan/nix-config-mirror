@@ -41,9 +41,7 @@
 
       imports = [
         self.modules.homeManager.wayland
-        self.modules.homeManager.stasis
         self.modules.homeManager.kanshi
-        self.modules.homeManager.hyprlock
         self.modules.homeManager.ghostty
         self.modules.homeManager.dconf
         self.modules.homeManager.noctalia

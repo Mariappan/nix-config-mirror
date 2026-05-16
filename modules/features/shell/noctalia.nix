@@ -1,27 +1,17 @@
-{ inputs, ... }:
+{ self, inputs, ... }:
 {
   flake.modules.homeManager.noctalia =
-    {
-      config,
-      lib,
-      pkgs,
-      ...
-    }:
+    { pkgs, ... }:
     {
       nixma.imported.noctalia = true;
 
-      home.packages = [ inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+      imports = [ inputs.noctalia.homeModules.default ];
 
-      home.activation.noctalia-symlink =
-        let
-          dotfiles = "${config.dotfilesNonSandboxPath}/noctalia";
-          target = "${config.xdg.configHome}/noctalia";
-        in
-        lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-          if [[ -d ${target} && ! -L ${target} ]]; then
-            run mv ${target} ${target}.pre-symlink
-          fi
-          run ln -sfn ${dotfiles} ${target}
-        '';
+      programs.noctalia = {
+        enable = true;
+        systemd.enable = true;
+        package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        settings = builtins.readFile "${self}/dotfiles/noctalia/settings.toml";
+      };
     };
 }

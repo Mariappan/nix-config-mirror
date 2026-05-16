@@ -1,17 +1,25 @@
 [bar.default]
 attach_panels = false
-background_opacity = 0.64999997615814209
+background_opacity = 0.85
+radius = 0
 capsule = true
-capsule_opacity = 0.79999995231628418
-end = [ "media", "notifications", "clipboard", "network", "volume", "tray" ]
+capsule_groups = [ "temp" ]
+capsule_opacity = 0.5
+capsule_padding = 12.0
+center = [ "clock" ]
+end = [ "network", "bluetooth", "volume", "input_volume", "clipboard", "media", "notifications", "tray" ]
 margin_edge = 0
 margin_ends = 0
+padding = 8
 position = "left"
-radius = 0
-start = [ "control-center", "battery", "workspaces" ]
+start = [ "control-center", "battery", "sysmon", "workspaces", "lock_keys" ]
+thickness = 40
 
 [desktop_widgets]
 enabled = false
+
+[keybinds]
+cancel = [ "Escape" ]
 
 [notification]
 layer = "overlay"
@@ -21,11 +29,16 @@ position = "bottom_center"
 
 [shell]
 avatar_path = "/home/maari/.face.jpg"
+font_family = "DejaVu Sans Mono"
 settings_show_advanced = true
+telemetry_enabled = true
 
     [shell.panel]
     attach_control_center = false
+    control_center_placement = "centered"
+    session_placement = "centered"
     transparency_mode = "glass"
+    wallpaper_placement = "centered"
 
     [shell.screen_corners]
     enabled = true
@@ -33,6 +46,7 @@ settings_show_advanced = true
 
 [theme]
 builtin = "Kanagawa"
+mode = "dark"
 
     [theme.templates]
     enable_builtin_templates = false
@@ -50,15 +64,50 @@ directory = "/home/maari/pictures/Wallpapers"
 address = "Singapore"
 refresh_minutes = 240
 
+[widget.battery]
+display_mode = "graphic"
+show_label = true
+
+[widget.bluetooth]
+capsule = true
+capsule_group = "temp"
+
+[widget.clock]
+capsule = false
+color = "primary"
+vertical_format = "{:%I\\n%M}\\n--\\n{:%b\\n%d}\\n--\\n{:%a}"
+
+[widget.input_volume]
+capsule = true
+capsule_group = "temp"
+show_label = false
+
+[widget.lock_keys]
+hide_when_off = true
+
 [widget.network]
 show_label = false
+capsule = true
+capsule_group = "temp"
+
+[widget.ram]
+display = "text"
+show_label = false
+stat = "cpu_usage"
+
+[widget.sysmon]
+display = "gauge"
+show_label = false
+stat = "cpu_usage"
 
 [widget.tray]
 drawer = true
 
 [widget.volume]
+capsule = true
+capsule_group = "temp"
 show_label = false
 
 [widget.workspaces]
 display = "none"
-empty_color = "tertiary"
+empty_color = "on_surface"

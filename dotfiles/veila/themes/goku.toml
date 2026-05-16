@@ -9,6 +9,15 @@ scaling = "fill"
 blur_strength = 0
 dim_strength = 0
 
+[lock]
+screen_off_seconds = 120
+hide_cursor = true
+power_off_secondary_outputs = true
+allow_empty_password = true
+
+[fingerprint]
+enabled = true
+
 [battery]
 enabled = true
 
@@ -32,6 +41,7 @@ y = 60
 
 [visuals.date]
 enabled = true
+format = "short"
 font_family = "DejaVu Serif"
 font_weight = 400
 color = "rgba(234, 157, 119, 0.70)"
@@ -238,6 +248,45 @@ z = 0
 [visuals.outputs]
 ui_mode = "single"
 ui_output = "DP-1"
+
+[visuals.power.suspend]
+enabled = true
+background_color = "rgba(37, 53, 53, 0.55)"
+background_size = 46
+radius = 23
+color = "rgba(234, 157, 119, 0.78)"
+size = 20
+confirm = false
+halign = "right"
+valign = "top"
+x = -132
+y = 24
+
+[visuals.power.reboot]
+enabled = true
+background_color = "rgba(37, 53, 53, 0.55)"
+background_size = 46
+radius = 23
+color = "rgba(234, 157, 119, 0.78)"
+size = 20
+confirm = true
+halign = "right"
+valign = "top"
+x = -186
+y = 24
+
+[visuals.power.poweroff]
+enabled = true
+background_color = "rgba(37, 53, 53, 0.55)"
+background_size = 46
+radius = 23
+color = "rgba(242, 165, 120, 0.95)"
+size = 20
+confirm = true
+halign = "right"
+valign = "top"
+x = -240
+y = 24
 
 [visuals.palette]
 foreground = "rgba(234, 157, 119, 0.92)"
