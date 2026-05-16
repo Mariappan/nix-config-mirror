@@ -445,6 +445,10 @@ binds {
     Mod+Ctrl+Alt+Q allow-when-locked=true hotkey-overlay-title=null { spawn-sh "pkill veila-curtain; exec veila lock"; }
 }
 
+xwayland-satellite { 
+    path "/run/current-system/sw/bin/xwayland-satellite"
+}
+
 environment
 
 gestures {

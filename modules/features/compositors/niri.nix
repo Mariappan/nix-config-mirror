@@ -1,7 +1,7 @@
 { self, ... }:
 {
   flake.modules.nixos.niri =
-    { ... }:
+    { pkgs, ... }:
     {
       nixma.nixos.imported.niri = true;
 
@@ -20,6 +20,10 @@
           "com.mitchellh.ghostty"
         ];
       };
+
+      environment.systemPackages = [
+        pkgs.xwayland-satellite
+      ];
 
       # Add session variables manually.
       # Will be set by uwsm in Hyprland
