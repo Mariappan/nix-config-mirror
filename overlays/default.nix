@@ -19,6 +19,21 @@
   };
 
   unused = _final: prev: {
+    # Wayland deps for virtualbox GUI on no-X11 systems.
+    # Mirrors https://github.com/NixOS/nixpkgs/pull/492016
+    virtualbox = prev.virtualbox.overrideAttrs (old: {
+      buildInputs = (old.buildInputs or [ ]) ++ [ prev.qt6.qtwayland ];
+      preFixup =
+        ''
+          for bin in $out/bin/VirtualBox $out/libexec/virtualbox/VirtualBoxVM; do
+            [ -e "$bin" ] || continue
+            patchelf "$bin" \
+              --add-needed libwayland-client.so.0 \
+              --add-rpath ${prev.lib.makeLibraryPath [ prev.wayland ]}
+          done
+        ''
+        + (old.preFixup or "");
+    });
     claude-code =
       builtins.trace "WARNING: claude-code is pinned to 2.1.116 via overlay. Remove this override"
         (
