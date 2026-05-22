@@ -111,6 +111,18 @@
           home-manager.sharedModules = [
             {
               home.packages = lib.mkIf pkgs.stdenv.isLinux [
+                (pkgs.writeShellApplication {
+                  name = "toggle-expressvpn";
+                  runtimeInputs = [ pkgs.jq ];
+                  text = ''
+                    WIN=$(niri msg -j windows | jq -r '[.[] | select(.app_id | ascii_downcase | contains("expressvpn"))] | first | .id // empty')
+                    if [ -n "$WIN" ]; then
+                        niri msg action close-window --id "$WIN"
+                    else
+                        expressvpn-client
+                    fi
+                  '';
+                })
                 pkgs.google-chrome
                 pkgs.slack
                 pkgs.spotify
