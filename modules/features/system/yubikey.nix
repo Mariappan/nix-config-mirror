@@ -4,8 +4,16 @@
     {
       nixma.nixos.imported.yubikey = true;
 
-      # Smart card daemon for PIV / PKCS#11 access.
-      services.pcscd.enable = true;
+      # PC/SC smart-card daemon. Mediates CCID access for PIV / PKCS#11
+      # consumers (ykman piv|oath, browser client certs, pam_pkcs11, OpenVPN
+      # cert auth, etc.).
+      #
+      # Disabled here because pcscd opens the CCID interface exclusively,
+      # which blocks gpg's scdaemon ("selecting card failed: No such device").
+      # GPG/SSH-via-gpg-agent talk to the YubiKey's CCID interface directly,
+      # and pam_u2f / FIDO2 use the separate USB HID interface, so neither
+      # path needs pcscd. Re-enable if PIV or PKCS#11 tooling is required.
+      services.pcscd.enable = false;
 
       # Enable U2F PAM module — also triggers the upstream polkit-agent-helper@
       # sandbox relaxation needed for pam_u2f.so to read /dev/hidraw* and
