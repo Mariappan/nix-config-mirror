@@ -63,7 +63,7 @@ mask_color = "#EA9D77"
 font_family = "Google Sans Flex"
 font_weight = 400
 font_size = 16
-reveal_on_interaction = true
+reveal_on_interaction = false
 reveal_mode = "input"
 reveal_hint = ""
 halign = "left"
@@ -97,9 +97,14 @@ color = "rgba(255, 224, 196, 0.90)"
 
 [visuals.status]
 enabled = true
-mode = "inline"
+mode = "external"
+color = "rgba(242, 165, 120, 0.90)"
 pending_color = "rgba(242, 165, 120, 0.66)"
 rejected_color = "rgba(234, 157, 119, 0.92)"
+halign = "left"
+valign = "bottom"
+x = 40
+y = -120
 
 [visuals.caps_lock]
 enabled = true
