@@ -3,23 +3,33 @@ attach_panels = false
 background_opacity = 0.85
 radius = 0
 capsule = true
-capsule_groups = [ "temp" ]
 capsule_opacity = 0.5
-capsule_padding = 12.0
+capsule_padding = 8.0
 center = [ "clock" ]
-end = [ "network", "bluetooth", "volume", "input_volume", "clipboard", "media", "notifications", "tray" ]
+end = [ "group:g1", "clipboard", "notifications", "tray" ]
 margin_edge = 0
 margin_ends = 0
 padding = 8
 position = "left"
-start = [ "control-center", "battery", "sysmon", "workspaces", "lock_keys" ]
+start = [ "screenshot", "battery", "sysmon", "workspaces", "lock_keys" ]
 thickness = 40
+
+
+[[bar.default.capsule_group]]
+id = "g1"
+members = [ "network", "bluetooth", "volume", "input_volume" ]
+fill = "surface_variant"
+opacity = 0.5
+padding = 8.0
 
 [desktop_widgets]
 enabled = false
 
 [keybinds]
 cancel = [ "Escape" ]
+
+[location]
+address = "Singapore"
 
 [notification]
 layer = "overlay"
@@ -29,13 +39,17 @@ position = "bottom_center"
 
 [shell]
 avatar_path = "/home/maari/.face.jpg"
-font_family = "DejaVu Sans Mono"
+font_family = "Script12 BT"
+launch_apps_as_systemd_services = true
+polkit_agent = false
+screen_time_enabled = true
 settings_show_advanced = true
 telemetry_enabled = true
 
     [shell.panel]
     attach_control_center = false
     control_center_placement = "centered"
+    launcher_categories = false
     session_placement = "centered"
     transparency_mode = "glass"
     wallpaper_placement = "centered"
@@ -43,6 +57,39 @@ telemetry_enabled = true
     [shell.screen_corners]
     enabled = true
     size = 16
+
+    [shell.screenshot]
+    directory = "/home/maari/pictures/Screenshots"
+
+    [[shell.session.actions]]
+    action = "lock"
+    command = "veila lock"
+    enabled = true
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "logout"
+    enabled = true
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "suspend"
+    enabled = true
+    label = "Suspend"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "reboot"
+    enabled = true
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+    enabled = true
+    variant = "destructive"
+
+[system.monitor]
+disk_poll_seconds = 120
 
 [theme]
 builtin = "Kanagawa"
@@ -61,7 +108,6 @@ directory = "/home/maari/pictures/Wallpapers"
     recursive = false
 
 [weather]
-address = "Singapore"
 refresh_minutes = 240
 
 [widget.battery]
@@ -69,17 +115,16 @@ display_mode = "graphic"
 show_label = true
 
 [widget.bluetooth]
-capsule = true
-capsule_group = "temp"
+capsule = false
 
 [widget.clock]
 capsule = false
 color = "primary"
 vertical_format = "{:%I\\n%M}\\n--\\n{:%b\\n%d}\\n--\\n{:%a}"
+tooltip_format = "{:%I:%M %p} {:%b %d} {:%a}"
 
 [widget.input_volume]
-capsule = true
-capsule_group = "temp"
+capsule = false
 show_label = false
 
 [widget.lock_keys]
@@ -87,13 +132,15 @@ hide_when_off = true
 
 [widget.network]
 show_label = false
-capsule = true
-capsule_group = "temp"
+capsule = false
 
 [widget.ram]
 display = "text"
 show_label = false
 stat = "cpu_usage"
+
+[widget.screenshot]
+glyph = "noctalia"
 
 [widget.sysmon]
 display = "gauge"
@@ -104,8 +151,7 @@ stat = "cpu_usage"
 drawer = true
 
 [widget.volume]
-capsule = true
-capsule_group = "temp"
+capsule = false
 show_label = false
 
 [widget.workspaces]
