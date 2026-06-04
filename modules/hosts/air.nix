@@ -17,6 +17,7 @@
       self.modules.nixos.virtualbox
       self.modules.nixos.yubikey
       self.modules.nixos.gpclient
+      self.modules.nixos.nixGithubToken
       inputs.expressvpn.nixosModules.default
       self.modules.nixos.remoteBuilders
 
@@ -102,6 +103,9 @@
               configFile = self + /secrets/gpclient-config-air.age;
             };
           };
+
+          # GitHub token for nix flake operations (avoids API rate limits).
+          nixma.nixos.nixGithubToken.file = self + /secrets/nix-github-token.age;
 
           nixma.nixos.boot.loaderTimeout = 3;
 

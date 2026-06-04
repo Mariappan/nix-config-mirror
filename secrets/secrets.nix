@@ -20,4 +20,6 @@ in
   # Split network config
   "gpclient-networks-air.age".publicKeys = allKeys;
   "gpclient-domains-air.age".publicKeys = allKeys;
+  # nix.conf `access-tokens = github.com=...` snippet for nix flake operations
+  "nix-github-token.age".publicKeys = allKeys;
 }

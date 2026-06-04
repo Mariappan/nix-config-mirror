@@ -12,6 +12,7 @@
       self.modules.nixos.docker
       self.modules.nixos.virtualbox
       self.modules.nixos.nvidia
+      self.modules.nixos.nixGithubToken
 
       # Users
       self.modules.nixos.user-maari
@@ -83,6 +84,9 @@
           };
 
           nixma.nixos.networking.strictArp = true;
+
+          # GitHub token for nix flake operations (avoids API rate limits).
+          nixma.nixos.nixGithubToken.file = self + /secrets/nix-github-token.age;
 
           home-manager.sharedModules = [
             {
