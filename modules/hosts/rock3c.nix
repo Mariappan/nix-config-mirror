@@ -1,29 +1,13 @@
 { self, inputs, ... }:
-let
-  rock3cInputs = {
-    inherit (inputs)
-      self
-      home-manager
-      agenix
-      noctalia
-      nix-index-database
-      nix-alien
-      flake-parts
-      ;
-    nixpkgs = inputs.nixpkgs-rock3c;
-    nixos-hardware = inputs.nixos-hardware-rock3c;
-  };
-in
 {
-  flake.nixosConfigurations.rock3c = inputs.nixpkgs-rock3c.lib.nixosSystem {
+  flake.nixosConfigurations.rock3c = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {
-      inherit self;
-      inputs = rock3cInputs;
+      inherit self inputs;
     };
     modules = [
-      inputs.nixos-hardware-rock3c.nixosModules.radxa-rock-3c
+      inputs.nixos-hardware.nixosModules.radxa-rock-3c
       inputs.disko.nixosModules.disko
-      "${inputs.nixos-hardware-rock3c}/rockchip/disko.nix"
+      "${inputs.nixos-hardware}/rockchip/disko.nix"
 
       # Base
       self.modules.nixos.common
@@ -86,11 +70,9 @@ in
           services.resolved.settings.Resolve.DNSSEC = lib.mkForce "false";
 
           # NixOS-native partition grow on first boot (initrd-level growpart).
-          # Preserves the disk-main-root partlabel disko set up. Pair with
-          # autoResize on the ext4 root so resize2fs extends the filesystem
-          # to fill the grown partition before mount.
+          # Preserves the disk-main-root partlabel disko set up. bcachefs root
+          # is grown separately (see upstream rockchip disko config).
           boot.growPartition = true;
-          fileSystems."/".autoResize = true;
 
           # Firmware needed for rock3c:
           #   brcm + cypress: AP6256 (BCM43455) wifi + bluetooth.

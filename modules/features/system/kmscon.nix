@@ -6,9 +6,11 @@
 
       services.kmscon = {
         enable = true;
-        hwRender = true;
-        term = "xterm-256color";
-        extraConfig = "font-size=14";
+        config = {
+          hwaccel = true;
+          term = "xterm-256color";
+          font-size = 14;
+        };
       };
     };
 }
