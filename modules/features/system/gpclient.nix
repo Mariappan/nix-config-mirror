@@ -50,13 +50,10 @@
               ${pkgs.iproute2}/bin/ip route del default dev "$INTERFACE" 2>/dev/null || true
             fi
 
-            # Remove Google DNS routes that gpclient adds
-            for dns in 8.8.8.8 8.8.4.4; do
-              if ${pkgs.iproute2}/bin/ip route show "$dns" dev "$INTERFACE" 2>/dev/null | ${pkgs.gnugrep}/bin/grep -q .; then
-                log "Removing DNS route $dns through VPN"
-                ${pkgs.iproute2}/bin/ip route del "$dns" dev "$INTERFACE" 2>/dev/null || true
-              fi
-            done
+            ${pkgs.systemd}/bin/resolvectl default-route "$INTERFACE" false
+            ${pkgs.systemd}/bin/resolvectl dnssec "$INTERFACE" no
+            ${pkgs.systemd}/bin/resolvectl llmnr "$INTERFACE" no
+            ${pkgs.systemd}/bin/resolvectl mdns "$INTERFACE" no
 
             # Read networks from secret file if it exists
             NETWORKS_FILE="${config.age.secrets.gpclient-networks.path}"
@@ -102,14 +99,6 @@
                 done
               done < "$DOMAINS_FILE"
             fi
-
-            # Configure DNS: disable all name resolution on VPN interface
-            log "Disabling DNS, LLMNR, and mDNS on VPN interface"
-            ${pkgs.systemd}/bin/resolvectl dns "$INTERFACE" ""
-            ${pkgs.systemd}/bin/resolvectl domain "$INTERFACE" ""
-            ${pkgs.systemd}/bin/resolvectl default-route "$INTERFACE" false
-            ${pkgs.systemd}/bin/resolvectl llmnr "$INTERFACE" no
-            ${pkgs.systemd}/bin/resolvectl mdns "$INTERFACE" no
 
             log "Split tunnel configuration complete"
             ;;

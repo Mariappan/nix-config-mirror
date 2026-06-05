@@ -100,7 +100,6 @@
             secrets = {
               networksFile = self + /secrets/gpclient-networks-air.age;
               domainsFile = self + /secrets/gpclient-domains-air.age;
-              configFile = self + /secrets/gpclient-config-air.age;
             };
           };
 
