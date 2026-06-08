@@ -20,6 +20,18 @@
             `!include`, so the token never lands in the nix store.
           '';
         };
+
+        owner = lib.mkOption {
+          type = lib.types.str;
+          default = "root";
+          description = ''
+            User that owns the decrypted token. Flake `github:` inputs are
+            fetched by the nix client process (the invoking user), not the
+            daemon, so that user must be able to read this file or the
+            `!include` is silently skipped and the token never applies. Set to
+            the primary login user for client-side flake operations.
+          '';
+        };
       };
 
       config = lib.mkIf (cfg.file != null) {
@@ -27,6 +39,7 @@
 
         age.secrets.nix-github-token = {
           file = cfg.file;
+          owner = cfg.owner;
           mode = "0400";
         };
 

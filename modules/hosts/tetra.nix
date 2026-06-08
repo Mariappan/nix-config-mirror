@@ -87,6 +87,7 @@
 
           # GitHub token for nix flake operations (avoids API rate limits).
           nixma.nixos.nixGithubToken.file = self + /secrets/nix-github-token.age;
+          nixma.nixos.nixGithubToken.owner = "maari";
 
           home-manager.sharedModules = [
             {

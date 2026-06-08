@@ -135,6 +135,7 @@ window-rule {
     match app-id="^imv"
     match app-id="^mpv"
     match app-id="^spotify"
+    match app-id="^Spotify"
     match app-id="^io.github.tobagin.karere"
     match title="^Vicinae Launcher"
     match title="^Select what to share$"
@@ -167,6 +168,8 @@ window-rule {
     match app-id="^dev.noctalia.Noctalia"
     match app-id="^1Password$"
     match app-id="^1password$"
+    match app-id="^spotify"
+    match app-id="^Spotify"
     default-column-width { fixed 950; }
     default-window-height { fixed 1050; }
 }
