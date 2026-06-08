@@ -1,5 +1,4 @@
 input {
-    workspace-auto-back-and-forth
     keyboard {
         xkb {
             layout "us"
@@ -55,7 +54,6 @@ output "Beihai Century Joint Innovation Technology Co.,Ltd X340 PRO 165 Unknown"
 
     layout {
         default-column-width { proportion 0.33333; }
-        center-focused-column "always"
     }
 }
 
@@ -69,7 +67,6 @@ layout {
         proportion 0.33333
         proportion 0.5
         proportion 0.66667
-        proportion 1.0
     }
 
     preset-window-heights { 
