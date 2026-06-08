@@ -28,11 +28,29 @@
               "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ/gQaDONy7ryuW8R7tsnUxxpEoqQ1erZuM4KOb3VLAc maari@tetra"
               "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINB3JnJ0u7pwetXhzAmskHUmxfQjcCtoyModO+IRKL89 homelab@1password"
             ];
-            extraGroups = [ "incus-admin" ];
+            extraGroups = [ "incus-admin" "media" ];
 
             hmModules = with self.modules.homeManager; [
               git
             ];
+          };
+
+          # NAS data-owner accounts
+          users.users.maari.uid = 1000;
+          users.groups.media.gid = 2000;
+          users.groups.safia.gid = 1001;
+          users.users.mediarr = {
+            isSystemUser = true;
+            uid = 2000;
+            group = "media";
+            description = "Media service account";
+          };
+          users.users.safia = {
+            isSystemUser = true;
+            uid = 1001;
+            group = "safia";
+            extraGroups = [ "media" ];
+            description = "Safia";
           };
 
           nixma.nixos.formFactor = "desktop";
