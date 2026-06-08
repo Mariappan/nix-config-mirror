@@ -1,7 +1,10 @@
 # earth — NAS; stable channel for ZFS/kernel sanity.
 { self, inputs, ... }:
 {
-  flake.nixosConfigurations.earth = inputs.nixpkgs-2605.lib.nixosSystem {
+  flake.nixosConfigurations.earth = inputs.nixpkgs-stable.lib.nixosSystem {
+    specialArgs = {
+      homeManagerModule = inputs.home-manager-stable.nixosModules.home-manager;
+    };
     modules = [
 
       self.modules.nixos.common

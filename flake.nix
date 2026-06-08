@@ -17,10 +17,9 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs-2511.url = "github:NixOS/nixpkgs/nixos-25.11";
-    nixpkgs-2605.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-26.05";
+    nixpkgs-oldstable.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    # Scoped to chip host: carries nextthing/chip module until upstream merges PR #1807.
     nixos-hardware-chip.url = "github:nappairam/fork-nixos-hardware/chip";
     disko = {
       url = "github:nix-community/disko";
@@ -33,6 +32,10 @@
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     lanzaboote = {
       url = "github:nix-community/lanzaboote/v0.4.2";
