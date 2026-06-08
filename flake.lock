@@ -134,11 +134,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1779325208,
-        "narHash": "sha256-m4U8JLsx4tuNdqZ6n4CykgNUe92t8DALekKs1NZsDPs=",
+        "lastModified": 1780902643,
+        "narHash": "sha256-jJMUnwpnGgx2RGKZE+oNJvXNqCfKJei3WbHETOu3Xgs=",
         "owner": "nappairam",
         "repo": "expressvpn-flake",
-        "rev": "f0635ebd16fe90e342fd154c445ee1b03c46dd87",
+        "rev": "244e3ef4f7a7cfee316d1152e233ef64417bd849",
         "type": "github"
       },
       "original": {
