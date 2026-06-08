@@ -9,6 +9,7 @@
       # Bundles + features
       self.modules.nixos.server
       self.modules.nixos.incus
+      self.modules.nixos.zfs
 
       # Users
       self.modules.nixos.user-maari
@@ -51,6 +52,15 @@
           };
 
           nixma.nixos.networking.backend = "networkd";
+
+          nixma.nixos.zfs = {
+            hostId = "ea27beef";
+            extraPools = [
+              "datapool"
+              "fastpool"
+              "backuppool"
+            ];
+          };
 
           networking.hostName = "earth";
           time.timeZone = "Asia/Singapore";
