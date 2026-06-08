@@ -83,6 +83,108 @@
             ];
           };
 
+          services.samba = {
+            enable = true;
+            openFirewall = true;
+            settings =
+              let
+                fruit = "catia fruit streams_xattr";
+              in
+              {
+                global = {
+                  "server string" = "earth";
+                  security = "user";
+                  "min protocol" = "SMB2";
+                  "map to guest" = "never";
+                  "fruit:aapl" = "yes";
+                  "fruit:model" = "MacPro7,1";
+                };
+                media = {
+                  path = "/srv/media";
+                  "valid users" = "@media";
+                  "read only" = "no";
+                  "force group" = "media";
+                  "create mask" = "0664";
+                  "directory mask" = "2775";
+                  "vfs objects" = fruit;
+                };
+                pictures = {
+                  path = "/srv/pictures";
+                  "valid users" = "maari safia";
+                  "read only" = "no";
+                  "vfs objects" = fruit;
+                };
+                maari = {
+                  path = "/srv/maari";
+                  "valid users" = "maari";
+                  "read only" = "no";
+                  "vfs objects" = fruit;
+                };
+                safia = {
+                  path = "/srv/safia";
+                  "valid users" = "safia";
+                  "read only" = "no";
+                  "vfs objects" = fruit;
+                };
+                megamind = {
+                  path = "/srv/megamind";
+                  "valid users" = "maari";
+                  "read only" = "no";
+                  "vfs objects" = fruit;
+                };
+                temp = {
+                  path = "/srv/temp";
+                  "valid users" = "maari safia";
+                  "read only" = "no";
+                  "vfs objects" = fruit;
+                };
+              };
+          };
+
+          services.avahi.publish.userServices = true;
+          services.avahi.extraServiceFiles.smb = ''
+            <?xml version="1.0" standalone='no'?>
+            <!DOCTYPE service-group SYSTEM "avahi-service.dtd">
+            <service-group>
+              <name replace-wildcards="yes">%h</name>
+              <service><type>_smb._tcp</type><port>445</port></service>
+              <service><type>_device-info._tcp</type><port>0</port>
+                <txt-record>model=MacPro7,1</txt-record></service>
+            </service-group>
+          '';
+
+          # ZFS datasets served by samba/plex — legacy mountpoints (set on import). nofail so a
+          # missing/unavailable pool doesn't drop this headless box to emergency mode.
+          fileSystems = builtins.listToAttrs (
+            map (n: {
+              name = "/srv/${n}";
+              value = {
+                device = "datapool/${n}";
+                fsType = "zfs";
+                options = [ "nofail" "x-systemd.mount-timeout=10s" ];
+              };
+            }) [ "media" "plex" "pictures" "maari" "safia" "megamind" "temp" ]
+          );
+
+          # Don't start services on an empty mountpoint if the pool isn't up yet.
+          systemd.services.plex.unitConfig.RequiresMountsFor = [ "/srv/plex" "/srv/media" ];
+          systemd.services.samba-smbd.unitConfig.RequiresMountsFor = [
+            "/srv/media"
+            "/srv/pictures"
+            "/srv/maari"
+            "/srv/safia"
+            "/srv/megamind"
+            "/srv/temp"
+          ];
+
+          services.plex = {
+            enable = true;
+            openFirewall = true;
+            dataDir = "/srv/plex";
+          };
+          users.users.plex.extraGroups = [ "media" "render" "video" ];
+          hardware.graphics.enable = true;
+
           networking.hostName = "earth";
           time.timeZone = "Asia/Singapore";
         }
