@@ -15,6 +15,7 @@
           type = lib.types.enum [
             "gdm"
             "regreet"
+            "tuigreet"
             "cosmic-greeter"
           ];
           default = "gdm";
@@ -36,6 +37,20 @@
           cursorTheme.package = pkgs.adwaita-icon-theme;
           theme.name = "adw-gtk3-dark";
           theme.package = pkgs.adw-gtk3;
+        };
+
+        services.greetd = lib.mkIf (cfg.displayManager == "tuigreet") {
+          enable = true;
+          settings.default_session = {
+            command = lib.concatStringsSep " " [
+              "${pkgs.tuigreet}/bin/tuigreet"
+              "--time"
+              "--remember"
+              "--remember-session"
+              "--sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions"
+            ];
+            user = "greeter";
+          };
         };
 
         services.displayManager.cosmic-greeter.enable = lib.mkIf (
