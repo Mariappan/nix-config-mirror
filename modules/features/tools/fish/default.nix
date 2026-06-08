@@ -1,8 +1,15 @@
 {
   flake.modules.homeManager.fish =
-    args@{ pkgs, lib, ... }:
+    args@{
+      config,
+      pkgs,
+      lib,
+      ...
+    }:
     {
       nixma.imported.fish = true;
+
+      programs.man.generateCaches = lib.mkIf (config.programs.man.package == null) (lib.mkForce false);
 
       xdg.configFile = {
         "gitalias" = {
