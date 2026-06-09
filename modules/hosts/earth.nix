@@ -212,6 +212,53 @@
           users.users.plex.extraGroups = [ "media" "render" "video" ];
           hardware.graphics.enable = true;
 
+          systemd.network = {
+            netdevs = {
+              "20-vlan100" = {
+                netdevConfig = {
+                  Name = "vlan100";
+                  Kind = "vlan";
+                };
+                vlanConfig.Id = 100;
+              };
+              "20-br-iot" = {
+                netdevConfig = {
+                  Name = "br-iot";
+                  Kind = "bridge";
+                };
+              };
+            };
+            networks = {
+              # Incus VM taps / container veths
+              "02-incus-virtual" = {
+                matchConfig.Name = "tap* veth*";
+                linkConfig.Unmanaged = true;
+              };
+              # Uplink: untagged DHCP + carry tagged VLAN100 up.
+              "05-uplink" = {
+                matchConfig.Name = "enp196s0";
+                networkConfig.DHCP = "yes";
+                vlan = [ "vlan100" ];
+              };
+              # Tagged VLAN100 frames → br-iot (L2 only)
+              "06-vlan100" = {
+                matchConfig.Name = "vlan100";
+                networkConfig.Bridge = "br-iot";
+                linkConfig.RequiredForOnline = "no";
+              };
+              # Pure L2 bridge
+              "07-br-iot" = {
+                matchConfig.Name = "br-iot";
+                networkConfig = {
+                  DHCP = "no";
+                  LinkLocalAddressing = "no";
+                  IPv6AcceptRA = false;
+                };
+                linkConfig.RequiredForOnline = "no";
+              };
+            };
+          };
+
           networking.hostName = "earth";
           time.timeZone = "Asia/Singapore";
         }
