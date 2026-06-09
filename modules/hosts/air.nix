@@ -112,7 +112,7 @@
 
           nixma.nixos.boot.loaderTimeout = 3;
 
-          nixma.nixos.networking.tailscale = true;
+          nixma.nixos.networkServices.tailscale = true;
           nixma.nixos.networking.strictArp = true;
 
           home-manager.sharedModules = [

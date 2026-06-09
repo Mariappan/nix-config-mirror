@@ -51,11 +51,6 @@
           '';
         };
 
-        tailscale = lib.mkOption {
-          type = lib.types.bool;
-          default = false;
-        };
-
         backend = lib.mkOption {
           type = lib.types.enum [
             "networkmanager"
@@ -105,8 +100,6 @@
 
         # Enable firewall
         networking.firewall.enable = true;
-
-        services.tailscale.enable = cfg.tailscale;
       };
     };
 }

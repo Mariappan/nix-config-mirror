@@ -37,6 +37,12 @@
           description = "Enable the Mosh (UDP SSH) daemon.";
         };
 
+        tailscale = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = "Enable the Tailscale mesh-VPN daemon.";
+        };
+
         avahiPublish = lib.mkOption {
           type = lib.types.bool;
           default = true;
@@ -113,6 +119,7 @@
         users.users.root.openssh.authorizedKeys.keys = cfg.rootKeys;
 
         programs.mosh.enable = cfg.mosh;
+        services.tailscale.enable = cfg.tailscale;
 
         networking.timeServers = cfg.ntpServers;
         services.ntp.enable = true;
