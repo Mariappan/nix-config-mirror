@@ -97,7 +97,7 @@
                 pkgs.spotify-player
                 pkgs.obsidian
                 pkgs.nushell
-                pkgs._2511.gpclient
+                pkgs._oldstable.gpclient
                 pkgs.pavucontrol
                 pkgs.ookla-speedtest
                 pkgs.nrfutil

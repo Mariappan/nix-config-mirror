@@ -64,14 +64,14 @@
     });
   };
 
-  # When applied, the stable nixpkgs set (declared in the flake inputs) will
-  # be accessible through 'pkgs._2511'
+  # Pinned channel package sets, accessible through 'pkgs._stable' (26.05)
+  # and 'pkgs._oldstable' (25.11).
   stable-packages = final: _prev: {
-    _2605 = import inputs.nixpkgs-2605 {
+    _stable = import inputs.nixpkgs-stable {
       system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };
-    _2511 = import inputs.nixpkgs-2511 {
+    _oldstable = import inputs.nixpkgs-oldstable {
       system = final.stdenv.hostPlatform.system;
       config.allowUnfree = true;
     };

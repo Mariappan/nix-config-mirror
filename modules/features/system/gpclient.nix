@@ -165,7 +165,7 @@
         home-manager.sharedModules = [
           {
             home.packages = lib.mkIf pkgs.stdenv.isLinux [
-              pkgs._2511.gpclient
+              pkgs._oldstable.gpclient
             ];
           }
         ];
