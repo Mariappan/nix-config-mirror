@@ -1,0 +1,53 @@
+# arr — isolated NixOS Incus VM for the *arr stack (assume-breach).
+{ self, inputs, ... }:
+{
+  flake.nixosConfigurations.arr = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {
+      homeManagerModule = inputs.home-manager.nixosModules.home-manager;
+    };
+    modules = [
+      "${inputs.nixpkgs}/nixos/modules/virtualisation/incus-virtual-machine.nix"
+
+      # Base
+      self.modules.nixos.common
+
+      # Bundles
+      self.modules.nixos.server
+
+      # Users
+      self.modules.nixos.user-maari
+      self.modules.nixos.user-root
+
+      (
+        { ... }:
+        {
+          nixma.users.maari = {
+            email = "1221719+nappairam@users.noreply.github.com";
+            sshKeys = [
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH3bwlIYLqj7YgfDNhFoAWgP5hg9+TOXmhnRZM9R8Bfi"
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ/gQaDONy7ryuW8R7tsnUxxpEoqQ1erZuM4KOb3VLAc maari@tetra"
+              "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINB3JnJ0u7pwetXhzAmskHUmxfQjcCtoyModO+IRKL89 homelab@1password"
+            ];
+          };
+
+          nixma.nixos.formFactor = "desktop";
+          nixma.nixos.roles = [ "server" ];
+
+          nixma.nixos.hardware.cpu.vendor = "amd";
+
+          # The Incus VM module owns the bootloader + filesystems.
+          nixma.nixos.boot.bootloader = "none";
+          nixma.nixos.hardware.filesystems.manage = false;
+          # No encrypted disk → no initrd remote-unlock SSH (its host-key secret
+          # is absent in the image-build sandbox and breaks bootloader install).
+          nixma.nixos.boot.initrd.network.enable = false;
+
+          nixma.nixos.networking.backend = "networkd";
+
+          networking.hostName = "arr";
+          time.timeZone = "Asia/Singapore";
+        }
+      )
+    ];
+  };
+}
