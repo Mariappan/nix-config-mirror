@@ -19,7 +19,12 @@
       self.modules.nixos.user-root
 
       (
-        { ... }:
+        {
+          config,
+          pkgs,
+          lib,
+          ...
+        }:
         {
           nixma.users.maari = {
             email = "1221719+nappairam@users.noreply.github.com";
@@ -152,6 +157,28 @@
                 <txt-record>model=MacPro7,1</txt-record></service>
             </service-group>
           '';
+
+          age.secrets.cloudflare-token.file = ../../secrets/cloudflare-token.age;
+          services.caddy = {
+            enable = true;
+            package = pkgs.caddy.withPlugins {
+              plugins = [ "github.com/caddy-dns/cloudflare@v0.2.4" ];
+              hash = "sha256-8yZDrejNKsaUnUaTUFYbarWNmxafqp2z2rWo+XRsxV8=";
+            };
+            virtualHosts."plex.lab.nappairam.dev".extraConfig = ''
+              tls {
+                dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+                propagation_delay 120s
+                propagation_timeout -1
+              }
+              reverse_proxy localhost:32400
+            '';
+            virtualHosts.":80".extraConfig = ''
+              respond "Caddy is running" 200
+            '';
+          };
+          systemd.services.caddy.serviceConfig.EnvironmentFile = config.age.secrets.cloudflare-token.path;
+          networking.firewall.allowedTCPPorts = [ 80 443 ];
 
           # ZFS datasets served by samba/plex — legacy mountpoints (set on import). nofail so a
           # missing/unavailable pool doesn't drop this headless box to emergency mode.
