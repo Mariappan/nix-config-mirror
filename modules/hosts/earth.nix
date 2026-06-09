@@ -66,7 +66,10 @@
           };
 
           nixma.nixos.boot = {
-            kernelModules = [ "kvm-amd" ];
+            kernelModules = [
+              "kvm-amd"
+              "br_netfilter"
+            ];
             initrd.availableKernelModules = [
               "ahci"
               "nvme"
@@ -211,6 +214,12 @@
           };
           users.users.plex.extraGroups = [ "media" "render" "video" ];
           hardware.graphics.enable = true;
+
+          boot.kernel.sysctl = {
+            # Since bridge pure L2
+            "net.bridge.bridge-nf-call-iptables" = 0;
+            "net.bridge.bridge-nf-call-ip6tables" = 0;
+          };
 
           systemd.network = {
             netdevs = {
