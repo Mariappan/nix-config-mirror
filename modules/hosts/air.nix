@@ -1,6 +1,9 @@
 { self, inputs, ... }:
 {
   flake.nixosConfigurations.air = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {
+      homeManagerModule = inputs.home-manager.nixosModules.home-manager;
+    };
     modules = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-x1-13th-gen
 

@@ -18,6 +18,7 @@ in
     specialArgs = {
       inherit self;
       inputs = chipInputs;
+      homeManagerModule = inputs.home-manager.nixosModules.home-manager;
     };
     modules = [
       # Hardware: Next Thing Co CHIP (Allwinner R8, armv7l).

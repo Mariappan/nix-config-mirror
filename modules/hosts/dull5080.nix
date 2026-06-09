@@ -1,6 +1,9 @@
 { self, inputs, ... }:
 {
   flake.nixosConfigurations.dull5080 = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {
+      homeManagerModule = inputs.home-manager.nixosModules.home-manager;
+    };
     modules = [
 
       # Base

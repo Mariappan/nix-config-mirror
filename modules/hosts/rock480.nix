@@ -1,6 +1,9 @@
 { self, inputs, ... }:
 {
   flake.nixosConfigurations.rock480 = inputs.nixpkgs.lib.nixosSystem {
+    specialArgs = {
+      homeManagerModule = inputs.home-manager.nixosModules.home-manager;
+    };
     modules = [
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
 

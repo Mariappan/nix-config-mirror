@@ -1,8 +1,9 @@
 { inputs, ... }:
 {
   flake.modules.nixos.shared-homemanager =
-    # Hosts may override the HM channel via specialArgs
-    { homeManagerModule ? inputs.home-manager.nixosModules.home-manager, ... }:
+    # Each host passes its HM channel via specialArgs (required — referencing a
+    # defaulted module arg in `imports` would force _module.args and recurse).
+    { homeManagerModule, ... }:
     {
       nixma.nixos.imported.shared-homemanager = true;
 

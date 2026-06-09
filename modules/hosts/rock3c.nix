@@ -3,6 +3,7 @@
   flake.nixosConfigurations.rock3c = inputs.nixpkgs.lib.nixosSystem {
     specialArgs = {
       inherit self inputs;
+      homeManagerModule = inputs.home-manager.nixosModules.home-manager;
     };
     modules = [
       inputs.nixos-hardware.nixosModules.radxa-rock-3c
