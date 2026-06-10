@@ -122,12 +122,82 @@
               # for the port-forward helper
               echo "$TOK" > /run/pia/token
               echo "$WG_IP" > /run/pia/gateway
+              echo "$WG_CN" > /run/pia/cn
               echo "registered fresh PIA WG key for region $REGION ($WG_CN)"
             '';
           };
           systemd.services.wg = {
             requires = [ "pia-wg-conf.service" ];
             after = [ "pia-wg-conf.service" ];
+          };
+
+          # PIA's forwarded port is dynamic: sign once, then bindPort every <15min
+          # keeps it alive (payload lasts ~2 months; bindPort needs no token). The
+          # PF API is only reachable through the tunnel, so confine to the wg ns;
+          # push the port to qBittorrent on change (in-ns API, subnet-whitelisted).
+          systemd.services.pia-portforward = {
+            description = "PIA port forwarding -> qBittorrent";
+            wantedBy = [ "multi-user.target" ];
+            requires = [
+              "pia-wg-conf.service"
+              "wg.service"
+            ];
+            after = [
+              "pia-wg-conf.service"
+              "wg.service"
+              "qbittorrent.service"
+            ];
+            path = with pkgs; [
+              curl
+              jq
+              coreutils
+            ];
+            serviceConfig = {
+              Restart = "always";
+              RestartSec = 30;
+              EnvironmentFile = "/etc/pia/pia.env";
+            };
+            vpnConfinement = {
+              enable = true;
+              vpnNamespace = "wg";
+            };
+            script = ''
+              set -euo pipefail
+              CA=${self + /dotfiles/certs/pia-ca.rsa.4096.crt}
+              GW=$(cat /run/pia/gateway)
+              CN=$(cat /run/pia/cn)
+
+              pf_call() {
+                curl -s -G --max-time 15 --connect-to "$CN::$GW:" --cacert "$CA" "$@"
+              }
+
+              TOK=$(cat /run/pia/token 2>/dev/null || true)
+              SIG=$(pf_call --data-urlencode "token=$TOK" "https://$CN:19999/getSignature")
+              if [ "$(echo "$SIG" | jq -r .status)" != OK ]; then
+                echo "boot token rejected; fetching a fresh one"
+                TOK=$(curl -s --max-time 15 --location --request POST \
+                  'https://www.privateinternetaccess.com/api/client/v2/token' \
+                  --form "username=$PIA_USER" --form "password=$PIA_PASS" | jq -r '.token // empty')
+                SIG=$(pf_call --data-urlencode "token=$TOK" "https://$CN:19999/getSignature")
+                [ "$(echo "$SIG" | jq -r .status)" = OK ] || { echo "getSignature failed: $SIG"; exit 1; }
+              fi
+
+              PAYLOAD=$(echo "$SIG" | jq -r .payload)
+              SIGNATURE=$(echo "$SIG" | jq -r .signature)
+              PORT=$(echo "$PAYLOAD" | base64 -d | jq -r .port)
+              echo "PIA forwarded port: $PORT"
+
+              # re-push every cycle: heals a qbittorrent restart resetting the port
+              while true; do
+                BIND=$(pf_call --data-urlencode "payload=$PAYLOAD" --data-urlencode "signature=$SIGNATURE" \
+                  "https://$CN:19999/bindPort")
+                [ "$(echo "$BIND" | jq -r .status)" = OK ] || { echo "bindPort failed: $BIND"; exit 1; }
+                curl -s --max-time 10 \
+                  --data "json={\"listen_port\": $PORT, \"random_port\": false}" \
+                  http://192.168.15.1:8085/api/v2/app/setPreferences > /dev/null || true
+                sleep 600
+              done
+            '';
           };
 
           # Pin the media group to the host's gid so files the VM writes through
