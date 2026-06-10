@@ -47,6 +47,11 @@
 
           nixma.nixos.networking.backend = "networkd";
 
+          systemd.network.networks."05-vpn-confinement" = {
+            matchConfig.Name = "wg-br veth-wg-br";
+            linkConfig.Unmanaged = true;
+          };
+
           # Pin the media group to the host's gid so files the VM writes through
           # virtiofs land as group `media` (2000) on the host
           users.groups.media.gid = lib.mkForce 2000;
