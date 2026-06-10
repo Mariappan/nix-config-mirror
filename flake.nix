@@ -73,6 +73,7 @@
       url = "github:nappairam/expressvpn-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixarr.url = "github:nix-media-server/nixarr";
     import-tree.url = "github:vic/import-tree";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
