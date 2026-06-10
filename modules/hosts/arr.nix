@@ -230,6 +230,67 @@
             };
           };
 
+          services.caddy =
+            let
+              tlsFiles = ''
+                tls /mnt/arr-certs/arr.crt /mnt/arr-certs/arr.key
+              '';
+              proxy = upstream: ''
+                ${tlsFiles}
+                reverse_proxy ${upstream}
+              '';
+            in
+            {
+              enable = true;
+              virtualHosts = {
+                "qbit.arr.lab.nappairam.dev".extraConfig = proxy "localhost:8080";
+                "prowl.arr.lab.nappairam.dev".extraConfig = proxy "localhost:9696";
+                "son.arr.lab.nappairam.dev".extraConfig = proxy "localhost:8989";
+                "rad.arr.lab.nappairam.dev".extraConfig = proxy "localhost:7878";
+                "baz.arr.lab.nappairam.dev".extraConfig = proxy "localhost:6767";
+              };
+            };
+          # wait for the virtiofs cert mount; caddy can't start without the files
+          systemd.services.arr-certs-wait = {
+            description = "Wait for the virtiofs-shared arr certs";
+            serviceConfig = {
+              Type = "oneshot";
+              RemainAfterExit = true;
+            };
+            script = ''
+              for i in $(seq 1 60); do
+                [ -e /mnt/arr-certs/arr.key ] && exit 0
+                sleep 2
+              done
+              echo "arr-certs mount never appeared" >&2
+              exit 1
+            '';
+          };
+          systemd.services.caddy = {
+            requires = [ "arr-certs-wait.service" ];
+            after = [ "arr-certs-wait.service" ];
+          };
+          # caddy doesn't watch manually-loaded cert files; pick up renewals daily
+          systemd.services.caddy-reload = {
+            description = "Reload caddy to pick up renewed certs";
+            serviceConfig = {
+              Type = "oneshot";
+              ExecStart = "${pkgs.systemd}/bin/systemctl reload caddy.service";
+            };
+          };
+          systemd.timers.caddy-reload = {
+            wantedBy = [ "timers.target" ];
+            timerConfig = {
+              OnCalendar = "daily";
+              Persistent = true;
+            };
+          };
+
+          # 443 only, and only from the LAN
+          networking.firewall.extraCommands = ''
+            iptables -A nixos-fw -p tcp --dport 443 -s 10.89.10.0/24 -j nixos-fw-accept
+          '';
+
           networking.hostName = "arr";
           time.timeZone = "Asia/Singapore";
         }

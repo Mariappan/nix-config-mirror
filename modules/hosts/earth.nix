@@ -192,6 +192,32 @@
           systemd.services.caddy.serviceConfig.EnvironmentFile = config.age.secrets.cloudflare-token.path;
           networking.firewall.allowedTCPPorts = [ 80 443 ];
 
+          # Stage the *.arr.lab cert for the arr VM
+          systemd.services.arr-cert-stage = {
+            description = "Stage *.arr.lab wildcard cert for the arr VM";
+            wantedBy = [ "multi-user.target" ];
+            after = [ "caddy.service" ];
+            serviceConfig = {
+              Type = "oneshot";
+              RemainAfterExit = true;
+            };
+            script = ''
+              set -eu
+              SRC=/var/lib/caddy/.local/share/caddy/certificates/acme-v02.api.letsencrypt.org-directory/wildcard_.arr.lab.nappairam.dev
+              DST=/var/lib/arr-certs
+              install -d -m 755 -o root -g root "$DST"
+              install -m 400 -o caddy -g caddy "$SRC/wildcard_.arr.lab.nappairam.dev.crt" "$DST/arr.crt"
+              install -m 400 -o caddy -g caddy "$SRC/wildcard_.arr.lab.nappairam.dev.key" "$DST/arr.key"
+            '';
+          };
+          systemd.timers.arr-cert-stage = {
+            wantedBy = [ "timers.target" ];
+            timerConfig = {
+              OnCalendar = "daily";
+              Persistent = true;
+            };
+          };
+
           # ZFS datasets served by samba/plex — legacy mountpoints (set on import). nofail so a
           # missing/unavailable pool doesn't drop this headless box to emergency mode.
           fileSystems = builtins.listToAttrs (
