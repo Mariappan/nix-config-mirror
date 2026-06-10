@@ -171,6 +171,21 @@ sudo systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=0+2+7+12 \
 > - PCR 7: SecureBoot state
 > - PCR 12: Kernel command line, system credentials and system configuration images
 
+## arr VM: PIA credentials
+
+The `arr` host registers a fresh PIA WireGuard key at every boot
+(`pia-wg-conf.service`) — PIA purges idle key registrations, so a static
+wg.conf would die whenever the VM is down for a while. The service reads
+credentials from a root-only env file that must be provisioned once, on the VM:
+
+```bash
+sudo install -d -m 700 /etc/pia
+sudo sh -c 'umask 077; printf "PIA_USER=pXXXXXXX\nPIA_PASS=<password>\nPIA_REGION=sg\n" > /etc/pia/pia.env'
+```
+
+`PIA_REGION` is optional (defaults to `sg`). Without this file, `wg.service`
+(and the VPN-confined qBittorrent) will simply stay down.
+
 ## Tips
 
 1. Use `nh` for updating NixOs
