@@ -176,6 +176,15 @@
               }
               reverse_proxy localhost:32400
             '';
+            # Cert-only
+            virtualHosts."*.arr.lab.nappairam.dev".extraConfig = ''
+              tls {
+                dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+                propagation_delay 120s
+                propagation_timeout -1
+              }
+              respond 404
+            '';
             virtualHosts.":80".extraConfig = ''
               respond "Caddy is running" 200
             '';
