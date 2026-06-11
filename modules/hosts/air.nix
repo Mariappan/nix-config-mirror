@@ -63,9 +63,6 @@
           nixma.nixos.formFactor = "laptop";
           nixma.nixos.roles = [ "workstation" ];
 
-          # Display manager: tuigreet (greetd) - avoids GDM 50 niri breakage
-          nixma.nixos.wayland-dm.displayManager = "tuigreet";
-
           # Hardware configuration
           nixma.nixos.hardware = {
             work.enable = true;

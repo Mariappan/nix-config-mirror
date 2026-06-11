@@ -1,3 +1,4 @@
+{ inputs, ... }:
 {
   flake.modules.nixos.wayland-dm =
     {
@@ -17,11 +18,14 @@
             "regreet"
             "tuigreet"
             "cosmic-greeter"
+            "noctalia-greeter"
           ];
-          default = "gdm";
+          default = "noctalia-greeter";
           description = "Display manager to use for Wayland";
         };
       };
+
+      imports = [ inputs.noctalia-greeter.nixosModules.default ];
 
       config = {
         nixma.nixos.imported.wayland-dm = true;
@@ -56,6 +60,8 @@
         services.displayManager.cosmic-greeter.enable = lib.mkIf (
           cfg.displayManager == "cosmic-greeter"
         ) true;
+
+        programs.noctalia-greeter.enable = lib.mkIf (cfg.displayManager == "noctalia-greeter") true;
       };
     };
 }
