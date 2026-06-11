@@ -47,8 +47,8 @@
 
           nixma.nixos.networking.backend = "networkd";
 
-          systemd.network.networks."05-vpn-confinement" = {
-            matchConfig.Name = "wg-br veth-wg-br";
+          systemd.network.networks."05-virtual-unmanaged" = {
+            matchConfig.Name = "wg-br veth* podman*";
             linkConfig.Unmanaged = true;
           };
 
@@ -228,6 +228,21 @@
               webuiPort = 8080;
               vpn.enable = true;
             };
+          };
+
+          # The official container (with bundled, matched Chrome) —
+          # the nixpkgs build crashes against nixpkgs Chromium.
+          virtualisation.oci-containers = {
+            backend = "podman";
+            containers.flaresolverr = {
+              image = "ghcr.io/flaresolverr/flaresolverr:v3.5.0";
+              ports = [ "127.0.0.1:8191:8191" ];
+              environment.LOG_LEVEL = "info";
+            };
+          };
+          systemd.services.podman-flaresolverr = {
+            after = [ "network-online.target" ];
+            wants = [ "network-online.target" ];
           };
 
           services.caddy =
