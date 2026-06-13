@@ -26,6 +26,15 @@
           lib,
           ...
         }:
+        let
+          # Homer is static assets + a runtime-loaded assets/config.yml
+          homerRoot = pkgs.runCommand "homer-root" { } ''
+            mkdir -p $out
+            cp -r ${pkgs.homer}/. $out/
+            chmod -R u+w $out
+            cp ${../../dotfiles/homer/config.yml} $out/assets/config.yml
+          '';
+        in
         {
           nixma.users.maari = {
             email = "1221719+nappairam@users.noreply.github.com";
@@ -166,6 +175,16 @@
           # 127.0.0.1:3001; not firewall-opened).
           services.uptime-kuma.enable = true;
 
+          # Web management UI — localhost-only
+          services.cockpit = {
+            enable = true;
+            plugins = with pkgs; [
+              cockpit-files
+              cockpit-podman
+              cockpit-machines
+            ];
+          };
+
           age.secrets.cloudflare-token.file = ../../secrets/cloudflare-token.age;
           age.secrets.paperless-admin.file = ../../secrets/paperless-admin.age;
           services.caddy = {
@@ -180,7 +199,9 @@
                 propagation_delay 120s
                 propagation_timeout -1
               }
-              reverse_proxy localhost:32400
+              reverse_proxy localhost:32400 {
+                header_down Access-Control-Allow-Origin "https://nas.lab.nappairam.dev"
+              }
             '';
             virtualHosts."paperless.lab.nappairam.dev".extraConfig = ''
               tls {
@@ -188,7 +209,9 @@
                 propagation_delay 120s
                 propagation_timeout -1
               }
-              reverse_proxy localhost:28981
+              reverse_proxy localhost:28981 {
+                header_down Access-Control-Allow-Origin "https://nas.lab.nappairam.dev"
+              }
             '';
             virtualHosts."uptime.lab.nappairam.dev".extraConfig = ''
               tls {
@@ -196,7 +219,18 @@
                 propagation_delay 120s
                 propagation_timeout -1
               }
-              reverse_proxy localhost:3001
+              reverse_proxy localhost:3001 {
+                header_down Access-Control-Allow-Origin "https://nas.lab.nappairam.dev"
+              }
+            '';
+            virtualHosts."nas.lab.nappairam.dev".extraConfig = ''
+              tls {
+                dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+                propagation_delay 120s
+                propagation_timeout -1
+              }
+              root * ${homerRoot}
+              file_server
             '';
             # Cert-only
             virtualHosts."*.arr.lab.nappairam.dev".extraConfig = ''

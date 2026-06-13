@@ -215,7 +215,7 @@
             vpn = {
               enable = true;
               wgConf = "/run/pia/wg.conf";
-              openTcpPorts = [ 8080 ]; # qBittorrent WebUI, reachable for Caddy
+              openTcpPorts = [ 8080 ];
             };
 
             prowlarr.enable = true;
@@ -252,7 +252,9 @@
               '';
               proxy = upstream: ''
                 ${tlsFiles}
-                reverse_proxy ${upstream}
+                reverse_proxy ${upstream} {
+                  header_down Access-Control-Allow-Origin "https://nas.lab.nappairam.dev"
+                }
               '';
             in
             {
