@@ -13,6 +13,7 @@
       self.modules.nixos.server
       self.modules.nixos.incus
       self.modules.nixos.zfs
+      self.modules.nixos.postgresql
 
       # Users
       self.modules.nixos.user-maari
@@ -220,7 +221,22 @@
 
           # ZFS datasets served by samba/plex — legacy mountpoints (set on import). nofail so a
           # missing/unavailable pool doesn't drop this headless box to emergency mode.
-          fileSystems = builtins.listToAttrs (
+          fileSystems = {
+            # PostgreSQL live data on the fast NVMe pool (random IO). Tune the dataset
+            # for DB workloads: zfs set recordsize=8K logbias=throughput atime=off compression=lz4
+            "/var/lib/postgresql" = {
+              device = "fastpool/postgres";
+              fsType = "zfs";
+              options = [ "nofail" "x-systemd.mount-timeout=10s" ];
+            };
+            # Logical DB dumps on the redundant pool (separate pool from live data).
+            "/srv/postgres-backups" = {
+              device = "datapool/postgres-backups";
+              fsType = "zfs";
+              options = [ "nofail" "x-systemd.mount-timeout=10s" ];
+            };
+          }
+          // builtins.listToAttrs (
             map (n: {
               name = "/srv/${n}";
               value = {
@@ -230,6 +246,8 @@
               };
             }) [ "media" "plex" "pictures" "maari" "safia" "megamind" "temp" ]
           );
+
+          nixma.nixos.postgresql.backup.dir = "/srv/postgres-backups";
 
           # Don't start services on an empty mountpoint if the pool isn't up yet.
           systemd.services.plex.unitConfig.RequiresMountsFor = [ "/srv/plex" "/srv/media" ];
