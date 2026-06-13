@@ -163,6 +163,7 @@
           '';
 
           age.secrets.cloudflare-token.file = ../../secrets/cloudflare-token.age;
+          age.secrets.paperless-admin.file = ../../secrets/paperless-admin.age;
           services.caddy = {
             enable = true;
             package = pkgs.caddy.withPlugins {
@@ -176,6 +177,14 @@
                 propagation_timeout -1
               }
               reverse_proxy localhost:32400
+            '';
+            virtualHosts."paperless.lab.nappairam.dev".extraConfig = ''
+              tls {
+                dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+                propagation_delay 120s
+                propagation_timeout -1
+              }
+              reverse_proxy localhost:28981
             '';
             # Cert-only
             virtualHosts."*.arr.lab.nappairam.dev".extraConfig = ''
@@ -244,7 +253,7 @@
                 fsType = "zfs";
                 options = [ "nofail" "x-systemd.mount-timeout=10s" ];
               };
-            }) [ "media" "plex" "pictures" "maari" "safia" "megamind" "temp" ]
+            }) [ "media" "plex" "pictures" "maari" "safia" "megamind" "temp" "paperless" ]
           );
 
           nixma.nixos.postgresql.backup.dir = "/srv/postgres-backups";
@@ -267,6 +276,23 @@
           };
           users.users.plex.extraGroups = [ "media" "render" "video" ];
           hardware.graphics.enable = true;
+
+          # paperless-ngx — document management
+          services.paperless = {
+            enable = true;
+            address = "127.0.0.1";
+            port = 28981;
+            dataDir = "/srv/paperless/data";
+            mediaDir = "/srv/paperless/media";
+            consumptionDir = "/srv/paperless/consume";
+            domain = "paperless.lab.nappairam.dev";
+            passwordFile = config.age.secrets.paperless-admin.path;
+            database.createLocally = true;
+          };
+          # Don't start on an empty mountpoint if datapool isn't up yet.
+          systemd.services.paperless-scheduler.unitConfig.RequiresMountsFor = [ "/srv/paperless" ];
+          systemd.services.paperless-consumer.unitConfig.RequiresMountsFor = [ "/srv/paperless" ];
+          systemd.services.paperless-web.unitConfig.RequiresMountsFor = [ "/srv/paperless" ];
 
           boot.kernel.sysctl = {
             # Since bridge pure L2
