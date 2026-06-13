@@ -20,4 +20,5 @@ in
   "gpclient-domains-air.age".publicKeys = allKeys;
   "nix-github-token.age".publicKeys = allKeys;
   "cloudflare-token.age".publicKeys = [ earth ];
+  "paperless-admin.age".publicKeys = [ earth ];
 }
