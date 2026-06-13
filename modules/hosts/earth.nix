@@ -228,6 +228,25 @@
             };
           };
 
+          # Periodic liveness ping to healthchecks.io
+          systemd.services.healthcheck-ping = {
+            description = "Ping healthchecks.io liveness check";
+            after = [ "network-online.target" ];
+            wants = [ "network-online.target" ];
+            serviceConfig = {
+              Type = "oneshot";
+              DynamicUser = true;
+              ExecStart = "${pkgs.curl}/bin/curl -fsS -m 10 --retry 5 https://hc-ping.com/45e6f583-411a-42ec-b0da-e021273958a3";
+            };
+          };
+          systemd.timers.healthcheck-ping = {
+            wantedBy = [ "timers.target" ];
+            timerConfig = {
+              OnBootSec = "2min";
+              OnUnitActiveSec = "10min";
+            };
+          };
+
           # ZFS datasets served by samba/plex — legacy mountpoints (set on import). nofail so a
           # missing/unavailable pool doesn't drop this headless box to emergency mode.
           fileSystems = {
