@@ -162,6 +162,10 @@
             </service-group>
           '';
 
+          # Status monitoring, reached only via Caddy (module defaults to
+          # 127.0.0.1:3001; not firewall-opened).
+          services.uptime-kuma.enable = true;
+
           age.secrets.cloudflare-token.file = ../../secrets/cloudflare-token.age;
           age.secrets.paperless-admin.file = ../../secrets/paperless-admin.age;
           services.caddy = {
@@ -185,6 +189,14 @@
                 propagation_timeout -1
               }
               reverse_proxy localhost:28981
+            '';
+            virtualHosts."uptime.lab.nappairam.dev".extraConfig = ''
+              tls {
+                dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+                propagation_delay 120s
+                propagation_timeout -1
+              }
+              reverse_proxy localhost:3001
             '';
             # Cert-only
             virtualHosts."*.arr.lab.nappairam.dev".extraConfig = ''
