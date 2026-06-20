@@ -304,8 +304,8 @@
           };
 
           # 443 only, and only from the LAN
-          networking.firewall.extraCommands = ''
-            iptables -A nixos-fw -p tcp --dport 443 -s 10.89.10.0/24 -j nixos-fw-accept
+          networking.firewall.extraInputRules = ''
+            ip saddr 10.89.10.0/24 tcp dport 443 accept
           '';
 
           networking.hostName = "arr";
