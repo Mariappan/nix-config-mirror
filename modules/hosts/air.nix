@@ -22,6 +22,7 @@
       self.modules.nixos.yubikey
       self.modules.nixos.gpclient
       self.modules.nixos.nixGithubToken
+      self.modules.nixos.tailscale
       inputs.expressvpn.nixosModules.default
       self.modules.nixos.remoteBuilders
 
@@ -113,7 +114,6 @@
 
           nixma.nixos.boot.loaderTimeout = 3;
 
-          nixma.nixos.networkServices.tailscale = true;
           nixma.nixos.networking.strictArp = true;
 
           home-manager.sharedModules = [
