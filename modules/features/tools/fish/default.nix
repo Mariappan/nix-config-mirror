@@ -88,6 +88,22 @@
           # Rebuilt from the universal list each start so tide wizard edits still apply.
           set -g tide_cargotarget_color CCFF00
           set -g tide_cargotarget_bg_color normal
+
+          # Jujutsu: swap tide's `git` slot for the tide-item-jj plugin's `vcs`
+          # item, which shows jj status in jj repos and git status otherwise.
+          # Rebuilt from the universal list each start so wizard edits still apply.
+          set -g tide_jj_color $tide_git_color_branch
+          set -g tide_jj_bg_color $tide_git_bg_color
+          set -g tide_jj_color_upstream $tide_git_color_upstream
+          set -g tide_jj_color_added $tide_git_color_branch
+          set -g tide_jj_color_copied $tide_git_color_staged
+          set -g tide_jj_color_modified $tide_git_color_untracked
+          set -g tide_jj_color_removed $tide_git_color_conflicted
+          set -g tide_jj_color_renamed $tide_git_color_dirty
+          if contains git $tide_left_prompt_items; and not contains vcs $tide_left_prompt_items
+            set -g tide_left_prompt_items (string replace -- git vcs $tide_left_prompt_items)
+          end
+
           if contains rustc $tide_right_prompt_items; and not contains cargotarget $tide_right_prompt_items
             set -l _items
             for _it in $tide_right_prompt_items
@@ -187,6 +203,15 @@
           {
             name = "done"; # doesn't work on wayland
             src = done.src;
+          }
+          {
+            name = "tide-item-jj"; # jj status in tide via `vcs` item
+            src = pkgs.fetchFromGitHub {
+              owner = "lucasadelino";
+              repo = "tide-item-jj";
+              rev = "e1150b7332b85149b468cb10c2844f082f33975b";
+              hash = "sha256-vLSrHPoytZ/kXQh0Bp/4AWe8YLlyufRjepfXUAuWCB8=";
+            };
           }
         ];
       };
