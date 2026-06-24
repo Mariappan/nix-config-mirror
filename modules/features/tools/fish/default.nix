@@ -48,6 +48,17 @@
               end
             '';
           };
+          _tide_item_cargotarget = {
+            body = ''
+              # Show active Rust cross-compile target (e.g. nix develop .#musl)
+              if not set -q CARGO_BUILD_TARGET
+                return
+              end
+              # Shorten e.g. x86_64-unknown-linux-musl -> (musl)
+              set -l short (string split -r -m1 -f2 -- - $CARGO_BUILD_TARGET)
+              _tide_print_item cargotarget '(' $short ')'
+            '';
+          };
           _tide_item_netns = {
             body = ''
               # echo $tide_right_prompt_items
@@ -72,6 +83,19 @@
 
         interactiveShellInit = ''
           set -g fish_greeting
+
+          # Tide: show active Rust cross-compile target after the rustc item.
+          # Rebuilt from the universal list each start so tide wizard edits still apply.
+          set -g tide_cargotarget_color CCFF00
+          set -g tide_cargotarget_bg_color normal
+          if contains rustc $tide_right_prompt_items; and not contains cargotarget $tide_right_prompt_items
+            set -l _items
+            for _it in $tide_right_prompt_items
+              set -a _items $_it
+              test $_it = rustc; and set -a _items cargotarget
+            end
+            set -g tide_right_prompt_items $_items
+          end
           ${pkgs.any-nix-shell}/bin/any-nix-shell fish --info-right | source # use fish in nix run and nix-shell
 
           # Ctrl L - Clear the screen, but dont clear the scrollback
@@ -96,9 +120,6 @@
           end
 
           abbr 4DIRS --set-cursor=! "$(string join \n -- 'for dir in */' 'cd $dir' '!' 'cd ..' 'end')"
-
-          # Fix until Atiun adapt for new fish syntax
-          bind up _atuin_bind_up
         '';
 
         loginShellInit =
