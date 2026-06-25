@@ -20,6 +20,10 @@
         "splash"
         "udev.log_priority=3"
         "rd.systemd.show_status=auto"
+        # Hide the blinking text cursor on the bare console. During the
+        # greetd handoff (greeter compositor exits -> niri grabs DRM) the
+        # kernel framebuffer console is briefly visible; no cursor = cleaner.
+        "vt.global_cursor_default=0"
       ];
 
       boot.consoleLogLevel = 3;
