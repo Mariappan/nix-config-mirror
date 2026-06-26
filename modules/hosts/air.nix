@@ -18,6 +18,7 @@
       self.modules.nixos.niri
       self.modules.nixos.docker
       self.modules.nixos.virtualbox
+      self.modules.nixos.incus
       self.modules.nixos.yubikey
       self.modules.nixos.gpclient
       self.modules.nixos.nixGithubToken
@@ -146,6 +147,9 @@
               ];
             }
           ];
+
+          # Lab uses incus over its unix socket as the maari user.
+          users.users.maari.extraGroups = [ "incus-admin" ];
 
           networking.hostName = "air";
           time.timeZone = "Asia/Singapore";
