@@ -190,11 +190,12 @@ layer-rule {
     block-out-from "screen-capture"
 }
 
-// Overview layer not present in noctalia v5 - kept for future re-add.
-// layer-rule {
-//     match namespace="^noctalia-overview"
-//     place-within-backdrop true
-// }
+// noctalia v5 renamed the overview surface namespace to "noctalia-backdrop"
+// (requires [backdrop] enabled = true in noctalia settings).
+layer-rule {
+    match namespace="^noctalia-backdrop$"
+    place-within-backdrop true
+}
 
 // Make the following windows/layers more clearly visible
 window-rule {
