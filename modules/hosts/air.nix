@@ -57,6 +57,7 @@
               neovide
               niri
               claude
+              gcroot-keepwarm
             ];
           };
 
